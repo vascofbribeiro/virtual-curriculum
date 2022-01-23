@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> Virtual Curriculum </title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: orange;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .game-container {
+                position: relative;
+                width: 352px;
+                height: 198px;
+                outline: 1px solid white;
+                margin: 0 auto;
+                transform: scale(3) translateY(50%)
+            }
+
+            .game-container canvas {
+                image-rendering: pixelated;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="game-container">
+            <canvas id="game-canvas" width="352" height="198"></canvas>
+        </div>
+    </body>
+</html>

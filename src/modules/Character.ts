@@ -56,4 +56,12 @@ export default class Character {
     public get y() {
         return this._y;
     }
+
+    public set x(pos: number) {
+        this._x = pos;
+    }
+
+    public set y(pos: number) {
+        this._y = pos;
+    }
 }

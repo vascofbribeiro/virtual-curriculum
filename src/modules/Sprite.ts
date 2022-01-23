@@ -1,5 +1,6 @@
 import { ISpriteConfig } from '../interfaces/ISpriteConfig';
 import { ICharacter } from '../interfaces/ICharacter';
+import { getGridPosition } from '../utils/grid';
 
 export default class Sprite {
     private _animations: object;
@@ -9,14 +10,14 @@ export default class Sprite {
     private _width: number;
     private _height: number;
     private _isLoaded: boolean;
-    private _characterObject: {
+    private _gameObject: {
         x: number;
         y: number
     };
 
     constructor(config?: ISpriteConfig) {
         // Sould be received from config
-        this._characterObject = config.characterObject;
+        this._gameObject = config.characterObject;
         this._image = new Image();
         this._image.src = config.src;
         this._image.onload = () => {
@@ -41,8 +42,8 @@ export default class Sprite {
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-        const x = this._characterObject.x * 16 - 8;
-        const y = this._characterObject.y * 16;
+        const x = this._gameObject.x - 8;
+        const y = this._gameObject.y;
 
         this._isLoaded && ctx.drawImage(
             this._image, 

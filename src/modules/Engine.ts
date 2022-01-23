@@ -1,6 +1,7 @@
-import Canvas from '../modules/Canvas';
-import Character from '../modules/Character';
+import Character from './Character';
+import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
+import { getGridPosition } from '../utils/grid';
 const mapsConfig = require('../configs/maps.json');
 
 export default class Engine {
@@ -9,6 +10,7 @@ export default class Engine {
     private _map: Map;
     private _miniMe: Character;
     private _characters: Array<Character>;
+    private _directionInput: DirectionInput;
 
     constructor(id: string) { 
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
@@ -21,7 +23,8 @@ export default class Engine {
             this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
             this._map.draw(this._ctx);
-            this._miniMe.draw();
+            this._miniMe.update(this._directionInput.direction);
+            this._miniMe.draw(this._ctx);
 
             requestAnimationFrame(() => {
                 step();
@@ -33,20 +36,18 @@ export default class Engine {
 
     public init() {
         this._map = new Map(mapsConfig.professionalExpRoom);
-        this._miniMe = new Character(this._ctx, {x: 0, y: 0, name: 'Vasco', hasShadow: true});
-                
-        this.startGameLoop();
-        // setTimeout(() => {
-        //     map.draw(this._ctx);
-        //     vasco.draw();
-        //     vasco2.draw();
-        // }, 200);
-
-        document.addEventListener('keydown', (event) => {
-            const keyName = event.key;
-
-            this._miniMe.updatePosition(keyName);
+        this._miniMe = new Character({
+            x: getGridPosition(2),
+            y: getGridPosition(3),
+            name: 'Vasco',
+            hasShadow: true,
+            objectSpriteSrc: '../images/characters/ash.png',
+            shadowSpriteSrc: '../images/characters/shadow.png'
         });
 
+        this._directionInput = new DirectionInput();
+        this._directionInput.init();
+
+        this.startGameLoop();
     }
 }

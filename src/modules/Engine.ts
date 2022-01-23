@@ -42,7 +42,8 @@ export default class Engine {
             name: 'Vasco',
             hasShadow: true,
             objectSpriteSrc: '../images/characters/ash.png',
-            shadowSpriteSrc: '../images/characters/shadow.png'
+            shadowSpriteSrc: '../images/characters/shadow.png',
+            isPlayer: true,
         });
 
         this._directionInput = new DirectionInput();

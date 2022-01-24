@@ -1,5 +1,7 @@
 import Sprite from "./Sprite";
 import GameObject from './GameObject';
+import Map from "./Map";
+import { nextPosition } from "../utils/grid";
 
 type Direction = {
     axis: string;
@@ -47,11 +49,15 @@ export default class Character extends GameObject {
         }
     }
 
-    public update(arrow: "up" | "down" | "left" | "right" | undefined) {
+    // FIX FUNCTION NOT GETTING CORRECT POSITION!!!!
+
+    public update(arrow: "up" | "down" | "left" | "right" | undefined, map: Map) {
         this.updatePosition();
         this.updateSprite(arrow);
-
         if(this._isPlayer && this._movingProgressRemaining === 0 && arrow) {
+            console.log(arrow);
+            console.log(nextPosition(this.x, this.y, this.direction))
+            console.log(this.x,this.y)
             this.direction = arrow;
             this._movingProgressRemaining = 16;
         }
@@ -63,7 +69,7 @@ export default class Character extends GameObject {
             if(this.direction === 'up' || this.direction === 'down') {
                 this.y += this._directionUpdate[this.direction].change
             }
-            else {
+            else if(this.direction === 'left' || this.direction === 'right'){
                 this.x += this._directionUpdate[this.direction].change
             }
 

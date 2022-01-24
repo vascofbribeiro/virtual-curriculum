@@ -6,6 +6,6 @@ export interface ICharacter {
     _characterSprite: ISprite;
     _shadowSprite: ISprite;
     _sprite: ISprite
-    _x: number;
-    _y: number;
+    x: number;
+    y: number;
 }

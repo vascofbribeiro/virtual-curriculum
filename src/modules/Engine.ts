@@ -2,7 +2,7 @@ import Character from './Character';
 import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
 import { getGridPosition } from '../utils/grid';
-const mapsConfig = require('../configs/maps.json');
+import { mapsConfig } from '../configs/maps.js';
 
 export default class Engine {
     private _canvas: HTMLCanvasElement;
@@ -19,12 +19,22 @@ export default class Engine {
 
     startGameLoop() {
         const step = () => {
-            //Clear Canvas
+            // Clear Canvas
             this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-            this._map.draw(this._ctx);
-            this._miniMe.update(this._directionInput.direction);
-            this._miniMe.draw(this._ctx);
+            const cameraView = this._map.gameObjects.miniMe;
+
+            Object.keys(this._map.gameObjects).forEach(key => {
+                this._map.gameObjects[key].update(this._directionInput.direction, this._map);
+            })
+
+            this._map.drawLowerImage(this._ctx, cameraView);
+
+            Object.keys(this._map.gameObjects).forEach(key => {
+                this._map.gameObjects[key].objectSprite.draw(this._ctx, cameraView);
+            })
+            
+            // this._map.drawUpperImage(this._ctx, cameraView);
 
             requestAnimationFrame(() => {
                 step();
@@ -36,15 +46,6 @@ export default class Engine {
 
     public init() {
         this._map = new Map(mapsConfig.professionalExpRoom);
-        this._miniMe = new Character({
-            x: getGridPosition(2),
-            y: getGridPosition(3),
-            name: 'Vasco',
-            hasShadow: true,
-            objectSpriteSrc: '../images/characters/ash.png',
-            shadowSpriteSrc: '../images/characters/shadow.png',
-            isPlayer: true,
-        });
 
         this._directionInput = new DirectionInput();
         this._directionInput.init();

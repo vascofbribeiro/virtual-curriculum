@@ -1,6 +1,7 @@
 import { ISpriteConfig } from '../interfaces/ISpriteConfig';
 import { ICharacter } from '../interfaces/ICharacter';
 import { getGridPosition } from '../utils/grid';
+import GameObject from './GameObject';
 
 export default class Sprite {
     private _animations: {
@@ -47,12 +48,11 @@ export default class Sprite {
         this._framesToChange = 8;
         this._framesToChangeProgress = this._framesToChange;
 
-        this._currentAnimation = 'walk-right';
+        this._currentAnimation = 'idle-down';
         this._currentAnimationFrame = 0;
     }
 
     get frame() {
-        console.log(this._currentAnimation);
         return this._animations[this._currentAnimation][this._currentAnimationFrame]
     }
 
@@ -76,9 +76,9 @@ export default class Sprite {
         }
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
-        const x = this._gameObject.x - 8;
-        const y = this._gameObject.y;
+    draw(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
+        const x = this._gameObject.x - 8 + getGridPosition(10.5) - cameraView.x;
+        const y = this._gameObject.y + getGridPosition(6) - cameraView.y;
 
         const [frameX, frameY] = this.frame;
 

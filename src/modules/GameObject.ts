@@ -1,4 +1,6 @@
 import Sprite from "./Sprite";
+import Map from "./Map";
+import { Direction } from "../types/Direction";
 
 export default class GameObject {
     private _name: string;
@@ -7,7 +9,7 @@ export default class GameObject {
     public shadowSprite: Sprite;
     public x: number;
     public y: number;
-    public direction: "up" | "down" | "left" | "right";
+    public direction: Direction;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
@@ -37,12 +39,12 @@ export default class GameObject {
         this.direction = "down";
     }
 
-    public draw(ctx: CanvasRenderingContext2D) {
-        this._hasShadow && this.shadowSprite.draw(ctx);
-        this.objectSprite.draw(ctx);
-    }
+    // public draw(ctx: CanvasRenderingContext2D) {
+    //     this._hasShadow && this.shadowSprite.draw(ctx);
+    //     this.objectSprite.draw(ctx, cameraPerson);
+    // }
 
-    public update(arrow: "up" | "down" | "left" | "right" | undefined) {
+    public update(arrow: Direction, map: Map) {
 
     }
 }

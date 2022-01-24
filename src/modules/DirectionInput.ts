@@ -1,8 +1,8 @@
-type Directions = "up" | "down" | "left" | "right"
+import { Direction } from '../types/Direction'; 
 
 export default class DirectionInput {
-    private _heldDirections: Array<Directions>
-    private _keyMap: { [key: string]: string }
+    private _heldDirections: Array<Direction>
+    private _keyMap: Record<string, Direction> 
 
     constructor() {
         this._heldDirections = [];
@@ -21,14 +21,14 @@ export default class DirectionInput {
 
     init() {
         document.addEventListener('keydown', (event) => {
-            const direction = this._keyMap[event.key] as Directions
+            const direction = this._keyMap[event.key] as Direction
             if(direction && this._heldDirections.indexOf(direction) === -1) {
                 this._heldDirections.unshift(direction);
             }
         });
 
         document.addEventListener('keyup', (event) => {
-            const direction = this._keyMap[event.key] as Directions
+            const direction = this._keyMap[event.key] as Direction
             const index = this._heldDirections.indexOf(direction);
             index > -1 && this._heldDirections.splice(index, 1);
         });

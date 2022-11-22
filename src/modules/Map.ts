@@ -19,6 +19,34 @@ export default class Map {
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
         const {x,y} = nextPosition(currentX, currentY, direction);
+        const gameObjectsKeys = Object.keys(this.gameObjects);
+        // Calculate gameObjects size to be blocked when in its area
+
+        for(let i = 0; i < gameObjectsKeys.length; i++) {
+            const key = gameObjectsKeys[i];
+            if(key !== 'miniMe') {
+                const gameObjectX = this.gameObjects[key].x;
+                const gameObjectY = this.gameObjects[key].y;
+                console.log('x', x);
+                console.log('y', y);
+                console.log('gameObjectX', gameObjectX);
+                console.log('gameObjectY', gameObjectY);
+                if(x === gameObjectX && y === gameObjectY) {console.log(key); return true; }
+                const objectHeight = this.gameObjects[key].objectHeight;
+                const objectWidth = this.gameObjects[key].objectWidth;
+                console.log('limit x', gameObjectX, gameObjectX + objectWidth);
+                console.log('limit y', gameObjectY, gameObjectY + objectHeight);
+                if(
+                    x > gameObjectX &&
+                    x < gameObjectX + objectWidth &&
+                    y > gameObjectY && 
+                    y < gameObjectY + objectHeight
+                ) {
+                    console.log(key);
+                    return true
+                }
+            }
+        }
         return this._walls[`${x},${y}`]
     }
 

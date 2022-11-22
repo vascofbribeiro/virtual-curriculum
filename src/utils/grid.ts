@@ -11,7 +11,6 @@ export const getGridCoord = (x: number, y: number): string => {
 export const nextPosition = (initialX: number, initialY: number, direction: Direction) => {
     let x = initialX;
     let y = initialY;
-
     const size = 16;
 
     if(direction === 'right') {

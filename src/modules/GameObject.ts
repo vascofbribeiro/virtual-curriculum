@@ -1,6 +1,8 @@
 import Sprite from "./Sprite";
 import Map from "./Map";
 import { Direction } from "../types/Direction";
+import * as gridUtils from '../utils/grid';
+import { IGameObjectConfig } from "../interfaces/IGameObject";
 
 export default class GameObject {
     private _name: string;
@@ -10,30 +12,36 @@ export default class GameObject {
     public x: number;
     public y: number;
     public direction: Direction;
+    public objectWidth: number;
+    public objectHeight: number;
+    public shadowWidth: number;
+    public shadowHeight: number;
+    public objectSpriteimageWidth: number;
+    public objectSpriteimageHeight: number;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
     readonly SHADOW_WIDTH: number = 32;
     readonly SHADOW_HEIGHT: number = 32;
 
-    constructor(config: { x?: number, y?: number, name: string, hasShadow?: boolean, objectSpriteSrc: string, shadowSpriteSrc: string }) {
+    constructor(config: IGameObjectConfig) {
         this._name = config.name;
         this.x = config.x || 0;
         this.y = config.y || 0;
-        
+        this.objectWidth = config.width || this.OBJECT_WIDTH;
+        this.objectHeight = config.height || this.OBJECT_HEIGHT;
+        // this.shadowWidth = config.shadowWidth || this.SHADOW_WIDTH;
+        // this.shadowHeight = config.shadowHeight || this.SHADOW_HEIGHT;
+        // this.objectSpriteimageWidth = config.objectSpriteimageWidth || 0;
+        // this.objectSpriteimageHeight = config.objectSpriteimageHeight || 0;
         this.objectSprite = new Sprite({
-            characterObject: this,
-            src: config.objectSpriteSrc,
-            width: this.OBJECT_WIDTH,
-            height: this.OBJECT_HEIGHT
-        });
-
-        this._hasShadow = config.hasShadow;
+            gameObject: this,
+            ...config.sprite.object
+        })
+        this._hasShadow = !!config.sprite.shadow;
         this.shadowSprite = this._hasShadow && new Sprite({
-            characterObject: this,
-            src: config.shadowSpriteSrc,
-            width: this.SHADOW_WIDTH,
-            height: this.SHADOW_HEIGHT
+            gameObject: this,
+            ...config.sprite.shadow
         });
 
         this.direction = "down";

@@ -11,7 +11,8 @@ export default class DirectionInput {
             "ArrowUp": "up",
             "ArrowDown": "down",
             "ArrowLeft": "left",
-            "ArrowRight": "right"
+            "ArrowRight": "right",
+            " ": "interaction"
         }
     }
 
@@ -21,6 +22,7 @@ export default class DirectionInput {
 
     init() {
         document.addEventListener('keydown', (event) => {
+            console.log(event.key);
             const direction = this._keyMap[event.key] as Direction
             if(direction && this._heldDirections.indexOf(direction) === -1) {
                 this._heldDirections.unshift(direction);

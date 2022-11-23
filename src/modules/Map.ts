@@ -1,19 +1,24 @@
 import GameObject from "./GameObject";
 import { getGridPosition, nextPosition } from "../utils/grid";
 import { Direction } from "../types/Direction";
+import Engine from "./Engine";
 
 export default class Map {
     private _lowerImage: HTMLImageElement;
     private _upperImage: HTMLImageElement | null;
     private _walls: Record<string, boolean>
+    private _doors: Record<string, string>
+    private _engine: Engine;
     public gameObjects: Record<string, GameObject>;
 
-    constructor(config: {lowerImageSrc: string, upperImageSrc?: string, gameObjects: Record<string, GameObject>, walls: Record<string, boolean>} ) {
+    constructor(config: {lowerImageSrc: string, upperImageSrc?: string, gameObjects: Record<string, GameObject>, walls: Record<string, boolean>, doors: Record<string, string>}, engine: Engine) {
         console.log(config);
         this._lowerImage = new Image();
         this._lowerImage.src = config.lowerImageSrc;
         this._walls = config.walls;
+        this._doors = config.doors;
         this.gameObjects = config.gameObjects;
+        this._engine = engine;
         console.log('Walls', config.walls)
     }
 
@@ -27,15 +32,12 @@ export default class Map {
             if(key !== 'miniMe') {
                 const gameObjectX = this.gameObjects[key].x;
                 const gameObjectY = this.gameObjects[key].y;
-                console.log('x', x);
-                console.log('y', y);
-                console.log('gameObjectX', gameObjectX);
-                console.log('gameObjectY', gameObjectY);
-                if(x === gameObjectX && y === gameObjectY) {console.log(key); return true; }
+                
+                if(x === gameObjectX && y === gameObjectY) return true;
+
                 const objectHeight = this.gameObjects[key].objectHeight;
                 const objectWidth = this.gameObjects[key].objectWidth;
-                console.log('limit x', gameObjectX, gameObjectX + objectWidth);
-                console.log('limit y', gameObjectY, gameObjectY + objectHeight);
+                
                 if(
                     x > gameObjectX &&
                     x < gameObjectX + objectWidth &&
@@ -48,6 +50,14 @@ export default class Map {
             }
         }
         return this._walls[`${x},${y}`]
+    }
+
+    public nextMap(x: number, y: number) {
+        return this._doors[`${x},${y}`];
+    }
+
+    public changeMap(mapName: string) {
+        this._engine.changeMap(mapName)
     }
 
     public drawLowerImage(ctx: CanvasRenderingContext2D, cameraView: GameObject) {

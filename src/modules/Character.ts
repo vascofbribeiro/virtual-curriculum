@@ -68,6 +68,9 @@ export default class Character extends GameObject {
                     this.x += this._directionUpdate[this.direction].change
                 }
             }
+            const nextMap = map.nextMap(this.x, this.y)
+            nextMap && map.changeMap(nextMap);
+            
             this._movingProgressRemaining--
         }
     }

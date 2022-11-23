@@ -1,7 +1,6 @@
 import Character from './Character';
 import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
-import { getGridPosition } from '../utils/grid';
 import { mapsConfig } from '../configs/maps.js';
 
 export default class Engine {
@@ -44,8 +43,13 @@ export default class Engine {
         step();
     }
 
+    public changeMap(mapName: string) {
+        // TS workaround - fix later
+        this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig], this)
+    }
+
     public init() {
-        this._map = new Map(mapsConfig.professionalExpRoom);
+        this._map = new Map(mapsConfig.professionalExpRoom, this);
 
         this._directionInput = new DirectionInput();
         this._directionInput.init();

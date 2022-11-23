@@ -36,14 +36,14 @@ export default class Sprite {
 
         // These animations can be configurable, add it later
         this._animations = {
-            'idle-down': [ [0,0] ],
-            'idle-left': [ [0,1] ],
-            'idle-right': [ [0,2] ],
-            'idle-up': [ [0,3] ],
-            'walk-down': [ [1,0], [2,0], [3,0], [2,0] ],
-            'walk-left': [ [1,1], [2,1], [3,1], [2,1] ],
-            'walk-right': [ [1,2], [2,2], [3,2], [2,2] ],
-            'walk-up': [ [1,3], [2,3], [3,3], [2,3] ],
+            'idle-down': [ [3,0] ],
+            'idle-left': [ [2,0] ],
+            'idle-right': [ [0,0] ],
+            'idle-up': [ [1,0] ],
+            'walk-down': [ [18,2], [19,2], [20,2], [21,2], [22,2], [23,2] ],
+            'walk-left': [ [12,2], [13,2], [14,2], [15,2], [16,2], [17,2] ],
+            'walk-right': [ [0,2], [1,2], [2,2], [3,2], [4,2], [5,2] ],
+            'walk-up': [ [6,2], [7,2], [8,2], [9,2], [10,2], [11,2] ],
         }
 
         this._framesToChange = 8;
@@ -78,15 +78,15 @@ export default class Sprite {
     }
 
     draw(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
-        const x = this._gameObject.x - getGridPosition(0.5) + getGridPosition(10.5) - cameraView.x;
+        const x = this._gameObject.x + getGridPosition(10.5) - cameraView.x;
         const y = this._gameObject.y + getGridPosition(6) - cameraView.y;
 
         const [frameX, frameY] = this.frame;
 
         this._isLoaded && ctx.drawImage(
             this._image, 
-            frameX * 64, //left cut
-            frameY * 64,  //top cut
+            frameX * 16, //left cut
+            frameY * 32,  //top cut
             this._imageWidth,
             this._imageHeight,
             x,

@@ -4,11 +4,94 @@ import { getGridPosition, getGridCoord } from '../utils/grid';
 
 export const mapsConfig = {
     professionalExpRoom: {
+        lowerImageSrc: "../images/backgrounds/roomjp.png",
+        gameObjects: {
+            miniMe: new Character({
+                x: getGridPosition(3),
+                y: getGridPosition(1),
+                name: 'Vasco',
+                isPlayer: true,
+                hasShadow: true,
+                width: getGridPosition(1),
+                height: getGridPosition(1),
+                sprite: {
+                    object: {
+                        src: '../images/characters/sprite-vasco.png',
+                        width: 16,
+                        height: 32,
+                        imageWidth: 16,
+                        imageHeight: 32
+                    },
+                    shadow: {
+                        src: '../images/characters/shadow.png',
+                        width: 32,
+                        height: 32,
+                        imageWidth: 64,
+                        imageHeight: 64
+                    }
+                }
+            }),
+            npc: new Character({
+                x: getGridPosition(5),
+                y: getGridPosition(2),
+                name: 'NPC',
+                hasShadow: true,
+                width: getGridPosition(1),
+                height: getGridPosition(1),
+                sprite: {
+                    object: {
+                        src: '../images/characters/sprite-vasco.png',
+                        width: 16,
+                        height: 32,
+                        imageWidth: 16,
+                        imageHeight: 32
+                    },
+                    shadow: {
+                        src: '../images/characters/shadow.png',
+                        width: 32,
+                        height: 32,
+                        imageWidth: 64,
+                        imageHeight: 64
+                    }
+                }
+            }),
+            statue: new GameObject({
+                x: getGridPosition(7),
+                y: getGridPosition(0),
+                name: "Statue",
+                hasShadow: false,
+                width: getGridPosition(1),
+                height: getGridPosition(1),
+                sprite: {
+                    object: {
+                        src: '../images/objects/aniamted_haunted_mirror.png',
+                        width: 16,
+                        height: 32,
+                        imageWidth: 16,
+                        imageHeight: 32
+                    },
+                },
+                interaction: {
+                    side: ["up", "down"],
+                }
+            })
+        },
+        /*interactions: {
+            statue: {
+
+            }
+        },*/
+        walls: {},
+        doors: {
+            '0,0': 'outside'
+        }
+    },
+    outside: {
         lowerImageSrc: "../images/backgrounds/floor16.png",
         gameObjects: {
             miniMe: new Character({
-                x: getGridPosition(0),
-                y: getGridPosition(0),
+                x: getGridPosition(9),
+                y: getGridPosition(1),
                 name: 'Vasco',
                 isPlayer: true,
                 hasShadow: true,
@@ -81,36 +164,15 @@ export const mapsConfig = {
 
             }
         },*/
-        walls: {}
+        walls: {},
+        doors: {}
     },
-    // outside: {
-    //     lowerImageSrc: "../images/backgrounds/grass.png",
-    //     gameObjects: {
-    //         miniMe: new Character({
-    //             x: getGridPosition(1),
-    //             y: getGridPosition(1),
-    //             name: 'Vasco',
-    //             hasShadow: true,
-    //             objectSpriteSrc: '../images/characters/ash.png',
-    //             shadowSpriteSrc: '../images/characters/shadow.png',
-    //             isPlayer: true,
-    //         }),
-    //         npc: new Character({
-    //             x: getGridPosition(5),
-    //             y: getGridPosition(2),
-    //             name: 'Vasco',
-    //             hasShadow: true,
-    //             objectSpriteSrc: '../images/characters/ash.png',
-    //             shadowSpriteSrc: '../images/characters/shadow.png',
-    //         })
-    //     }
-    // }
 }
 
-createLinearWall({coord: 'x', x: 0, y: -2, n:20, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'y', x: -1, y: -2, n:11, map: mapsConfig.professionalExpRoom});
+createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});
+createLinearWall({coord: 'y', x: 0, y: 0, n:11, map: mapsConfig.professionalExpRoom});
 createLinearWall({coord: 'x', x: 0, y: 9, n:20, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'y', x: 20, y: -2, n:11, map: mapsConfig.professionalExpRoom});
+createLinearWall({coord: 'y', x: 20, y: 0, n:11, map: mapsConfig.professionalExpRoom});
 
 function createLinearWall(config) {
     for(let i=config[config.coord]; i < config[config.coord] + config.n; i++) {
@@ -120,4 +182,11 @@ function createLinearWall(config) {
             config.map.walls[getGridCoord(config.x, i)] = true;
         }
     }
+}
+
+createDoor({x: 10, y: 1, map: mapsConfig.outside, nextMap: 'professionalExpRoom'});
+
+function createDoor({x, y, map, nextMap}) {
+    map.doors[`${getGridCoord(x,y)}`] = nextMap
+    console.log(map.doors);
 }

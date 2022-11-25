@@ -16,13 +16,16 @@ export default class Character extends GameObject {
         right: Direction
     };
     private _isPlayer: boolean;
+    private _hasMapChanged: boolean;
+    private _hasInterected: boolean;
 
     constructor(config: ICharacter) {
         super(config);
         this._movingProgressRemaining = 0;
 
-        this._isPlayer = config.isPlayer
-
+        this._isPlayer = config.isPlayer;
+        this._hasMapChanged = false;
+        this._hasInterected = false;
         this._directionUpdate = {
             up: {
                 axis: "y",
@@ -47,12 +50,26 @@ export default class Character extends GameObject {
         this.updatePosition(map);
 
         this.updateSprite(key);
+        // this._isPlayer && key === "interaction" && this.canInteract(map);
 
-        this._isPlayer && key === "interaction" && this.canInteract(map);
-
-        if(this._isPlayer && this._movingProgressRemaining === 0 && key) {
+        if(this._isPlayer && this._movingProgressRemaining === 0) {
+            this._hasMapChanged = false;
+        }
+        if(this._isPlayer && this._movingProgressRemaining === 0 && key && key !== 'interaction') {
+            console.log(this.x, this.y)
             this.direction = key;
             this._movingProgressRemaining = 16;
+        }
+    }
+
+    public interact(map: Map) {
+         if(this._isPlayer && !this._hasInterected) {
+            const interaction = map.getInteractionOnSquare(this.x, this.y);
+            if(interaction) {
+                console.log('Interaction', interaction)
+                alert(interaction.message);
+                this._hasInterected = true;
+            }
         }
     }
 
@@ -68,9 +85,12 @@ export default class Character extends GameObject {
                     this.x += this._directionUpdate[this.direction].change
                 }
             }
-            const nextMap = map.nextMap(this.x, this.y)
-            nextMap && map.changeMap(nextMap);
-            
+            const nextMap = map.nextMap(this.x, this.y);
+            if(nextMap) {
+                !this._hasMapChanged && map.changeMap(nextMap);
+                this._hasMapChanged = true;
+            }
+
             this._movingProgressRemaining--
         }
     }
@@ -85,13 +105,5 @@ export default class Character extends GameObject {
             if(this._movingProgressRemaining > 0)  
                 this.objectSprite.setAnimation(`walk-${this.direction}`);
         }
-    }
-
-    public canInteract(map: Map) {
-        const gameObjects = Object.entries(map.gameObjects);
-        console.log(gameObjects);
-        gameObjects.forEach(object => {
-            //console.log(object)
-        });
     }
 }

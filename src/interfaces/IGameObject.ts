@@ -8,4 +8,6 @@ export interface IGameObjectConfig {
     width: number;
     height: number;
     sprite: ISpriteConfig
+    interaction: Record<string, Object>;
+    walkable?: boolean;
 }

@@ -18,6 +18,8 @@ export default class GameObject {
     public shadowHeight: number;
     public objectSpriteimageWidth: number;
     public objectSpriteimageHeight: number;
+    public interaction: Record<string, Object>
+    public walkable: boolean;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
@@ -45,6 +47,8 @@ export default class GameObject {
         });
 
         this.direction = "down";
+        this.interaction = config.interaction;
+        this.walkable = config.walkable || false;
     }
 
     // public draw(ctx: CanvasRenderingContext2D) {
@@ -53,6 +57,10 @@ export default class GameObject {
     // }
 
     public update(arrow: Direction, map: Map) {
+
+    }
+    
+    public interact(map: Map) {
 
     }
 }

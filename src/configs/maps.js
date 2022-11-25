@@ -53,6 +53,10 @@ export const mapsConfig = {
                         imageWidth: 64,
                         imageHeight: 64
                     }
+                },
+                interaction: {
+                    title: 'coiso',
+                    message: 'cenas'
                 }
             }),
             statue: new GameObject({
@@ -72,6 +76,8 @@ export const mapsConfig = {
                     },
                 },
                 interaction: {
+                    title: 'Title',
+                    message: 'Message',
                     side: ["up", "down"],
                 }
             })
@@ -83,7 +89,7 @@ export const mapsConfig = {
         },*/
         walls: {},
         doors: {
-            '0,0': 'outside'
+            '16,16': 'outside'
         }
     },
     outside: {
@@ -99,11 +105,11 @@ export const mapsConfig = {
                 height: getGridPosition(1),
                 sprite: {
                     object: {
-                        src: '../images/characters/ash.png',
-                        width: 32,
+                        src: '../images/characters/sprite-vasco.png',
+                        width: 16,
                         height: 32,
-                        imageWidth: 64,
-                        imageHeight: 64
+                        imageWidth: 16,
+                        imageHeight: 32
                     },
                     shadow: {
                         src: '../images/characters/shadow.png',
@@ -166,7 +172,7 @@ export const mapsConfig = {
         },*/
         walls: {},
         doors: {}
-    },
+    }
 }
 
 createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});

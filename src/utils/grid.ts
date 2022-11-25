@@ -8,6 +8,12 @@ export const getGridCoord = (x: number, y: number): string => {
     return `${x*16},${y*16}`
 }
 
+export const getPointsFromCoord = (coord: string) => {
+    const x = coord.split(',')[0];
+    const y = coord.split(',')[1];
+    return [x, y];
+}
+
 export const nextPosition = (initialX: number, initialY: number, direction: Direction) => {
     let x = initialX;
     let y = initialY;

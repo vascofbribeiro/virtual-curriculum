@@ -25,9 +25,11 @@ export default class Engine {
 
             Object.keys(this._map.gameObjects).forEach(key => {
                 this._map.gameObjects[key].update(this._directionInput.direction, this._map);
+                this._directionInput.direction === 'interaction' && this._map.gameObjects[key].interact(this._map);
             })
 
             this._map.drawLowerImage(this._ctx, cameraView);
+            this._map.drawDoors(this._ctx, cameraView);
 
             Object.keys(this._map.gameObjects).forEach(key => {
                 this._map.gameObjects[key].objectSprite.draw(this._ctx, cameraView);

@@ -20,6 +20,7 @@ export default class GameObject {
     public objectSpriteimageHeight: number;
     public interaction: Record<string, Object>
     public walkable: boolean;
+    public isInteracting: boolean;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;

@@ -3,9 +3,11 @@ import { Direction } from '../types/Direction';
 export default class DirectionInput {
     private _heldDirections: Array<Direction>
     private _keyMap: Record<string, Direction> 
+    public shouldStartInteraction: boolean;
 
     constructor() {
         this._heldDirections = [];
+        this.shouldStartInteraction = false
 
         this._keyMap = {
             "ArrowUp": "up",
@@ -34,5 +36,10 @@ export default class DirectionInput {
             const index = this._heldDirections.indexOf(direction);
             index > -1 && this._heldDirections.splice(index, 1);
         });
+
+        document.addEventListener('keypress', (event) => {
+            if(event.key === ' ')
+                this.shouldStartInteraction = !this.shouldStartInteraction; 
+        })
     }
 }

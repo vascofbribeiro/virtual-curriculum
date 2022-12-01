@@ -10,10 +10,12 @@ export default class Engine {
     private _miniMe: Character;
     private _characters: Array<Character>;
     private _directionInput: DirectionInput;
+    private _isInteracting: boolean;
 
     constructor(id: string) { 
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
         this._ctx = this._canvas.getContext("2d");
+        this._isInteracting = false;
     }
 
     startGameLoop() {
@@ -23,10 +25,23 @@ export default class Engine {
 
             const cameraView = this._map.gameObjects.miniMe;
 
+            // If main character is interacting stop updates
+            
+           
             Object.keys(this._map.gameObjects).forEach(key => {
-                this._map.gameObjects[key].update(this._directionInput.direction, this._map);
-                this._directionInput.direction === 'interaction' && this._map.gameObjects[key].interact(this._map);
+                // if(this._directionInput.shouldStartInteraction && !this._isInteracting) {
+                //     this._map.gameObjects[key].interact(this._map);
+                //     this._isInteracting = true
+                // } else {
+                //     this._isInteracting = false
+                // }
+
+                // console.log(this._map.gameObjects);
+                // console.log('key', key)
+                // console.log('Mapa', this._map)
+                this._map.gameObjects[key] && this._map.gameObjects[key].update(this._directionInput.direction, this._map);
             })
+        
 
             this._map.drawLowerImage(this._ctx, cameraView);
             this._map.drawDoors(this._ctx, cameraView);

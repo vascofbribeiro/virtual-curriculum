@@ -15,7 +15,6 @@ export default class Map {
     public spacesTaken: Record<string, any>;
 
     constructor(config: {lowerImageSrc: string, upperImageSrc?: string, gameObjects: Record<string, GameObject>, walls: Record<string, boolean>, doors: Record<string, string>}, engine: Engine) {
-        console.log(config);
         this._lowerImage = new Image();
         this._lowerImage.src = config.lowerImageSrc;
         this._walls = config.walls;
@@ -28,7 +27,7 @@ export default class Map {
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
         const {x,y} = nextPosition(currentX, currentY, direction);
-        return  this._walls[`${x},${y}`] || this.spacesTaken[`${x},${y}`]
+        return  !this._doors[`${x},${y}`] && (this._walls[`${x},${y}`] || this.spacesTaken[`${x},${y}`])
     }
 
     public getInteractionOnSquare(x: number, y: number) {

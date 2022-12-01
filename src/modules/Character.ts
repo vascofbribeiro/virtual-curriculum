@@ -17,7 +17,7 @@ export default class Character extends GameObject {
     };
     private _isPlayer: boolean;
     private _hasMapChanged: boolean;
-    private _hasInterected: boolean;
+    public isInteracting: boolean;
 
     constructor(config: ICharacter) {
         super(config);
@@ -25,7 +25,7 @@ export default class Character extends GameObject {
 
         this._isPlayer = config.isPlayer;
         this._hasMapChanged = false;
-        this._hasInterected = false;
+        this.isInteracting = false;
         this._directionUpdate = {
             up: {
                 axis: "y",
@@ -55,7 +55,7 @@ export default class Character extends GameObject {
         if(this._isPlayer && this._movingProgressRemaining === 0) {
             this._hasMapChanged = false;
         }
-        if(this._isPlayer && this._movingProgressRemaining === 0 && key && key !== 'interaction') {
+        if(this._isPlayer && this._movingProgressRemaining === 0 && key) {
             console.log(this.x, this.y)
             this.direction = key;
             this._movingProgressRemaining = 16;
@@ -63,12 +63,12 @@ export default class Character extends GameObject {
     }
 
     public interact(map: Map) {
-         if(this._isPlayer && !this._hasInterected) {
+         if(this._isPlayer) {
             const interaction = map.getInteractionOnSquare(this.x, this.y);
             if(interaction) {
                 console.log('Interaction', interaction)
                 alert(interaction.message);
-                this._hasInterected = true;
+                this.isInteracting = true;
             }
         }
     }

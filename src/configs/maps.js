@@ -57,7 +57,17 @@ export const mapsConfig = {
                 interaction: {
                     title: 'coiso',
                     message: 'cenas'
-                }
+                },
+                behaviorLoop: [
+                    {type: 'walk', direction: 'right'},
+                    {type: 'walk', direction: 'right'},
+                    {type: 'idle', direction: 'up', time: 1000},
+                    {type: 'idle', direction: 'right', time: 1000},
+                    {type: 'idle', direction: 'down', time: 1000},
+                    {type: 'idle', direction: 'left', time: 1000},
+                    {type: 'walk', direction: 'left'},
+                    {type: 'walk', direction: 'left'}
+                ]
             }),
             statue: new GameObject({
                 x: getGridPosition(7),
@@ -78,6 +88,26 @@ export const mapsConfig = {
                 interaction: {
                     title: 'Title',
                     message: 'Message',
+                    side: ["up", "down"],
+                }
+            }),
+            piano: new GameObject({
+                x: getGridPosition(7),
+                y: getGridPosition(4),
+                name: "Piano",
+                hasShadow: false,
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+                sprite: {
+                    object: {
+                        src: '../images/objects/piano.png',
+                        width: getGridPosition(2),
+                        height: getGridPosition(2),
+                        imageWidth: 96,
+                        imageHeight: 96
+                    },
+                },
+                interaction: {
                     side: ["up", "down"],
                 }
             })
@@ -202,20 +232,20 @@ export const mapsConfig = {
                     }
                 }
             }),
-            statue: new GameObject({
+            piano: new GameObject({
                 x: getGridPosition(7),
                 y: getGridPosition(2),
-                name: "Statue",
+                name: "Piano",
                 hasShadow: false,
-                width: getGridPosition(1),
-                height: getGridPosition(3),
+                width: getGridPosition(2),
+                height: getGridPosition(1),
                 sprite: {
                     object: {
-                        src: '../images/objects/statue.png',
+                        src: '../images/objects/piano.png',
                         width: getGridPosition(2),
-                        height: getGridPosition(3),
-                        imageWidth: 500,
-                        imageHeight: 800
+                        height: getGridPosition(2),
+                        imageWidth: 96,
+                        imageHeight: 96
                     },
                 },
                 interaction: {

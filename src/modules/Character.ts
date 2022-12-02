@@ -1,4 +1,8 @@
+import { IBehavior } from '../interfaces/IBehavior';
 import { ICharacter } from '../interfaces/ICharacter';
+import { IState } from '../interfaces/IState';
+import { emitEvent } from '../utils/events';
+import { nextPosition } from '../utils/grid';
 import GameObject from './GameObject';
 import Map from "./Map";
 
@@ -19,6 +23,25 @@ export default class Character extends GameObject {
     private _hasMapChanged: boolean;
     public isInteracting: boolean;
 
+    private DIRECTION_UPDATE = {
+        up: {
+            axis: "y",
+            change: -1
+        },
+        down: {
+            axis: "y",
+            change: 1
+        },
+        left: {
+            axis: "x",
+            change: -1
+        },
+        right: {
+            axis: "x",
+            change: 1
+        }
+    }
+
     constructor(config: ICharacter) {
         super(config);
         this._movingProgressRemaining = 0;
@@ -26,40 +49,63 @@ export default class Character extends GameObject {
         this._isPlayer = config.isPlayer;
         this._hasMapChanged = false;
         this.isInteracting = false;
-        this._directionUpdate = {
-            up: {
-                axis: "y",
-                change: -1
-            },
-            down: {
-                axis: "y",
-                change: 1
-            },
-            left: {
-                axis: "x",
-                change: -1
-            },
-            right: {
-                axis: "x",
-                change: 1
-            },
-        }
     }
 
-    public update(key: "up" | "down" | "left" | "right" | "interaction" | undefined, map: Map) {
-        this.updatePosition(map);
+    public update(state: IState) {
+        if(this._movingProgressRemaining > 0) {
+            this.updatePosition(state.map);
+        } else {
 
-        this.updateSprite(key);
+            // Only when is ready to walk. Ex: during cutscenes or other things its not possible to move
+            if(this._isPlayer && state.arrow) {
+                this.startBehavior(state, {
+                    type: "walk",
+                    direction: state.arrow
+                });
+            }
+            this.updateSprite();
+        }
+
         // this._isPlayer && key === "interaction" && this.canInteract(map);
 
-        if(this._isPlayer && this._movingProgressRemaining === 0) {
-            this._hasMapChanged = false;
-        }
-        if(this._isPlayer && this._movingProgressRemaining === 0 && key) {
-            console.log(this.x, this.y)
-            this.direction = key;
+        // if(this._isPlayer && this._movingProgressRemaining === 0) {
+        //     this._hasMapChanged = false;
+        // }
+        
+    }
+
+    public startBehavior(state: any, behavior: IBehavior) {
+        this.direction = behavior.direction;
+        
+        if(behavior.type === 'walk') {
+            if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+                behavior.retry && setTimeout(() => {
+                    this.startBehavior(state, behavior);
+                }, 100);
+                
+                return;
+            }
+            
+            // Ready to walk if space is not taken
+
+
+            // Move space for walking character
+            state.map.moveSpaceTaken(this.x, this.y, this.direction);
             this._movingProgressRemaining = 16;
+            
+            this.updateSprite();
         }
+
+        if(behavior.type === 'idle') {
+            setTimeout(() => {
+                emitEvent('CharacterIdleComplete', {
+                    whoId: this.id
+                })
+            }, behavior.time)
+            
+            this.updateSprite();
+        }
+        
     }
 
     public interact(map: Map) {
@@ -74,36 +120,35 @@ export default class Character extends GameObject {
     }
 
     public updatePosition(map: Map) {
-        if(this._movingProgressRemaining > 0) {
-            // Typescript workaround
-            // Only walk if space is not taken: walls or other characters
-            if(!map.isSpaceTaken(this.x, this.y, this.direction)) {
-                if(this.direction === 'up' || this.direction === 'down') {
-                    this.y += this._directionUpdate[this.direction].change
-                }
-                else if(this.direction === 'left' || this.direction === 'right'){
-                    this.x += this._directionUpdate[this.direction].change
-                }
-            }
-            const nextMap = map.nextMap(this.x, this.y);
-            if(nextMap) {
-                !this._hasMapChanged && map.changeMap(nextMap);
-                this._hasMapChanged = true;
-            }
+        // Define walking for character based on direction input
+        // Typescript workaround
+        const axis = this.DIRECTION_UPDATE[this.direction].axis as 'x' | 'y';
+        const change = this.DIRECTION_UPDATE[this.direction].change;
+        this[axis] += change; 
 
-            this._movingProgressRemaining--
+        // const nextMap = map.nextMap(this.x, this.y);
+        // if(nextMap) {
+        //     !this._hasMapChanged && map.changeMap(nextMap);
+        //     this._hasMapChanged = true;
+        // }
+
+        this._movingProgressRemaining--
+
+        if(this._movingProgressRemaining === 0) {
+            emitEvent('CharacterWalkComplete', {
+                whoId: this.id
+            })
+            
         }
     }
 
-    public updateSprite(arrow: "up" | "down" | "left" | "right" | "interaction" | undefined) {
-        if(arrow !== "interaction") {
-            if(this._isPlayer && this._movingProgressRemaining === 0 && !arrow) {  
+    public updateSprite() {
+        // if(arrow !== "interaction") {
+            if(this._movingProgressRemaining === 0) {  
                 this.objectSprite.setAnimation(`idle-${this.direction}`);
-                return;
-            }
-
-            if(this._movingProgressRemaining > 0)  
+            } else {
                 this.objectSprite.setAnimation(`walk-${this.direction}`);
-        }
+            }
+        // }
     }
 }

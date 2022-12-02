@@ -84,8 +84,8 @@ export default class Sprite {
         const [frameX, frameY] = this.frame;
 
         this._isLoaded && ctx.drawImage(
-            this._image, 
-            frameX * 16, //left cut
+            this._image,
+            frameX * 16, //left cut //FIX THIS FOR OTHER GAME OBJECTS
             frameY * 32,  //top cut
             this._imageWidth,
             this._imageHeight,

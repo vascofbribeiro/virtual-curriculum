@@ -1,3 +1,4 @@
+import { IBehavior } from "./IBehavior";
 import { ISpriteConfig } from "./ISpriteConfig";
 
 export interface IGameObjectConfig {
@@ -10,4 +11,6 @@ export interface IGameObjectConfig {
     sprite: ISpriteConfig
     interaction: Record<string, Object>;
     walkable?: boolean;
+    isPlayer?: boolean;
+    behaviorLoop?: Array<IBehavior>
 }

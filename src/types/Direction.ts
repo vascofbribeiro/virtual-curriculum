@@ -1,1 +1,1 @@
-export type Direction = 'up' | 'down' | 'left' | 'right' | "interaction" | undefined;
+export type Direction = 'up' | 'down' | 'left' | 'right' | undefined;

@@ -28,7 +28,7 @@ export default class Engine {
             // If main character is interacting stop updates
             
            
-            Object.keys(this._map.gameObjects).forEach(key => {
+            Object.values(this._map.gameObjects).forEach(object => {
                 // if(this._directionInput.shouldStartInteraction && !this._isInteracting) {
                 //     this._map.gameObjects[key].interact(this._map);
                 //     this._isInteracting = true
@@ -39,19 +39,24 @@ export default class Engine {
                 // console.log(this._map.gameObjects);
                 // console.log('key', key)
                 // console.log('Mapa', this._map)
-                this._map.gameObjects[key] && this._map.gameObjects[key].update(this._directionInput.direction, this._map);
-            })
-        
+                object.update({
+                    arrow: this._directionInput.direction,
+                    map: this._map,
+                })
+            })    
 
             this._map.drawLowerImage(this._ctx, cameraView);
+            //Create upper image for the maps
+            //this._map.drawUpperImage(this._ctx, cameraView);
+
             this._map.drawDoors(this._ctx, cameraView);
 
-            Object.keys(this._map.gameObjects).forEach(key => {
-                this._map.gameObjects[key].objectSprite.draw(this._ctx, cameraView);
+            Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
+                return gameObjectA.y - gameObjectB.y
+            }).forEach(gameObject => {
+                gameObject.objectSprite.draw(this._ctx, cameraView);
             })
             
-            // this._map.drawUpperImage(this._ctx, cameraView);
-
             requestAnimationFrame(() => {
                 step();
             })
@@ -67,6 +72,7 @@ export default class Engine {
 
     public init() {
         this._map = new Map(mapsConfig.professionalExpRoom, this);
+        this._map.mountObjects();
 
         this._directionInput = new DirectionInput();
         this._directionInput.init();

@@ -13,8 +13,7 @@ export default class DirectionInput {
             "ArrowUp": "up",
             "ArrowDown": "down",
             "ArrowLeft": "left",
-            "ArrowRight": "right",
-            " ": "interaction"
+            "ArrowRight": "right"
         }
     }
 

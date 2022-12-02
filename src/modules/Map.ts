@@ -13,6 +13,7 @@ export default class Map {
     public gameObjects: Record<string, GameObject>;
     public interactablePlaces: Record<string, any>;
     public spacesTaken: Record<string, any>;
+    public isInteracting: boolean;
 
     constructor(config: {lowerImageSrc: string, upperImageSrc?: string, gameObjects: Record<string, GameObject>, walls: Record<string, boolean>, doors: Record<string, string>}, engine: Engine) {
         this._lowerImage = new Image();
@@ -23,11 +24,20 @@ export default class Map {
         this._engine = engine;
         this.interactablePlaces = this.getInteractablePlaces();
         this.spacesTaken = this.getSpacesTaken();
+        this.isInteracting = false;
     }
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
         const {x,y} = nextPosition(currentX, currentY, direction);
-        return  !this._doors[`${x},${y}`] && (this._walls[`${x},${y}`] || this.spacesTaken[`${x},${y}`])
+        return  !this._doors[`${x},${y}`] && this.spacesTaken[`${x},${y}`]
+    }
+
+    public mountObjects() {
+        Object.keys(this.gameObjects).forEach(key => {
+            const gameObject = this.gameObjects[key];
+            gameObject.id = key;
+            gameObject.mount(this);
+        })
     }
 
     public getInteractionOnSquare(x: number, y: number) {
@@ -127,28 +137,45 @@ export default class Map {
 
     public getSpacesTaken() {
         const spacesTaken: Record<string, boolean> = {}
-        const gameObjectsKeys = Object.keys(this.gameObjects);
+        const gameObjects = Object.values(this.gameObjects);
 
-        for(let i = 0; i < gameObjectsKeys.length; i++) {
-            const key = gameObjectsKeys[i];
-            if(key !== 'miniMe' || this.gameObjects[key].walkable) {
-                const {x, y, objectHeight, objectWidth} = this.gameObjects[key];
-                
-                const xMin = x;
-                const xMax = x + objectWidth;
-                const yMin = y;
-                const yMax = y + objectHeight;
+        gameObjects.forEach(object => {
+            const {x, y, objectHeight, objectWidth} = object;
 
-                for(let i = xMin / 16; i < xMax / 16 ; i++) {
-                    for(let j = yMin / 16; j < yMax / 16 ; j++) {
-                        spacesTaken[getGridCoord(i,j)] = true;
-                    }
+            const xMin = x;
+            const xMax = x + objectWidth;
+            const yMin = y;
+            const yMax = y + objectHeight;
+
+            for(let i = xMin / 16; i < xMax / 16 ; i++) {
+                for(let j = yMin / 16; j < yMax / 16 ; j++) {
+                    spacesTaken[getGridCoord(i,j)] = true;
                 }
             }
-        }
+        });
+        
+        console.log('SPACES TAKEN', { 
+            ...spacesTaken,
+            ...this._walls
+        });
 
-        console.log(spacesTaken);
+        return { 
+            ...spacesTaken,
+            ...this._walls
+        };
+    }
 
-        return spacesTaken;
+    public addSpaceTaken(x: number, y: number) {
+        this.spacesTaken[`${x},${y}`] = true;
+    }
+
+    public removeSpaceTaken(x: number, y: number) {
+        delete this.spacesTaken[`${x},${y}`];
+    }
+
+    public moveSpaceTaken(wasX: number, wasY: number, direction: Direction) {
+        this.removeSpaceTaken(wasX, wasY);
+        const {x, y} = nextPosition(wasX, wasY, direction);
+        this.addSpaceTaken(x,y);
     }
 }

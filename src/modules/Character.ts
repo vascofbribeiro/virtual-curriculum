@@ -57,7 +57,7 @@ export default class Character extends GameObject {
         } else {
 
             // Only when is ready to walk. Ex: during cutscenes or other things its not possible to move
-            if(this._isPlayer && state.arrow) {
+            if(!state.map.isInteracting && this._isPlayer && state.arrow) {
                 this.startBehavior(state, {
                     type: "walk",
                     direction: state.arrow

@@ -36,9 +36,9 @@ export default class Sprite {
 
         // These animations can be configurable, add it later
         this._animations = {
-            'idle-down': [ [3,0] ],
+            'idle-down': [ [0,0] ],
             'idle-left': [ [2,0] ],
-            'idle-right': [ [0,0] ],
+            'idle-right': [ [0,1] ],
             'idle-up': [ [1,0] ],
             'walk-down': [ [18,2], [19,2], [20,2], [21,2], [22,2], [23,2] ],
             'walk-left': [ [12,2], [13,2], [14,2], [15,2], [16,2], [17,2] ],

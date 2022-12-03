@@ -4,11 +4,11 @@ import { getGridPosition, getGridCoord } from '../utils/grid';
 
 export const mapsConfig = {
     professionalExpRoom: {
-        lowerImageSrc: "../images/backgrounds/roomjp.png",
+        lowerImageSrc: "../images/backgrounds/main-room.png",
         gameObjects: {
             miniMe: new Character({
-                x: getGridPosition(3),
-                y: getGridPosition(1),
+                x: getGridPosition(6),
+                y: getGridPosition(7),
                 name: 'Vasco',
                 isPlayer: true,
                 hasShadow: true,
@@ -69,7 +69,7 @@ export const mapsConfig = {
                     {type: 'walk', direction: 'left'}
                 ]
             }),
-            statue: new GameObject({
+            mirror: new GameObject({
                 x: getGridPosition(7),
                 y: getGridPosition(0),
                 name: "Statue",
@@ -91,20 +91,100 @@ export const mapsConfig = {
                     side: ["up", "down"],
                 }
             }),
-            piano: new GameObject({
-                x: getGridPosition(7),
-                y: getGridPosition(4),
+            // piano: new GameObject({
+            //     x: getGridPosition(7),
+            //     y: getGridPosition(4),
+            //     name: "Piano",
+            //     hasShadow: false,
+            //     width: getGridPosition(2),
+            //     height: getGridPosition(2),
+            //     sprite: {
+            //         object: {
+            //             src: '../images/objects/piano.png',
+            //             width: getGridPosition(2),
+            //             height: getGridPosition(2),
+            //             imageWidth: 96,
+            //             imageHeight: 96
+            //         },
+            //     },
+            //     interaction: {
+            //         side: ["up", "down"],
+            //     }
+            // }),
+            avatarjs: new GameObject({
+                x: getGridPosition(12.5),
+                y: getGridPosition(0.5),
                 name: "Piano",
                 hasShadow: false,
-                width: getGridPosition(2),
+                width: getGridPosition(1.5),
+                height: getGridPosition(1.5),
+                sprite: {
+                    object: {
+                        src: '../images/objects/js-avatar.png',
+                        width: getGridPosition(1.5),
+                        height: getGridPosition(1.5),
+                        imageWidth: 32,
+                        imageHeight: 32
+                    },
+                },
+                interaction: {
+                    side: ["up", "down"],
+                }
+            }),
+            avatarnode: new GameObject({
+                x: getGridPosition(14.5),
+                y: getGridPosition(0.5),
+                name: "Piano",
+                hasShadow: false,
+                width: getGridPosition(1.5),
+                height: getGridPosition(1.5),
+                sprite: {
+                    object: {
+                        src: '../images/objects/node-avatar.png',
+                        width: getGridPosition(1.5),
+                        height: getGridPosition(1.5),
+                        imageWidth: 32,
+                        imageHeight: 32
+                    },
+                },
+                interaction: {
+                    side: ["up", "down"],
+                }
+            }),
+            avatargit: new GameObject({
+                x: getGridPosition(16.5),
+                y: getGridPosition(0.5),
+                name: "Piano",
+                hasShadow: false,
+                width: getGridPosition(1.5),
+                height: getGridPosition(1.5),
+                sprite: {
+                    object: {
+                        src: '../images/objects/git-avatar.png',
+                        width: getGridPosition(1.5),
+                        height: getGridPosition(1.5),
+                        imageWidth: 32,
+                        imageHeight: 32
+                    },
+                },
+                interaction: {
+                    side: ["up", "down"],
+                }
+            }),
+            sign: new GameObject({
+                x: getGridPosition(6),
+                y: getGridPosition(5),
+                name: "sign",
+                hasShadow: false,
+                width: getGridPosition(3),
                 height: getGridPosition(2),
                 sprite: {
                     object: {
-                        src: '../images/objects/piano.png',
-                        width: getGridPosition(2),
-                        height: getGridPosition(2),
-                        imageWidth: 96,
-                        imageHeight: 96
+                        src: '../images/objects/sign-all.png',
+                        width: getGridPosition(3),
+                        height: getGridPosition(3),
+                        imageWidth: 48,
+                        imageHeight: 48
                     },
                 },
                 interaction: {

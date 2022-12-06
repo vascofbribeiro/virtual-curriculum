@@ -22,6 +22,7 @@ export default class Character extends GameObject {
     private _isPlayer: boolean;
     private _hasMapChanged: boolean;
     public isInteracting: boolean;
+    public isIdle: boolean;
 
     private DIRECTION_UPDATE = {
         up: {
@@ -48,14 +49,15 @@ export default class Character extends GameObject {
 
         this._isPlayer = config.isPlayer;
         this._hasMapChanged = false;
-        this.isInteracting = false;
+        this.isInteracting = true;
+        this.isIdle = false;
     }
 
     public update(state: IState) {
         if(this._movingProgressRemaining > 0) {
             this.updatePosition(state.map);
         } else {
-
+            console.log('isInteracting', state.map.isInteracting)
             // Only when is ready to walk. Ex: during cutscenes or other things its not possible to move
             if(!state.map.isInteracting && this._isPlayer && state.arrow) {
                 this.startBehavior(state, {
@@ -97,10 +99,12 @@ export default class Character extends GameObject {
         }
 
         if(behavior.type === 'idle') {
+            this.isIdle = true;
             setTimeout(() => {
                 emitEvent('CharacterIdleComplete', {
                     whoId: this.id
-                })
+                });
+                this.isIdle = false;
             }, behavior.time)
             
             this.updateSprite();
@@ -108,16 +112,16 @@ export default class Character extends GameObject {
         
     }
 
-    public interact(map: Map) {
-         if(this._isPlayer) {
-            const interaction = map.getInteractionOnSquare(this.x, this.y);
-            if(interaction) {
-                console.log('Interaction', interaction)
-                alert(interaction.message);
-                this.isInteracting = true;
-            }
-        }
-    }
+    // public interact(map: Map) {
+    //      if(this._isPlayer) {
+    //         const interaction = map.getInteractionOnSquare(this.x, this.y);
+    //         if(interaction) {
+    //             console.log('Interaction', interaction)
+    //             alert(interaction.message);
+    //             this.isInteracting = true;
+    //         }
+    //     }
+    // }
 
     public updatePosition(map: Map) {
         // Define walking for character based on direction input

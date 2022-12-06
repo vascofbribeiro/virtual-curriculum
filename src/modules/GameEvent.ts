@@ -1,4 +1,5 @@
 import { IBehavior } from "../interfaces/IBehavior";
+import { InteractionMessage } from "./InteractionMessage";
 import Map from "./Map";
 
 export default class GameEvent {
@@ -10,7 +11,7 @@ export default class GameEvent {
         this.event = event;
     }
 
-    private idle(resolve: any) {
+    private idle(resolve: Function) {
         const who = this.map.gameObjects[this.event.who];
         who.startBehavior(
             {
@@ -33,7 +34,7 @@ export default class GameEvent {
         document.addEventListener('CharacterIdleComplete', completeHandler);
     }
 
-    private walk(resolve: any) {
+    private walk(resolve: Function) {
         const who = this.map.gameObjects[this.event.who];
         who.startBehavior(
             {
@@ -54,6 +55,20 @@ export default class GameEvent {
         }
 
         document.addEventListener('CharacterWalkComplete', completeHandler);
+    }
+
+    private message(resolve: Function) {
+        this.map.isInteracting = true;
+        const message = new InteractionMessage({
+            text: this.event.text,
+            onComplete: () => {
+                this.map.isInteracting = false;
+                console.log('free interaction');
+                resolve();
+            }
+        })
+
+        message.init(document.querySelector('.game-container'))
     }
 
     private interaction(resolve: any) {

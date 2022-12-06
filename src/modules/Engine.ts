@@ -10,12 +10,10 @@ export default class Engine {
     private _miniMe: Character;
     private _characters: Array<Character>;
     private _directionInput: DirectionInput;
-    private _isInteracting: boolean;
 
     constructor(id: string) { 
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
         this._ctx = this._canvas.getContext("2d");
-        this._isInteracting = false;
     }
 
     startGameLoop() {
@@ -78,5 +76,15 @@ export default class Engine {
         this._directionInput.init();
 
         this.startGameLoop();
+
+        this._map.startInteraction([
+            {who: 'npc', type: 'walk', direction:'down'},
+            {who: 'npc', type: 'walk', direction:'down'},
+            {who: 'npc', type: 'walk', direction:'down'},
+            {who: 'npc', type: 'walk', direction:'left'},
+            {who: 'miniMe', type: 'idle', direction:'right', time: 500},
+            {type: 'message', text: 'Hello! Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
+           
+        ])
     }
 }

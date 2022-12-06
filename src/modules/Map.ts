@@ -3,6 +3,8 @@ import { getGridPosition, getPointsFromCoord, nextPosition } from "../utils/grid
 import { Direction } from "../types/Direction";
 import Engine from "./Engine";
 import { getGridCoord } from "../utils/grid";
+import { IBehavior } from "../interfaces/IBehavior";
+import GameEvent from "./GameEvent";
 
 export default class Map {
     private _lowerImage: HTMLImageElement;
@@ -177,5 +179,22 @@ export default class Map {
         this.removeSpaceTaken(wasX, wasY);
         const {x, y} = nextPosition(wasX, wasY, direction);
         this.addSpaceTaken(x,y);
+    }
+
+    public async startInteraction(events: Array<IBehavior>) {
+        this.isInteracting = true;
+
+        for(let i = 0; i < events.length; i++) {
+            const eventHandler = new GameEvent({
+                event: events[i],
+                map: this
+            })
+
+            await eventHandler.init()
+        }
+
+        this.isInteracting = false;
+    
+        Object.values(this.gameObjects).forEach(gameObject => gameObject.doBehavior(this))
     }
 }

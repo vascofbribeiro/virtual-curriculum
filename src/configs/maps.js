@@ -2,13 +2,25 @@ import Character from '../modules/Character';
 import GameObject from '../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../utils/grid';
 
+// var canvas = document.querySelector('#game-canvas');
+// fitToContainer(canvas);
+
+// function fitToContainer(canvas){
+//   // Make it visually fill the positioned parent
+//   canvas.style.width ='100%';
+//   canvas.style.height='100%';
+//   // ...then set the internal size to match
+//   canvas.width  = canvas.offsetWidth;
+//   canvas.height = canvas.offsetHeight;
+// }
+
 export const mapsConfig = {
     professionalExpRoom: {
-        lowerImageSrc: "../images/backgrounds/main-room.png",
+        lowerImageSrc: "../images/backgrounds/generic.png",
         gameObjects: {
             miniMe: new Character({
-                x: getGridPosition(6),
-                y: getGridPosition(7),
+                x: getGridPosition(7),
+                y: getGridPosition(5),
                 name: 'Vasco',
                 isPlayer: true,
                 hasShadow: true,
@@ -32,7 +44,7 @@ export const mapsConfig = {
                 }
             }),
             npc: new Character({
-                x: getGridPosition(8),
+                x: getGridPosition(9),
                 y: getGridPosition(2),
                 name: 'NPC',
                 hasShadow: true,
@@ -112,17 +124,17 @@ export const mapsConfig = {
             //     }
             // }),
             avatarjs: new GameObject({
-                x: getGridPosition(12.5),
+                x: getGridPosition(25),
                 y: getGridPosition(0.5),
                 name: "Piano",
                 hasShadow: false,
-                width: getGridPosition(1.5),
-                height: getGridPosition(1.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
                 sprite: {
                     object: {
                         src: '../images/objects/js-avatar.png',
-                        width: getGridPosition(1.5),
-                        height: getGridPosition(1.5),
+                        width: getGridPosition(2),
+                        height: getGridPosition(2),
                         imageWidth: 32,
                         imageHeight: 32
                     },
@@ -132,17 +144,17 @@ export const mapsConfig = {
                 }
             }),
             avatarnode: new GameObject({
-                x: getGridPosition(14.5),
+                x: getGridPosition(28),
                 y: getGridPosition(0.5),
                 name: "Piano",
                 hasShadow: false,
-                width: getGridPosition(1.5),
-                height: getGridPosition(1.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
                 sprite: {
                     object: {
                         src: '../images/objects/node-avatar.png',
-                        width: getGridPosition(1.5),
-                        height: getGridPosition(1.5),
+                        width: getGridPosition(2),
+                        height: getGridPosition(2),
                         imageWidth: 32,
                         imageHeight: 32
                     },
@@ -152,17 +164,17 @@ export const mapsConfig = {
                 }
             }),
             avatargit: new GameObject({
-                x: getGridPosition(16.5),
+                x: getGridPosition(31),
                 y: getGridPosition(0.5),
                 name: "Piano",
                 hasShadow: false,
-                width: getGridPosition(1.5),
-                height: getGridPosition(1.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
                 sprite: {
                     object: {
                         src: '../images/objects/git-avatar.png',
-                        width: getGridPosition(1.5),
-                        height: getGridPosition(1.5),
+                        width: getGridPosition(2),
+                        height: getGridPosition(2),
                         imageWidth: 32,
                         imageHeight: 32
                     },
@@ -173,7 +185,7 @@ export const mapsConfig = {
             }),
             sign: new GameObject({
                 x: getGridPosition(6),
-                y: getGridPosition(5),
+                y: getGridPosition(2),
                 name: "sign",
                 hasShadow: false,
                 width: getGridPosition(3),
@@ -345,8 +357,8 @@ export const mapsConfig = {
 
 createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});
 createLinearWall({coord: 'y', x: 0, y: 0, n:11, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'x', x: 0, y: 9, n:20, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'y', x: 20, y: 0, n:11, map: mapsConfig.professionalExpRoom});
+createLinearWall({coord: 'x', x: 0, y: 50, n:20, map: mapsConfig.professionalExpRoom});
+createLinearWall({coord: 'y', x: 100, y: 0, n:11, map: mapsConfig.professionalExpRoom});
 
 function createLinearWall(config) {
     for(let i=config[config.coord]; i < config[config.coord] + config.n; i++) {

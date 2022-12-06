@@ -30,6 +30,7 @@ export default class GameObject {
     public id: string;
     public behaviorLoop: Array<IBehavior>;
     public behaviorLoopIndex: number;
+    public isIdle: boolean;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
@@ -88,7 +89,7 @@ export default class GameObject {
     }
     
     public async doBehavior(map: Map) {
-        if(map.isInteracting || this.behaviorLoop.length === 0)
+        if(map.isInteracting || this.behaviorLoop.length === 0 || this.isIdle)
             return;
 
         let eventConfig = this.behaviorLoop[this.behaviorLoopIndex];

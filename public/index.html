@@ -7,7 +7,7 @@
             }
 
             body {
-                background-color: orange;
+                background-color: #e9e1d2;
                 padding: 0;
                 margin: 0;
                 overflow: hidden;
@@ -24,6 +24,40 @@
 
             .game-container canvas {
                 image-rendering: pixelated;
+            }
+
+            .message {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 36px;
+                font-size: 12px;
+                width:100%;
+                padding: 4px;
+                background: #c3b29d;
+                border-top: 1px solid black;
+                color: #302a4a;
+            }
+
+            .message-p {
+                margin: 0;
+                font-size: 12px;
+            }
+
+            .message-button {
+                margin: 0;
+                font-size: 8px;
+                padding: 0;
+                --webkit-appearance: none;
+                background: none;
+                border: 0;
+                font-family: inherit;
+                cursor: pointer;
+
+                position: absolute;
+                right: 2px;
+                bottom: 0;
             }
 
         </style>

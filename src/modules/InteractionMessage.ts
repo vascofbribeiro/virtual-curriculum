@@ -1,8 +1,10 @@
+import InteractionInput from "./InteractionInput";
+
 export class InteractionMessage {
     private _text: string;
     private _onComplete: Function;
     public element: HTMLElement;
-    private actionListener: any;
+    private spacebarListener: any;
     
     constructor({ text, onComplete }: { text: string, onComplete: Function}) {
         this._text = text;
@@ -22,19 +24,16 @@ export class InteractionMessage {
             this.done();
         });
 
-        document.addEventListener('keypress', event => this.pressSpaceBar(event))
+        this.spacebarListener = new InteractionInput(() => {
+            this.spacebarListener.unbind();
+            this.done()
+        });
     }
 
     public done() {
+        console.log('remove');
         this.element.remove();
         this._onComplete()
-        document.removeEventListener('keypress', this.pressSpaceBar);
-    }
-
-    private pressSpaceBar(event: KeyboardEvent) {
-        if(event.key === ' ') {
-            this.done();
-        }
     }
 
     public init(container: HTMLElement) {

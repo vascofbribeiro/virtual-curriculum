@@ -9,7 +9,7 @@ export interface IGameObjectConfig {
     width: number;
     height: number;
     sprite: ISpriteConfig
-    interaction: Record<string, Object>;
+    interactions: Array<any>;
     walkable?: boolean;
     isPlayer?: boolean;
     behaviorLoop?: Array<IBehavior>

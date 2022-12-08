@@ -63,7 +63,6 @@ export default class GameEvent {
             text: this.event.text,
             onComplete: () => {
                 this.map.isInteracting = false;
-                console.log('free interaction');
                 resolve();
             }
         })

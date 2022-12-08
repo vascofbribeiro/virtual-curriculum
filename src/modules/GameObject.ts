@@ -22,7 +22,7 @@ export default class GameObject {
     public shadowHeight: number;
     public objectSpriteimageWidth: number;
     public objectSpriteimageHeight: number;
-    public interaction: Record<string, Object>
+    public interactions: Array<any>
     public walkable: boolean;
     public isInteracting: boolean;
     public isMounted: boolean;
@@ -63,8 +63,8 @@ export default class GameObject {
         this.direction = "down";
         this.behaviorLoop = config.behaviorLoop || [];
         this.behaviorLoopIndex = 0;
-        this.interaction = config.interaction;
         this.walkable = config.walkable || false;
+        this.interactions = config.interactions;
     }
 
     public mount(map: Map) {

@@ -57,7 +57,6 @@ export default class Character extends GameObject {
         if(this._movingProgressRemaining > 0) {
             this.updatePosition(state.map);
         } else {
-            console.log('isInteracting', state.map.isInteracting)
             // Only when is ready to walk. Ex: during cutscenes or other things its not possible to move
             if(!state.map.isInteracting && this._isPlayer && state.arrow) {
                 this.startBehavior(state, {

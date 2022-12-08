@@ -100,7 +100,7 @@ export default class Map {
         for(let i = 0; i < gameObjectsKeys.length; i++) {
             const key = gameObjectsKeys[i];
 
-            const interaction = this.gameObjects[key].interaction;
+            const interaction = this.gameObjects[key].interactions;
 
             if(interaction) {
                 const surroundedSquares = this.getSurroundedSquares(this.gameObjects[key]);
@@ -179,6 +179,29 @@ export default class Map {
         this.removeSpaceTaken(wasX, wasY);
         const {x, y} = nextPosition(wasX, wasY, direction);
         this.addSpaceTaken(x,y);
+    }
+
+    public checkForInteraction() {
+        const miniMe = this.gameObjects.miniMe;
+        const nextCoords = nextPosition(miniMe.x, miniMe.y, miniMe.direction);
+        const match = Object.values(this.gameObjects).find(gameObject => {
+            const interactXMin = gameObject.x;
+            const interactXMax = gameObject.x + gameObject.objectWidth - 16;
+            const interactYMin = gameObject.y;
+            const interactYMax = gameObject.y + gameObject.objectHeight -16;
+
+            const isInteractable = nextCoords.x >= interactXMin && nextCoords.x <= interactXMax &&
+                nextCoords.y >= interactYMin && nextCoords.y <= interactYMax
+            
+            return isInteractable;
+        })
+
+        console.log(match);
+
+        if (match && match.interactions && match.interactions.length) {
+            this.isInteracting = true;
+            this.startInteraction(match.interactions[0].events)
+        } 
     }
 
     public async startInteraction(events: Array<IBehavior>) {

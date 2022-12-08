@@ -66,10 +66,11 @@ export const mapsConfig = {
                         imageHeight: 64
                     }
                 },
-                interaction: {
-                    title: 'coiso',
-                    message: 'cenas'
-                },
+                interactions: [
+                    {
+                        events: [{type: 'message', text: 'Feel free to walk around the rooms and explore'}]
+                    }
+                ],
                 behaviorLoop: [
                     {type: 'walk', direction: 'right'},
                     {type: 'walk', direction: 'right'},
@@ -125,8 +126,7 @@ export const mapsConfig = {
             // }),
             avatarjs: new GameObject({
                 x: getGridPosition(25),
-                y: getGridPosition(0.5),
-                name: "Piano",
+                y: getGridPosition(0),
                 hasShadow: false,
                 width: getGridPosition(2),
                 height: getGridPosition(2),
@@ -139,9 +139,11 @@ export const mapsConfig = {
                         imageHeight: 32
                     },
                 },
-                interaction: {
-                    side: ["up", "down"],
-                }
+                interactions: [
+                    {
+                        events: [{type: 'message', text: 'I have working with JS for 6 years'}]
+                    }
+                ]
             }),
             avatarnode: new GameObject({
                 x: getGridPosition(28),

@@ -1,14 +1,12 @@
-import Character from './Character';
 import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps.js';
+import InteractionInput from './InteractionInput';
 
 export default class Engine {
     private _canvas: HTMLCanvasElement;
     private _ctx: CanvasRenderingContext2D;
     private _map: Map;
-    private _miniMe: Character;
-    private _characters: Array<Character>;
     private _directionInput: DirectionInput;
 
     constructor(id: string) { 
@@ -68,9 +66,25 @@ export default class Engine {
         this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig], this)
     }
 
+    public bindAction() {
+        new InteractionInput(() => {
+            !this._map.isInteracting && this._map.checkForInteraction();
+        })
+    }
+
+
+    //Duplicated method from InteractionMessage. REFACTOR
+    // private pressSpaceBar(event: KeyboardEvent) {
+    //     if(event.key === ' ') {
+    //         this.done();
+    //     }
+    // }
+
     public init() {
         this._map = new Map(mapsConfig.professionalExpRoom, this);
         this._map.mountObjects();
+
+        this.bindAction();
 
         this._directionInput = new DirectionInput();
         this._directionInput.init();
@@ -83,7 +97,8 @@ export default class Engine {
             {who: 'npc', type: 'walk', direction:'down'},
             {who: 'npc', type: 'walk', direction:'left'},
             {who: 'miniMe', type: 'idle', direction:'right', time: 500},
-            {type: 'message', text: 'Hello! Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
+            {type: 'message', text: 'Hello! 👋'},
+            {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
            
         ])
     }

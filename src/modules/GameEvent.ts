@@ -58,6 +58,7 @@ export default class GameEvent {
     }
 
     private message(resolve: Function) {
+        //ADD logic so npc faces character
         this.map.isInteracting = true;
         const message = new InteractionMessage({
             text: this.event.text,
@@ -68,6 +69,11 @@ export default class GameEvent {
         })
 
         message.init(document.querySelector('.game-container'))
+    }
+
+    private changeMap(resolve: Function) {
+        this.map.engine.startMap(this.event.map)
+        resolve();
     }
 
     private interaction(resolve: any) {

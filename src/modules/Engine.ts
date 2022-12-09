@@ -45,7 +45,7 @@ export default class Engine {
             //Create upper image for the maps
             //this._map.drawUpperImage(this._ctx, cameraView);
 
-            this._map.drawDoors(this._ctx, cameraView);
+            //this._map.drawDoors(this._ctx, cameraView);
 
             Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
                 return gameObjectA.y - gameObjectB.y
@@ -63,7 +63,7 @@ export default class Engine {
 
     public changeMap(mapName: string) {
         // TS workaround - fix later
-        this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig], this)
+        this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig])
     }
 
     public bindAction() {
@@ -72,34 +72,42 @@ export default class Engine {
         })
     }
 
+    public bindCheckCharacterPosition() {
+        document.addEventListener('CharacterWalkComplete', (event: any) => {
+            const characterId = event.detail.whoId;
+            if(characterId === 'miniMe') {
+                this._map.checkActionForPosition();
+            }
+        });
+    }
 
-    //Duplicated method from InteractionMessage. REFACTOR
-    // private pressSpaceBar(event: KeyboardEvent) {
-    //     if(event.key === ' ') {
-    //         this.done();
-    //     }
-    // }
+    public startMap(mapName: string /* FIX THIS TYPES LATER FOR IMapConfig */) {
+        //@ts-ignore
+        this._map = new Map(mapsConfig[mapName]);
+        this._map.engine = this;
+        this._map.mountObjects();
+    }
 
     public init() {
-        this._map = new Map(mapsConfig.professionalExpRoom, this);
-        this._map.mountObjects();
+        this.startMap('professionalExpRoom');
 
         this.bindAction();
+        this.bindCheckCharacterPosition();
 
         this._directionInput = new DirectionInput();
         this._directionInput.init();
 
         this.startGameLoop();
 
-        this._map.startInteraction([
-            {who: 'npc', type: 'walk', direction:'down'},
-            {who: 'npc', type: 'walk', direction:'down'},
-            {who: 'npc', type: 'walk', direction:'down'},
-            {who: 'npc', type: 'walk', direction:'left'},
-            {who: 'miniMe', type: 'idle', direction:'right', time: 500},
-            {type: 'message', text: 'Hello! 👋'},
-            {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
+        // this._map.startInteraction([
+        //     {who: 'npc', type: 'walk', direction:'down'},
+        //     {who: 'npc', type: 'walk', direction:'down'},
+        //     {who: 'npc', type: 'walk', direction:'down'},
+        //     {who: 'npc', type: 'walk', direction:'left'},
+        //     {who: 'miniMe', type: 'idle', direction:'right', time: 500},
+        //     {type: 'message', text: 'Hello! 👋'},
+        //     {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
            
-        ])
+        // ])
     }
 }

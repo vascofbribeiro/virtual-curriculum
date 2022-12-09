@@ -1,15 +1,12 @@
 import Sprite from "./Sprite";
 import Map from "./Map";
 import { Direction } from "../types/Direction";
-import * as gridUtils from '../utils/grid';
-import { IGameObjectConfig } from "../interfaces/IGameObject";
-import { IState } from "../interfaces/IState";
-import { mapsConfig } from "../configs/maps";
-import { IBehavior } from "../interfaces/IBehavior";
+import { IGameObjectConfig } from "../interfaces/configs/IGameObjectConfig";
+import { IState } from "../interfaces/modules/IState";
+import { IEvent } from "../interfaces/modules/IEvent";
 import GameEvent from './GameEvent';
 
 export default class GameObject {
-    private _name: string;
     private _hasShadow: boolean;
     public objectSprite: Sprite;
     public shadowSprite: Sprite;
@@ -28,7 +25,7 @@ export default class GameObject {
     public isMounted: boolean;
     public isPlayer: boolean;
     public id: string;
-    public behaviorLoop: Array<IBehavior>;
+    public behaviorLoop: Array<IEvent>;
     public behaviorLoopIndex: number;
     public isIdle: boolean;
 
@@ -38,7 +35,6 @@ export default class GameObject {
     readonly SHADOW_HEIGHT: number = 32;
 
     constructor(config: IGameObjectConfig) {
-        this._name = config.name;
         this.isMounted = false;
         this.isPlayer = config.isPlayer;
         this.id = null;
@@ -73,17 +69,13 @@ export default class GameObject {
         this.isMounted = true;
         map.addSpaceTaken(this.x, this.y);
 
-        //set delay before behavior loop start
+        //set delay before behavior loop start to avoid bugs
         setTimeout(() => {
             this.doBehavior(map);
         }, 10)
     }
 
-    // public draw(ctx: CanvasRenderingContext2D) {
-    //     this._hasShadow && this.shadowSprite.draw(ctx);
-    //     this.objectSprite.draw(ctx, cameraPerson);
-    // }
-
+    // Only for extension purposes
     public update(state: IState) {
 
     }
@@ -104,12 +96,14 @@ export default class GameObject {
 
         this.doBehavior(map);
     }
-
+    
+    // Only for extension purposes
     public interact(map: Map) {
 
     }
-
-    public startBehavior(state: any, behavior: IBehavior) {
+    
+    // Only for extension purposes
+    public startBehavior(state: any, behavior: IEvent) {
 
     }
 }

@@ -1,12 +1,12 @@
-import { IBehavior } from "../interfaces/IBehavior";
+import { IEvent } from "../interfaces/modules/IEvent";
 import { InteractionMessage } from "./InteractionMessage";
 import Map from "./Map";
 
 export default class GameEvent {
     private map: Map;
-    private event: IBehavior;
+    private event: IEvent;
 
-    constructor({map, event}: {map: Map, event: IBehavior}) {
+    constructor({map, event}: {map: Map, event: IEvent}) {
         this.map = map;
         this.event = event;
     }
@@ -74,10 +74,6 @@ export default class GameEvent {
     private changeMap(resolve: Function) {
         this.map.engine.startMap(this.event.map)
         resolve();
-    }
-
-    private interaction(resolve: any) {
-
     }
 
     public init() {

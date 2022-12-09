@@ -1,4 +1,4 @@
-import { IGameObjectConfig } from './IGameObject';
+import { IGameObjectConfig } from '../configs/IGameObjectConfig';
 
 export interface ICharacter extends IGameObjectConfig{
     isPlayer: boolean

@@ -1,5 +1,5 @@
-import { IBehavior } from "./IBehavior";
-import { ISpriteConfig } from "./ISpriteConfig";
+import { IEvent } from "../modules/IEvent";
+import { ISpriteConfig } from "../modules/ISpriteConfig";
 
 export interface IGameObjectConfig {
     x?: number;
@@ -9,8 +9,8 @@ export interface IGameObjectConfig {
     width: number;
     height: number;
     sprite: ISpriteConfig
-    interactions: Array<any>;
     walkable?: boolean;
     isPlayer?: boolean;
-    behaviorLoop?: Array<IBehavior>
+    behaviorLoop?: Array<IEvent>
+    interactions?: Array<Record<'events', Array<IEvent>>>
 }

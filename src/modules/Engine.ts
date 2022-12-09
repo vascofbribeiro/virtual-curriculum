@@ -25,16 +25,6 @@ export default class Engine {
             
            
             Object.values(this._map.gameObjects).forEach(object => {
-                // if(this._directionInput.shouldStartInteraction && !this._isInteracting) {
-                //     this._map.gameObjects[key].interact(this._map);
-                //     this._isInteracting = true
-                // } else {
-                //     this._isInteracting = false
-                // }
-
-                // console.log(this._map.gameObjects);
-                // console.log('key', key)
-                // console.log('Mapa', this._map)
                 object.update({
                     arrow: this._directionInput.direction,
                     map: this._map,
@@ -44,8 +34,6 @@ export default class Engine {
             this._map.drawLowerImage(this._ctx, cameraView);
             //Create upper image for the maps
             //this._map.drawUpperImage(this._ctx, cameraView);
-
-            //this._map.drawDoors(this._ctx, cameraView);
 
             Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
                 return gameObjectA.y - gameObjectB.y
@@ -60,11 +48,6 @@ export default class Engine {
 
         step();
     }
-
-    // public changeMap(mapName: string) {
-    //     // TS workaround - fix later
-    //     this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig])
-    // }
 
     public bindAction() {
         new InteractionInput(() => {
@@ -100,16 +83,5 @@ export default class Engine {
         this._directionInput.init();
 
         this.startGameLoop();
-
-        // this._map.startInteraction([
-        //     {who: 'npc', type: 'walk', direction:'down'},
-        //     {who: 'npc', type: 'walk', direction:'down'},
-        //     {who: 'npc', type: 'walk', direction:'down'},
-        //     {who: 'npc', type: 'walk', direction:'left'},
-        //     {who: 'miniMe', type: 'idle', direction:'right', time: 500},
-        //     {type: 'message', text: 'Hello! 👋'},
-        //     {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
-           
-        // ])
     }
 }

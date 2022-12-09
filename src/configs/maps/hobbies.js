@@ -53,6 +53,12 @@ export const hobbies = {
     },
     initialInteractions: [
         { type: 'message', text: 'This is the hobbies room!!'},
+        { who: 'miniMe', type: 'walk', direction: 'down' },
+        { who: 'miniMe', type: 'walk', direction: 'down' },
+        { who: 'miniMe', type: 'walk', direction: 'right' },
+        { who: 'miniMe', type: 'walk', direction: 'right' },
+        { who: 'miniMe', type: 'walk', direction: 'right' },
+        { type: 'message', text: 'I like to play the piano'},
     ],
     /*interactions: {
         statue: {

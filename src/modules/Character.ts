@@ -1,6 +1,6 @@
-import { IBehavior } from '../interfaces/IBehavior';
-import { ICharacter } from '../interfaces/ICharacter';
-import { IState } from '../interfaces/IState';
+import { IEvent } from '../interfaces/modules/IEvent';
+import { ICharacter } from '../interfaces/modules/ICharacter';
+import { IState } from '../interfaces/modules/IState';
 import { emitEvent } from '../utils/events';
 import { nextPosition } from '../utils/grid';
 import GameObject from './GameObject';
@@ -13,14 +13,7 @@ type Direction = {
 
 export default class Character extends GameObject {
     private _movingProgressRemaining: number;
-    private _directionUpdate: {
-        up: Direction,
-        down: Direction,
-        left: Direction,
-        right: Direction
-    };
     private _isPlayer: boolean;
-    private _hasMapChanged: boolean;
     public isInteracting: boolean;
     public isIdle: boolean;
 
@@ -48,7 +41,6 @@ export default class Character extends GameObject {
         this._movingProgressRemaining = 0;
 
         this._isPlayer = config.isPlayer;
-        this._hasMapChanged = false;
         this.isInteracting = true;
         this.isIdle = false;
     }
@@ -66,16 +58,9 @@ export default class Character extends GameObject {
             }
             this.updateSprite();
         }
-
-        // this._isPlayer && key === "interaction" && this.canInteract(map);
-
-        // if(this._isPlayer && this._movingProgressRemaining === 0) {
-        //     this._hasMapChanged = false;
-        // }
-
     }
 
-    public startBehavior(state: any, behavior: IBehavior) {
+    public startBehavior(state: any, behavior: IEvent) {
         this.direction = behavior.direction;
 
         if (behavior.type === 'walk') {
@@ -111,29 +96,12 @@ export default class Character extends GameObject {
 
     }
 
-    // public interact(map: Map) {
-    //      if(this._isPlayer) {
-    //         const interaction = map.getInteractionOnSquare(this.x, this.y);
-    //         if(interaction) {
-    //             console.log('Interaction', interaction)
-    //             alert(interaction.message);
-    //             this.isInteracting = true;
-    //         }
-    //     }
-    // }
-
     public updatePosition(map: Map) {
         // Define walking for character based on direction input
         // Typescript workaround
         const axis = this.DIRECTION_UPDATE[this.direction].axis as 'x' | 'y';
         const change = this.DIRECTION_UPDATE[this.direction].change;
         this[axis] += change;
-
-        // const nextMap = map.nextMap(this.x, this.y);
-        // if(nextMap) {
-        //     !this._hasMapChanged && map.changeMap(nextMap);
-        //     this._hasMapChanged = true;
-        // }
 
         this._movingProgressRemaining--
 
@@ -146,12 +114,10 @@ export default class Character extends GameObject {
     }
 
     public updateSprite() {
-        // if(arrow !== "interaction") {
         if (this._movingProgressRemaining === 0) {
             this.objectSprite.setAnimation(`idle-${this.direction}`);
         } else {
             this.objectSprite.setAnimation(`walk-${this.direction}`);
         }
-        // }
     }
 }

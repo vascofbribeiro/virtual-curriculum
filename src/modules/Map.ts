@@ -1,5 +1,5 @@
 import GameObject from "./GameObject";
-import { getGridPosition, getPointsFromCoord, nextPosition } from "../utils/grid";
+import { getGridPosition, nextPosition } from "../utils/grid";
 import { Direction } from "../types/Direction";
 import Engine from "./Engine";
 import { getGridCoord } from "../utils/grid";
@@ -10,15 +10,15 @@ export default class Map {
     private _lowerImage: HTMLImageElement;
     private _upperImage: HTMLImageElement | null;
     private _walls: Record<string, boolean>
-    private _doors: Record<string, string>
     public engine: Engine;
     public gameObjects: Record<string, GameObject>;
     public interactablePlaces: Record<string, any>;
     public spacesTaken: Record<string, any>;
     public isInteracting: boolean;
     public actionSpaces: Record<string, any> //Fix types later
+    public initialInteractions: Array<IBehavior>
 
-    constructor(config: {lowerImageSrc: string, upperImageSrc?: string, gameObjects: Record<string, GameObject>, walls?: Record<string, boolean>, actionSpaces?: Record<string, any>}) {
+    constructor(config: {lowerImageSrc: string, upperImageSrc?: string, gameObjects: Record<string, GameObject>, walls?: Record<string, boolean>, actionSpaces?: Record<string, any>, initialInteractions: Array<IBehavior>}) {
         this._lowerImage = new Image();
         this._lowerImage.src = config.lowerImageSrc;
         this._walls = config.walls;
@@ -27,6 +27,7 @@ export default class Map {
         this.actionSpaces = config.actionSpaces;
         this.spacesTaken = this.getSpacesTaken();
         this.isInteracting = false;
+        this.initialInteractions = config.initialInteractions;
     }
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
@@ -44,14 +45,6 @@ export default class Map {
 
     public getInteractionOnSquare(x: number, y: number) {
         return this.interactablePlaces[`${x},${y}`];
-    }
-
-    public nextMap(x: number, y: number) {
-        return this._doors[`${x},${y}`];
-    }
-
-    public changeMap(mapName: string) {
-        this.engine.changeMap(mapName)
     }
 
     public drawLowerImage(ctx: CanvasRenderingContext2D, cameraView: GameObject) {

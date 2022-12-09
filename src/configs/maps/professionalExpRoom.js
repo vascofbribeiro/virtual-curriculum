@@ -196,11 +196,19 @@ export const professionalExpRoom = {
             {
                 events: [
                     { type: 'changeMap', map: 'hobbies'},
-                    { type: 'message', text: 'Welcome to my hobbies room'},
                 ]
             }
         ]
     },
+    initialInteractions: [
+        {who: 'npc', type: 'walk', direction:'down'},
+        {who: 'npc', type: 'walk', direction:'down'},
+        {who: 'npc', type: 'walk', direction:'down'},
+        {who: 'npc', type: 'walk', direction:'left'},
+        {who: 'miniMe', type: 'idle', direction:'right', time: 500},
+        {type: 'message', text: 'Hello! 👋'},
+        {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
+    ],
     /*interactions: {
         statue: {
 

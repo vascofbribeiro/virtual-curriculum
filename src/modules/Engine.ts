@@ -61,10 +61,10 @@ export default class Engine {
         step();
     }
 
-    public changeMap(mapName: string) {
-        // TS workaround - fix later
-        this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig])
-    }
+    // public changeMap(mapName: string) {
+    //     // TS workaround - fix later
+    //     this._map = new Map(mapsConfig[mapName as keyof typeof mapsConfig])
+    // }
 
     public bindAction() {
         new InteractionInput(() => {
@@ -86,6 +86,8 @@ export default class Engine {
         this._map = new Map(mapsConfig[mapName]);
         this._map.engine = this;
         this._map.mountObjects();
+        console.log('Initial interactions', this._map.initialInteractions);
+        this._map.startInteraction(this._map.initialInteractions);
     }
 
     public init() {

@@ -51,11 +51,13 @@ export const hobbies = {
             }
         })
     },
+    initialInteractions: [
+        { type: 'message', text: 'This is the hobbies room!!'},
+    ],
     /*interactions: {
         statue: {
 
         }
     },*/
     walls: {},
-    doors: {}
 };

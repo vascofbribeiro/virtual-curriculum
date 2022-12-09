@@ -1,5 +1,5 @@
 export default class InteractionInput {
-    private keyPressFunction: any;
+    private keyPressFunction: EventListener;
     constructor(callback: Function) {
         this.keyPressFunction = function(event: KeyboardEvent) {
             console.log('KEY', event.key);

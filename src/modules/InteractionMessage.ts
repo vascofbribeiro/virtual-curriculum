@@ -4,7 +4,7 @@ export class InteractionMessage {
     private _text: string;
     private _onComplete: Function;
     public element: HTMLElement;
-    private spacebarListener: any;
+    private spacebarListener: InteractionInput;
     
     constructor({ text, onComplete }: { text: string, onComplete: Function}) {
         this._text = text;

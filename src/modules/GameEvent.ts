@@ -24,7 +24,7 @@ export default class GameEvent {
             }
         )
 
-        const completeHandler = (event: any) => {
+        const completeHandler = (event: CustomEvent) => {
             if(event.detail.whoId === this.event.who) {
                 document.removeEventListener('CharacterIdleComplete', completeHandler);
                 resolve();
@@ -47,7 +47,7 @@ export default class GameEvent {
             }
         )
 
-        const completeHandler = (event: any) => {
+        const completeHandler = (event: CustomEvent) => {
             if(event.detail.whoId === this.event.who) {
                 document.removeEventListener('CharacterWalkComplete', completeHandler);
                 resolve();

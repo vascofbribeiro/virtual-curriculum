@@ -60,7 +60,7 @@ export default class Character extends GameObject {
         }
     }
 
-    public startBehavior(state: any, behavior: IEvent) {
+    public startBehavior(state: IState, behavior: IEvent) {
         this.direction = behavior.direction;
 
         if (behavior.type === 'walk') {

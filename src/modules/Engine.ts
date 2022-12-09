@@ -56,7 +56,7 @@ export default class Engine {
     }
 
     public bindCheckCharacterPosition() {
-        document.addEventListener('CharacterWalkComplete', (event: any) => {
+        document.addEventListener('CharacterWalkComplete', (event: CustomEvent) => {
             const characterId = event.detail.whoId;
             if(characterId === 'miniMe') {
                 this._map.checkActionForPosition();

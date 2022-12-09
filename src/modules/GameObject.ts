@@ -103,7 +103,7 @@ export default class GameObject {
     }
     
     // Only for extension purposes
-    public startBehavior(state: any, behavior: IEvent) {
+    public startBehavior(state: IState, behavior: IEvent) {
 
     }
 }

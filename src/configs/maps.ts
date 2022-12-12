@@ -2,6 +2,7 @@ import { getGridPosition, getGridCoord } from '../utils/grid';
 
 import { professionalExpRoom } from './maps/professionalExpRoom';
 import { hobbies } from './maps/hobbies';
+import { outside } from './maps/outside';
 
 // var canvas = document.querySelector('#game-canvas');
 // fitToContainer(canvas);
@@ -17,7 +18,8 @@ import { hobbies } from './maps/hobbies';
 
 export const mapsConfig = {
     professionalExpRoom,
-    hobbies
+    hobbies,
+    outside
 }
 
 createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});
@@ -25,7 +27,7 @@ createLinearWall({coord: 'y', x: 0, y: 0, n:11, map: mapsConfig.professionalExpR
 createLinearWall({coord: 'x', x: 0, y: 50, n:20, map: mapsConfig.professionalExpRoom});
 createLinearWall({coord: 'y', x: 100, y: 0, n:11, map: mapsConfig.professionalExpRoom});
 
-function createLinearWall(config) {
+function createLinearWall(config: any) {
     for(let i=config[config.coord]; i < config[config.coord] + config.n; i++) {
         if(config.coord==='x') {
             config.map.walls[getGridCoord(i, config.y)] = true;

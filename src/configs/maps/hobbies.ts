@@ -1,14 +1,13 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
-import { getGridPosition } from '../../utils/grid';
+import { getGridPosition, getGridCoord } from '../../utils/grid';
 
 export const hobbies = {
-    lowerImageSrc: "../images/backgrounds/hobbies.png",
+    lowerImageSrc: "../images/backgrounds/roomjp.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(1),
-            y: getGridPosition(1),
-            name: 'Vasco',
+            x: getGridPosition(0),
+            y: getGridPosition(7),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -31,39 +30,43 @@ export const hobbies = {
             }
         }),
         piano: new GameObject({
-            x: getGridPosition(7),
-            y: getGridPosition(2),
-            name: "Piano",
+            x: getGridPosition(7.5),
+            y: getGridPosition(1),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(1),
             sprite: {
                 object: {
-                    src: '../images/objects/piano.png',
+                    src: '../images/objects/animated_wall_piano_4_32x32.gif',
                     width: getGridPosition(2),
                     height: getGridPosition(2),
-                    imageWidth: 96,
-                    imageHeight: 96
+                    imageWidth: 64,
+                    imageHeight: 64
                 },
             },
-            interaction: {
-                side: ["up", "down"],
-            }
+            interactions: [
+                {
+                    events: [{
+                        type:'message',
+                        text: 'I like to play the piano for fun. I started to learn 1 year ago',
+                    }]
+                }
+            ]
         })
     },
     initialInteractions: [
+        { who: 'miniMe', type: 'walk', direction: 'right' },
         { type: 'message', text: 'This is the hobbies room!!'},
-        { who: 'miniMe', type: 'walk', direction: 'down' },
-        { who: 'miniMe', type: 'walk', direction: 'down' },
-        { who: 'miniMe', type: 'walk', direction: 'right' },
-        { who: 'miniMe', type: 'walk', direction: 'right' },
-        { who: 'miniMe', type: 'walk', direction: 'right' },
         { type: 'message', text: 'I like to play the piano'},
     ],
-    /*interactions: {
-        statue: {
-
-        }
-    },*/
     walls: {},
+    actionSpaces: {
+        [getGridCoord(0,7)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'professionalExpRoom'},
+                ]
+            }
+        ]
+    },
 };

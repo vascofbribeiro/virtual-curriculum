@@ -17,10 +17,12 @@ export default class Map {
     public spacesTaken: Record<string, any>;
     public isInteracting: boolean;
     public actionSpaces: Record<string, any> //Fix types later
-    public initialInteractions: Array<IEvent>
+    public initialInteractions: Array<IEvent>;
+    private _hasTakenInitialInteractions: boolean;
 
     constructor(config: IMapConfig) {
         this._lowerImage = new Image();
+        console.log('BACKGROUND TESTE', config);
         this._lowerImage.src = config.lowerImageSrc;
         this._walls = config.walls;
         this.gameObjects = config.gameObjects;
@@ -29,6 +31,7 @@ export default class Map {
         this.spacesTaken = this.getSpacesTaken();
         this.isInteracting = false;
         this.initialInteractions = config.initialInteractions;
+        this._hasTakenInitialInteractions = false;
     }
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
@@ -105,10 +108,10 @@ export default class Map {
 
     public checkActionForPosition() {
         console.log('change position')
+        console.log(this.gameObjects.miniMe.x/16);
+        console.log(this.gameObjects.miniMe.y/16);
         if(this.actionSpaces) {
             const match = this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
-
-            console.log(match);
 
             if(!this.isInteracting && match) {
                 this.startInteraction(match[0].events);
@@ -131,28 +134,28 @@ export default class Map {
             return isInteractable;
         })
 
-        console.log(match);
-
         if (match && match.interactions && match.interactions.length) {
             this.isInteracting = true;
             this.startInteraction(match.interactions[0].events)
-        } 
+        }
     }
 
     public async startInteraction(events: Array<IEvent>) {
-        this.isInteracting = true;
+        if(events) {    
+            this.isInteracting = true;
 
-        for(let i = 0; i < events.length; i++) {
-            const eventHandler = new GameEvent({
-                event: events[i],
-                map: this
-            })
+            for(let i = 0; i < events.length; i++) {
+                const eventHandler = new GameEvent({
+                    event: events[i],
+                    map: this
+                })
 
-            await eventHandler.init()
+                await eventHandler.init()
+            }
+
+            this.isInteracting = false;
+        
+            Object.values(this.gameObjects).forEach(gameObject => gameObject.doBehavior(this))
         }
-
-        this.isInteracting = false;
-    
-        Object.values(this.gameObjects).forEach(gameObject => gameObject.doBehavior(this))
     }
 }

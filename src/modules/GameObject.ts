@@ -64,7 +64,6 @@ export default class GameObject {
     }
 
     public mount(map: Map) {
-        console.log('is mounting');
         // Should object mount ????
         this.isMounted = true;
         map.addSpaceTaken(this.x, this.y);

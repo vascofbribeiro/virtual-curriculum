@@ -1,6 +1,6 @@
 import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
-import { mapsConfig } from '../configs/maps.js';
+import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
 
 export default class Engine {
@@ -69,7 +69,6 @@ export default class Engine {
         this._map = new Map(mapsConfig[mapName]);
         this._map.engine = this;
         this._map.mountObjects();
-        console.log('Initial interactions', this._map.initialInteractions);
         this._map.startInteraction(this._map.initialInteractions);
     }
 

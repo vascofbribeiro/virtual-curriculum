@@ -4,7 +4,6 @@ import { ISpriteConfig } from "../modules/ISpriteConfig";
 export interface IGameObjectConfig {
     x?: number;
     y?: number;
-    name: string;
     hasShadow?: boolean;
     width: number;
     height: number;

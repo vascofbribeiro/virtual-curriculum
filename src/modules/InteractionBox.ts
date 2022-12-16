@@ -1,13 +1,15 @@
 import InteractionInput from "./InteractionInput";
 
 export class InteractionBox {
-    private _text: string;
+    private _title: string;
+    private _textLines: Array<string>;
     private _onComplete: Function;
     public element: HTMLElement;
     private spacebarListener: InteractionInput;
     
-    constructor({ text, onComplete }: { text: string, onComplete: Function}) {
-        this._text = text;
+    constructor({ title, textLines, onComplete }: { title: string, textLines: Array<string>, onComplete: Function}) {
+        this._title = title;
+        this._textLines = textLines;
         this._onComplete = onComplete;
         this.element = null;
     }
@@ -15,8 +17,17 @@ export class InteractionBox {
     private createElement() {
         this.element = document.createElement('div');
         this.element.classList.add('interaction-box');
+        console.log(this._textLines);
+        const textLines = this._textLines.map((textLine) => {
+            console.log(textLine);
+            return `<p class="interaction-box-text">${textLine}</p>`
+        });
+        console.log(textLines);
         this.element.innerHTML = `
-            <p class="interaction-box-title"> ${this._text} </p>
+            <p class="interaction-box-title"> ${this._title} </p>
+            <div class="interaction-box-container">
+                ${textLines}
+            </div>
             <button class="message-button">X</button>
         `
 

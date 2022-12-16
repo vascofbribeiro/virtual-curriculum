@@ -46,12 +46,23 @@ export const techskills = {
             },
             interactions: [
                 {
-                    events: [{type: 'interactionBox', text: 'TECH SKILLS'}]
+                    events: [{
+                        type: 'interactionBox',
+                        title: 'Tech Skills',
+                        textLines: [
+                            "Javascript - 6 years",
+                            "NodeJS - 3 years",
+                            "Git - 6 years",
+                            "React - 6 years",
+                            "Docker - 3 years",
+                            "CSS - 6 years",
+                        ] 
+                    }]
                 }
-            ]
+            ],
         }),
         avatarjs: new GameObject({
-            x: getGridPosition(4),
+            x: getGridPosition(5),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(2),
@@ -72,11 +83,11 @@ export const techskills = {
             ],
             interactionIcon: {
                 far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/message-box.png'
+                nearby: '../images/objects/6years.png'
             }
         }),
         avatarnode: new GameObject({
-            x: getGridPosition(8),
+            x: getGridPosition(9),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(2),
@@ -89,23 +100,39 @@ export const techskills = {
                     imageWidth: 32,
                     imageHeight: 48
                 },
-            }
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I have been working with NodeJS for the last 3 years'},
+                        {type: 'message', text: "The projects I'm working with right now envolves xpto"}
+                    ]
+                }
+            ],
         }),
         avatargit: new GameObject({
-            x: getGridPosition(12),
-            y: getGridPosition(1),
+            x: getGridPosition(13),
+            y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(2),
-            height: getGridPosition(1),
+            height: getGridPosition(2),
             sprite: {
                 object: {
-                    src: '../images/objects/git-avatar.png',
+                    src: '../images/objects/git-avatar2.png',
                     width: getGridPosition(2),
-                    height: getGridPosition(2),
+                    height: getGridPosition(3),
                     imageWidth: 32,
-                    imageHeight: 32
+                    imageHeight: 48
                 },
-            }
+            },
+            interactionIcon: {
+                nearby: '../images/objects/6years.png'
+            },
         }),
     },
     walls: {},

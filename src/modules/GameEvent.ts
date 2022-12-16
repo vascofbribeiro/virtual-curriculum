@@ -75,7 +75,8 @@ export default class GameEvent {
     private interactionBox(resolve: Function) {
         this.map.isInteracting = true;
         const message = new InteractionBox({
-            text: this.event.text,
+            title: this.event.title,
+            textLines: this.event.textLines,
             onComplete: () => {
                 this.map.isInteracting = false;
                 resolve();

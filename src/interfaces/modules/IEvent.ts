@@ -8,4 +8,6 @@ export interface IEvent {
     time?: number;
     text?: string;
     map?: string;
+    textLines?: Array<string>
+    title?: string;
 }

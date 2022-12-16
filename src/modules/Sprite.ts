@@ -26,8 +26,9 @@ export default class Sprite {
         
         console.log(this._gameObject.interactionIcon);
         if(this._gameObject.interactionIcon) {
+            console.log('interaction icon', this._gameObject.interactionIcon);
             this._interactionImage = new Image();
-            this._interactionImage.src = config.gameObject.interactionIcon.far;
+            this._interactionImage.src = config.gameObject.interactionIcon.far || config.gameObject.interactionIcon.nearby;
         }
 
         this._image.onload = () => {
@@ -105,9 +106,9 @@ export default class Sprite {
         if(this._isLoaded && this._interactionImage) {
             if(miniMe.x >= this._gameObject.x && miniMe.x < this._gameObject.x + this._gameObject.objectWidth &&
                 miniMe.y <= this._gameObject.y + 80 /* 5 squares down. Change for a value that makes sense*/) {
-                this._interactionImage.src = this._gameObject.interactionIcon.nearby || this._gameObject.interactionIcon.far
+                this._interactionImage.src = this._gameObject.interactionIcon.nearby || this._gameObject.interactionIcon.far || '';
             } else {
-                this._interactionImage.src = this._gameObject.interactionIcon.far
+                this._interactionImage.src = this._gameObject.interactionIcon.far || ''
             }
             //console.log('COORD', miniMe.x, this._gameObject.x)
             

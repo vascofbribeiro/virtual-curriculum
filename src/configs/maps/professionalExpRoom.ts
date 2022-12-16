@@ -82,8 +82,20 @@ export const professionalExpRoom = {
             interactions: [
                 {
                     events: [{
-                        type:'message',
-                        text: 'Bio',
+                        type: 'interactionBox',
+                        title: 'About Me',
+                        textLines: [
+                            "My name is Vasco and I'm currently a Front-End Developer at Farfetch.",
+                            "I've been working for Farfech since September 2017 developing components and features for the website but since 2020 I moved to a more techincal team that develops tools to maximize the performance of the website and improves our developers experience",
+                        ] 
+                    },
+                    {
+                        type: 'interactionBox',
+                        title: 'About Me',
+                        textLines: [
+                            "I consider myself a creative, dedicated and curious person",
+                            "I love to travel, surf and meet new people"
+                        ] 
                     }]
                 }
             ],

@@ -136,12 +136,14 @@ export default class Map {
 
         if (match && match.interactions && match.interactions.length) {
             this.isInteracting = true;
-            this.startInteraction(match.interactions[0].events)
+            this.startInteraction(match.interactions[0].events);
+            match.interactionIcon.far = '';
         }
     }
 
     public async startInteraction(events: Array<IEvent>) {
-        if(events) {    
+        if(events) {
+            console.log('is interacting')
             this.isInteracting = true;
 
             for(let i = 0; i < events.length; i++) {

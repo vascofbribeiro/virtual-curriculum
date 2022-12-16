@@ -3,6 +3,11 @@ import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
 
+declare global {
+    interface Window { mapsConfig: any; }
+}
+
+
 export default class Engine {
     private _canvas: HTMLCanvasElement;
     private _ctx: CanvasRenderingContext2D;
@@ -12,6 +17,7 @@ export default class Engine {
     constructor(id: string) { 
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
         this._ctx = this._canvas.getContext("2d");
+        if (typeof window) window.mapsConfig = mapsConfig;
     }
 
     startGameLoop() {
@@ -29,8 +35,9 @@ export default class Engine {
                     arrow: this._directionInput.direction,
                     map: this._map,
                 })
-            })    
+            });
 
+            //this._ctx.fillRect(4, 4, 50, 50);
             this._map.drawLowerImage(this._ctx, cameraView);
             //Create upper image for the maps
             //this._map.drawUpperImage(this._ctx, cameraView);
@@ -38,7 +45,7 @@ export default class Engine {
             Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
                 return gameObjectA.y - gameObjectB.y
             }).forEach(gameObject => {
-                gameObject.objectSprite.draw(this._ctx, cameraView);
+                gameObject.objectSprite.draw(this._ctx, cameraView, this._map.gameObjects.miniMe);
             })
             
             requestAnimationFrame(() => {
@@ -66,15 +73,16 @@ export default class Engine {
 
     public startMap(mapName: string /* FIX THIS TYPES LATER FOR IMapConfig */) {
         //@ts-ignore
-        this._map = new Map(mapsConfig[mapName]);
+        this._map = new Map(window.mapsConfig[mapName]);
         this._map.engine = this;
         this._map.mountObjects();
         this._map.startInteraction(this._map.initialInteractions);
+        window.mapsConfig[mapName].initialInteractions = [];
     }
 
     public init() {
         this.startMap('professionalExpRoom');
-
+        
         this.bindAction();
         this.bindCheckCharacterPosition();
 

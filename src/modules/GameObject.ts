@@ -28,6 +28,11 @@ export default class GameObject {
     public behaviorLoop: Array<IEvent>;
     public behaviorLoopIndex: number;
     public isIdle: boolean;
+    public interactionBox: any;
+    public interactionIcon?: {
+        far?: string;
+        nearby?: string;
+    } | undefined;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
@@ -42,6 +47,7 @@ export default class GameObject {
         this.y = config.y || 0;
         this.objectWidth = config.width || this.OBJECT_WIDTH;
         this.objectHeight = config.height || this.OBJECT_HEIGHT;
+        this.interactionIcon = config.interactionIcon;
         // this.shadowWidth = config.shadowWidth || this.SHADOW_WIDTH;
         // this.shadowHeight = config.shadowHeight || this.SHADOW_HEIGHT;
         // this.objectSpriteimageWidth = config.objectSpriteimageWidth || 0;
@@ -49,7 +55,7 @@ export default class GameObject {
         this.objectSprite = new Sprite({
             gameObject: this,
             ...config.sprite.object
-        })
+        });
         this._hasShadow = !!config.sprite.shadow;
         this.shadowSprite = this._hasShadow && new Sprite({
             gameObject: this,
@@ -103,6 +109,10 @@ export default class GameObject {
     
     // Only for extension purposes
     public startBehavior(state: IState, behavior: IEvent) {
+
+    }
+
+    public drawInteractionBox() {
 
     }
 }

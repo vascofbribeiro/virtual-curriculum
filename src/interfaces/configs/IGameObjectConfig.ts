@@ -12,4 +12,8 @@ export interface IGameObjectConfig {
     isPlayer?: boolean;
     behaviorLoop?: Array<IEvent>
     interactions?: Array<Record<'events', Array<IEvent>>>
+    interactionIcon?: {
+        far?: string;
+        nearby?: string;
+    } 
 }

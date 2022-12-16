@@ -65,7 +65,7 @@ export const professionalExpRoom = {
         //     ]
         // }),
         mirror: new GameObject({
-            x: getGridPosition(6),
+            x: getGridPosition(5),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(1),
@@ -86,59 +86,9 @@ export const professionalExpRoom = {
                         text: 'Bio',
                     }]
                 }
-            ]
-        }),
-        avatarjs: new GameObject({
-            x: getGridPosition(25),
-            y: getGridPosition(0),
-            hasShadow: false,
-            width: getGridPosition(2),
-            height: getGridPosition(1),
-            sprite: {
-                object: {
-                    src: '../images/objects/js-avatar.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(2),
-                    imageWidth: 32,
-                    imageHeight: 32
-                },
-            },
-            interactions: [
-                {
-                    events: [{type: 'message', text: 'I have working with JS for 6 years'}]
-                }
-            ]
-        }),
-        avatarnode: new GameObject({
-            x: getGridPosition(28),
-            y: getGridPosition(0),
-            hasShadow: false,
-            width: getGridPosition(2),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/node-avatar.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(2),
-                    imageWidth: 32,
-                    imageHeight: 32
-                },
-            }
-        }),
-        avatargit: new GameObject({
-            x: getGridPosition(31),
-            y: getGridPosition(0),
-            hasShadow: false,
-            width: getGridPosition(2),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/git-avatar.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(2),
-                    imageWidth: 32,
-                    imageHeight: 32
-                },
+            ],
+            interactionIcon: {
+                far:  '../images/objects/interaction.png'
             }
         }),
         sign: new GameObject({
@@ -194,7 +144,7 @@ export const professionalExpRoom = {
         [getGridCoord(13,4)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'hobbies'},
+                    { type: 'changeMap', map: 'techskills'},
                 ]
             }
         ],

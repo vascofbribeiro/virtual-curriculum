@@ -3,7 +3,7 @@ import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 
 export const hobbies = {
-    lowerImageSrc: "../images/backgrounds/roomjp.png",
+    lowerImageSrc: "../images/backgrounds/darkroom.png",
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(0),
@@ -30,7 +30,7 @@ export const hobbies = {
             }
         }),
         piano: new GameObject({
-            x: getGridPosition(7.5),
+            x: getGridPosition(7),
             y: getGridPosition(1),
             hasShadow: false,
             width: getGridPosition(2),
@@ -57,7 +57,9 @@ export const hobbies = {
     initialInteractions: [
         { who: 'miniMe', type: 'walk', direction: 'right' },
         { type: 'message', text: 'This is the hobbies room!!'},
-        { type: 'message', text: 'I like to play the piano'},
+        { type: 'message', text: "There's something wrong with light in this room. I remember there was a switch "},
+        { who: 'miniMe', type: 'walk', direction: 'left' },
+        
     ],
     walls: {},
     actionSpaces: {

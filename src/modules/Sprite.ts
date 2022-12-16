@@ -8,6 +8,7 @@ export default class Sprite {
     private _currentAnimation: string;
     private _currentAnimationFrame: number;
     private _image: HTMLImageElement;
+    private _interactionImage: HTMLImageElement;
     private _width: number;
     private _height: number;
     private _isLoaded: boolean;
@@ -15,16 +16,20 @@ export default class Sprite {
     private _framesToChangeProgress: number;
     private _imageWidth: number;
     private _imageHeight: number;
-    private _gameObject: {
-        x: number;
-        y: number
-    };
+    private _gameObject: GameObject;
 
     constructor(config: { gameObject: GameObject, src: string, width: number, height: number, imageWidth: number, imageHeight: number }) {
         // Sould be received from config
         this._gameObject = config.gameObject;
         this._image = new Image();
         this._image.src = config.src;
+        
+        console.log(this._gameObject.interactionIcon);
+        if(this._gameObject.interactionIcon) {
+            this._interactionImage = new Image();
+            this._interactionImage.src = config.gameObject.interactionIcon.far;
+        }
+
         this._image.onload = () => {
             this._isLoaded = true;
         }
@@ -77,7 +82,7 @@ export default class Sprite {
         }
     }
 
-    draw(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
+    draw(ctx: CanvasRenderingContext2D, cameraView: GameObject, miniMe: GameObject) {
         const x = this._gameObject.x + getGridPosition(10.5) - cameraView.x;
         const y = this._gameObject.y + getGridPosition(6) - cameraView.y;
 
@@ -95,6 +100,32 @@ export default class Sprite {
             this._height
         )
 
+
+        // Draw interaction item at the top
+        if(this._isLoaded && this._interactionImage) {
+            if(miniMe.x >= this._gameObject.x && miniMe.x < this._gameObject.x + this._gameObject.objectWidth &&
+                miniMe.y <= this._gameObject.y + 80 /* 5 squares down. Change for a value that makes sense*/) {
+                this._interactionImage.src = this._gameObject.interactionIcon.nearby || this._gameObject.interactionIcon.far
+            } else {
+                this._interactionImage.src = this._gameObject.interactionIcon.far
+            }
+            //console.log('COORD', miniMe.x, this._gameObject.x)
+            
+            ctx.drawImage(
+                this._interactionImage,
+                0,
+                0,
+                32,
+                32,
+                x + (this._gameObject.objectWidth/2) - (this._interactionImage.width/2),
+                y - 16,
+                32,
+                32
+            );
+
+            // ctx.font = "8px Comic Sans MS"
+            // ctx.fillText('6 years', x, y);
+        }
         this.updateAnimationProgress();
     }
 

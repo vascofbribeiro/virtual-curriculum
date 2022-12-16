@@ -1,5 +1,6 @@
 import { IEvent } from "../interfaces/modules/IEvent";
 import { InteractionMessage } from "./InteractionMessage";
+import { InteractionBox } from "./InteractionBox";
 import Map from "./Map";
 
 export default class GameEvent {
@@ -61,6 +62,19 @@ export default class GameEvent {
         //ADD logic so npc faces character
         this.map.isInteracting = true;
         const message = new InteractionMessage({
+            text: this.event.text,
+            onComplete: () => {
+                this.map.isInteracting = false;
+                resolve();
+            }
+        })
+
+        message.init(document.querySelector('.game-container'))
+    }
+
+    private interactionBox(resolve: Function) {
+        this.map.isInteracting = true;
+        const message = new InteractionBox({
             text: this.event.text,
             onComplete: () => {
                 this.map.isInteracting = false;

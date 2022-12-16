@@ -3,6 +3,7 @@ import { getGridPosition, getGridCoord } from '../utils/grid';
 import { professionalExpRoom } from './maps/professionalExpRoom';
 import { hobbies } from './maps/hobbies';
 import { outside } from './maps/outside';
+import { techskills } from './maps/techskills';
 
 // var canvas = document.querySelector('#game-canvas');
 // fitToContainer(canvas);
@@ -19,7 +20,8 @@ import { outside } from './maps/outside';
 export const mapsConfig = {
     professionalExpRoom,
     hobbies,
-    outside
+    outside,
+    techskills
 }
 
 createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});

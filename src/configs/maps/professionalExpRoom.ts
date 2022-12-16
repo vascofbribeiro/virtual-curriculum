@@ -4,6 +4,7 @@ import { getGridPosition, getGridCoord } from '../../utils/grid';
 
 export const professionalExpRoom = {
     lowerImageSrc: "../images/backgrounds/generic.png",
+    upperImageSrc: "../images/backgrounds/generic-upper.png",
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(7),
@@ -93,6 +94,7 @@ export const professionalExpRoom = {
                         type: 'interactionBox',
                         title: 'About Me',
                         textLines: [
+                            "I studied Computer Science at FCUP (Faculdade de Ciências da Universidade do Porto)",
                             "I consider myself a creative, dedicated and curious person",
                             "I love to travel, surf and meet new people"
                         ] 

@@ -22,8 +22,10 @@ export default class Map {
 
     constructor(config: IMapConfig) {
         this._lowerImage = new Image();
+        this._upperImage = new Image();
         console.log('BACKGROUND TESTE', config);
         this._lowerImage.src = config.lowerImageSrc;
+        this._upperImage.src = config.upperImageSrc;
         this._walls = config.walls;
         this.gameObjects = config.gameObjects;
         this.engine = null;

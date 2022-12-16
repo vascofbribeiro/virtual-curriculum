@@ -40,19 +40,19 @@ export default class Engine {
             //this._ctx.fillRect(4, 4, 50, 50);
             this._map.drawLowerImage(this._ctx, cameraView);
             //Create upper image for the maps
-            //this._map.drawUpperImage(this._ctx, cameraView);
-
+            
             Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
                 return gameObjectA.y - gameObjectB.y
             }).forEach(gameObject => {
                 gameObject.objectSprite.draw(this._ctx, cameraView, this._map.gameObjects.miniMe);
             })
+            this._map.drawUpperImage(this._ctx, cameraView);
             
             requestAnimationFrame(() => {
                 step();
             })
         }
-
+        
         step();
     }
 

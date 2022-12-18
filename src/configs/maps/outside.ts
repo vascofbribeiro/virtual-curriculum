@@ -6,8 +6,8 @@ export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(10), //x: getGridPosition(46),
-            y: getGridPosition(10), //y: getGridPosition(6),
+            x: getGridPosition(46), //x: getGridPosition(10),
+            y: getGridPosition(6), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -155,6 +155,23 @@ export const outside = {
                     height: getGridPosition(6),
                     imageWidth: getGridPosition(5),
                     imageHeight: getGridPosition(6)
+                },
+            },
+        }),
+        //OTHERS
+        padel: new GameObject({
+            x: getGridPosition(30),
+            y: getGridPosition(5),
+            hasShadow: false,
+            width: getGridPosition(8),
+            height: getGridPosition(4),
+            sprite: {
+                object: {
+                    src: '../images/objects/padel.png',
+                    width: getGridPosition(8),
+                    height: getGridPosition(4),
+                    imageWidth: getGridPosition(8),
+                    imageHeight: getGridPosition(4)
                 },
             },
         }),

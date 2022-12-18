@@ -80,7 +80,7 @@ export default class Engine {
     }
 
     public init() {
-        this.startMap('outside');
+        this.startMap('professionalExpRoom');
         
         this.bindAction();
         this.bindCheckCharacterPosition();

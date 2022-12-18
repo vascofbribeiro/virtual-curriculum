@@ -2,10 +2,10 @@ import Character from '../../modules/Character';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 
 export const bar = {
-    lowerImageSrc: "../images/backgrounds/bar.png",
+    lowerImageSrc: "../images/backgrounds/hobbies.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(12),
+            x: getGridPosition(6),
             y: getGridPosition(8),
             isPlayer: true,
             hasShadow: true,
@@ -32,7 +32,14 @@ export const bar = {
     },
     walls: {},
     actionSpaces: {
-        [getGridCoord(12,8)]: [
+        [getGridCoord(6,8)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'outside'},
+                ]
+            }
+        ],
+        [getGridCoord(5,8)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'outside'},

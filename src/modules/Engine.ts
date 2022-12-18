@@ -37,7 +37,6 @@ export default class Engine {
                 })
             });
 
-            //this._ctx.fillRect(4, 4, 50, 50);
             this._map.drawLowerImage(this._ctx, cameraView);
             //Create upper image for the maps
             
@@ -81,7 +80,7 @@ export default class Engine {
     }
 
     public init() {
-        this.startMap('professionalExpRoom');
+        this.startMap('outside');
         
         this.bindAction();
         this.bindCheckCharacterPosition();

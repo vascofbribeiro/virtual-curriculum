@@ -23,8 +23,7 @@ export default class Sprite {
         this._gameObject = config.gameObject;
         this._image = new Image();
         this._image.src = config.src;
-        
-        console.log(this._gameObject.interactionIcon);
+
         if(this._gameObject.interactionIcon) {
             console.log('interaction icon', this._gameObject.interactionIcon);
             this._interactionImage = new Image();

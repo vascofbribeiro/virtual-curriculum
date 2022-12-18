@@ -56,6 +56,7 @@ export const techskills = {
                             "React - 6 years",
                             "Docker - 3 years",
                             "CSS - 6 years",
+                            "HTML - 6 years"
                         ] 
                     }]
                 }
@@ -133,6 +134,34 @@ export const techskills = {
             interactionIcon: {
                 nearby: '../images/objects/6years.png'
             },
+        }),
+        avatarreact: new GameObject({
+            x: getGridPosition(17),
+            y: getGridPosition(0),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/react-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
         }),
     },
     walls: {},

@@ -7,7 +7,7 @@
             }
 
             body {
-                background-color: #e9e1d2;
+                background-color: #bbb6ac;
                 padding: 0;
                 margin: 0;
                 overflow: hidden;
@@ -57,7 +57,7 @@
 
                 position: absolute;
                 right: 2px;
-                bottom: 0;
+                top: 0;
             }
 
             .interaction-box {
@@ -71,6 +71,15 @@
                 background: #c3b29d;
                 border-top: 1px solid black;
                 color: #302a4a;
+                overflow-y: scroll;
+            }
+
+            .interaction-box::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .interaction-box::-webkit-scrollbar-thumb {
+                background-color: 7d7265;
             }
 
             .interaction-box-title {

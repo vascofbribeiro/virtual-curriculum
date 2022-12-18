@@ -23,14 +23,14 @@ export default class Map {
     constructor(config: IMapConfig) {
         this._lowerImage = new Image();
         this._upperImage = new Image();
-        console.log('BACKGROUND TESTE', config);
         this._lowerImage.src = config.lowerImageSrc;
-        this._upperImage.src = config.upperImageSrc;
+        this._upperImage.src = config.upperImageSrc || '';
         this._walls = config.walls;
         this.gameObjects = config.gameObjects;
         this.engine = null;
         this.actionSpaces = config.actionSpaces;
         this.spacesTaken = this.getSpacesTaken();
+        console.log(this.spacesTaken);
         this.isInteracting = false;
         this.initialInteractions = config.initialInteractions;
         this._hasTakenInitialInteractions = false;
@@ -38,7 +38,8 @@ export default class Map {
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
         const {x,y} = nextPosition(currentX, currentY, direction);
-        return this.spacesTaken[`${x},${y}`]
+        console.log('next position', x, y)
+        return this.spacesTaken[`${x},${y}`] && !this.actionSpaces[`${x},${y}`]
     }
 
     public mountObjects() {
@@ -76,6 +77,7 @@ export default class Map {
         gameObjects.forEach(object => {
             const {x, y, objectHeight, objectWidth} = object;
 
+            //FIX Colisions for objects with 16 by 16
             const xMin = x;
             const xMax = x + objectWidth;
             const yMin = y;
@@ -83,6 +85,7 @@ export default class Map {
 
             for(let i = xMin / 16; i < xMax / 16 ; i++) {
                 for(let j = yMin / 16; j < yMax / 16 ; j++) {
+                console.log('Y', i, yMax/16)
                     spacesTaken[getGridCoord(i,j)] = true;
                 }
             }

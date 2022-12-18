@@ -2,7 +2,6 @@ import { IEvent } from '../interfaces/modules/IEvent';
 import { ICharacter } from '../interfaces/modules/ICharacter';
 import { IState } from '../interfaces/modules/IState';
 import { emitEvent } from '../utils/events';
-import { nextPosition } from '../utils/grid';
 import GameObject from './GameObject';
 import Map from "./Map";
 

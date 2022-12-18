@@ -1,8 +1,8 @@
 import Character from '../../modules/Character';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 
-export const beach = {
-    lowerImageSrc: "../images/backgrounds/beach.png",
+export const bar = {
+    lowerImageSrc: "../images/backgrounds/bar.png",
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(12),
@@ -39,12 +39,5 @@ export const beach = {
                 ]
             }
         ],
-        [getGridCoord(11,8)]: [
-            {
-                events: [
-                    { type: 'changeMap', map: 'outside'},
-                ]
-            }
-        ]
     },
 };

@@ -45,6 +45,7 @@ export const outside = {
                 },
             },
         }),
+        //PROFESSIONAL EXPERIENCE BUILDINGS
         farfetch: new GameObject({
             x: getGridPosition(17),
             y: getGridPosition(11),
@@ -93,7 +94,7 @@ export const outside = {
         }), 
         dotlogic: new GameObject({
             x: getGridPosition(9),
-            y: getGridPosition(14),
+            y: getGridPosition(13),
             hasShadow: false,
             width: getGridPosition(4),
             height: getGridPosition(4),
@@ -122,7 +123,41 @@ export const outside = {
                     imageHeight: 352
                 },
             },
-        })
+        }),
+        // BAR BUILDING
+        bar: new GameObject({
+            x: getGridPosition(5),
+            y: getGridPosition(0),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(9),
+            sprite: {
+                object: {
+                    src: '../images/objects/bar.png',
+                    width: 96,
+                    height: 160,
+                    imageWidth: 96,
+                    imageHeight: 160
+                },
+            },
+        }),
+        // SOCIAL BILLBOARDS
+        socialGithub: new GameObject({
+            x: getGridPosition(18),
+            y: getGridPosition(1),
+            hasShadow: false,
+            width: getGridPosition(5),
+            height: getGridPosition(5),
+            sprite: {
+                object: {
+                    src: '../images/objects/social-github.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(6),
+                    imageWidth: getGridPosition(5),
+                    imageHeight: getGridPosition(6)
+                },
+            },
+        }),
     },
     walls: {},
     actionSpaces: {
@@ -137,6 +172,27 @@ export const outside = {
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
+                ]
+            }
+        ],
+        [getGridCoord(25,-1)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'beach'},
+                ]
+            }
+        ],
+        [getGridCoord(26,-1)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'beach'},
+                ]
+            }
+        ],
+        [getGridCoord(6,8)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'bar'},
                 ]
             }
         ]

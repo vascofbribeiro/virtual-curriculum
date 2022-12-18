@@ -5,6 +5,8 @@ import { hobbies } from './maps/hobbies';
 import { outside } from './maps/outside';
 import { techskills } from './maps/techskills';
 import { basket } from './maps/basket';
+import { beach } from './maps/beach';
+import { bar } from './maps/bar';
 
 // var canvas = document.querySelector('#game-canvas');
 // fitToContainer(canvas);
@@ -23,7 +25,9 @@ export const mapsConfig = {
     hobbies,
     outside,
     techskills,
-    basket
+    basket,
+    beach,
+    bar
 }
 
 createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});

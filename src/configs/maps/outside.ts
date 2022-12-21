@@ -45,6 +45,51 @@ export const outside = {
                 },
             },
         }),
+        signEduExp: new GameObject({
+            x: getGridPosition(42),
+            y: getGridPosition(15),
+            hasShadow: false,
+            width: getGridPosition(3),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/sign-outside.png',
+                    width: getGridPosition(3),
+                    height: getGridPosition(3),
+                    imageWidth: 48,
+                    imageHeight: 48
+                },
+            },
+            interactions: [
+                {
+                    events: [{
+                        type: 'message', 
+                        text: `Education ←`
+                    },
+                    {
+                        type: 'message', 
+                        text: `Experience ←`
+                    }]
+                }
+            ],
+        }),
+        // Education Building
+        college: new GameObject({
+            x: getGridPosition(28),
+            y: getGridPosition(7),
+            hasShadow: false,
+            width: getGridPosition(10),
+            height: getGridPosition(9),
+            sprite: {
+                object: {
+                    src: '../images/objects/college.png',
+                    width: getGridPosition(13),
+                    height: getGridPosition(13),
+                    imageWidth: getGridPosition(26),
+                    imageHeight: getGridPosition(26)
+                },
+            },
+        }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
         farfetch: new GameObject({
             x: getGridPosition(17),
@@ -159,22 +204,22 @@ export const outside = {
             },
         }),
         //OTHERS
-        padel: new GameObject({
-            x: getGridPosition(30),
-            y: getGridPosition(5),
-            hasShadow: false,
-            width: getGridPosition(8),
-            height: getGridPosition(4),
-            sprite: {
-                object: {
-                    src: '../images/objects/padel.png',
-                    width: getGridPosition(8),
-                    height: getGridPosition(4),
-                    imageWidth: getGridPosition(8),
-                    imageHeight: getGridPosition(4)
-                },
-            },
-        }),
+        // padel: new GameObject({
+        //     x: getGridPosition(30),
+        //     y: getGridPosition(5),
+        //     hasShadow: false,
+        //     width: getGridPosition(8),
+        //     height: getGridPosition(4),
+        //     sprite: {
+        //         object: {
+        //             src: '../images/objects/padel.png',
+        //             width: getGridPosition(8),
+        //             height: getGridPosition(4),
+        //             imageWidth: getGridPosition(8),
+        //             imageHeight: getGridPosition(4)
+        //         },
+        //     },
+        // }),
     },
     walls: {},
     actionSpaces: {

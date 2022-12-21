@@ -7,7 +7,7 @@ export const professionalExpRoom = {
     upperImageSrc: "../images/backgrounds/generic-upper.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(7),
+            x: getGridPosition(9),
             y: getGridPosition(5),
             isPlayer: true,
             hasShadow: true,
@@ -66,7 +66,7 @@ export const professionalExpRoom = {
         //     ]
         // }),
         mirror: new GameObject({
-            x: getGridPosition(5),
+            x: getGridPosition(6),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(1),
@@ -105,38 +105,6 @@ export const professionalExpRoom = {
                 far:  '../images/objects/interaction.png'
             }
         }),
-        sign: new GameObject({
-            x: getGridPosition(6),
-            y: getGridPosition(2),
-            hasShadow: false,
-            width: getGridPosition(3),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/sign-all.png',
-                    width: getGridPosition(3),
-                    height: getGridPosition(3),
-                    imageWidth: 48,
-                    imageHeight: 48
-                },
-            },
-            interactions: [
-                {
-                    events: [{
-                        type: 'message', 
-                        text: `Tech Skills →`
-                    },
-                    {
-                        type: 'message', 
-                        text: `Hobbies ←`
-                    },
-                    {
-                        type: 'message', 
-                        text: `Education ↑`
-                    }]
-                }
-            ],
-        }),
     },
     actionSpaces: {
         // [getGridCoord(8,1)] : [
@@ -148,21 +116,21 @@ export const professionalExpRoom = {
         //         ]
         //     }
         // ],
-        [getGridCoord(1,1)]: [
+        [getGridCoord(0,4)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'hobbies'},
                 ]
             }
         ],
-        [getGridCoord(13,4)]: [
+        [getGridCoord(17,4)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'techskills'},
                 ]
             }
         ],
-        [getGridCoord(7,12)]: [
+        [getGridCoord(9,12)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'outside'},

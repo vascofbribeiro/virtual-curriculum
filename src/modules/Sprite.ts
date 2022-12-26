@@ -8,7 +8,7 @@ export default class Sprite {
     private _currentAnimation: string;
     private _currentAnimationFrame: number;
     private _image: HTMLImageElement;
-    private _interactionImage: HTMLImageElement;
+    private _interactionImages: Record<string, HTMLImageElement | null>;
     private _width: number;
     private _height: number;
     private _isLoaded: boolean;
@@ -25,9 +25,12 @@ export default class Sprite {
         this._image.src = config.src;
 
         if(this._gameObject.interactionIcon) {
+            this._interactionImages = {};
             console.log('interaction icon', this._gameObject.interactionIcon);
-            this._interactionImage = new Image();
-            this._interactionImage.src = config.gameObject.interactionIcon.far || config.gameObject.interactionIcon.nearby;
+            this._interactionImages.far = new Image();
+            this._interactionImages.nearby = new Image();
+            this._interactionImages.far.src = config.gameObject.interactionIcon.far || config.gameObject.interactionIcon.nearby;
+            this._interactionImages.nearby.src = config.gameObject.interactionIcon.nearby || '';
         }
 
         this._image.onload = () => {
@@ -102,22 +105,22 @@ export default class Sprite {
 
 
         // Draw interaction item at the top
-        if(this._isLoaded && this._interactionImage) {
+        if(this._isLoaded && this._interactionImages) {
             if(miniMe.x >= this._gameObject.x && miniMe.x < this._gameObject.x + this._gameObject.objectWidth &&
                 miniMe.y <= this._gameObject.y + 80 /* 5 squares down. Change for a value that makes sense*/) {
-                this._interactionImage.src = this._gameObject.interactionIcon.nearby || this._gameObject.interactionIcon.far || '';
+                this._interactionImages.show = this._interactionImages.nearby || this._interactionImages.far || null;
             } else {
-                this._interactionImage.src = this._gameObject.interactionIcon.far || ''
+                this._interactionImages.show = this._interactionImages.far || null
             }
             //console.log('COORD', miniMe.x, this._gameObject.x)
             
             ctx.drawImage(
-                this._interactionImage,
+                this._interactionImages.show,
                 0,
                 0,
                 32,
                 32,
-                x + (this._gameObject.objectWidth/2) - (this._interactionImage.width/2),
+                x + (this._gameObject.objectWidth/2) - (this._interactionImages.show.width/2),
                 y - 16,
                 32,
                 32

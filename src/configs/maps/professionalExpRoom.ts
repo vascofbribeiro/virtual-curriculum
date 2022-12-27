@@ -30,43 +30,43 @@ export const professionalExpRoom = {
                 }
             }
         }),
-        // npc: new Character({
-        //     x: getGridPosition(9),
-        //     y: getGridPosition(2),
-        //     name: 'NPC',
-        //     hasShadow: true,
-        //     width: getGridPosition(1),
-        //     height: getGridPosition(1),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/characters/sprite-vasco.png',
-        //             width: 16,
-        //             height: 32,
-        //             imageWidth: 16,
-        //             imageHeight: 32
-        //         },
-        //         shadow: {
-        //             src: '../images/characters/shadow.png',
-        //             width: 32,
-        //             height: 32,
-        //             imageWidth: 64,
-        //             imageHeight: 64
-        //         }
-        //     },
-        //     interactions: [
-        //         {
-        //             events: [{type: 'message', text: 'Feel free to walk around the rooms and explore'}]
-        //         }
-        //     ],
-        //     behaviorLoop: [
-        //         {type: 'idle', direction: 'up', time: 1000},
-        //         {type: 'idle', direction: 'right', time: 1000},
-        //         {type: 'idle', direction: 'down', time: 1000},
-        //         {type: 'idle', direction: 'left', time: 1000},
-        //     ]
-        // }),
+        npc: new Character({
+            x: getGridPosition(9),
+            y: getGridPosition(2),
+            isPlayer: false,
+            hasShadow: true,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/characters/sprite-vasco.png',
+                    width: 16,
+                    height: 32,
+                    imageWidth: 16,
+                    imageHeight: 32
+                },
+                shadow: {
+                    src: '../images/characters/shadow.png',
+                    width: 32,
+                    height: 32,
+                    imageWidth: 64,
+                    imageHeight: 64
+                }
+            },
+            interactions: [
+                {
+                    events: [{type: 'message', text: 'Feel free to walk around the rooms and explore'}]
+                }
+            ],
+            behaviorLoop: [
+                {type: 'idle', direction: 'up', time: 1000},
+                {type: 'idle', direction: 'right', time: 1000},
+                {type: 'idle', direction: 'down', time: 1000},
+                {type: 'idle', direction: 'left', time: 1000},
+            ]
+        }),
         mirror: new GameObject({
-            x: getGridPosition(6),
+            x: getGridPosition(7),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(1),

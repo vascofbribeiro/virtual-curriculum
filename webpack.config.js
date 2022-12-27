@@ -20,6 +20,13 @@ module.exports = {
           outputPath: 'images',
         },
       },
+      {
+        test: /\.mp3$/,
+        loader: 'asset/resource',
+        options: {
+          outputPath: 'sounds',
+        },
+      },
     ],
   },
   resolve: {
@@ -34,6 +41,14 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/images", to: "images" },
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "src/sounds", to: "sounds" },
       ],
       options: {
         concurrency: 100,

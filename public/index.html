@@ -99,5 +99,13 @@
             <canvas id="game-canvas" width="352" height="198"></canvas>
             <button style="margin-top:10px" onclick="">Audio</button>
         </div>
+        
+        <script>
+            const audio = new Audio('../sounds/main.mp3');
+            function play() {
+                audio.loop = true;
+                audio.paused ? audio.play() : audio.pause();
+            }
+        </script>
     </body>
 </html>

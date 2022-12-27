@@ -23,7 +23,7 @@ export default class Engine {
     startGameLoop() {
         // Define 60 frames per second in order to prevent request animation frame
         // to be called more times on 120Hz displays
-        const fpsInterval = 1000 / 60;
+        const fpsInterval = 1000 / 62;
         let then = Date.now();
         let now;
         const step = () => {

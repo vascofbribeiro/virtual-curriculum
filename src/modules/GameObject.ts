@@ -1,4 +1,4 @@
-import Sprite from "./Sprite";
+import SpriteCharacter from "./SpriteCharacter";
 import Map from "./Map";
 import { Direction } from "../types/Direction";
 import { IGameObjectConfig } from "../interfaces/configs/IGameObjectConfig";
@@ -8,8 +8,8 @@ import GameEvent from './GameEvent';
 
 export default class GameObject {
     private _hasShadow: boolean;
-    public objectSprite: Sprite;
-    public shadowSprite: Sprite;
+    public objectSprite: SpriteCharacter;
+    public shadowSprite: SpriteCharacter;
     public x: number;
     public y: number;
     public direction: Direction;
@@ -52,12 +52,12 @@ export default class GameObject {
         // this.shadowHeight = config.shadowHeight || this.SHADOW_HEIGHT;
         // this.objectSpriteimageWidth = config.objectSpriteimageWidth || 0;
         // this.objectSpriteimageHeight = config.objectSpriteimageHeight || 0;
-        this.objectSprite = new Sprite({
+        this.objectSprite = new SpriteCharacter({
             gameObject: this,
             ...config.sprite.object
         });
         this._hasShadow = !!config.sprite.shadow;
-        this.shadowSprite = this._hasShadow && new Sprite({
+        this.shadowSprite = this._hasShadow && new SpriteCharacter({
             gameObject: this,
             ...config.sprite.shadow
         });

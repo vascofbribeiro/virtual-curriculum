@@ -6,7 +6,7 @@ export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(46), //x: getGridPosition(10),
+            x: getGridPosition(50), //x: getGridPosition(10),
             y: getGridPosition(6), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
@@ -30,7 +30,7 @@ export const outside = {
             }
         }),
         house: new GameObject({
-            x: getGridPosition(44),
+            x: getGridPosition(48),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(4),
@@ -46,7 +46,7 @@ export const outside = {
             },
         }),
         signEduExp: new GameObject({
-            x: getGridPosition(35),
+            x: getGridPosition(39),
             y: getGridPosition(15),
             hasShadow: false,
             width: getGridPosition(3),
@@ -95,15 +95,15 @@ export const outside = {
             x: getGridPosition(17),
             y: getGridPosition(11),
             hasShadow: false,
-            width: getGridPosition(4),
-            height: getGridPosition(4),
+            width: getGridPosition(3),
+            height: getGridPosition(3),
             sprite: {
                 object: {
                     src: '../images/objects/farfetch.png',
                     width: 96,
                     height: 176,
-                    imageWidth: 196,
-                    imageHeight: 352
+                    imageWidth: 96,
+                    imageHeight: 176
                 },
             },
         }),
@@ -139,7 +139,7 @@ export const outside = {
         }), 
         dotlogic: new GameObject({
             x: getGridPosition(9),
-            y: getGridPosition(13),
+            y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(4),
             height: getGridPosition(4),
@@ -147,9 +147,9 @@ export const outside = {
                 object: {
                     src: '../images/objects/dotlogic.png',
                     width: 96,
-                    height: 136,
-                    imageWidth: 192,
-                    imageHeight: 272
+                    height: 144,
+                    imageWidth: 96,
+                    imageHeight: 144
                 },
             },
         }),
@@ -161,11 +161,11 @@ export const outside = {
             height: getGridPosition(3),
             sprite: {
                 object: {
-                    src: '../images/objects/blip.png',
+                    src: '../images/objects/blip2.png',
                     width: 96,
                     height: 176,
-                    imageWidth: 196,
-                    imageHeight: 352
+                    imageWidth: 96,
+                    imageHeight: 176
                 },
             },
         }),
@@ -223,14 +223,21 @@ export const outside = {
     },
     walls: {},
     actionSpaces: {
-        [getGridCoord(46,6)]: [
+        [getGridCoord(50,6)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'professionalExpRoom'},
                 ]
             }
         ],
-        [getGridCoord(50,10)]: [
+        [getGridCoord(54,17)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'basket'},
+                ]
+            }
+        ],
+        [getGridCoord(55,17)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},

@@ -30,7 +30,6 @@ export default class Map {
         this.engine = null;
         this.actionSpaces = config.actionSpaces;
         this.spacesTaken = this.getSpacesTaken();
-        console.log(this.spacesTaken);
         this.isInteracting = false;
         this.initialInteractions = config.initialInteractions;
         this._hasTakenInitialInteractions = false;
@@ -38,7 +37,6 @@ export default class Map {
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
         const {x,y} = nextPosition(currentX, currentY, direction);
-        console.log('next position', x, y)
         return this.spacesTaken[`${x},${y}`] && !this.actionSpaces[`${x},${y}`]
     }
 
@@ -85,7 +83,6 @@ export default class Map {
 
             for(let i = xMin / 16; i < xMax / 16 ; i++) {
                 for(let j = yMin / 16; j < yMax / 16 ; j++) {
-                console.log('Y', i, yMax/16)
                     spacesTaken[getGridCoord(i,j)] = true;
                 }
             }
@@ -112,9 +109,6 @@ export default class Map {
     }
 
     public checkActionForPosition() {
-        console.log('change position')
-        console.log(this.gameObjects.miniMe.x/16);
-        console.log(this.gameObjects.miniMe.y/16);
         if(this.actionSpaces) {
             const match = this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
 
@@ -148,7 +142,6 @@ export default class Map {
 
     public async startInteraction(events: Array<IEvent>) {
         if(events) {
-            console.log('is interacting')
             this.isInteracting = true;
 
             for(let i = 0; i < events.length; i++) {

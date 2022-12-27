@@ -46,7 +46,7 @@ export const outside = {
             },
         }),
         signEduExp: new GameObject({
-            x: getGridPosition(42),
+            x: getGridPosition(35),
             y: getGridPosition(15),
             hasShadow: false,
             width: getGridPosition(3),
@@ -75,8 +75,8 @@ export const outside = {
         }),
         // Education Building
         college: new GameObject({
-            x: getGridPosition(28),
-            y: getGridPosition(7),
+            x: getGridPosition(27),
+            y: getGridPosition(-1),
             hasShadow: false,
             width: getGridPosition(10),
             height: getGridPosition(9),

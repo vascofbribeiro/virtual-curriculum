@@ -21,32 +21,46 @@ export default class Engine {
     }
 
     startGameLoop() {
+        // Define 60 frames per second in order to prevent request animation frame
+        // to be called more times on 120Hz displays
+        const fpsInterval = 1000 / 60;
+        let then = Date.now();
+        let now;
         const step = () => {
-            // Clear Canvas
-            this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+            now = Date.now();
+            const elapsed = now - then;
 
-            const cameraView = this._map.gameObjects.miniMe;
+            // if enough time has elapsed, draw the next frame
+            if (elapsed >= fpsInterval) {
 
-            // If main character is interacting stop updates
+                // Get ready for next frame by setting then=now, but also adjust for
+                // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+                then = now - (elapsed % fpsInterval);
+
+                // Clear Canvas
+                this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+
+                const cameraView = this._map.gameObjects.miniMe;
             
-           
-            Object.values(this._map.gameObjects).forEach(object => {
-                object.update({
-                    arrow: this._directionInput.direction,
-                    map: this._map,
+                Object.values(this._map.gameObjects).forEach(object => {
+                    object.update({
+                        arrow: this._directionInput.direction,
+                        map: this._map,
+                    })
+                });
+
+                this._map.drawLowerImage(this._ctx, cameraView);
+                                
+                Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
+                    return gameObjectA.y - gameObjectB.y
+                }).forEach(gameObject => {
+                    gameObject.objectSprite.draw(this._ctx, cameraView, this._map.gameObjects.miniMe);
                 })
-            });
 
-            this._map.drawLowerImage(this._ctx, cameraView);
-            //Create upper image for the maps
-            
-            Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
-                return gameObjectA.y - gameObjectB.y
-            }).forEach(gameObject => {
-                gameObject.objectSprite.draw(this._ctx, cameraView, this._map.gameObjects.miniMe);
-            })
-            this._map.drawUpperImage(this._ctx, cameraView);
-            
+                //Create upper image for the maps
+                this._map.drawUpperImage(this._ctx, cameraView);
+            }
+
             requestAnimationFrame(() => {
                 step();
             })

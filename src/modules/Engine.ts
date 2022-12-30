@@ -3,6 +3,7 @@ import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
 import { canvasScale } from '../constants/';
+import TouchInput from './TouchInput';
 
 declare global {
     interface Window {
@@ -20,6 +21,7 @@ export default class Engine {
     private _ctx: CanvasRenderingContext2D;
     private _map: Map;
     private _directionInput: DirectionInput;
+    private _touchInput: TouchInput;
 
     constructor(id: string) { 
         if (typeof window) {
@@ -55,7 +57,7 @@ export default class Engine {
             
                 Object.values(this._map.gameObjects).forEach(object => {
                     object.update({
-                        arrow: this._directionInput.direction,
+                        arrow: this._directionInput.direction || this._touchInput.direction,
                         map: this._map,
                     })
                 });
@@ -112,6 +114,9 @@ export default class Engine {
 
         this._directionInput = new DirectionInput();
         this._directionInput.init();
+
+        this._touchInput = new TouchInput();
+        this._touchInput.init();
 
         this.startGameLoop();
     }

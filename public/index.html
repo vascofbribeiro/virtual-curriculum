@@ -6,6 +6,7 @@
                 box-sizing: border-box;
             }
 
+            /* Avoid zoom on smartphone button clicks*/
             :root {
                 touch-action: pan-x pan-y;
                 height: 100% 
@@ -206,7 +207,7 @@
             .a {
                 margin: 165 0 0 100;
                 
-                background-color: green;
+                background-color: lightblue;
             }
 
 
@@ -226,15 +227,15 @@
         <button class="" style="margin-top:10px" onclick="play()">Audio</button>
         <div class="gamepad">
             <div class="arrows">
-                <div class="button up"></div>
+                <div id="arrow-up" class="button up"></div>
                 <div class="sides">
-                    <div class="button left"></div>
-                    <div class="button right"></div>
+                    <div id="arrow-left" class="button left"></div>
+                    <div id="arrow-right" class="button right"></div>
                 </div> 
-                <div class="button down"></div>
+                <div id="arrow-down" class="button down"></div>
             </div>
             <div class="buttons">
-                <div class="button a"></div>
+                <div id="button-a" class="button a"></div>
             </div>
         </div>
         

@@ -264,6 +264,22 @@ export const outside = {
                     { type: 'changeMap', map: 'bar'},
                 ]
             }
-        ]
+        ],
+        [getGridCoord(12,19)]: [
+            {
+                events: [
+                    {type: 'message', text: 'You are not allowed to enter the building since you no longer work here'},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(11,19)]: [
+            {
+                events: [
+                    {type: 'message', text: 'You are not allowed to enter the building since you no longer work here'},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
     },
 };

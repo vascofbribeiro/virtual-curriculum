@@ -24,33 +24,24 @@
             
             @media (min-width: 768px) {
                 .game-container {
-                    position: relative;
                     width: 136px;
                     height: 300px;
-                    outline: 1px solid white;
-                    margin: 0 auto;
                     transform: scale(5) translateY(50%)
                 }
             }
 
             @media (min-width: 992px) {
                 .game-container {
-                    position: relative;
                     width: 288px;
                     height: 200px;
-                    outline: 1px solid white;
-                    margin: 0 auto;
                     transform: scale(3) translateY(50%)
                 }
             }
 
             @media (min-width: 1200px) {
                 .game-container {
-                    position: relative;
                     width: 352px;
                     height: 200px;
-                    outline: 1px solid white;
-                    margin: 0 auto;
                     transform: scale(3) translateY(50%)
                 }
             }
@@ -59,7 +50,7 @@
                 image-rendering: pixelated;
             }
 
-            .buttons {
+            /* .buttons {
                 position: absolute;
                 display: flex;
                 left: 0;
@@ -69,7 +60,7 @@
                 height:100px;
                 padding-bottom: 40px;
                 background: grey;
-            }
+            } */
 
             .message {
                 position: absolute;
@@ -77,17 +68,30 @@
                 right: 0;
                 bottom: 0;
                 height: 36px;
-                font-size: 12px;
+                font-size: 10px;
                 width:100%;
                 padding: 4px;
                 background: #c3b29d;
                 border-top: 1px solid black;
                 color: #302a4a;
+                overflow-y: scroll;
+            }
+
+            @media (min-width: 992px) {
+                .message {
+                    font-size: 12px;
+                }
             }
 
             .message-p {
                 margin: 0;
-                font-size: 12px;
+                font-size: 10px;
+            }
+
+            @media (min-width: 992px) {
+                .message-p {
+                    font-size: 12px;
+                }
             }
 
             .message-button {
@@ -136,20 +140,98 @@
                 margin: 10px 0 0;
                 font-size: 10px;
             }
+            
+            .button {
+                display: flex;
+                width: 50px;
+                height: 50px;
+                border: 1px solid black;
+                border-radius: 5px;
+                background-color: white;
+                margin: 5px;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .gamepad {
+                position: absolute;
+                bottom: 0;
+                display: flex;
+                flex-direction: row;
+                justify-self: center;
+            }
+
+            .arrows {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sides {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .buttons {
+                display: flex;
+            }
+
+            .up {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+            .down {
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+
+            .left {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+
+            .right {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+
+            .a {
+                background-color: green;
+            }
+
+            .b {
+                background-color: red;
+            }
+
+
+            @media (min-width: 992px)  {
+                .gamepad {
+                    display: none;
+                }
+            }
 
         </style>
     </head>
     <body>
         <div class="game-container" id="canvas-container">
             <canvas id="game-canvas"></canvas>
-            <button style="margin-top:10px" onclick="play()">Audio</button>
         </div>
 
-        <div class="buttons">
-            <button>Up</button>
-            <button>Left</button>
-            <button>Right</button>
-            <button>Down</button>
+        <button class="button" style="margin-top:10px" onclick="play()">Audio</button>
+
+        <div class="gamepad">
+            <div class="arrows">
+                <div class="button up"></div>
+                <div class="sides">
+                    <div class="button left"></div>
+                    <div class="button right"></div>
+                </div> 
+                <div class="button down"></div>
+            </div>
+            <div class="buttons">
+                <div class="button a"></div>
+                <div class="button b"></div>
+            </div>
         </div>
         
         <script>

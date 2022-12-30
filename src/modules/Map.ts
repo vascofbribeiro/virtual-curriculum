@@ -55,16 +55,16 @@ export default class Map {
     public drawLowerImage(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
         ctx.drawImage(
             this._lowerImage, 
-            getGridPosition(10.5) - cameraView.x,
-            getGridPosition(6) - cameraView.y
+            getGridPosition(window.canvasMultiplier.x) - cameraView.x,
+            getGridPosition(window.canvasMultiplier.y) - cameraView.y
         )
     }
 
     public drawUpperImage(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
         this._upperImage && ctx.drawImage(
             this._upperImage, 
-            getGridPosition(10.5) - cameraView.x,
-            getGridPosition(6) - cameraView.y
+            getGridPosition(window.canvasMultiplier.x) - cameraView.x,
+            getGridPosition(window.canvasMultiplier.y) - cameraView.y
         )
     }
 

@@ -86,8 +86,8 @@ export default class SpriteCharacter {
     }
 
     draw(ctx: CanvasRenderingContext2D, cameraView: GameObject, miniMe: GameObject) {
-        const x = this._gameObject.x + getGridPosition(10.5) - cameraView.x;
-        const y = this._gameObject.y + getGridPosition(6) - cameraView.y;
+        const x = this._gameObject.x + getGridPosition(window.canvasMultiplier.x) - cameraView.x;
+        const y = this._gameObject.y + getGridPosition(window.canvasMultiplier.y) - cameraView.y;
 
         const [frameX, frameY] = this.frame;
 

@@ -2,9 +2,16 @@ import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
+import { canvasScale } from '../constants/';
 
 declare global {
-    interface Window { mapsConfig: any; }
+    interface Window {
+        mapsConfig: any;
+        canvasMultiplier: {
+            x: number;
+            y: number;
+        };
+    }
 }
 
 
@@ -15,9 +22,13 @@ export default class Engine {
     private _directionInput: DirectionInput;
 
     constructor(id: string) { 
+        if (typeof window) {
+            window.mapsConfig = mapsConfig;
+        }
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
+        this.resizeCanvas();
+        addEventListener('resize', () => this.resizeCanvas());
         this._ctx = this._canvas.getContext("2d");
-        if (typeof window) window.mapsConfig = mapsConfig;
     }
 
     startGameLoop() {
@@ -103,5 +114,14 @@ export default class Engine {
         this._directionInput.init();
 
         this.startGameLoop();
+    }
+
+    public resizeCanvas() {
+        console.log('resize');
+        const gameContainer = document.getElementById('canvas-container');
+        console.log(gameContainer.clientWidth, gameContainer.clientHeight, this._canvas.style.scale);
+        this._canvas.width = gameContainer.clientWidth;
+        this._canvas.height = gameContainer.clientHeight;
+        window.canvasMultiplier = canvasScale[this._canvas.width];
     }
 }

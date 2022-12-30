@@ -14,9 +14,14 @@ export const canvasScale: Record<number, T> = {
         y: 4
     },
 
+    162: {
+        x: 4.5,
+        y: 7
+    },
+
     136: {
         x: 4,
-        y: 8
+        y: 7
     },
 
     120: {

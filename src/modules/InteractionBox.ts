@@ -24,6 +24,7 @@ export class InteractionBox {
             console.log(textLine);
             return `<p class="interaction-box-text">${textLine}</p>`
         }).join('');
+
         console.log(textLines);
         this.element.innerHTML = `
             <p class="interaction-box-title"> ${this._title} </p>

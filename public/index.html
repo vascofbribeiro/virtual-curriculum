@@ -56,6 +56,20 @@
                 image-rendering: pixelated;
             }
 
+            .button-audio {
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                width: 16px;
+                height: 16px;
+                font-size: 10px;
+                padding: 4px;
+                border-top: 1px solid black;
+                color: #302a4a;
+                background-image: url('../images/interfaces/sound.png');
+                background-size: cover;
+            }
+
             /* .buttons {
                 position: absolute;
                 display: flex;
@@ -82,11 +96,27 @@
                 color: #302a4a;
                 overflow-y: scroll;
             }
+            
+            .message::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .message::-webkit-scrollbar-thumb {
+                background-color: 7d7265;
+            }
 
             @media (min-width: 992px) {
                 .message {
                     font-size: 12px;
                 }
+            }
+
+            .message span {
+                opacity: 0;
+            }
+
+            .message span.revealed {
+                opacity: 1;
             }
 
             .message-p {
@@ -161,7 +191,7 @@
             
             .gamepad {
                 position: absolute;
-                left: 18%; /* Refactor this */
+                left: 14%; /* Refactor this */
                 bottom: 20px;
                 display: flex;
                 flex-direction: row;
@@ -204,6 +234,7 @@
             .a {
                 margin: 165 0 0 100;
                 background-color: lightblue;
+                border-radius: 50%;
             }
 
 
@@ -213,14 +244,42 @@
                 }
             }
 
+            /* SCENE TRANSITION */
+            .scene-transition {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                background: #fff;
+                opacity: 0;
+                animation: scene-transition-fade-in  0.2s forwards;
+            }
+
+            .scene-transition.fade-out {
+                animation: scene-transition-fade-out  0.2s forwards;
+            }
+
+            @keyframes scene-transition-fade-in {
+                from { opacity: 0 }
+                to { opacity: 1 }
+            }
+
+
+            @keyframes scene-transition-fade-out {
+                from { opacity: 1 }
+                to { opacity: 0 }
+            }
+
         </style>
     </head>
     <body>
         <div class="game-container" id="canvas-container">
             <canvas id="game-canvas"></canvas>
+            <button class="button-audio" onclick="play()"></button>
         </div>
 
-        <button class="" style="margin-top:10px" onclick="play()">Audio</button>
+        
         <div class="gamepad">
             <div class="arrows">
                 <div id="arrow-up" class="button up"></div>

@@ -2,6 +2,7 @@ import { IEvent } from "../interfaces/modules/IEvent";
 import { InteractionMessage } from "./InteractionMessage";
 import { InteractionBox } from "./InteractionBox";
 import Map from "./Map";
+import { SceneTransition } from "./SceneTransition";
 
 export default class GameEvent {
     private map: Map;
@@ -87,8 +88,13 @@ export default class GameEvent {
     }
 
     private changeMap(resolve: Function) {
-        this.map.engine.startMap(this.event.map)
-        resolve();
+        const sceneTransition = new SceneTransition();
+        sceneTransition.init(document.querySelector('.game-container'), () => {
+            this.map.engine.startMap(this.event.map)
+            resolve();
+
+            sceneTransition.fadeOut();
+        }); 
     }
 
     public init() {

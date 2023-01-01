@@ -203,6 +203,38 @@ export const outside = {
                 },
             },
         }),
+        socialLinkedin: new GameObject({
+            x: getGridPosition(11),
+            y: getGridPosition(1),
+            hasShadow: false,
+            width: getGridPosition(5),
+            height: getGridPosition(5),
+            sprite: {
+                object: {
+                    src: '../images/objects/social-linkedin.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(6),
+                    imageWidth: getGridPosition(5),
+                    imageHeight: getGridPosition(6)
+                },
+            },
+        }),
+        socialGithub2: new GameObject({
+            x: getGridPosition(14),
+            y: getGridPosition(4),
+            hasShadow: false,
+            width: getGridPosition(5),
+            height: getGridPosition(5),
+            sprite: {
+                object: {
+                    src: '../images/objects/social-github.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(6),
+                    imageWidth: getGridPosition(5),
+                    imageHeight: getGridPosition(6)
+                },
+            },
+        }),
         //OTHERS
         // padel: new GameObject({
         //     x: getGridPosition(30),

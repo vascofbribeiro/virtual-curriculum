@@ -14,6 +14,10 @@ export default class GameObject {
     public y: number;
     public direction: Direction;
     public objectWidth: number;
+    public collisionOffset: {
+        width: number;
+        height: number;
+    }
     public objectHeight: number;
     public shadowWidth: number;
     public shadowHeight: number;
@@ -47,6 +51,10 @@ export default class GameObject {
         this.y = config.y || 0;
         this.objectWidth = config.width || this.OBJECT_WIDTH;
         this.objectHeight = config.height || this.OBJECT_HEIGHT;
+        this.collisionOffset = {
+            width: (config.collisionOffset && config.collisionOffset.width) || 0,
+            height: (config.collisionOffset && config.collisionOffset.height) || 0
+        }
         this.interactionIcon = config.interactionIcon;
         // this.shadowWidth = config.shadowWidth || this.SHADOW_WIDTH;
         // this.shadowHeight = config.shadowHeight || this.SHADOW_HEIGHT;
@@ -72,7 +80,7 @@ export default class GameObject {
     public mount(map: Map) {
         // Should object mount ????
         this.isMounted = true;
-        map.addSpaceTaken(this.x, this.y);
+        map.addSpaceTaken(this.x + this.collisionOffset.width, this.y + this.collisionOffset.height);
 
         //set delay before behavior loop start to avoid bugs
         setTimeout(() => {

@@ -83,10 +83,10 @@ export default class Map {
             const {x, y, objectHeight, objectWidth} = object;
 
             //FIX Colisions for objects with 16 by 16
-            const xMin = x;
-            const xMax = x + objectWidth;
-            const yMin = y;
-            const yMax = y + objectHeight;
+            const xMin = x + object.collisionOffset.width;
+            const xMax = xMin + objectWidth;
+            const yMin = y + object.collisionOffset.height;
+            const yMax = yMin + objectHeight;
 
             for(let i = xMin / 16; i < xMax / 16 ; i++) {
                 for(let j = yMin / 16; j < yMax / 16 ; j++) {
@@ -131,10 +131,10 @@ export default class Map {
         const miniMe = this.gameObjects.miniMe;
         const nextCoords = nextPosition(miniMe.x, miniMe.y, miniMe.direction);
         const match = Object.values(this.gameObjects).find(gameObject => {
-            const interactXMin = gameObject.x;
-            const interactXMax = gameObject.x + gameObject.objectWidth - 16;
-            const interactYMin = gameObject.y;
-            const interactYMax = gameObject.y + gameObject.objectHeight -16;
+            const interactXMin = gameObject.x + gameObject.collisionOffset.width;
+            const interactXMax = interactXMin + gameObject.objectWidth - 16;
+            const interactYMin = gameObject.y + gameObject.collisionOffset.height;
+            const interactYMax = interactYMin + gameObject.objectHeight - 16;
 
             const isInteractable = nextCoords.x >= interactXMin && nextCoords.x <= interactXMax &&
                 nextCoords.y >= interactYMin && nextCoords.y <= interactYMax

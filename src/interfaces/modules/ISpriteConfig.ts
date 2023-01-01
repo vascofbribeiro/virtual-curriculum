@@ -4,8 +4,8 @@ export interface ISpriteConfig {
         animations?: object;
         width: number;
         height: number;
-        imageWidth: number;
-        imageHeight: number;
+        imageWidth?: number;
+        imageHeight?: number;
     },
     shadow?: {
         src: string;

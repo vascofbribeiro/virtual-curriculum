@@ -18,7 +18,7 @@ export default class SpriteCharacter {
     private _imageHeight: number;
     private _gameObject: GameObject;
 
-    constructor(config: { gameObject: GameObject, src: string, width: number, height: number, imageWidth: number, imageHeight: number }) {
+    constructor(config: { gameObject: GameObject, src: string, width: number, height: number, imageWidth?: number, imageHeight?: number }) {
         // Sould be received from config
         this._gameObject = config.gameObject;
         this._image = new Image();
@@ -39,8 +39,8 @@ export default class SpriteCharacter {
 
         this._width = config.width;
         this._height = config.height;
-        this._imageWidth = config.imageWidth;
-        this._imageHeight = config.imageHeight;
+        this._imageWidth = config.imageWidth || config.width;
+        this._imageHeight = config.imageHeight || config.height;
 
         // These animations can be configurable, add it later
         this._animations = {

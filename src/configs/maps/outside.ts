@@ -56,8 +56,6 @@ export const outside = {
                     src: '../images/objects/sign-outside.png',
                     width: getGridPosition(3),
                     height: getGridPosition(3),
-                    imageWidth: 48,
-                    imageHeight: 48
                 },
             },
             interactions: [
@@ -95,15 +93,13 @@ export const outside = {
             x: getGridPosition(17),
             y: getGridPosition(11),
             hasShadow: false,
-            width: getGridPosition(3),
-            height: getGridPosition(3),
+            width: getGridPosition(6),
+            height: getGridPosition(9),
             sprite: {
                 object: {
                     src: '../images/objects/farfetch.png',
                     width: 96,
-                    height: 176,
-                    imageWidth: 96,
-                    imageHeight: 176
+                    height: 176
                 },
             },
         }),
@@ -113,13 +109,15 @@ export const outside = {
             hasShadow: false,
             width: getGridPosition(1),
             height: getGridPosition(1),
+            collisionOffset: {
+                width: 0,
+                height: -16
+            },
             sprite: {
                 object: {
                     src: '../images/objects/information.png',
                     width: 16,
                     height: 32,
-                    imageWidth: 16,
-                    imageHeight: 32
                 },
             },
             interactions: [
@@ -141,15 +139,17 @@ export const outside = {
             x: getGridPosition(9),
             y: getGridPosition(12),
             hasShadow: false,
-            width: getGridPosition(4),
-            height: getGridPosition(4),
+            width: getGridPosition(6),
+            height: getGridPosition(6),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
             sprite: {
                 object: {
                     src: '../images/objects/dotlogic.png',
                     width: 96,
                     height: 144,
-                    imageWidth: 96,
-                    imageHeight: 144
                 },
             },
         }),
@@ -157,15 +157,13 @@ export const outside = {
             x: getGridPosition(1),
             y: getGridPosition(11),
             hasShadow: false,
-            width: getGridPosition(3),
-            height: getGridPosition(3),
+            width: getGridPosition(6),
+            height: getGridPosition(9),
             sprite: {
                 object: {
                     src: '../images/objects/blip2.png',
                     width: 96,
                     height: 176,
-                    imageWidth: 96,
-                    imageHeight: 176
                 },
             },
         }),
@@ -181,8 +179,6 @@ export const outside = {
                     src: '../images/objects/bar.png',
                     width: 96,
                     height: 160,
-                    imageWidth: 96,
-                    imageHeight: 160
                 },
             },
         }),
@@ -198,8 +194,6 @@ export const outside = {
                     src: '../images/objects/social-github.png',
                     width: getGridPosition(5),
                     height: getGridPosition(6),
-                    imageWidth: getGridPosition(5),
-                    imageHeight: getGridPosition(6)
                 },
             },
         }),
@@ -214,27 +208,10 @@ export const outside = {
                     src: '../images/objects/social-linkedin.png',
                     width: getGridPosition(5),
                     height: getGridPosition(6),
-                    imageWidth: getGridPosition(5),
-                    imageHeight: getGridPosition(6)
                 },
             },
         }),
-        socialGithub2: new GameObject({
-            x: getGridPosition(14),
-            y: getGridPosition(4),
-            hasShadow: false,
-            width: getGridPosition(5),
-            height: getGridPosition(5),
-            sprite: {
-                object: {
-                    src: '../images/objects/social-github.png',
-                    width: getGridPosition(5),
-                    height: getGridPosition(6),
-                    imageWidth: getGridPosition(5),
-                    imageHeight: getGridPosition(6)
-                },
-            },
-        }),
+        
         //OTHERS
         // padel: new GameObject({
         //     x: getGridPosition(30),

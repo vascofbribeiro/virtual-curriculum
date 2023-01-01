@@ -7,6 +7,10 @@ export interface IGameObjectConfig {
     hasShadow?: boolean;
     width: number;
     height: number;
+    collisionOffset?: {
+        width: number;
+        height: number;
+    }
     sprite: ISpriteConfig
     walkable?: boolean;
     isPlayer?: boolean;

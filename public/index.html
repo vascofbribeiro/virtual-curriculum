@@ -12,6 +12,46 @@
                 height: 100% 
             }
 
+            .loading-container {
+                position: absolute;
+                width: 80%;
+                top:40%;
+                left: 10%;
+                text-align: center;
+            }
+
+            /* FIX THIS */
+            .dot1 {
+                animation: dot-transition  0s ease-in 2s;
+            }
+
+            .dot2 {
+                animation: dot-transition 0s ease-in 4s;
+            }
+
+
+            .dot3 {
+                animation: dot-transition 0s ease-in 6s;
+            }
+
+            @keyframes dot-transition {
+                to { visibility: hidden }
+            }
+            
+            .loading-bar {
+                width:100%;
+                height: 20px;
+                background-color: lightgray;
+                border-radius: 5px;
+            }
+
+            .progress {
+                height: 100%;
+                background-color: #c3b29d;
+                width: 0%;
+                border-radius: 5px;
+            }
+
             body {
                 background-color: #bbb6ac;
                 padding: 0;
@@ -235,6 +275,7 @@
                 margin: 165 0 0 100;
                 background-color: lightblue;
                 border-radius: 50%;
+                font-size: 48px
             }
 
 
@@ -275,11 +316,16 @@
     </head>
     <body>
         <div class="game-container" id="canvas-container">
+            <div id="loading" class="loading-container">
+                LOADING<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
+                <div class="loading-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+            </div>
             <canvas id="game-canvas"></canvas>
             <button class="button-audio" onclick="play()"></button>
         </div>
 
-        
         <div class="gamepad">
             <div class="arrows">
                 <div id="arrow-up" class="button up"></div>
@@ -290,7 +336,7 @@
                 <div id="arrow-down" class="button down"></div>
             </div>
             <div class="buttons">
-                <div id="button-a" class="button a"></div>
+                <div id="button-a" class="button a">A</div>
             </div>
         </div>
         

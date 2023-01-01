@@ -18,13 +18,16 @@ declare global {
 export default class Engine {
     private _canvas: HTMLCanvasElement;
     private _ctx: CanvasRenderingContext2D;
-    private _map: Map;
+    private _maps: Record<string, Map>;
+    private _activeMap: Map;
     private _directionInput: DirectionInput;
+    private _isLoadFinished: boolean;
 
     constructor(id: string) { 
         if (typeof window) {
             window.mapsConfig = mapsConfig;
         }
+        this._maps = {};
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
         this.resizeCanvas();
         addEventListener('resize', () => this.resizeCanvas());
@@ -34,42 +37,45 @@ export default class Engine {
     startGameLoop() {
         // Define 60 frames per second in order to prevent request animation frame
         // to be called more times on 120Hz displays
+
         const fpsInterval = 1000 / 62;
         let then = Date.now();
         let now;
         const step = () => {
-            now = Date.now();
-            const elapsed = now - then;
+            if(this._activeMap.isImageLoaded) {
+                now = Date.now();
+                const elapsed = now - then;
 
-            // if enough time has elapsed, draw the next frame
-            if (elapsed >= fpsInterval) {
+                // if enough time has elapsed, draw the next frame
+                if (elapsed >= fpsInterval) {
 
-                // Get ready for next frame by setting then=now, but also adjust for
-                // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
-                then = now - (elapsed % fpsInterval);
+                    // Get ready for next frame by setting then=now, but also adjust for
+                    // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+                    then = now - (elapsed % fpsInterval);
 
-                // Clear Canvas
-                this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+                    // Clear Canvas
+                    this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-                const cameraView = this._map.gameObjects.miniMe;
-            
-                Object.values(this._map.gameObjects).forEach(object => {
-                    object.update({
-                        arrow: this._directionInput.direction,
-                        map: this._map,
+                    const cameraView = this._activeMap.gameObjects.miniMe;
+                
+                    Object.values(this._activeMap.gameObjects).forEach(object => {
+                        object.update({
+                            arrow: this._directionInput.direction,
+                            map: this._activeMap,
+                        })
+                    });
+
+                    this._activeMap.drawLowerImage(this._ctx, cameraView);
+                                    
+                    Object.values(this._activeMap.gameObjects).sort((gameObjectA, gameObjectB) => {
+                        return gameObjectA.y - gameObjectB.y
+                    }).forEach(gameObject => {
+                        gameObject.objectSprite.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
                     })
-                });
 
-                this._map.drawLowerImage(this._ctx, cameraView);
-                                
-                Object.values(this._map.gameObjects).sort((gameObjectA, gameObjectB) => {
-                    return gameObjectA.y - gameObjectB.y
-                }).forEach(gameObject => {
-                    gameObject.objectSprite.draw(this._ctx, cameraView, this._map.gameObjects.miniMe);
-                })
-
-                //Create upper image for the maps
-                this._map.drawUpperImage(this._ctx, cameraView);
+                    //Create upper image for the maps
+                    this._activeMap.drawUpperImage(this._ctx, cameraView);
+                }
             }
 
             requestAnimationFrame(() => {
@@ -82,7 +88,7 @@ export default class Engine {
 
     public bindAction() {
         new InteractionInput(() => {
-            !this._map.isInteracting && this._map.checkForInteraction();
+            !this._activeMap.isInteracting && this._activeMap.checkForInteraction();
         })
     }
 
@@ -90,30 +96,49 @@ export default class Engine {
         document.addEventListener('CharacterWalkComplete', (event: CustomEvent) => {
             const characterId = event.detail.whoId;
             if(characterId === 'miniMe') {
-                this._map.checkActionForPosition();
+                this._activeMap.checkActionForPosition();
             }
         });
     }
 
     public startMap(mapName: string /* FIX THIS TYPES LATER FOR IMapConfig */) {
         //@ts-ignore
-        this._map = new Map(window.mapsConfig[mapName]);
-        this._map.engine = this;
-        this._map.mountObjects();
-        this._map.startInteraction(this._map.initialInteractions);
-        window.mapsConfig[mapName].initialInteractions = [];
+        this._activeMap = this._maps[mapName] || new Map(window.mapsConfig[mapName]);
+        this._activeMap.engine = this;
+        this._activeMap.mountObjects();
+        this._activeMap.startInteraction(this._activeMap.initialInteractions);
+        this._activeMap.initialInteractions = [];
+    }
+
+    public loadAllMaps() {
+        Object.keys(window.mapsConfig).forEach((mapName) => {
+            this._maps[mapName] = new Map(window.mapsConfig[mapName]);
+            this._maps
+        })
     }
 
     public init() {
-        this.startMap('professionalExpRoom');
+        this.loadAllMaps();
+        document.addEventListener('mapImageLoaded', () => {
+            const numberMapsLoaded = Object.values(this._maps).filter((map) => map.isImageLoaded).length
+            const totalNumberMaps = Object.keys(this._maps).length
+            const progressBarPercentage = numberMapsLoaded / totalNumberMaps * 100
+            document.getElementById('progress').style.width = `${progressBarPercentage}%`
+
+            if (numberMapsLoaded === totalNumberMaps) {
+                document.getElementById('loading').style.display = 'none';
+                this.startMap('professionalExpRoom');
+
+                this.bindAction();
+                this.bindCheckCharacterPosition();
         
-        this.bindAction();
-        this.bindCheckCharacterPosition();
-
-        this._directionInput = new DirectionInput();
-        this._directionInput.init();
-
-        this.startGameLoop();
+                this._directionInput = new DirectionInput();
+                this._directionInput.init();
+        
+                this.startGameLoop();
+            }
+        })
+        
     }
 
     public resizeCanvas() {

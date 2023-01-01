@@ -18,13 +18,20 @@ export default class Map {
     public isInteracting: boolean;
     public actionSpaces: Record<string, any> //Fix types later
     public initialInteractions: Array<IEvent>;
+    public isImageLoaded: boolean;
     private _hasTakenInitialInteractions: boolean;
 
     constructor(config: IMapConfig) {
+        this.isImageLoaded = false;
         this._lowerImage = new Image();
         this._upperImage = new Image();
         this._lowerImage.src = config.lowerImageSrc;
         this._upperImage.src = config.upperImageSrc || '';
+        this._lowerImage.onload = () => {
+            this.isImageLoaded = true;
+            const imageLoadedEvent = new CustomEvent('mapImageLoaded');
+            document.dispatchEvent(imageLoadedEvent)
+        }
         this._walls = config.walls;
         this.gameObjects = config.gameObjects;
         this.engine = null;

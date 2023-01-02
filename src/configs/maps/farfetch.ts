@@ -2,7 +2,7 @@ import Character from '../../modules/Character';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 
 export const farfetch = {
-    lowerImageSrc: "../images/backgrounds/hobbies.png",
+    lowerImageSrc: "../images/backgrounds/work.png",
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(6),

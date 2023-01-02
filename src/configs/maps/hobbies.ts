@@ -3,11 +3,11 @@ import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 
 export const hobbies = {
-    lowerImageSrc: "../images/backgrounds/darkroom.png",
+    lowerImageSrc: "../images/backgrounds/room.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(0),
-            y: getGridPosition(7),
+            x: getGridPosition(11),
+            y: getGridPosition(4),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -55,15 +55,14 @@ export const hobbies = {
         })
     },
     initialInteractions: [
-        { who: 'miniMe', type: 'walk', direction: 'right' },
+        { who: 'miniMe', type: 'walk', direction: 'left' },
         { type: 'message', text: 'This is the hobbies room!!'},
         { type: 'message', text: "There's something wrong with light in this room. I remember there was a switch "},
-        { who: 'miniMe', type: 'walk', direction: 'left' },
-        
+        { who: 'miniMe', type: 'walk', direction: 'right' },
     ],
     walls: {},
     actionSpaces: {
-        [getGridCoord(0,7)]: [
+        [getGridCoord(11,4)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'professionalExpRoom'},

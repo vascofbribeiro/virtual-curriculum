@@ -8,7 +8,7 @@ export const professionalExpRoom = {
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(9),
-            y: getGridPosition(5),
+            y: getGridPosition(6),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -29,41 +29,6 @@ export const professionalExpRoom = {
                     imageHeight: 64
                 }
             }
-        }),
-        npc: new Character({
-            x: getGridPosition(9),
-            y: getGridPosition(2),
-            isPlayer: false,
-            hasShadow: true,
-            width: getGridPosition(1),
-            height: getGridPosition(1),
-            sprite: {
-                object: {
-                    src: '../images/characters/sprite-vasco.png',
-                    width: 16,
-                    height: 32,
-                    imageWidth: 16,
-                    imageHeight: 32
-                },
-                shadow: {
-                    src: '../images/characters/shadow.png',
-                    width: 32,
-                    height: 32,
-                    imageWidth: 64,
-                    imageHeight: 64
-                }
-            },
-            interactions: [
-                {
-                    events: [{type: 'message', text: 'Feel free to walk around the rooms and explore'}]
-                }
-            ],
-            behaviorLoop: [
-                {type: 'idle', direction: 'up', time: 1000},
-                {type: 'idle', direction: 'right', time: 1000},
-                {type: 'idle', direction: 'down', time: 1000},
-                {type: 'idle', direction: 'left', time: 1000},
-            ]
         }),
         mirror: new GameObject({
             x: getGridPosition(7),
@@ -105,6 +70,48 @@ export const professionalExpRoom = {
                 far:  '../images/objects/interaction.png'
             }
         }),
+        // shelf: new GameObject({
+        //     x: getGridPosition(9),
+        //     y: getGridPosition(0),
+        //     hasShadow: false,
+        //     width: getGridPosition(2),
+        //     height: getGridPosition(2),
+        //     sprite: {
+        //         object: {
+        //             src: '../images/objects/shelf.png',
+        //             width: getGridPosition(3),
+        //             height: getGridPosition(3),
+        //         },
+        //     },
+        // }),
+        table: new GameObject({
+            x: getGridPosition(5),
+            y: getGridPosition(1),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/table.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(2),
+                },
+            },
+        }),
+        couch: new GameObject({
+            x: getGridPosition(8),
+            y: getGridPosition(4),
+            hasShadow: false,
+            width: getGridPosition(3),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/couch.png',
+                    width: getGridPosition(3),
+                    height: getGridPosition(2),
+                },
+            },
+        })
     },
     actionSpaces: {
         // [getGridCoord(8,1)] : [

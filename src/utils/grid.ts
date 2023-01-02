@@ -31,3 +31,13 @@ export const nextPosition = (initialX: number, initialY: number, direction: Dire
 
     return {x,y}
 }
+
+export const createLinearWall = (config: any) => {
+    for(let i=config[config.coord]; i < config[config.coord] + config.n; i++) {
+        if(config.coord==='x') {
+            config.map.walls[getGridCoord(i, config.y)] = true;
+        } else if(config.coord==='y') {
+            config.map.walls[getGridCoord(config.x, i)] = true;
+        }
+    }
+}

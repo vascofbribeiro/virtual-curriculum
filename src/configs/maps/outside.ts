@@ -1,6 +1,6 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
-import { getGridPosition, getGridCoord } from '../../utils/grid';
+import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -76,7 +76,7 @@ export const outside = {
             x: getGridPosition(27),
             y: getGridPosition(-1),
             hasShadow: false,
-            width: getGridPosition(10),
+            width: getGridPosition(12),
             height: getGridPosition(9),
             sprite: {
                 object: {
@@ -290,5 +290,26 @@ export const outside = {
                 ]
             }
         ],
+        [getGridCoord(19,19)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'farfetch'},
+                ]
+            }
+        ],
+        [getGridCoord(20,19)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'farfetch'},
+                ]
+            }
+        ],
     },
 };
+
+
+createLinearWall({coord: 'x', x: 0, y: 3, n:25, map: outside});
+createLinearWall({coord: 'x', x: 27, y: 3, n: 19, map: outside});
+createLinearWall({coord: 'y', x: 46, y: 3, n: 6, map: outside});
+createLinearWall({coord: 'x', x: 46, y: 8, n: 3, map: outside});
+createLinearWall({coord: 'x', x: 51, y: 8, n: 3, map: outside});

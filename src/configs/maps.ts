@@ -1,4 +1,4 @@
-import { getGridPosition, getGridCoord } from '../utils/grid';
+import { getGridPosition, getGridCoord, createLinearWall } from '../utils/grid';
 
 import { professionalExpRoom } from './maps/professionalExpRoom';
 import { hobbies } from './maps/hobbies';
@@ -7,6 +7,7 @@ import { techskills } from './maps/techskills';
 import { basket } from './maps/basket';
 import { beach } from './maps/beach';
 import { bar } from './maps/bar';
+import { farfetch } from './maps/farfetch';
 
 // var canvas = document.querySelector('#game-canvas');
 // fitToContainer(canvas);
@@ -27,23 +28,10 @@ export const mapsConfig = {
     techskills,
     basket,
     beach,
-    bar
+    bar,
+    farfetch
 }
 
-createLinearWall({coord: 'x', x: 0, y: 0, n:20, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'y', x: 0, y: 0, n:11, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'x', x: 0, y: 50, n:20, map: mapsConfig.professionalExpRoom});
-createLinearWall({coord: 'y', x: 100, y: 0, n:11, map: mapsConfig.professionalExpRoom});
-
-function createLinearWall(config: any) {
-    for(let i=config[config.coord]; i < config[config.coord] + config.n; i++) {
-        if(config.coord==='x') {
-            config.map.walls[getGridCoord(i, config.y)] = true;
-        } else if(config.coord==='y') {
-            config.map.walls[getGridCoord(config.x, i)] = true;
-        }
-    }
-}
 
 //createDoor({x: 10, y: 1, map: mapsConfig.outside, nextMap: 'professionalExpRoom'});
 

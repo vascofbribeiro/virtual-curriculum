@@ -185,7 +185,7 @@ export const outside = {
         // SOCIAL BILLBOARDS
         socialGithub: new GameObject({
             x: getGridPosition(18),
-            y: getGridPosition(1),
+            y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
             height: getGridPosition(5),
@@ -199,7 +199,7 @@ export const outside = {
         }),
         socialLinkedin: new GameObject({
             x: getGridPosition(11),
-            y: getGridPosition(1),
+            y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
             height: getGridPosition(5),

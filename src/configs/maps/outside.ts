@@ -6,8 +6,8 @@ export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(50), //x: getGridPosition(10),
-            y: getGridPosition(6), //y: getGridPosition(10),
+            x: getGridPosition(26), //x: getGridPosition(10),
+            y: getGridPosition(22), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -27,7 +27,32 @@ export const outside = {
                     imageWidth: 64,
                     imageHeight: 64
                 }
-            }
+            },
+        }),
+        car: new Character({
+            x: getGridPosition(23), //x: getGridPosition(10),
+            y: getGridPosition(23), //y: getGridPosition(10),
+            isPlayer: true,
+            hasShadow: true,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/characters/sprite-vasco.png',
+                    width: 16,
+                    height: 32,
+                    imageWidth: 16,
+                    imageHeight: 32
+                },
+                shadow: {
+                    src: '../images/characters/shadow.png',
+                    width: 32,
+                    height: 32,
+                    imageWidth: 64,
+                    imageHeight: 64
+                }
+            },
+            isCameraView: true
         }),
         house: new GameObject({
             x: getGridPosition(48),
@@ -305,6 +330,19 @@ export const outside = {
             }
         ],
     },
+    initialInteractions: [
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'changeCameraView', who: 'miniMe'},
+        {type: 'show', who: 'miniMe', direction: 'down' },
+        {type: 'walk', who: 'miniMe', direction: 'up'},
+        {type: 'walk', who: 'miniMe', direction: 'up'},
+        {type: 'walk', who: 'miniMe', direction: 'up'},
+        {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
+        {type: 'message', text: 'Hello! 👋'},
+        {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
+    ],
 };
 
 

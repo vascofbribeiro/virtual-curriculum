@@ -45,7 +45,6 @@ export default class DirectionInput {
         // Smartphone touch inputs
         Object.keys(this._touchKeyMap).forEach((buttonKey) => {
             document.getElementById(buttonKey).addEventListener('touchstart', () => {
-                console.log('touch start');
                 const direction = this._touchKeyMap[buttonKey]
                 if(direction && this._heldDirections.indexOf(direction) === -1) {
                     this._heldDirections.unshift(direction);
@@ -55,7 +54,6 @@ export default class DirectionInput {
 
         Object.keys(this._touchKeyMap).forEach((buttonKey) => {
             document.getElementById(buttonKey).addEventListener('touchend', () => {
-                console.log('touch end');
                 const direction = this._touchKeyMap[buttonKey] as Direction
                 const index = this._heldDirections.indexOf(direction);
                 index > -1 && this._heldDirections.splice(index, 1);

@@ -26,7 +26,6 @@ export default class SpriteCharacter {
 
         if(this._gameObject.interactionIcon) {
             this._interactionImages = {};
-            console.log('interaction icon', this._gameObject.interactionIcon);
             this._interactionImages.far = new Image();
             this._interactionImages.nearby = new Image();
             this._interactionImages.far.src = config.gameObject.interactionIcon.far || config.gameObject.interactionIcon.nearby;

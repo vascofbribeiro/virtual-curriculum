@@ -3,6 +3,7 @@ import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
 import { canvasScale } from '../constants/';
+import GameObject from './GameObject';
 
 declare global {
     interface Window {
@@ -21,6 +22,7 @@ export default class Engine {
     private _maps: Record<string, Map>;
     private _activeMap: Map;
     private _directionInput: DirectionInput;
+    private _cameraView: GameObject | null;
     private _isLoadFinished: boolean;
 
     constructor(id: string) { 
@@ -49,14 +51,12 @@ export default class Engine {
                 // if enough time has elapsed, draw the next frame
                 if (elapsed >= fpsInterval) {
 
-                    // Get ready for next frame by setting then=now, but also adjust for
-                    // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
                     then = now - (elapsed % fpsInterval);
 
-                    // Clear Canvas
+                    // Clear Canvas before paint
                     this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-                    const cameraView = this._activeMap.gameObjects.miniMe;
+                    const cameraView = this._cameraView;
                 
                     Object.values(this._activeMap.gameObjects).forEach(object => {
                         object.update({
@@ -70,7 +70,7 @@ export default class Engine {
                     Object.values(this._activeMap.gameObjects).sort((gameObjectA, gameObjectB) => {
                         return gameObjectA.y - gameObjectB.y
                     }).forEach(gameObject => {
-                        gameObject.objectSprite.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
+                        !gameObject.isHidden && gameObject.objectSprite.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
                     })
 
                     //Create upper image for the maps
@@ -106,6 +106,10 @@ export default class Engine {
         this._activeMap = this._maps[mapName] || new Map(window.mapsConfig[mapName]);
         this._activeMap.engine = this;
         this._activeMap.mountObjects();
+        console.log(this._activeMap);
+        const cameraView = Object.values(this._activeMap.gameObjects).find(gameObject => gameObject.isCameraView)
+        console.log('Camera View', cameraView)
+        this.setCameraView(cameraView || this._activeMap.gameObjects.miniMe)
         this._activeMap.startInteraction(this._activeMap.initialInteractions);
         this._activeMap.initialInteractions = [];
     }
@@ -117,8 +121,14 @@ export default class Engine {
         })
     }
 
+    public setCameraView(gameObject: GameObject) {
+        console.log('gameObject', gameObject);
+        this._cameraView = gameObject;
+    }
+
     public init() {
         this.loadAllMaps();
+
         document.addEventListener('mapImageLoaded', () => {
             const numberMapsLoaded = Object.values(this._maps).filter((map) => map.isImageLoaded).length
             const totalNumberMaps = Object.keys(this._maps).length
@@ -127,7 +137,8 @@ export default class Engine {
 
             if (numberMapsLoaded === totalNumberMaps) {
                 document.getElementById('loading').style.display = 'none';
-                this.startMap('professionalExpRoom');
+                //this.setCameraView()
+                this.startMap('outside');
 
                 this.bindAction();
                 this.bindCheckCharacterPosition();

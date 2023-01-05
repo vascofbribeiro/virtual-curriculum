@@ -145,7 +145,7 @@ export const professionalExpRoom = {
             }
         ]
     },
-    walls: {}
+    walls: {},
 };
 
 

@@ -28,31 +28,26 @@ export const outside = {
                     imageHeight: 64
                 }
             },
+            isHidden: true,
         }),
         car: new Character({
-            x: getGridPosition(23), //x: getGridPosition(10),
+            x: getGridPosition(18), //x: getGridPosition(10),
             y: getGridPosition(23), //y: getGridPosition(10),
-            isPlayer: true,
+            isPlayer: false,
             hasShadow: true,
             width: getGridPosition(1),
             height: getGridPosition(1),
             sprite: {
                 object: {
-                    src: '../images/characters/sprite-vasco.png',
-                    width: 16,
-                    height: 32,
-                    imageWidth: 16,
-                    imageHeight: 32
+                    src: '../images/objects/car1.png',
+                    width: getGridPosition(4),
+                    height: getGridPosition(3),
                 },
-                shadow: {
-                    src: '../images/characters/shadow.png',
-                    width: 32,
-                    height: 32,
-                    imageWidth: 64,
-                    imageHeight: 64
-                }
             },
-            isCameraView: true
+            isCameraView: true,
+            behaviorLoop: [
+                { type: 'walk', direction: 'right' }
+            ]
         }),
         house: new GameObject({
             x: getGridPosition(48),
@@ -95,6 +90,23 @@ export const outside = {
                     }]
                 }
             ],
+        }),
+        // Education Building
+        techSkillsMuseum: new GameObject({
+            x: getGridPosition(27),
+            y: getGridPosition(10),
+            hasShadow: false,
+            width: getGridPosition(12),
+            height: getGridPosition(9),
+            sprite: {
+                object: {
+                    src: '../images/objects/college.png',
+                    width: getGridPosition(13),
+                    height: getGridPosition(13),
+                    imageWidth: getGridPosition(26),
+                    imageHeight: getGridPosition(26)
+                },
+            },
         }),
         // Education Building
         college: new GameObject({
@@ -334,6 +346,11 @@ export const outside = {
         {type: 'walk', who: 'car', direction: 'right'},
         {type: 'walk', who: 'car', direction: 'right'},
         {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'walk', who: 'car', direction: 'right'},
         {type: 'changeCameraView', who: 'miniMe'},
         {type: 'show', who: 'miniMe', direction: 'down' },
         {type: 'walk', who: 'miniMe', direction: 'up'},
@@ -342,7 +359,7 @@ export const outside = {
         {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
         {type: 'message', text: 'Hello! 👋'},
         {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
-    ],
+    ]
 };
 
 

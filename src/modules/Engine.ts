@@ -124,6 +124,7 @@ export default class Engine {
     public setCameraView(gameObject: GameObject) {
         console.log('gameObject', gameObject);
         this._cameraView = gameObject;
+        gameObject.isCameraView = false;
     }
 
     public init() {

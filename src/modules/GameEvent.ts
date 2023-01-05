@@ -59,6 +59,28 @@ export default class GameEvent {
         document.addEventListener('CharacterWalkComplete', completeHandler);
     }
 
+    private show(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'show',
+                direction: this.event.direction,
+            }
+        )
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                document.removeEventListener('CharacterShowCompleted', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterShowCompleted', completeHandler);
+    }
+
     private message(resolve: Function) {
         //ADD logic so npc faces character
         this.map.isInteracting = true;
@@ -95,6 +117,12 @@ export default class GameEvent {
 
             sceneTransition.fadeOut();
         }); 
+    }
+
+    private changeCameraView(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        this.map.engine.setCameraView(who);
+        resolve();
     }
 
     public init() {

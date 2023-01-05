@@ -1,5 +1,3 @@
-import { getGridPosition, getGridCoord, createLinearWall } from '../utils/grid';
-
 import { professionalExpRoom } from './maps/professionalExpRoom';
 import { hobbies } from './maps/hobbies';
 import { outside } from './maps/outside';

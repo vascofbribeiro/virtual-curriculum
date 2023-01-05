@@ -93,6 +93,17 @@ export default class Character extends GameObject {
             this.updateSprite();
         }
 
+        if (behavior.type === 'show') {
+            this.isHidden = false;
+            setTimeout(() => {
+                emitEvent('CharacterShowCompleted', {
+                    whoId: this.id,
+                });
+            }, 100)
+
+            this.updateSprite();
+        }
+
     }
 
     public updatePosition(map: Map) {

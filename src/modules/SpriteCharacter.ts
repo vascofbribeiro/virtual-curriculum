@@ -26,7 +26,6 @@ export default class SpriteCharacter {
 
         if(this._gameObject.interactionIcon) {
             this._interactionImages = {};
-            console.log('interaction icon', this._gameObject.interactionIcon);
             this._interactionImages.far = new Image();
             this._interactionImages.nearby = new Image();
             this._interactionImages.far.src = config.gameObject.interactionIcon.far || config.gameObject.interactionIcon.nearby;
@@ -43,7 +42,7 @@ export default class SpriteCharacter {
         this._imageHeight = config.imageHeight || config.height;
 
         // These animations can be configurable, add it later
-        this._animations = {
+        this._animations = this._gameObject.isPlayer ? {
             'idle-down': [ [0,0] ],
             'idle-left': [ [2,0] ],
             'idle-right': [ [0,1] ],
@@ -52,6 +51,15 @@ export default class SpriteCharacter {
             'walk-left': [ [12,2], [13,2], [14,2], [15,2], [16,2], [17,2] ],
             'walk-right': [ [0,2], [1,2], [2,2], [3,2], [4,2], [5,2] ],
             'walk-up': [ [6,2], [7,2], [8,2], [9,2], [10,2], [11,2] ],
+        } : {
+            'idle-down': [ [0,0] ],
+            'idle-left': [ [0,0] ],
+            'idle-right': [ [0,0] ],
+            'idle-up': [ [0,0] ],
+            'walk-down': [ [0,0] ],
+            'walk-left': [ [0,0] ],
+            'walk-right': [ [0,0] ],
+            'walk-up': [ [0,0] ],
         }
 
         this._framesToChange = 8;

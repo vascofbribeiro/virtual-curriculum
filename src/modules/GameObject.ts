@@ -37,6 +37,8 @@ export default class GameObject {
         far?: string;
         nearby?: string;
     } | undefined;
+    public isHidden: boolean;
+    public isCameraView: boolean;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
@@ -44,6 +46,7 @@ export default class GameObject {
     readonly SHADOW_HEIGHT: number = 32;
 
     constructor(config: IGameObjectConfig) {
+        this.isHidden = config.isHidden;
         this.isMounted = false;
         this.isPlayer = config.isPlayer;
         this.id = null;
@@ -75,6 +78,7 @@ export default class GameObject {
         this.behaviorLoopIndex = 0;
         this.walkable = config.walkable || false;
         this.interactions = config.interactions;
+        this.isCameraView = config.isCameraView;
     }
 
     public mount(map: Map) {

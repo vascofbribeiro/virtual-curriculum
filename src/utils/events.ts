@@ -1,5 +1,5 @@
 interface IDetail {
-    whoId: string
+    whoId: string;
 }
 
 export const emitEvent = (name: string, detail: IDetail) => {

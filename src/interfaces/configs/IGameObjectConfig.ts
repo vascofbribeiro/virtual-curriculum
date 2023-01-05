@@ -19,5 +19,7 @@ export interface IGameObjectConfig {
     interactionIcon?: {
         far?: string;
         nearby?: string;
-    } 
+    }
+    isHidden?: boolean;
+    isCameraView?: boolean;
 }

@@ -145,11 +145,7 @@ export const professionalExpRoom = {
             }
         ]
     },
-    initialInteractions: [
-        {type: 'message', text: 'Hello! 👋'},
-        {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
-    ],
-    walls: {}
+    walls: {},
 };
 
 

@@ -1,3 +1,4 @@
+import Car from '../../modules/Car';
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
@@ -7,7 +8,7 @@ export const outside = {
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(26), //x: getGridPosition(10),
-            y: getGridPosition(22), //y: getGridPosition(10),
+            y: getGridPosition(23), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -30,8 +31,8 @@ export const outside = {
             },
             isHidden: true,
         }),
-        car: new Character({
-            x: getGridPosition(18), //x: getGridPosition(10),
+        car: new Car({
+            x: getGridPosition(10), //x: getGridPosition(10),
             y: getGridPosition(23), //y: getGridPosition(10),
             isPlayer: false,
             hasShadow: true,
@@ -356,8 +357,10 @@ export const outside = {
         {type: 'walk', who: 'car', direction: 'right'},
         {type: 'walk', who: 'car', direction: 'right'},
         {type: 'walk', who: 'car', direction: 'right'},
+        {type: 'idle', who: 'car', direction: 'down', time: 200},
         {type: 'changeCameraView', who: 'miniMe'},
         {type: 'show', who: 'miniMe', direction: 'down' },
+        {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},

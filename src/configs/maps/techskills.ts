@@ -84,8 +84,8 @@ export const techskills = {
             ],
         }),
         avatargit: new GameObject({
-            x: getGridPosition(13),
-            y: getGridPosition(0),
+            x: getGridPosition(8),
+            y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -103,8 +103,8 @@ export const techskills = {
             },
         }),
         avatarreact: new GameObject({
-            x: getGridPosition(17),
-            y: getGridPosition(0),
+            x: getGridPosition(11),
+            y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),

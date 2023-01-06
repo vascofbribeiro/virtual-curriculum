@@ -8,7 +8,7 @@ export const professionalExpRoom = {
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(9),
-            y: getGridPosition(6),
+            y: getGridPosition(11),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -127,13 +127,6 @@ export const professionalExpRoom = {
             {
                 events: [
                     { type: 'changeMap', map: 'hobbies'},
-                ]
-            }
-        ],
-        [getGridCoord(17,4)]: [
-            {
-                events: [
-                    { type: 'changeMap', map: 'techskills'},
                 ]
             }
         ],

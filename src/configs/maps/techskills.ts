@@ -3,11 +3,11 @@ import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 
 export const techskills = {
-    lowerImageSrc: "../images/backgrounds/techskills.png",
+    lowerImageSrc: "../images/backgrounds/museum.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(0),
-            y: getGridPosition(4),
+            x: getGridPosition(6),
+            y: getGridPosition(16),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -29,42 +29,9 @@ export const techskills = {
                 }
             }
         }),
-        computer: new GameObject({
-            x: getGridPosition(2),
-            y: getGridPosition(1),
-            hasShadow: false,
-            width: getGridPosition(2),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/computer.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(3),
-                    imageWidth: 32,
-                    imageHeight: 48
-                },
-            },
-            interactions: [
-                {
-                    events: [{
-                        type: 'interactionBox',
-                        title: 'Tech Skills',
-                        textLines: [
-                            "Javascript - 6 years",
-                            "NodeJS - 3 years",
-                            "Git - 6 years",
-                            "React - 6 years",
-                            "Docker - 3 years",
-                            "CSS - 6 years",
-                            "HTML - 6 years"
-                        ] 
-                    }]
-                }
-            ],
-        }),
         avatarjs: new GameObject({
-            x: getGridPosition(5),
-            y: getGridPosition(0),
+            x: getGridPosition(1),
+            y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -88,8 +55,8 @@ export const techskills = {
             }
         }),
         avatarnode: new GameObject({
-            x: getGridPosition(9),
-            y: getGridPosition(0),
+            x: getGridPosition(4),
+            y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -166,10 +133,17 @@ export const techskills = {
     },
     walls: {},
     actionSpaces: {
-        [getGridCoord(0,4)]: [
+        [getGridCoord(6,16)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'professionalExpRoom'},
+                    { type: 'changeMap', map: 'outside'},
+                ]
+            }
+        ],
+        [getGridCoord(7,16)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'outside'},
                 ]
             }
         ]

@@ -45,9 +45,9 @@ export const outside = {
                 },
             },
             isCameraView: true,
-            behaviorLoop: [
-                { type: 'walk', direction: 'right' }
-            ]
+            // behaviorLoop: [
+            //     { type: 'walk', direction: 'right' }
+            // ]
         }),
         house: new GameObject({
             x: getGridPosition(48),
@@ -93,18 +93,16 @@ export const outside = {
         }),
         // Education Building
         techSkillsMuseum: new GameObject({
-            x: getGridPosition(27),
-            y: getGridPosition(10),
+            x: getGridPosition(28),
+            y: getGridPosition(12),
             hasShadow: false,
-            width: getGridPosition(12),
-            height: getGridPosition(9),
+            width: getGridPosition(8),
+            height: getGridPosition(5),
             sprite: {
                 object: {
-                    src: '../images/objects/college.png',
-                    width: getGridPosition(13),
-                    height: getGridPosition(13),
-                    imageWidth: getGridPosition(26),
-                    imageHeight: getGridPosition(26)
+                    src: '../images/objects/museum2.png',
+                    width: getGridPosition(8),
+                    height: getGridPosition(6),
                 },
             },
         }),
@@ -338,6 +336,13 @@ export const outside = {
             {
                 events: [
                     { type: 'changeMap', map: 'farfetch'},
+                ]
+            }
+        ],
+        [getGridCoord(29,16)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'techskills'},
                 ]
             }
         ],

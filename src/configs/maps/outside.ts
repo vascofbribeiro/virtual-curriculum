@@ -9,7 +9,7 @@ export const outside = {
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(26), //x: getGridPosition(10),
-            y: getGridPosition(23), //y: getGridPosition(10),
+            y: getGridPosition(24), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
             width: getGridPosition(1),
@@ -35,7 +35,7 @@ export const outside = {
         }),
         car: new Character({
             x: getGridPosition(10), //x: getGridPosition(10),
-            y: getGridPosition(23), //y: getGridPosition(10),
+            y: getGridPosition(24), //y: getGridPosition(10),
             isPlayer: false,
             hasShadow: true,
             width: getGridPosition(1),
@@ -372,6 +372,7 @@ export const outside = {
         {type: 'idle', who: 'car', direction: 'down', time: 200},
         {type: 'changeCameraView', who: 'miniMe'},
         {type: 'show', who: 'miniMe', direction: 'down' },
+        {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},

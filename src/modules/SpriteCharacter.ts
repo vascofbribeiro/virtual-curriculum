@@ -1,5 +1,7 @@
+import { ISpriteConfig } from '../interfaces/modules/ISpriteConfig';
 import { getGridPosition } from '../utils/grid';
 import GameObject from './GameObject';
+import defaultAnimations from '../configs/sprites/defaults';
 
 export default class SpriteCharacter {
     private _animations: {
@@ -18,9 +20,9 @@ export default class SpriteCharacter {
     private _imageHeight: number;
     private _gameObject: GameObject;
 
-    constructor(config: { gameObject: GameObject, src: string, width: number, height: number, imageWidth?: number, imageHeight?: number }) {
+    constructor(gameObject: GameObject, config: ISpriteConfig) {
         // Sould be received from config
-        this._gameObject = config.gameObject;
+        this._gameObject = gameObject;
         this._image = new Image();
         this._image.src = config.src;
 
@@ -28,8 +30,8 @@ export default class SpriteCharacter {
             this._interactionImages = {};
             this._interactionImages.far = new Image();
             this._interactionImages.nearby = new Image();
-            this._interactionImages.far.src = config.gameObject.interactionIcon.far || config.gameObject.interactionIcon.nearby;
-            this._interactionImages.nearby.src = config.gameObject.interactionIcon.nearby || '';
+            this._interactionImages.far.src = gameObject.interactionIcon.far || gameObject.interactionIcon.nearby;
+            this._interactionImages.nearby.src = gameObject.interactionIcon.nearby || '';
         }
 
         this._image.onload = () => {
@@ -40,27 +42,7 @@ export default class SpriteCharacter {
         this._height = config.height;
         this._imageWidth = config.imageWidth || config.width;
         this._imageHeight = config.imageHeight || config.height;
-
-        // These animations can be configurable, add it later
-        this._animations = this._gameObject.isPlayer ? {
-            'idle-down': [ [0,0] ],
-            'idle-left': [ [2,0] ],
-            'idle-right': [ [0,1] ],
-            'idle-up': [ [1,0] ],
-            'walk-down': [ [18,2], [19,2], [20,2], [21,2], [22,2], [23,2] ],
-            'walk-left': [ [12,2], [13,2], [14,2], [15,2], [16,2], [17,2] ],
-            'walk-right': [ [0,2], [1,2], [2,2], [3,2], [4,2], [5,2] ],
-            'walk-up': [ [6,2], [7,2], [8,2], [9,2], [10,2], [11,2] ],
-        } : {
-            'idle-down': [ [0,0] ],
-            'idle-left': [ [0,0] ],
-            'idle-right': [ [0,0] ],
-            'idle-up': [ [0,0] ],
-            'walk-down': [ [0,0] ],
-            'walk-left': [ [0,0] ],
-            'walk-right': [ [0,0] ],
-            'walk-up': [ [0,0] ],
-        }
+        this._animations = config.animations || defaultAnimations;
 
         this._framesToChange = 8;
         this._framesToChangeProgress = this._framesToChange;

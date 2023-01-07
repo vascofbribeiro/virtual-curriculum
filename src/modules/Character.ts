@@ -13,35 +13,39 @@ type Direction = {
 export default class Character extends GameObject {
     private _movingProgressRemaining: number;
     private _isPlayer: boolean;
+    private _speedMultiplier: number;
     public isInteracting: boolean;
     public isIdle: boolean;
 
-    private DIRECTION_UPDATE = {
-        up: {
-            axis: "y",
-            change: -1
-        },
-        down: {
-            axis: "y",
-            change: 1
-        },
-        left: {
-            axis: "x",
-            change: -1
-        },
-        right: {
-            axis: "x",
-            change: 1
-        }
-    }
+    private directionUpdate: Record<string, Direction>;
 
     constructor(config: ICharacter) {
         super(config);
         this._movingProgressRemaining = 0;
 
         this._isPlayer = config.isPlayer;
+        this._speedMultiplier = config.speedMultiplier ?? 1;
+        console.log(this._speedMultiplier);
         this.isInteracting = true;
         this.isIdle = false;
+        this.directionUpdate = {
+            up: {
+                axis: "y",
+                change: -this._speedMultiplier
+            },
+            down: {
+                axis: "y",
+                change: this._speedMultiplier
+            },
+            left: {
+                axis: "x",
+                change: -this._speedMultiplier
+            },
+            right: {
+                axis: "x",
+                change: this._speedMultiplier
+            }
+        }
     }
 
     public update(state: IState) {
@@ -109,8 +113,8 @@ export default class Character extends GameObject {
     public updatePosition(map: Map) {
         // Define walking for character based on direction input
         // Typescript workaround
-        const axis = this.DIRECTION_UPDATE[this.direction].axis as 'x' | 'y';
-        const change = this.DIRECTION_UPDATE[this.direction].change;
+        const axis = this.directionUpdate[this.direction].axis as 'x' | 'y';
+        const change = this.directionUpdate[this.direction].change;
         this[axis] += change;
 
         this._movingProgressRemaining--

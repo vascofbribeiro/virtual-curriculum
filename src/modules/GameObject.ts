@@ -59,19 +59,9 @@ export default class GameObject {
             height: (config.collisionOffset && config.collisionOffset.height) || 0
         }
         this.interactionIcon = config.interactionIcon;
-        // this.shadowWidth = config.shadowWidth || this.SHADOW_WIDTH;
-        // this.shadowHeight = config.shadowHeight || this.SHADOW_HEIGHT;
-        // this.objectSpriteimageWidth = config.objectSpriteimageWidth || 0;
-        // this.objectSpriteimageHeight = config.objectSpriteimageHeight || 0;
-        this.objectSprite = new SpriteCharacter({
-            gameObject: this,
-            ...config.sprite.object
-        });
+        this.objectSprite = new SpriteCharacter(this, config.sprite.object);
         this._hasShadow = !!config.sprite.shadow;
-        this.shadowSprite = this._hasShadow && new SpriteCharacter({
-            gameObject: this,
-            ...config.sprite.shadow
-        });
+        this.shadowSprite = this._hasShadow && new SpriteCharacter(this, config.sprite.shadow);
 
         this.direction = "down";
         this.behaviorLoop = config.behaviorLoop || [];

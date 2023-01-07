@@ -1,6 +1,7 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
+import miniMeAnimations from '../sprites/miniMe';
 
 export const professionalExpRoom = {
     lowerImageSrc: "../images/backgrounds/generic.png",
@@ -19,7 +20,8 @@ export const professionalExpRoom = {
                     width: 16,
                     height: 32,
                     imageWidth: 16,
-                    imageHeight: 32
+                    imageHeight: 32,
+                    animations: miniMeAnimations
                 },
                 shadow: {
                     src: '../images/characters/shadow.png',

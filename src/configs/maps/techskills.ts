@@ -1,6 +1,7 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
+import miniMeAnimations from '../sprites/miniMe';
 
 export const techskills = {
     lowerImageSrc: "../images/backgrounds/museum.png",
@@ -18,7 +19,8 @@ export const techskills = {
                     width: 16,
                     height: 32,
                     imageWidth: 16,
-                    imageHeight: 32
+                    imageHeight: 32,
+                    animations: miniMeAnimations
                 },
                 shadow: {
                     src: '../images/characters/shadow.png',
@@ -103,7 +105,7 @@ export const techskills = {
             },
         }),
         avatarreact: new GameObject({
-            x: getGridPosition(11),
+            x: getGridPosition(11  ),
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(2),

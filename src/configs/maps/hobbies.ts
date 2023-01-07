@@ -1,6 +1,7 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
+import miniMeAnimation from '../sprites/miniMe';
 
 export const hobbies = {
     lowerImageSrc: "../images/backgrounds/room.png",
@@ -18,7 +19,8 @@ export const hobbies = {
                     width: 16,
                     height: 32,
                     imageWidth: 16,
-                    imageHeight: 32
+                    imageHeight: 32,
+                    animations: miniMeAnimation
                 },
                 shadow: {
                     src: '../images/characters/shadow.png',

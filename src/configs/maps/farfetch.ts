@@ -1,5 +1,6 @@
 import Character from '../../modules/Character';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
+import miniMeAnimation from '../sprites/miniMe';
 
 export const farfetch = {
     lowerImageSrc: "../images/backgrounds/work.png",
@@ -17,7 +18,8 @@ export const farfetch = {
                     width: 16,
                     height: 32,
                     imageWidth: 16,
-                    imageHeight: 32
+                    imageHeight: 32,
+                    animations: miniMeAnimation
                 },
                 shadow: {
                     src: '../images/characters/shadow.png',

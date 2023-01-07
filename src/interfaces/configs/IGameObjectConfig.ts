@@ -11,7 +11,10 @@ export interface IGameObjectConfig {
         width: number;
         height: number;
     }
-    sprite: ISpriteConfig
+    sprite: {
+        object: ISpriteConfig,
+        shadow?: ISpriteConfig
+    }
     walkable?: boolean;
     isPlayer?: boolean;
     behaviorLoop?: Array<IEvent>
@@ -22,4 +25,5 @@ export interface IGameObjectConfig {
     }
     isHidden?: boolean;
     isCameraView?: boolean;
+    speedMultiplier?: number;
 }

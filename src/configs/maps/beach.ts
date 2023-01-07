@@ -1,5 +1,6 @@
 import Character from '../../modules/Character';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
+import miniMeAnimation from '../sprites/miniMe';
 
 export const beach = {
     lowerImageSrc: "../images/backgrounds/beach.png",
@@ -17,7 +18,8 @@ export const beach = {
                     width: 16,
                     height: 32,
                     imageWidth: 16,
-                    imageHeight: 32
+                    imageHeight: 32,
+                    animations: miniMeAnimation
                 },
                 shadow: {
                     src: '../images/characters/shadow.png',

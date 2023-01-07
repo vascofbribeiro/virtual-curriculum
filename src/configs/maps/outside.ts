@@ -1,7 +1,8 @@
-import Car from '../../modules/Car';
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
+import miniMeAnimations from '../sprites/miniMe';
+import carAnimations from '../sprites/car';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -19,7 +20,8 @@ export const outside = {
                     width: 16,
                     height: 32,
                     imageWidth: 16,
-                    imageHeight: 32
+                    imageHeight: 32,
+                    animations: miniMeAnimations
                 },
                 shadow: {
                     src: '../images/characters/shadow.png',
@@ -31,7 +33,7 @@ export const outside = {
             },
             isHidden: true,
         }),
-        car: new Car({
+        car: new Character({
             x: getGridPosition(10), //x: getGridPosition(10),
             y: getGridPosition(23), //y: getGridPosition(10),
             isPlayer: false,
@@ -40,12 +42,14 @@ export const outside = {
             height: getGridPosition(1),
             sprite: {
                 object: {
-                    src: '../images/objects/car1.png',
+                    src: '../images/characters/car.png',
                     width: getGridPosition(4),
                     height: getGridPosition(3),
+                    animations: carAnimations
                 },
             },
             isCameraView: true,
+            speedMultiplier: 2,
             // behaviorLoop: [
             //     { type: 'walk', direction: 'right' }
             // ]
@@ -131,6 +135,10 @@ export const outside = {
             hasShadow: false,
             width: getGridPosition(6),
             height: getGridPosition(9),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
             sprite: {
                 object: {
                     src: '../images/objects/farfetch.png',
@@ -147,7 +155,7 @@ export const outside = {
             height: getGridPosition(1),
             collisionOffset: {
                 width: 0,
-                height: -16
+                height: getGridPosition(-1)
             },
             sprite: {
                 object: {
@@ -195,6 +203,10 @@ export const outside = {
             hasShadow: false,
             width: getGridPosition(6),
             height: getGridPosition(9),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
             sprite: {
                 object: {
                     src: '../images/objects/blip2.png',

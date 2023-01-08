@@ -142,6 +142,20 @@ export const outside = {
                 },
             },
         }),
+        signCollege: new GameObject({
+            x: getGridPosition(29.5),
+            y: getGridPosition(4),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/sign-college.png',
+                    width: getGridPosition(8),
+                    height: getGridPosition(3),
+                },
+            },
+        }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
         farfetch: new GameObject({
             x: getGridPosition(17),
@@ -163,7 +177,7 @@ export const outside = {
         }),
         farfetchInfo: new GameObject({
             x: getGridPosition(23),
-            y: getGridPosition(20),
+            y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(1),
             height: getGridPosition(1),
@@ -173,6 +187,9 @@ export const outside = {
                     width: 16,
                     height: 32,
                 },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
             },
             interactions: [
                 {
@@ -223,6 +240,46 @@ export const outside = {
                 },
             },
         }),
+        dotlogicInfo: new GameObject({
+            x: getGridPosition(15),
+            y: getGridPosition(18),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/information.png',
+                    width: 16,
+                    height: 32,
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
+                        {
+                            type: 'interactionBox',
+                            title: 'DotLogic',
+                            textLines: [
+                                `At Dotlogic, I worked as a developer for a year in 2016. The company specializes in developing medical software for hospitals, with a focus on cardiology.`,
+                                `I began my time at Dotlogic as a professional intern, where I had the opportunity to create a tool using Javascript and Canvas to read and display ECG data on the page`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'DotLogic',
+                            textLines:  [
+                                `After my internship, I was offered a full-time position at the company and continued to help improve various web tools.`,
+                                `Working at Dotlogic provided me with valuable experience in the healthcare industry and solidified my skills in Javascript and web development.`
+                            ],
+                        },
+                    ]
+                }
+            ],
+        }), 
         blip: new GameObject({
             x: getGridPosition(1),
             y: getGridPosition(11),
@@ -241,6 +298,45 @@ export const outside = {
                 },
             },
         }),
+        blipInfo: new GameObject({
+            x: getGridPosition(7),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/information.png',
+                    width: 16,
+                    height: 32,
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
+                        {
+                            type: 'interactionBox',
+                            title: 'Blip',
+                            textLines: [
+                                
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Blip',
+                            textLines:  [
+                                `During my 3 months summer internship at Blip, I had the opportunity to work on a project to dynamically structure the front-end community documentation using JSDoc3`,
+                                `This project allowed me to get some knowledge on Front End tools while working with Scrum for the first time`
+                            ],
+                        },
+                    ]
+                }
+            ],
+        }), 
         // BAR BUILDING
         bar: new GameObject({
             x: getGridPosition(5),
@@ -300,6 +396,64 @@ export const outside = {
                     }],
                 }
             ],
+        }),
+        globe: new GameObject({
+            x: getGridPosition(41),
+            y: getGridPosition(5),
+            hasShadow: false,
+            width: getGridPosition(3),
+            height: getGridPosition(3),
+            sprite: {
+                object: {
+                    src: '../images/objects/globe.png',
+                    width: getGridPosition(3),
+                    height: getGridPosition(4),
+                },
+            },
+        }),
+
+        //TREES
+        tree1: new GameObject({
+            x: getGridPosition(28),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/tree.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                },
+            },
+        }),
+        tree2: new GameObject({
+            x: getGridPosition(32),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/tree.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                },
+            },
+        }),
+        tree3: new GameObject({
+            x: getGridPosition(30),
+            y: getGridPosition(21),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/tree.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                },
+            },
         }),
         
         //OTHERS

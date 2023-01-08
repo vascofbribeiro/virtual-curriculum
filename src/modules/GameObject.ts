@@ -114,6 +114,7 @@ export default class GameObject {
 
     }
 
+    // Only for extension purposes
     public drawInteractionBox() {
 
     }

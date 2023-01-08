@@ -54,6 +54,20 @@ export const outside = {
             //     { type: 'walk', direction: 'right' }
             // ]
         }),
+        doorHouse: new GameObject({
+            x: getGridPosition(50),
+            y: getGridPosition(6),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/doors/door-house.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(2),
+                },
+            },
+        }),
         house: new GameObject({
             x: getGridPosition(48),
             y: getGridPosition(3),
@@ -134,7 +148,7 @@ export const outside = {
             y: getGridPosition(11),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(9),
+            height: getGridPosition(8),
             collisionOffset: {
                 width: 0,
                 height: getGridPosition(1),
@@ -153,10 +167,6 @@ export const outside = {
             hasShadow: false,
             width: getGridPosition(1),
             height: getGridPosition(1),
-            collisionOffset: {
-                width: 0,
-                height: getGridPosition(-1)
-            },
             sprite: {
                 object: {
                     src: '../images/objects/information.png',
@@ -172,8 +182,24 @@ export const outside = {
                             type: 'interactionBox',
                             title: 'Farfetch',
                             textLines: [
-                                `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`
-                            ] 
+                                `I have been working as a Front-End Developer for Farfetch since 2017. My daily routine involves using Javascript/Typescript, NodeJS, React and Docker to develop and maintain the website. `,
+                                `In 2020, I moved to a more technical team where we focus on improving the development experience for other front-end contributors to farfetch.com.`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Farfetch',
+                            textLines:  [
+                                `In addition to this, I also contribute to the Front-End architecture of Farfetch.`,
+                                `This has allowed me to expand my technical skills and have a greater impact on the overall development process at the company. I take pride in being able to play a part in shaping the direction of our codebase.`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Farfetch',
+                            textLines:  [
+                                `I am excited to be a part of this team and contribute to the growth and success of Farfetch.`
+                            ],
                         }
                     ]
                 }
@@ -202,7 +228,7 @@ export const outside = {
             y: getGridPosition(11),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(9),
+            height: getGridPosition(8),
             collisionOffset: {
                 width: 0,
                 height: getGridPosition(1),
@@ -244,6 +270,14 @@ export const outside = {
                     height: getGridPosition(6),
                 },
             },
+            interactions: [
+                {
+                    events: [{
+                        type: 'message', 
+                        text: `https://github.com/vascofbribeiro`
+                    }],
+                }
+            ],
         }),
         socialLinkedin: new GameObject({
             x: getGridPosition(11),
@@ -258,6 +292,14 @@ export const outside = {
                     height: getGridPosition(6),
                 },
             },
+            interactions: [
+                {
+                    events: [{
+                        type: 'message', 
+                        text: `https://linkedin.com/in/vascof-ribeiro`
+                    }],
+                }
+            ],
         }),
         
         //OTHERS
@@ -322,18 +364,34 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(12,19)]: [
+        [getGridCoord(12,18)]: [
             {
                 events: [
-                    {type: 'message', text: 'You are not allowed to enter the building since you no longer work here'},
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
                     {type: 'walk', who: 'miniMe', direction: 'down' },
                 ]
             }
         ],
-        [getGridCoord(11,19)]: [
+        [getGridCoord(11,18)]: [
             {
                 events: [
-                    {type: 'message', text: 'You are not allowed to enter the building since you no longer work here'},
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(3,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(4,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
                     {type: 'walk', who: 'miniMe', direction: 'down' },
                 ]
             }
@@ -378,8 +436,9 @@ export const outside = {
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
-        {type: 'message', text: 'Hello! 👋'},
-        {type: 'message', text: 'Welcome to my virtual CV. Feel free to walk around the rooms and explore'},
+        {type: 'message', text: 'Hello! 👋 Welcome to my CV'},
+        {type: 'message', text: `My name is Vasco and I'm a Front-end Developer`},
+        {type: 'message', text: `Feel free to explore the rooms around!`},
     ]
 };
 

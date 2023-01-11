@@ -39,6 +39,7 @@ export default class GameObject {
     } | undefined;
     public isHidden: boolean;
     public isCameraView: boolean;
+    public hasInteracted: boolean;
 
     readonly OBJECT_WIDTH: number = 64;
     readonly OBJECT_HEIGHT: number = 64;
@@ -69,6 +70,7 @@ export default class GameObject {
         this.walkable = config.walkable || false;
         this.interactions = config.interactions;
         this.isCameraView = config.isCameraView;
+        this.hasInteracted = false;
     }
 
     public mount(map: Map) {

@@ -197,7 +197,7 @@ export const outside = {
                         // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch',
+                            title: 'Farfetch (Sep 2017 - Present)',
                             textLines: [
                                 `I have been working as a Front-End Developer for Farfetch since 2017. My daily routine involves using Javascript/Typescript, NodeJS, React and Docker to develop and maintain the website. `,
                                 `In 2020, I moved to a more technical team where we focus on improving the development experience for other front-end contributors to farfetch.com.`
@@ -205,7 +205,7 @@ export const outside = {
                         },
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch',
+                            title: 'Farfetch (Sep 2017 - Present)',
                             textLines:  [
                                 `In addition to this, I also contribute to the Front-End architecture of Farfetch.`,
                                 `This has allowed me to expand my technical skills and have a greater impact on the overall development process at the company. I take pride in being able to play a part in shaping the direction of our codebase.`
@@ -213,7 +213,7 @@ export const outside = {
                         },
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch',
+                            title: 'Farfetch (Sep 2017 - Present)',
                             textLines:  [
                                 `I am excited to be a part of this team and contribute to the growth and success of Farfetch.`
                             ],
@@ -262,7 +262,7 @@ export const outside = {
                         // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
                         {
                             type: 'interactionBox',
-                            title: 'DotLogic',
+                            title: 'DotLogic (Sep 2016 - Sep 2017)',
                             textLines: [
                                 `At Dotlogic, I worked as a developer for a year in 2016. The company specializes in developing medical software for hospitals, with a focus on cardiology.`,
                                 `I began my time at Dotlogic as a professional intern, where I had the opportunity to create a tool using Javascript and Canvas to read and display ECG data on the page`
@@ -270,7 +270,7 @@ export const outside = {
                         },
                         {
                             type: 'interactionBox',
-                            title: 'DotLogic',
+                            title: 'DotLogic (Sep 2016 - Sep 2017)',
                             textLines:  [
                                 `After my internship, I was offered a full-time position at the company and continued to help improve various web tools.`,
                                 `Working at Dotlogic provided me with valuable experience in the healthcare industry and solidified my skills in Javascript and web development.`
@@ -317,17 +317,9 @@ export const outside = {
             interactions: [
                 {
                     events: [
-                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
                         {
                             type: 'interactionBox',
-                            title: 'Blip',
-                            textLines: [
-                                
-                            ],
-                        },
-                        {
-                            type: 'interactionBox',
-                            title: 'Blip',
+                            title: 'Blip (Summer internship - 3 months)',
                             textLines:  [
                                 `During my 3 months summer internship at Blip, I had the opportunity to work on a project to dynamically structure the front-end community documentation using JSDoc3`,
                                 `This project allowed me to get some knowledge on Front End tools while working with Scrum for the first time`
@@ -397,17 +389,17 @@ export const outside = {
                 }
             ],
         }),
-        globe: new GameObject({
-            x: getGridPosition(41),
-            y: getGridPosition(5),
+        earth: new GameObject({
+            x: getGridPosition(39),
+            y: getGridPosition(4),
             hasShadow: false,
-            width: getGridPosition(3),
-            height: getGridPosition(3),
+            width: getGridPosition(7),
+            height: getGridPosition(4),
             sprite: {
                 object: {
-                    src: '../images/objects/globe.png',
-                    width: getGridPosition(3),
-                    height: getGridPosition(4),
+                    src: '../images/objects/earth.png',
+                    width: getGridPosition(7),
+                    height: getGridPosition(5),
                 },
             },
         }),

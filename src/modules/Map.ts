@@ -146,6 +146,7 @@ export default class Map {
             this.isInteracting = true;
             this.startInteraction(match.interactions[0].events);
             if(match.interactionIcon) match.interactionIcon.far = '';
+            this.gameObjects[match.id].hasInteracted = true;
         }
     }
 

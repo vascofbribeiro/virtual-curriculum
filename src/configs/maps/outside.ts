@@ -54,20 +54,20 @@ export const outside = {
             //     { type: 'walk', direction: 'right' }
             // ]
         }),
-        doorHouse: new GameObject({
-            x: getGridPosition(50),
-            y: getGridPosition(6),
-            hasShadow: false,
-            width: getGridPosition(1),
-            height: getGridPosition(1),
-            sprite: {
-                object: {
-                    src: '../images/doors/door-house.png',
-                    width: getGridPosition(1),
-                    height: getGridPosition(2),
-                },
-            },
-        }),
+        // doorHouse: new GameObject({
+        //     x: getGridPosition(50),
+        //     y: getGridPosition(6),
+        //     hasShadow: false,
+        //     width: getGridPosition(1),
+        //     height: getGridPosition(1),
+        //     sprite: {
+        //         object: {
+        //             src: '../images/doors/door-house.png',
+        //             width: getGridPosition(1),
+        //             height: getGridPosition(2),
+        //         },
+        //     },
+        // }),
         house: new GameObject({
             x: getGridPosition(48),
             y: getGridPosition(3),
@@ -83,6 +83,13 @@ export const outside = {
                     imageHeight: 160
                 },
             },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(3),
+                src: '../images/doors/door-house.png',
+                width: getGridPosition(1),
+                height: getGridPosition(2),
+            }
         }),
         signEduExp: new GameObject({
             x: getGridPosition(39),
@@ -124,6 +131,13 @@ export const outside = {
                     height: getGridPosition(6),
                 },
             },
+            door: {
+                offsetX: getGridPosition(0),
+                offsetY: getGridPosition(4),
+                src: '../images/doors/door-techskills.png',
+                width: getGridPosition(3),
+                height: getGridPosition(2),
+            }
         }),
         // Education Building
         college: new GameObject({
@@ -174,6 +188,13 @@ export const outside = {
                     height: 176
                 },
             },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(8.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+                src: '../images/doors/door-building.png',
+            }
         }),
         farfetchInfo: new GameObject({
             x: getGridPosition(23),
@@ -239,6 +260,13 @@ export const outside = {
                     height: 144,
                 },
             },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(6.5),
+                src: '../images/doors/door-building.png',
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+            }
         }),
         dotlogicInfo: new GameObject({
             x: getGridPosition(15),
@@ -297,6 +325,13 @@ export const outside = {
                     height: 176,
                 },
             },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(8.5),
+                src: '../images/doors/door-building.png',
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+            }
         }),
         blipInfo: new GameObject({
             x: getGridPosition(7),

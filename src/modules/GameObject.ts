@@ -5,6 +5,7 @@ import { IGameObjectConfig } from "../interfaces/configs/IGameObjectConfig";
 import { IState } from "../interfaces/modules/IState";
 import { IEvent } from "../interfaces/modules/IEvent";
 import GameEvent from './GameEvent';
+import Door from './Door';
 
 export default class GameObject {
     private _hasShadow: boolean;
@@ -37,6 +38,7 @@ export default class GameObject {
         far?: string;
         nearby?: string;
     } | undefined;
+    public door: Door | null;
     public isHidden: boolean;
     public isCameraView: boolean;
     public hasInteracted: boolean;
@@ -63,6 +65,9 @@ export default class GameObject {
         this.objectSprite = new SpriteCharacter(this, config.sprite.object);
         this._hasShadow = !!config.sprite.shadow;
         this.shadowSprite = this._hasShadow && new SpriteCharacter(this, config.sprite.shadow);
+
+        this.door = config.door ? new Door(this, config.door) : null;
+        console.log(this.door);
 
         this.direction = "down";
         this.behaviorLoop = config.behaviorLoop || [];

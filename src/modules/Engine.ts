@@ -71,6 +71,7 @@ export default class Engine {
                         return gameObjectA.y - gameObjectB.y
                     }).forEach(gameObject => {
                         !gameObject.isHidden && gameObject.objectSprite.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
+                        gameObject.door && gameObject.door.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
                     })
 
                     //Create upper image for the maps
@@ -97,6 +98,7 @@ export default class Engine {
             const characterId = event.detail.whoId;
             if(characterId === 'miniMe') {
                 this._activeMap.checkActionForPosition();
+                this._activeMap.checkForDoors();
             }
         });
     }

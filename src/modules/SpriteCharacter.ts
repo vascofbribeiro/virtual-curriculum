@@ -1,4 +1,4 @@
-import { ISpriteConfig } from '../interfaces/modules/ISpriteConfig';
+import { ISpriteConfig } from '../interfaces/configs/ISpriteConfig';
 import { getGridPosition } from '../utils/grid';
 import GameObject from './GameObject';
 import defaultAnimations from '../configs/sprites/defaults';

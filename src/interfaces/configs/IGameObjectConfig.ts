@@ -1,5 +1,6 @@
 import { IEvent } from "../modules/IEvent";
-import { ISpriteConfig } from "../modules/ISpriteConfig";
+import { ISpriteConfig } from "./ISpriteConfig";
+import { IDoorConfig } from "./IDoorConfig";
 
 export interface IGameObjectConfig {
     x?: number;
@@ -15,6 +16,7 @@ export interface IGameObjectConfig {
         object: ISpriteConfig,
         shadow?: ISpriteConfig
     }
+    door?: IDoorConfig
     walkable?: boolean;
     isPlayer?: boolean;
     behaviorLoop?: Array<IEvent>

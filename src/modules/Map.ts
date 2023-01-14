@@ -15,6 +15,7 @@ export default class Map {
     public gameObjects: Record<string, GameObject>;
     public interactablePlaces: Record<string, any>;
     public spacesTaken: Record<string, any>;
+    public doors: Record<string, any>;
     public isInteracting: boolean;
     public actionSpaces: Record<string, any> //Fix types later
     public initialInteractions: Array<IEvent>;
@@ -53,6 +54,9 @@ export default class Map {
             gameObject.id = key;
             gameObject.mount(this);
         })
+        
+        this.doors = this.getDoors();
+        console.log('doors', this.doors);
     }
 
     public getInteractionOnSquare(x: number, y: number) {
@@ -115,6 +119,36 @@ export default class Map {
         this.addSpaceTaken(x,y);
     }
 
+    public getDoors() {
+        const doors: Record<string, string> = {}
+        const gameObjects = Object.values(this.gameObjects);
+
+        gameObjects.forEach(object => {
+            if(!object.door) return;
+
+            // Round to multiple of 16
+            const x = Math.floor(object.door.offsetX/16)*16 + object.x;
+            const y = Math.floor(object.door.offsetY/16)*16 + object.y;
+
+            const xMax = x + object.door.width;
+
+            //Open door on the square below
+            const yMax = y + object.door.height - 16;
+
+            console.log('OBJECT ID', object);
+
+            for(let i = x / 16; i < xMax / 16 ; i++) {
+                    doors[getGridCoord(i, yMax/16)] = object.id;
+                    //Open door for the same square as the door
+                    doors[getGridCoord(i, (yMax/16 - 1))] = object.id;
+            }
+        });
+
+        return { 
+            ...doors
+        };
+    }
+
     public checkActionForPosition() {
         console.log('x', this.gameObjects.miniMe.x/16);
         console.log('y', this.gameObjects.miniMe.y/16);
@@ -166,6 +200,20 @@ export default class Map {
             this.isInteracting = false;
         
             Object.values(this.gameObjects).forEach(gameObject => gameObject.doBehavior(this))
+        }
+    } 
+    
+    public checkForDoors() {
+        console.log('x', this.gameObjects.miniMe.x/16);
+        console.log('y', this.gameObjects.miniMe.y/16);
+        if(this.doors) {
+            const match = this.doors[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
+            console.log(`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`, this.doors[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`]);
+            if(match) {
+                this.gameObjects[match].door.open();
+            } else {
+                Object.values(this.gameObjects).forEach(object => object.door && object.door.close());
+            }
         }
     }
 }

@@ -191,7 +191,7 @@
                 left: 20%;
                 width: 60%;
                 height: 80%;
-                font-size: 12px;
+                font-size: 10px;
                 padding: 4px;
                 background: #c3b29d;
                 border: 1px solid rgb(58, 57, 57);
@@ -203,6 +203,7 @@
                 .interaction-box {
                     width: 80%;
                     left: 10%;
+                    font-size: 12px;
                 }
             }
 
@@ -215,9 +216,17 @@
             }
 
             .interaction-box-title {
+                font-size: 9px;
                 font-weight: bold;
                 margin: 0;
             }
+
+            @media (min-width: 992px) {
+                .interaction-box-title {
+                    font-size: 16px;
+                }
+            }
+
 
             .interaction-box-text {
                 margin: 10px 0 0;

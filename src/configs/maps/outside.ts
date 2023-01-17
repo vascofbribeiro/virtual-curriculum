@@ -91,32 +91,32 @@ export const outside = {
                 height: getGridPosition(2),
             }
         }),
-        signEduExp: new GameObject({
-            x: getGridPosition(39),
-            y: getGridPosition(15),
-            hasShadow: false,
-            width: getGridPosition(3),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/sign-outside.png',
-                    width: getGridPosition(3),
-                    height: getGridPosition(3),
-                },
-            },
-            interactions: [
-                {
-                    events: [{
-                        type: 'message', 
-                        text: `Education ←`
-                    },
-                    {
-                        type: 'message', 
-                        text: `Experience ←`
-                    }]
-                }
-            ],
-        }),
+        // signEduExp: new GameObject({
+        //     x: getGridPosition(39),
+        //     y: getGridPosition(15),
+        //     hasShadow: false,
+        //     width: getGridPosition(3),
+        //     height: getGridPosition(2),
+        //     sprite: {
+        //         object: {
+        //             src: '../images/objects/sign-outside.png',
+        //             width: getGridPosition(3),
+        //             height: getGridPosition(3),
+        //         },
+        //     },
+        //     interactions: [
+        //         {
+        //             events: [{
+        //                 type: 'message', 
+        //                 text: `Education ←`
+        //             },
+        //             {
+        //                 type: 'message', 
+        //                 text: `Experience ←`
+        //             }]
+        //         }
+        //     ],
+        // }),
         // Education Building
         techSkillsMuseum: new GameObject({
             x: getGridPosition(28),
@@ -366,7 +366,7 @@ export const outside = {
         }), 
         // BAR BUILDING
         bar: new GameObject({
-            x: getGridPosition(5),
+            x: getGridPosition(7),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(6),
@@ -381,7 +381,7 @@ export const outside = {
         }),
         // SOCIAL BILLBOARDS
         socialGithub: new GameObject({
-            x: getGridPosition(18),
+            x: getGridPosition(19),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
@@ -403,7 +403,7 @@ export const outside = {
             ],
         }),
         socialLinkedin: new GameObject({
-            x: getGridPosition(11),
+            x: getGridPosition(13),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
@@ -425,19 +425,120 @@ export const outside = {
             ],
         }),
         earth: new GameObject({
-            x: getGridPosition(39),
-            y: getGridPosition(4),
+            x: getGridPosition(40),
+            y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(7),
-            height: getGridPosition(4),
+            height: getGridPosition(5),
             sprite: {
                 object: {
                     src: '../images/objects/earth.png',
                     width: getGridPosition(7),
-                    height: getGridPosition(5),
+                    height: getGridPosition(6),
                 },
             },
         }),
+        suitcase: new GameObject({
+            x: getGridPosition(47),
+            y: getGridPosition(16),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/suitcase.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(2),
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'message',
+                            text:'I love to travel and discover new places 🌍'
+                        },
+                    ]
+                }
+            ],
+        }),
+        volunteer: new GameObject({
+            x: getGridPosition(41),
+            y: getGridPosition(5),
+            hasShadow: false,
+            width: getGridPosition(4),
+            height: getGridPosition(3),
+            collisionOffset: {
+                height: getGridPosition(1),
+                width: 0
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/volunteer.png',
+                    width: getGridPosition(4),
+                    height: getGridPosition(5),
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'interactionBox',
+                            title: 'ESN Porto (2015-1018)',
+                            textLines:  [
+                                `As a volunteer for ESN - Erasmus Student Network I was responsible for integrating ERASMUS students into the city of Porto.`,
+                                `This was accomplished by organizing trips and activities in partnership with several companies and instituions`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'ESN Porto (2015-1018)',
+                            textLines:  [
+                                `My work helped to create a welcoming and inclusive environment for international students, and allowed them to fully experience and enjoy their time in Porto`,
+                            ],
+                        },
+                    ],
+                }
+            ],
+        }),
+        padel: new GameObject({
+            x: getGridPosition(0),
+            y: getGridPosition(3),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(8),
+            collisionOffset: {
+                height: getGridPosition(1),
+                width: 0
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/padel.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(10),
+                },
+            },
+        }),
+        // balloon: new GameObject({
+        //     x: getGridPosition(39),
+        //     y: getGridPosition(10),
+        //     hasShadow: true,
+        //     width: getGridPosition(3),
+        //     height: getGridPosition(6),
+        //     sprite: {
+        //         object: {
+        //             src: '../images/objects/balloon.png',
+        //             width: getGridPosition(3),
+        //             height: getGridPosition(6),
+        //         },
+        //     },
+        // }),
 
         //TREES
         tree1: new GameObject({
@@ -538,7 +639,7 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(6,8)]: [
+        [getGridCoord(8,8)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'bar'},

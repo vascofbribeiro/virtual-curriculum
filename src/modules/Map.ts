@@ -141,6 +141,8 @@ export default class Map {
                     doors[getGridCoord(i, yMax/16)] = object.id;
                     //Open door for the same square as the door
                     doors[getGridCoord(i, (yMax/16 - 1))] = object.id;
+                    //Open door for two squares from door
+                    doors[getGridCoord(i, (yMax/16 + 1))] = object.id;
             }
         });
 

@@ -36,7 +36,7 @@ export default class Door {
         this._imageWidth = config.imageWidth || config.width;
         this._imageHeight = config.imageHeight || config.height;
 
-        this._framesToChange = 8;
+        this._framesToChange = 4;
         this._framesToChangeProgress = this._framesToChange;
         
         this._currentAnimationFrame = 2;

@@ -139,6 +139,20 @@ export const outside = {
                 height: getGridPosition(2),
             }
         }),
+        signEduExp: new GameObject({
+            x: getGridPosition(28),
+            y: getGridPosition(20),
+            hasShadow: false,
+            width: getGridPosition(3),
+            height: getGridPosition(3),
+            sprite: {
+                object: {
+                    src: '../images/objects/sign-outside.png',
+                    width: getGridPosition(3),
+                    height: getGridPosition(3),
+                },
+            },
+        }),
         // Education Building
         college: new GameObject({
             x: getGridPosition(27),
@@ -542,7 +556,7 @@ export const outside = {
 
         //TREES
         tree1: new GameObject({
-            x: getGridPosition(28),
+            x: getGridPosition(31),
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(2),
@@ -556,7 +570,7 @@ export const outside = {
             },
         }),
         tree2: new GameObject({
-            x: getGridPosition(32),
+            x: getGridPosition(35),
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(2),
@@ -570,7 +584,7 @@ export const outside = {
             },
         }),
         tree3: new GameObject({
-            x: getGridPosition(30),
+            x: getGridPosition(33),
             y: getGridPosition(21),
             hasShadow: false,
             width: getGridPosition(2),

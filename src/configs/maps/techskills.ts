@@ -31,7 +31,7 @@ export const techskills = {
                 }
             }
         }),
-        avatarjs: new GameObject({
+        avatarJs: new GameObject({
             x: getGridPosition(1),
             y: getGridPosition(12),
             hasShadow: false,
@@ -56,7 +56,7 @@ export const techskills = {
                 nearby: '../images/objects/6years.png'
             }
         }),
-        avatarnode: new GameObject({
+        avatarNode: new GameObject({
             x: getGridPosition(4),
             y: getGridPosition(12),
             hasShadow: false,
@@ -85,7 +85,7 @@ export const techskills = {
                 }
             ],
         }),
-        avatargit: new GameObject({
+        avatarGit: new GameObject({
             x: getGridPosition(8),
             y: getGridPosition(12),
             hasShadow: false,
@@ -104,15 +104,211 @@ export const techskills = {
                 nearby: '../images/objects/6years.png'
             },
         }),
-        avatarreact: new GameObject({
-            x: getGridPosition(11  ),
+        avatarDocker: new GameObject({
+            x: getGridPosition(11),
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
             sprite: {
                 object: {
+                    src: '../images/objects/docker-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarReact: new GameObject({
+            x: getGridPosition(1),
+            y: getGridPosition(6),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
                     src: '../images/objects/react-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarDevtools: new GameObject({
+            x: getGridPosition(4),
+            y: getGridPosition(6),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/chromedev-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarCss: new GameObject({
+            x: getGridPosition(8),
+            y: getGridPosition(6),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/css-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarTypescript: new GameObject({
+            x: getGridPosition(11),
+            y: getGridPosition(6),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/typescript-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarWebpack: new GameObject({
+            x: getGridPosition(2),
+            y: getGridPosition(0),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/webpack-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarJest: new GameObject({
+            x: getGridPosition(6),
+            y: getGridPosition(0),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/jest-avatar.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    imageWidth: 32,
+                    imageHeight: 48
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+                nearby: '../images/objects/3years.png'
+            },
+            
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                    ]
+                }
+            ],
+        }),
+        avatarPerformance: new GameObject({
+            x: getGridPosition(10),
+            y: getGridPosition(0),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/performance-avatar.png',
                     width: getGridPosition(2),
                     height: getGridPosition(3),
                     imageWidth: 32,

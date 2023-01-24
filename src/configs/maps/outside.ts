@@ -3,6 +3,7 @@ import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimations from '../sprites/miniMe';
 import carAnimations from '../sprites/car';
+import billboard from '../sprites/billboard';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -394,17 +395,18 @@ export const outside = {
             },
         }),
         // SOCIAL BILLBOARDS
-        socialGithub: new GameObject({
-            x: getGridPosition(19),
+        socialBillboard: new GameObject({
+            x: getGridPosition(16),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
             height: getGridPosition(5),
             sprite: {
                 object: {
-                    src: '../images/objects/social-github.png',
+                    src: '../images/objects/billboard-social.png',
                     width: getGridPosition(5),
                     height: getGridPosition(6),
+                    animations: billboard
                 },
             },
             interactions: [
@@ -412,28 +414,6 @@ export const outside = {
                     events: [{
                         type: 'message', 
                         text: `https://github.com/vascofbribeiro`
-                    }],
-                }
-            ],
-        }),
-        socialLinkedin: new GameObject({
-            x: getGridPosition(13),
-            y: getGridPosition(3),
-            hasShadow: false,
-            width: getGridPosition(5),
-            height: getGridPosition(5),
-            sprite: {
-                object: {
-                    src: '../images/objects/social-linkedin.png',
-                    width: getGridPosition(5),
-                    height: getGridPosition(6),
-                },
-            },
-            interactions: [
-                {
-                    events: [{
-                        type: 'message', 
-                        text: `https://linkedin.com/in/vascof-ribeiro`
                     }],
                 }
             ],

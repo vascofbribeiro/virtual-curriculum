@@ -52,11 +52,9 @@ export default class CameraView {
             return this.gameObject.x;
         }
         if(this.gameObject.x < this.limits.xMin) {
-            console.log('x min')
             return this.limits.xMin;
         }
         if(this.gameObject.x > this.limits.xMax) {
-            console.log('x max')
             return this.limits.xMax;
         }
         
@@ -68,12 +66,9 @@ export default class CameraView {
             return this.gameObject.y;
         }
         if(this.gameObject.y < this.limits.yMin) {
-            console.log('y min')
             return this.limits.yMin;
         }
         if(this.gameObject.y > this.limits.yMax) {
-
-            console.log('y max')
             return this.limits.yMax;
         }
         

@@ -1,7 +1,7 @@
 import { getGridPosition } from '../utils/grid';
 import GameObject from './GameObject';
-import defaultAnimations from '../configs/sprites/defaults';
 import { IDoorConfig } from '../interfaces/configs/IDoorConfig';
+import CameraView from './CameraView';
 
 export default class Door {
     private _currentAnimation: number;
@@ -59,9 +59,9 @@ export default class Door {
         }
     }
 
-    draw(ctx: CanvasRenderingContext2D, cameraView: GameObject, miniMe: GameObject) {
-        const x = this._gameObject.x + this.offsetX + getGridPosition(window.canvasMultiplier.x) - cameraView.x;
-        const y = this._gameObject.y + this.offsetY + getGridPosition(window.canvasMultiplier.y) - cameraView.y;
+    draw(ctx: CanvasRenderingContext2D, cameraView: CameraView, miniMe: GameObject) {
+        const x = this._gameObject.x + this.offsetX + getGridPosition(window.canvasMultiplier.x) - cameraView.getXView();
+        const y = this._gameObject.y + this.offsetY + getGridPosition(window.canvasMultiplier.y) - cameraView.getYView();
 
         // const [frameX, frameY] = this.frame;
         // console.log('DRAW DOOR', this._gameObject.x, x);

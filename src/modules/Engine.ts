@@ -4,6 +4,7 @@ import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
 import { canvasScale } from '../constants/';
 import GameObject from './GameObject';
+import CameraView from './CameraView';
 
 declare global {
     interface Window {
@@ -15,21 +16,20 @@ declare global {
     }
 }
 
-
 export default class Engine {
     private _canvas: HTMLCanvasElement;
     private _ctx: CanvasRenderingContext2D;
     private _maps: Record<string, Map>;
     private _activeMap: Map;
     private _directionInput: DirectionInput;
-    private _cameraView: GameObject | null;
-    private _isLoadFinished: boolean;
+    private _cameraView: CameraView;
 
     constructor(id: string) { 
         if (typeof window) {
             window.mapsConfig = mapsConfig;
         }
         this._maps = {};
+        this._cameraView = new CameraView();
         this._canvas = document.getElementById(id) as HTMLCanvasElement;
         this.resizeCanvas();
         addEventListener('resize', () => this.resizeCanvas());
@@ -56,7 +56,6 @@ export default class Engine {
                     // Clear Canvas before paint
                     this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-                    const cameraView = this._cameraView;
                 
                     Object.values(this._activeMap.gameObjects).forEach(object => {
                         object.update({
@@ -65,17 +64,17 @@ export default class Engine {
                         })
                     });
 
-                    this._activeMap.drawLowerImage(this._ctx, cameraView);
+                    this._activeMap.drawLowerImage(this._ctx, this._cameraView);
                                     
                     Object.values(this._activeMap.gameObjects).sort((gameObjectA, gameObjectB) => {
                         return gameObjectA.y - gameObjectB.y
                     }).forEach(gameObject => {
-                        !gameObject.isHidden && gameObject.objectSprite.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
-                        gameObject.door && gameObject.door.draw(this._ctx, cameraView, this._activeMap.gameObjects.miniMe);
+                        !gameObject.isHidden && gameObject.objectSprite.draw(this._ctx, this._cameraView, this._activeMap.gameObjects.miniMe);
+                        gameObject.door && gameObject.door.draw(this._ctx, this._cameraView, this._activeMap.gameObjects.miniMe);
                     })
 
                     //Create upper image for the maps
-                    this._activeMap.drawUpperImage(this._ctx, cameraView);
+                    this._activeMap.drawUpperImage(this._ctx, this._cameraView);
                 }
             }
 
@@ -103,15 +102,19 @@ export default class Engine {
         });
     }
 
-    public startMap(mapName: string /* FIX THIS TYPES LATER FOR IMapConfig */) {
-        //@ts-ignore
+    public startMap(mapName: string) {
         this._activeMap = this._maps[mapName] || new Map(window.mapsConfig[mapName]);
         this._activeMap.engine = this;
         this._activeMap.mountObjects();
         console.log(this._activeMap);
-        const cameraView = Object.values(this._activeMap.gameObjects).find(gameObject => gameObject.isCameraView)
-        console.log('Camera View', cameraView)
-        this.setCameraView(cameraView || this._activeMap.gameObjects.miniMe)
+       
+        const cameraViewObject = 
+            Object.values(this._activeMap.gameObjects)
+                .find(gameObject => gameObject.isCameraView)
+            || this._activeMap.gameObjects.miniMe
+        console.log('Camera View', cameraViewObject);
+        
+        this.setCameraView(cameraViewObject);
         this._activeMap.startInteraction(this._activeMap.initialInteractions);
         this._activeMap.initialInteractions = [];
     }
@@ -124,10 +127,16 @@ export default class Engine {
     }
 
     public setCameraView(gameObject: GameObject) {
-        console.log('gameObject', gameObject);
-        this._cameraView = gameObject;
+        this._cameraView.setObject(gameObject);  
+        // Exception for the first map where the initial camera view is the Car
         gameObject.isCameraView = false;
+        
+        this._cameraView.setLimits(this._activeMap.limits);
     }
+
+    // public setCameraViewLimits(limits: {xMin: number, yMin: number, xMax: number, yMax: number}) {
+    //     limits && this._cameraView.setLimits(limits)
+    // }
 
     public init() {
         this.loadAllMaps();
@@ -162,5 +171,7 @@ export default class Engine {
         this._canvas.width = gameContainer.clientWidth;
         this._canvas.height = gameContainer.clientHeight;
         window.canvasMultiplier = canvasScale[this._canvas.width];
+        this._cameraView.setLimitsOffset(this._canvas.width);
+        this._activeMap && this._cameraView.setLimits(this._activeMap.limits);
     }
 }

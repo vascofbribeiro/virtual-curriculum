@@ -6,6 +6,7 @@ import { getGridCoord } from "../utils/grid";
 import { IEvent } from "../interfaces/modules/IEvent";
 import GameEvent from "./GameEvent";
 import { IMapConfig } from "../interfaces/configs/IMapConfig";
+import CameraView from "./CameraView";
 
 export default class Map {
     private _lowerImage: HTMLImageElement;
@@ -20,6 +21,12 @@ export default class Map {
     public actionSpaces: Record<string, any> //Fix types later
     public initialInteractions: Array<IEvent>;
     public isImageLoaded: boolean;
+    public limits?: {
+        xMin: number,
+        yMin: number,
+        xMax: number,
+        yMax: number
+    }
     private _hasTakenInitialInteractions: boolean;
 
     constructor(config: IMapConfig) {
@@ -41,6 +48,7 @@ export default class Map {
         this.isInteracting = false;
         this.initialInteractions = config.initialInteractions;
         this._hasTakenInitialInteractions = false;
+        this.limits = config.limits;
     }
 
     public isSpaceTaken(currentX: number, currentY: number, direction: Direction) {
@@ -63,19 +71,19 @@ export default class Map {
         return this.interactablePlaces[`${x},${y}`];
     }
 
-    public drawLowerImage(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
+    public drawLowerImage(ctx: CanvasRenderingContext2D, cameraView: CameraView) {
         ctx.drawImage(
             this._lowerImage, 
-            getGridPosition(window.canvasMultiplier.x) - cameraView.x,
-            getGridPosition(window.canvasMultiplier.y) - cameraView.y
+            getGridPosition(window.canvasMultiplier.x) - cameraView.getXView(),
+            getGridPosition(window.canvasMultiplier.y) - cameraView.getYView()
         )
     }
 
-    public drawUpperImage(ctx: CanvasRenderingContext2D, cameraView: GameObject) {
+    public drawUpperImage(ctx: CanvasRenderingContext2D, cameraView: CameraView) {
         this._upperImage && ctx.drawImage(
             this._upperImage, 
-            getGridPosition(window.canvasMultiplier.x) - cameraView.x,
-            getGridPosition(window.canvasMultiplier.y) - cameraView.y
+            getGridPosition(window.canvasMultiplier.x) - cameraView.getXView(),
+            getGridPosition(window.canvasMultiplier.y) - cameraView.getYView()
         )
     }
 

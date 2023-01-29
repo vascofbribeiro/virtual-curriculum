@@ -11,7 +11,7 @@ export const canvasScale: Record<number, T> = {
 
     288: {
         x: 8.5,
-        y: 4
+        y: 6
     },
 
     162: {
@@ -27,5 +27,32 @@ export const canvasScale: Record<number, T> = {
     120: {
         x: 3.5,
         y: 8
+    }
+}
+
+export const limitsOffset: Record<number, T> = {
+    352: {
+        x: 0,
+        y: 0
+    },
+
+    288: {
+        x: -2,
+        y: 0
+    },
+
+    162: {
+        x: -6,
+        y: 1.5
+    },
+
+    136: {
+        x: -4,
+        y: 3
+    },
+
+    120: {
+        x: -4,
+        y: 3
     }
 }

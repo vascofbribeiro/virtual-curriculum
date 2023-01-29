@@ -597,6 +597,12 @@ export const outside = {
         // }),
     },
     walls: {},
+    limits: {
+        xMin: 11 * 16,
+        yMin: 7 * 16,
+        xMax: 42 * 16,
+        yMax: 23 * 16 // don't forget getGridPosition
+    },
     actionSpaces: {
         [getGridCoord(50,6)]: [
             {

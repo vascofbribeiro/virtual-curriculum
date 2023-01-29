@@ -2,6 +2,7 @@ import { ISpriteConfig } from '../interfaces/configs/ISpriteConfig';
 import { getGridPosition } from '../utils/grid';
 import GameObject from './GameObject';
 import defaultAnimations from '../configs/sprites/defaults';
+import CameraView from './CameraView';
 
 export default class SpriteCharacter {
     private _animations: {
@@ -75,9 +76,9 @@ export default class SpriteCharacter {
         }
     }
 
-    draw(ctx: CanvasRenderingContext2D, cameraView: GameObject, miniMe: GameObject) {
-        const x = this._gameObject.x + getGridPosition(window.canvasMultiplier.x) - cameraView.x;
-        const y = this._gameObject.y + getGridPosition(window.canvasMultiplier.y) - cameraView.y;
+    draw(ctx: CanvasRenderingContext2D, cameraView: CameraView, miniMe: GameObject) {
+        const x = this._gameObject.x + getGridPosition(window.canvasMultiplier.x) - cameraView.getXView();
+        const y = this._gameObject.y + getGridPosition(window.canvasMultiplier.y) - cameraView.getYView();
 
         const [frameX, frameY] = this.frame;
 

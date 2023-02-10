@@ -22,7 +22,6 @@ export default class SpriteCharacter {
     private _gameObject: GameObject;
 
     constructor(gameObject: GameObject, config: ISpriteConfig) {
-        // Sould be received from config
         this._gameObject = gameObject;
         this._image = new Image();
         this._image.src = config.src;
@@ -127,12 +126,6 @@ export default class SpriteCharacter {
                     32
                 );
             }
-            //console.log('COORD', miniMe.x, this._gameObject.x)
-            
-           
-
-            // ctx.font = "8px Comic Sans MS"
-            // ctx.fillText('6 years', x, y);
         }
         this.updateAnimationProgress();
     }

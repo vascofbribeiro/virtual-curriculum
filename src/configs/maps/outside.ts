@@ -185,6 +185,53 @@ export const outside = {
                 },
             },
         }),
+        professor: new Character({
+            x: getGridPosition(33),
+            y: getGridPosition(8),
+            isPlayer: false,
+            hasShadow: true,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/characters/professor.png',
+                    width: 16,
+                    height: 32,
+                    imageWidth: 16,
+                    imageHeight: 32,
+                    animations: miniMeAnimations
+                },
+                shadow: {
+                    src: '../images/characters/shadow.png',
+                    width: 32,
+                    height: 32,
+                    imageWidth: 64,
+                    imageHeight: 64
+                }
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'message',
+                            text:`Professor: Hi Vasco, you're back! I kept your University Degree around. Let me see...`
+                        },
+                        {
+                            type: 'message',
+                            text:`Professor: There you go!`
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Computer Science Degree',
+                            textLines:  [
+                                `Algorithms`,
+                                ``
+                            ],
+                        },
+                    ]
+                }
+            ],
+        }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
         farfetch: new GameObject({
             x: getGridPosition(17),
@@ -411,10 +458,16 @@ export const outside = {
             },
             interactions: [
                 {
-                    events: [{
-                        type: 'message', 
-                        text: `https://github.com/vascofbribeiro`
-                    }],
+                    events: [
+                        {
+                            type: 'message', 
+                            text: `https://github.com/vascofbribeiro`
+                        },
+                        {
+                            type: 'message', 
+                            text: `https://www.linkedin.com/in/vascof-ribeiro/`
+                        }
+                    ],
                 }
             ],
         }),

@@ -100,6 +100,13 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
+            interactions: [
+                {
+                    events: [
+                        {type: 'message', text: `I've been using Git for 5 years at Farfetch and on my personal projects`},
+                    ]
+                }
+            ],
             interactionIcon: {
                 nearby: '../images/objects/6years.png'
             },
@@ -328,6 +335,12 @@ export const techskills = {
                 }
             ],
         }),
+    },
+    limits: {
+        xMin: 6 * 16,
+        yMin: 4 * 16,
+        xMax: 6 * 16,
+        yMax: 12 * 16 // don't forget getGridPosition
     },
     walls: {},
     actionSpaces: {

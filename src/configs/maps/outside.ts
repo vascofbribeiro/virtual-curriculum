@@ -476,7 +476,11 @@ export const outside = {
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(7),
-            height: getGridPosition(5),
+            height: getGridPosition(4),
+            collisionOffset: {
+                height: getGridPosition(1),
+                width: 0
+            },
             sprite: {
                 object: {
                     src: '../images/objects/earth.png',
@@ -514,7 +518,7 @@ export const outside = {
         }),
         volunteer: new GameObject({
             x: getGridPosition(41),
-            y: getGridPosition(5),
+            y: getGridPosition(4),
             hasShadow: false,
             width: getGridPosition(4),
             height: getGridPosition(3),

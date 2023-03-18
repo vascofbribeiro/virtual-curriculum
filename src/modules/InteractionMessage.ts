@@ -7,11 +7,13 @@ export class InteractionMessage {
     public element: HTMLElement;
     private interactionListener: InteractionInput;
     private typewriter: Typewriter;
+    private _showNote: boolean;
     
-    constructor({ text, onComplete }: { text: string, onComplete: Function}) {
+    constructor({ text, onComplete, showNote }: { text: string, onComplete: Function, showNote: boolean}) {
         this._text = text;
         this._onComplete = onComplete;
         this.element = null;
+        this._showNote = showNote;
     }
 
     private createElement() {
@@ -19,6 +21,7 @@ export class InteractionMessage {
         this.element.classList.add('message');
         this.element.innerHTML = `
             <p class="message-p"></p>
+            ${this._showNote ? `<p class="note">Press spacebar or A to continue</p>` : ''}
             <button class="message-button">X</button>
         `
 

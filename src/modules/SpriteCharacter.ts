@@ -17,6 +17,7 @@ export default class SpriteCharacter {
     private _isLoaded: boolean;
     private _framesToChange: number;
     private _framesToChangeProgress: number;
+    private _verticalMove: number;
     private _imageWidth: number;
     private _imageHeight: number;
     private _gameObject: GameObject;
@@ -45,6 +46,7 @@ export default class SpriteCharacter {
         this._animations = config.animations || defaultAnimations;
 
         this._framesToChange = 8;
+        this._verticalMove = 0;
         this._framesToChangeProgress = this._framesToChange;
 
         this._currentAnimation = 'idle-down';
@@ -62,6 +64,7 @@ export default class SpriteCharacter {
         else {
             this._currentAnimationFrame++
             this._framesToChangeProgress = this._framesToChange;
+            this._verticalMove = this._verticalMove === 5 ? 0 : this._verticalMove+1;
 
             this._currentAnimationFrame = this._animations[this._currentAnimation][this._currentAnimationFrame] ? this._currentAnimationFrame : 0;
         }
@@ -96,22 +99,22 @@ export default class SpriteCharacter {
 
         // Draw interaction item at the top
         if(this._isLoaded && this._interactionImages) {
-            if(miniMe.x >= this._gameObject.x && miniMe.x < this._gameObject.x + this._gameObject.objectWidth &&
-                miniMe.y <= this._gameObject.y + 80 && miniMe.y > this._gameObject.y /* 5 squares down. Change for a value that makes sense*/) {
-                    this._interactionImages.show = (this._interactionImages.nearby || this._interactionImages.far || null);
+            // if(miniMe.x >= this._gameObject.x && miniMe.x < this._gameObject.x + this._gameObject.objectWidth &&
+            //     miniMe.y <= this._gameObject.y + 80 && miniMe.y > this._gameObject.y /* 5 squares down. Change for a value that makes sense*/) {
+            //         this._interactionImages.show = (this._interactionImages.nearby || this._interactionImages.far || null);
 
-                    ctx.drawImage(
-                        this._interactionImages.show,
-                        0,
-                        0,
-                        32,
-                        32,
-                        x + (this._gameObject.objectWidth/2) - (this._interactionImages.show.width/2),
-                        y - 16,
-                        32,
-                        32
-                    );
-            } else {
+            //         ctx.drawImage(
+            //             this._interactionImages.show,
+            //             0,
+            //             0,
+            //             32,
+            //             32,
+            //             x + (this._gameObject.objectWidth/2) - (this._interactionImages.show.width/2),
+            //             y - 16,
+            //             32,
+            //             32
+            //         );
+            // } else {
                 this._interactionImages.show = this._interactionImages.far || null;
                 
                 !this._gameObject.hasInteracted && ctx.drawImage(
@@ -121,11 +124,11 @@ export default class SpriteCharacter {
                     32,
                     32,
                     x + (this._gameObject.objectWidth/2) - (this._interactionImages.show.width/2),
-                    y - 16,
+                    y - 14  + this._verticalMove,
                     32,
                     32
                 );
-            }
+            //}
         }
         this.updateAnimationProgress();
     }

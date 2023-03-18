@@ -4,6 +4,8 @@ import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/gri
 import miniMeAnimations from '../sprites/miniMe';
 import carAnimations from '../sprites/car';
 import billboard from '../sprites/billboard';
+import fountain from '../sprites/fountain';
+import globe from '../sprites/globe';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -145,7 +147,7 @@ export const outside = {
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(3),
-            height: getGridPosition(3),
+            height: getGridPosition(2),
             sprite: {
                 object: {
                     src: '../images/objects/sign-outside.png',
@@ -224,13 +226,23 @@ export const outside = {
                             type: 'interactionBox',
                             title: 'Computer Science Degree',
                             textLines:  [
-                                `Algorithms`,
-                                ``
+                                `- Algorithms and Data Scructures`,
+                                `- Computers Architecture`,
+                                `- Logical Programming`,
+                                `- Databases`,
+                                `- Algorithms Complexity`,
+                                `- Web Technologies`,
+                                `- Functional Programming`,
+                                `- Unix based systems`,
+                            
                             ],
                         },
                     ]
                 }
             ],
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
         }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
         farfetch: new GameObject({
@@ -440,6 +452,13 @@ export const outside = {
                     height: 160,
                 },
             },
+            door: {
+                offsetX: getGridPosition(0),
+                offsetY: getGridPosition(8),
+                src: '../images/doors/door-softskills.png',
+                width: getGridPosition(3),
+                height: getGridPosition(2),
+            }
         }),
         // SOCIAL BILLBOARDS
         socialBillboard: new GameObject({
@@ -471,39 +490,93 @@ export const outside = {
                 }
             ],
         }),
-        earth: new GameObject({
+        awardsBillboard: new GameObject({
             x: getGridPosition(40),
             y: getGridPosition(12),
             hasShadow: false,
-            width: getGridPosition(7),
+            width: getGridPosition(5),
             height: getGridPosition(4),
+            sprite: {
+                object: {
+                    src: '../images/objects/billboard-awards.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(6),
+                    animations: billboard
+                },
+            },
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1)
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'message',
+                            text:'Winner in the category "Fun" at Make Or Break 2017 (Porto Summer Of Code) - 3 days hackathon'
+                        },
+                        {
+                            type: 'message',
+                            text:'Our team created an application to rate public restrooms using sensors to detect if toilet paper is available'
+                        },
+                        {
+                            type: 'message',
+                            text:'More info here: https://medium.com/makeorbreak-io/make-or-break-more-than-a-hackathon-45d43c0042ba'
+                        },
+                    ]
+                }
+            ],
+        }),
+        signAndroid: new GameObject({
+            x: getGridPosition(47),
+            y: getGridPosition(15),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/sign-android.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(3)
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'interactionBox',
+                            title: 'Android Development Course',
+                            textLines:  [
+                                `In 2014 I applied to a 2 week Android course in Yekaterinburg with BEST - Board of European Students`,
+                                `I ended up being chosen to participate and the aim of the course was to give students good knowledge of Android architecture and programming`
+                            ]
+                        },
+                    ]
+                }
+            ],
+        }),
+        campervan: new GameObject({
+            x: getGridPosition(42),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(2),
             collisionOffset: {
                 height: getGridPosition(1),
                 width: 0
             },
             sprite: {
                 object: {
-                    src: '../images/objects/earth.png',
-                    width: getGridPosition(7),
-                    height: getGridPosition(6),
+                    src: '../images/objects/campervan.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(4),
                 },
-            },
-        }),
-        suitcase: new GameObject({
-            x: getGridPosition(47),
-            y: getGridPosition(16),
-            hasShadow: false,
-            width: getGridPosition(1),
-            height: getGridPosition(1),
-            sprite: {
-                object: {
-                    src: '../images/objects/suitcase.png',
-                    width: getGridPosition(1),
-                    height: getGridPosition(2),
-                },
-            },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
             },
             interactions: [
                 {
@@ -515,6 +588,21 @@ export const outside = {
                     ]
                 }
             ],
+        }),
+        thinkGlobe: new GameObject({
+            x: getGridPosition(45),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/interfaces/globe.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(2),
+                    animations: globe
+                },
+            }
         }),
         volunteer: new GameObject({
             x: getGridPosition(41),
@@ -541,7 +629,7 @@ export const outside = {
                     events: [
                         {
                             type: 'interactionBox',
-                            title: 'ESN Porto (2015-1018)',
+                            title: 'ESN Porto (2015-2018)',
                             textLines:  [
                                 `As a volunteer for ESN - Erasmus Student Network I was responsible for integrating ERASMUS students into the city of Porto.`,
                                 `This was accomplished by organizing trips and activities in partnership with several companies and instituions`
@@ -549,7 +637,7 @@ export const outside = {
                         },
                         {
                             type: 'interactionBox',
-                            title: 'ESN Porto (2015-1018)',
+                            title: 'ESN Porto (2015-2018)',
                             textLines:  [
                                 `My work helped to create a welcoming and inclusive environment for international students, and allowed them to fully experience and enjoy their time in Porto`,
                             ],
@@ -558,24 +646,24 @@ export const outside = {
                 }
             ],
         }),
-        padel: new GameObject({
-            x: getGridPosition(0),
-            y: getGridPosition(3),
-            hasShadow: false,
-            width: getGridPosition(6),
-            height: getGridPosition(8),
-            collisionOffset: {
-                height: getGridPosition(1),
-                width: 0
-            },
-            sprite: {
-                object: {
-                    src: '../images/objects/padel.png',
-                    width: getGridPosition(6),
-                    height: getGridPosition(10),
-                },
-            },
-        }),
+        // padel: new GameObject({
+        //     x: getGridPosition(0),
+        //     y: getGridPosition(3),
+        //     hasShadow: false,
+        //     width: getGridPosition(6),
+        //     height: getGridPosition(8),
+        //     collisionOffset: {
+        //         height: getGridPosition(1),
+        //         width: 0
+        //     },
+        //     sprite: {
+        //         object: {
+        //             src: '../images/objects/padel.png',
+        //             width: getGridPosition(6),
+        //             height: getGridPosition(10),
+        //         },
+        //     },
+        // }),
         // balloon: new GameObject({
         //     x: getGridPosition(39),
         //     y: getGridPosition(10),
@@ -592,9 +680,24 @@ export const outside = {
         // }),
 
         //TREES
+        fountain: new GameObject({
+            x: getGridPosition(35),
+            y: getGridPosition(20),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/fountain.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(3),
+                    animations: fountain
+                },
+            },
+        }),
         tree1: new GameObject({
-            x: getGridPosition(31),
-            y: getGridPosition(19),
+            x: getGridPosition(32),
+            y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -607,22 +710,8 @@ export const outside = {
             },
         }),
         tree2: new GameObject({
-            x: getGridPosition(35),
-            y: getGridPosition(19),
-            hasShadow: false,
-            width: getGridPosition(2),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/tree.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(3),
-                },
-            },
-        }),
-        tree3: new GameObject({
-            x: getGridPosition(33),
-            y: getGridPosition(21),
+            x: getGridPosition(38),
+            y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -775,9 +864,9 @@ export const outside = {
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
-        {type: 'message', text: 'Hello! 👋 Welcome to my CV'},
+        {type: 'message', text: 'Hello! 👋 Welcome to my CV', showNote: true},
         {type: 'message', text: `My name is Vasco and I'm a Front-end Developer`},
-        {type: 'message', text: `Feel free to explore the rooms around!`},
+        {type: 'message', text: `Feel free to explore the rooms! Use the arrows to walk around and press 'spacebar' or 'A' to interact with objects.`},
     ]
 };
 

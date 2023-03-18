@@ -31,6 +31,27 @@ export const techskills = {
                 }
             }
         }),
+        // avatarJs2: new GameObject({
+        //     x: getGridPosition(1),
+        //     y: getGridPosition(11),
+        //     hasShadow: false,
+        //     width: getGridPosition(2),
+        //     height: getGridPosition(4),
+        //     sprite: {
+        //         object: {
+        //             src: '../images/objects/js-object.png',
+        //             width: getGridPosition(2),
+        //             height: getGridPosition(4),
+        //             imageWidth: 32,
+        //             imageHeight: 64
+        //         },
+        //     },
+        //     interactions: [
+        //         {
+        //             events: [{type: 'message', text: 'Javascript'}]
+        //         }
+        //     ]
+        // }),
         avatarJs: new GameObject({
             x: getGridPosition(1),
             y: getGridPosition(12),
@@ -48,13 +69,9 @@ export const techskills = {
             },
             interactions: [
                 {
-                    events: [{type: 'message', text: 'I have been working with JS for 6 years'}]
+                    events: [{type: 'message', text: 'Javascript'}]
                 }
-            ],
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/6years.png'
-            }
+            ]
         }),
         avatarNode: new GameObject({
             x: getGridPosition(4),
@@ -71,16 +88,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I have been working with NodeJS for the last 3 years'},
-                        {type: 'message', text: "The projects I'm working with right now envolves xpto"}
+                        {type: 'message', text: 'NodeJS'}
                     ]
                 }
             ],
@@ -103,13 +115,10 @@ export const techskills = {
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: `I've been using Git for 5 years at Farfetch and on my personal projects`},
+                        {type: 'message', text: `Git - Version Control System`},
                     ]
                 }
-            ],
-            interactionIcon: {
-                nearby: '../images/objects/6years.png'
-            },
+            ]
         }),
         avatarDocker: new GameObject({
             x: getGridPosition(11),
@@ -126,15 +135,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'Docker'}
                     ]
                 }
             ],
@@ -154,15 +159,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'React'}
                     ]
                 }
             ],
@@ -182,15 +183,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'Chrome DevTools'}
                     ]
                 }
             ],
@@ -210,15 +207,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'CSS'}
                     ]
                 }
             ],
@@ -238,15 +231,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'Typescript'}
                     ]
                 }
             ],
@@ -266,15 +255,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'Webpack'}
                     ]
                 }
             ],
@@ -294,15 +279,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'Jest - Unit Tests'}
                     ]
                 }
             ],
@@ -322,15 +303,11 @@ export const techskills = {
                     imageHeight: 48
                 },
             },
-            interactionIcon: {
-                far:  '../images/objects/interaction.png',
-                nearby: '../images/objects/3years.png'
-            },
             
             interactions: [
                 {
                     events: [
-                        {type: 'message', text: 'I worked with React on a daily basis for 3 years but now I use more VanillaJS'}
+                        {type: 'message', text: 'Website Performance'}
                     ]
                 }
             ],

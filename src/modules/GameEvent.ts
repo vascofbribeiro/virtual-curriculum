@@ -85,6 +85,7 @@ export default class GameEvent {
         //ADD logic so npc faces character
         this.map.isInteracting = true;
         const message = new InteractionMessage({
+            showNote: this.event.showNote,
             text: this.event.text,
             onComplete: () => {
                 this.map.isInteracting = false;

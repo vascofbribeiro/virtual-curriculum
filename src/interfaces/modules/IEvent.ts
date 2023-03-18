@@ -7,6 +7,7 @@ export interface IEvent {
     retry?: boolean;
     time?: number;
     text?: string;
+    showNote?: boolean;
     map?: string;
     textLines?: Array<string>
     title?: string;

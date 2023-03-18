@@ -7,6 +7,7 @@ import billboard from '../sprites/billboard';
 import fountain from '../sprites/fountain';
 import globe from '../sprites/globe';
 import buildingBillboard from '../sprites/buildingBillboard';
+import techskillsBillboard from '../sprites/techskillsBillboard';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -142,6 +143,21 @@ export const outside = {
                 width: getGridPosition(3),
                 height: getGridPosition(2),
             }
+        }),
+        techskillsBillboard: new GameObject({
+            x: getGridPosition(31),
+            y: getGridPosition(12.5),
+            hasShadow: false,
+            width: getGridPosition(5),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/techskills-billboard.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(3),
+                    animations: techskillsBillboard
+                },
+            },
         }),
         signEduExp: new GameObject({
             x: getGridPosition(28),
@@ -625,7 +641,7 @@ export const outside = {
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(1),
-            height: getGridPosition(2),
+            height: getGridPosition(1),
             sprite: {
                 object: {
                     src: '../images/interfaces/globe.png',

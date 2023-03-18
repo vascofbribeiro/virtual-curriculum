@@ -2,6 +2,7 @@ import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 import miniMeAnimation from '../sprites/miniMe';
+import statues from '../sprites/statues';
 
 export const bar = {
     lowerImageSrc: "../images/backgrounds/hobbies.png",
@@ -63,6 +64,20 @@ export const bar = {
             ],
             interactionIcon: {
                 far:  '../images/objects/interaction.png',
+            },
+        }),
+        statues: new GameObject({
+            x: getGridPosition(1.5),
+            y: getGridPosition(1),
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/statues.png',
+                    width: getGridPosition(8),
+                    height: getGridPosition(3),
+                    animations: statues
+                }
             },
         })        
     },

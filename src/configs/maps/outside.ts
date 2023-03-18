@@ -6,6 +6,7 @@ import carAnimations from '../sprites/car';
 import billboard from '../sprites/billboard';
 import fountain from '../sprites/fountain';
 import globe from '../sprites/globe';
+import buildingBillboard from '../sprites/buildingBillboard';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -245,6 +246,21 @@ export const outside = {
             },
         }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
+        farfetchBillboard: new GameObject({
+            x: getGridPosition(17),
+            y: getGridPosition(13.5),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/farfetch-billboard.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(2),
+                    animations: buildingBillboard
+                },
+            },
+        }),
         farfetch: new GameObject({
             x: getGridPosition(17),
             y: getGridPosition(11),
@@ -316,7 +332,22 @@ export const outside = {
                     ]
                 }
             ],
-        }), 
+        }),
+        dotlogicBillboard: new GameObject({
+            x: getGridPosition(9),
+            y: getGridPosition(14.5),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/dotlogic-billboard.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(2),
+                    animations: buildingBillboard
+                },
+            },
+        }),
         dotlogic: new GameObject({
             x: getGridPosition(9),
             y: getGridPosition(12),
@@ -566,7 +597,7 @@ export const outside = {
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(2),
+            height: getGridPosition(1),
             collisionOffset: {
                 height: getGridPosition(1),
                 width: 0

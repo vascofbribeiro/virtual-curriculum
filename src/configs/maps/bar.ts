@@ -68,9 +68,9 @@ export const bar = {
     },
     limits: {
         xMin: 5 * 16,
-        yMin: 5 * 16,
+        yMin: 4 * 16,
         xMax: 5 * 16,
-        yMax: 5 * 16 // don't forget getGridPosition
+        yMax: 6 * 16 // don't forget getGridPosition
     },
     walls: {},
     actionSpaces: {

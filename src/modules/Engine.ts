@@ -168,8 +168,17 @@ export default class Engine {
         console.log('resize');
         const gameContainer = document.getElementById('canvas-container');
         console.log(gameContainer.clientWidth, gameContainer.clientHeight, this._canvas.style.scale);
-        this._canvas.width = gameContainer.clientWidth;
-        this._canvas.height = gameContainer.clientHeight;
+        
+        const context = this._canvas.getContext('2d');
+
+        console.log('devicePixelRatio', devicePixelRatio)
+        this._canvas.width = gameContainer.clientWidth * devicePixelRatio;
+        this._canvas.height = gameContainer.clientHeight * devicePixelRatio;
+
+        context.scale(devicePixelRatio, devicePixelRatio);
+
+        this._canvas.style.width = gameContainer.clientWidth + "px";
+        this._canvas.style.height = gameContainer.clientHeight + "px";
         window.canvasMultiplier = canvasScale[this._canvas.width];
         this._cameraView.setLimitsOffset(this._canvas.width);
         this._activeMap && this._cameraView.setLimits(this._activeMap.limits);

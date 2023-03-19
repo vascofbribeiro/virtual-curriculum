@@ -1,7 +1,7 @@
 import { limitsOffset } from './../../constants/index';
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
-import { getGridPosition, getGridCoord } from '../../utils/grid';
+import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimation from '../sprites/miniMe';
 import boatAnimation from '../sprites/boat';
 
@@ -111,7 +111,12 @@ export const beach = {
         xMax: 11 * 16,
         yMax: 8 * 16 // don't forget getGridPosition
     },
-    walls: {},
+    walls: {
+        [getGridCoord(12, 12)]: true,
+        [getGridCoord(14, 12)]: true,
+        [getGridCoord(12, 13)]: true,
+        [getGridCoord(14, 13)]: true
+    },
     actionSpaces: {
         [getGridCoord(13,13)]: [
             {
@@ -122,3 +127,10 @@ export const beach = {
         ]
     },
 };
+
+createLinearWall({coord: 'y', x: 0, y: -1, n: 15, map: beach});
+createLinearWall({coord: 'y', x: 22, y: -1, n: 15, map: beach});
+createLinearWall({coord: 'x', x: 0, y: 5, n: 22, map: beach});
+createLinearWall({coord: 'x', x: 0, y: 11, n: 13, map: beach});
+createLinearWall({coord: 'x', x: 14, y: 11, n: 8, map: beach});
+createLinearWall({coord: 'x', x: 0, y: 14, n: 22, map: beach});

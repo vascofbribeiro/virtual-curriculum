@@ -1,6 +1,6 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
-import { getGridPosition, getGridCoord } from '../../utils/grid';
+import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimations from '../sprites/miniMe';
 
 export const techskills = {
@@ -337,3 +337,9 @@ export const techskills = {
         ]
     },
 };
+
+createLinearWall({coord: 'y', x: 0, y: -1, n: 15, map: techskills});
+createLinearWall({coord: 'y', x: 13, y: -1, n: 15, map: techskills});
+createLinearWall({coord: 'x', x: 0, y: 16, n: 13, map: techskills});
+createLinearWall({coord: 'x', x: 0, y: 17, n: 13, map: techskills});
+createLinearWall({coord: 'x', x: 0, y: 1, n: 13, map: techskills});

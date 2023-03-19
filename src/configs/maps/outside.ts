@@ -44,7 +44,7 @@ export const outside = {
             isPlayer: false,
             hasShadow: true,
             width: getGridPosition(1),
-            height: getGridPosition(1),
+            height: getGridPosition(2),
             sprite: {
                 object: {
                     src: '../images/characters/car.png',
@@ -789,7 +789,9 @@ export const outside = {
         //     },
         // }),
     },
-    walls: {},
+    walls: {
+        [getGridCoord(26,25)]: true
+    },
     limits: {
         xMin: 11 * 16,
         yMin: 7 * 16,
@@ -804,14 +806,14 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(54,17)]: [
+        [getGridCoord(53,17)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
                 ]
             }
         ],
-        [getGridCoord(55,17)]: [
+        [getGridCoord(53,18)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
@@ -921,5 +923,10 @@ export const outside = {
 createLinearWall({coord: 'x', x: 0, y: 3, n:25, map: outside});
 createLinearWall({coord: 'x', x: 27, y: 3, n: 19, map: outside});
 createLinearWall({coord: 'y', x: 46, y: 3, n: 6, map: outside});
+createLinearWall({coord: 'y', x: 24, y: -1, n: 4, map: outside});
 createLinearWall({coord: 'x', x: 46, y: 8, n: 3, map: outside});
 createLinearWall({coord: 'x', x: 51, y: 8, n: 3, map: outside});
+createLinearWall({coord: 'y', x: 0, y: 0, n: 30, map: outside});
+createLinearWall({coord: 'y', x: 53, y: 0, n: 30, map: outside});
+createLinearWall({coord: 'x', x: 0, y: 25, n: 24, map: outside});
+createLinearWall({coord: 'x', x: 26, y: 25, n: 30, map: outside});

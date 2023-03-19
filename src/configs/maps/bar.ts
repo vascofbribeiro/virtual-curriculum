@@ -1,6 +1,6 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
-import { getGridPosition, getGridCoord } from '../../utils/grid';
+import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimation from '../sprites/miniMe';
 import statues from '../sprites/statues';
 
@@ -53,7 +53,7 @@ export const bar = {
                             type: 'interactionBox',
                             title: 'Soft Skills',
                             textLines:  [
-                                `- Creativity`,
+                                `- Creative`,
                                 `- Teamwork`,
                                 `- Problem solver`,
                                 `- Adaptability`,
@@ -98,3 +98,9 @@ export const bar = {
         ],
     },
 };
+
+createLinearWall({coord: 'x', x: 0, y: 4, n: 10, map: bar});
+createLinearWall({coord: 'y', x: 0, y: -1, n: 10, map: bar});
+createLinearWall({coord: 'x', x: 0, y: 8, n: 10, map: bar});
+createLinearWall({coord: 'x', x: 0, y: 9, n: 10, map: bar});
+createLinearWall({coord: 'y', x: 10, y: -1, n: 10, map: bar});

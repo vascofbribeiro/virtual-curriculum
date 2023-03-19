@@ -27,8 +27,6 @@ export const professionalExpRoom = {
                     src: '../images/characters/shadow.png',
                     width: 32,
                     height: 32,
-                    imageWidth: 64,
-                    imageHeight: 64
                 }
             }
         }),
@@ -132,7 +130,7 @@ export const professionalExpRoom = {
                 ]
             }
         ],
-        [getGridCoord(9,12)]: [
+        [getGridCoord(9,11)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'outside'},
@@ -150,6 +148,6 @@ createLinearWall({coord: 'x', x: 1, y: 6, n: 3, map: professionalExpRoom});
 createLinearWall({coord: 'x', x: 5, y: 8, n: 4, map: professionalExpRoom});
 createLinearWall({coord: 'x', x: 10, y: 8, n: 4, map: professionalExpRoom});
 createLinearWall({coord: 'y', x: 4, y: 6, n: 6, map: professionalExpRoom});
-createLinearWall({coord: 'y', x: 14, y: 6, n: 6, map: professionalExpRoom});
+createLinearWall({coord: 'y', x: 14, y: 1, n: 11, map: professionalExpRoom});
 createLinearWall({coord: 'x', x: 5, y: 12, n: 4, map: professionalExpRoom});
 createLinearWall({coord: 'x', x: 10, y: 12, n: 4, map: professionalExpRoom});

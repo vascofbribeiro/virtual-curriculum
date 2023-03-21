@@ -167,20 +167,29 @@ export default class Engine {
     public resizeCanvas() {
         console.log('resize');
         const gameContainer = document.getElementById('canvas-container');
-        console.log(gameContainer.clientWidth, gameContainer.clientHeight, this._canvas.style.scale);
-        
+        console.log(gameContainer.clientWidth, gameContainer.clientHeight);
+        const devicePixelRatio = window.devicePixelRatio || 1;
+
+        const scale = 4;
         const context = this._canvas.getContext('2d');
 
         console.log('devicePixelRatio', devicePixelRatio)
-        this._canvas.width = gameContainer.clientWidth * devicePixelRatio;
-        this._canvas.height = gameContainer.clientHeight * devicePixelRatio;
+        this._canvas.width = gameContainer.clientWidth*devicePixelRatio;
+        this._canvas.height = gameContainer.clientHeight*devicePixelRatio;
 
-        context.scale(devicePixelRatio, devicePixelRatio);
 
-        this._canvas.style.width = gameContainer.clientWidth + "px";
-        this._canvas.style.height = gameContainer.clientHeight + "px";
-        window.canvasMultiplier = canvasScale[this._canvas.width];
-        this._cameraView.setLimitsOffset(this._canvas.width);
+        this._canvas.style.width = `${gameContainer.clientWidth}px`;
+        this._canvas.style.height = `${gameContainer.clientHeight}px`;
+
+        context.imageSmoothingEnabled = false;
+
+        context.scale(scale*devicePixelRatio,scale*devicePixelRatio);
+
+    
+        // this._canvas.style.width = gameContainer.clientWidth + "px";
+        // this._canvas.style.height = gameContainer.clientHeight + "px";
+        window.canvasMultiplier = canvasScale[gameContainer.clientWidth];
+        this._cameraView.setLimitsOffset(gameContainer.clientWidth);
         this._activeMap && this._cameraView.setLimits(this._activeMap.limits);
     }
 }

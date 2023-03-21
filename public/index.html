@@ -8,11 +8,11 @@
 
             * {
                 box-sizing: border-box;
+                touch-action: none;
             }
 
             /* Avoid zoom on smartphone button clicks*/
             :root {
-                touch-action: pan-x pan-y;
                 height: 100% 
             }
 
@@ -65,40 +65,37 @@
 
             .game-container {
                 position: relative;
-                top: -50px;
                 width: 120px;
                 height: 200px;
                 outline: 1px solid white;
                 margin: 0 auto;
-                transform: scale(5) translateY(50%)
             }
             
             @media (min-width: 768px) {
                 .game-container {
-                    width: 162px;
-                    height: 250px;
-                    transform: scale(5) translateY(50%)
+                    width: 768px;
+                    height: 1250px;
                 }
             }
 
             @media (min-width: 992px) {
                 .game-container {
-                    width: 288px;
-                    height: 200px;
-                    transform: scale(3) translateY(50%)
+                    width: 960px;
+                    height: 1250px;
                 }
             }
 
             @media (min-width: 1200px) {
                 .game-container {
-                    width: 352px;
-                    height: 200px;
-                    transform: scale(3) translateY(50%)
+                    width: 1056px;
+                    height: 600px;
                 }
             }
 
             .game-container canvas {
                 image-rendering: pixelated;
+                image-rendering: -moz-crisp-edges;    /* Firefox */
+                image-rendering: -webkit-crisp-edges;
             }
 
             .button-audio {
@@ -263,6 +260,9 @@
                 display: flex;
                 flex-direction: row;
                 justify-self: center;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
             }
 
             .arrows {

@@ -68,7 +68,7 @@
                 width: 120px;
                 height: 200px;
                 outline: 1px solid white;
-                margin: 20px auto;
+                margin: 40px auto;
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
                 user-select: none;
@@ -233,8 +233,8 @@
             
             .button {
                 display: flex;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
                 border: 1px solid black;
                 border-radius: 5px;
                 background-color: white;
@@ -245,8 +245,8 @@
             
             .gamepad {
                 position: absolute;
-                left: 14%; /* Refactor this */
-                bottom: 20px;
+                left: 20%;
+                margin-top: 30px;
                 display: flex;
                 flex-direction: row;
                 justify-self: center;
@@ -260,37 +260,30 @@
                 flex-direction: column;
             }
 
-            .sides {
-                display: flex;
-                flex-direction: row;
+            #joystick {
+                width: 300px;
+                height: 300px;
+                background-color: #ccc;
+                border-radius: 50%;
+                position: relative;
+                overflow: hidden;
             }
 
-            .up {
-                margin-left: 140px;
-                border-top-left-radius: 30px;
-                border-top-right-radius: 30px;
-            }
-
-            .down {
-                margin-left: 140px;
-                border-bottom-left-radius: 30px;
-                border-bottom-right-radius: 30px;
-            }
-
-            .left {
-                margin-right: 120px;
-                border-top-left-radius: 30px;
-                border-bottom-left-radius: 30px;
-            }
-
-            .right {
-                border-top-right-radius: 30px;
-                border-bottom-right-radius: 30px;
+            #inner-circle {
+                width: 150px;
+                height: 150px;
+                background-color: #333;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
 
             .a {
-                margin: 165 0 0 100;
                 background-color: lightblue;
+                margin-top: 60px;
+                margin-left: 100px;
                 border-radius: 50%;
                 font-size: 48px
             }
@@ -344,14 +337,10 @@
         </div>
 
         <div class="gamepad">
-            <div class="arrows">
-                <div id="arrow-up" class="button up"></div>
-                <div class="sides">
-                    <div id="arrow-left" class="button left"></div>
-                    <div id="arrow-right" class="button right"></div>
-                </div> 
-                <div id="arrow-down" class="button down"></div>
-            </div>
+            <div id="joystick">
+                <div id="inner-circle"></div>
+              </div>
+              
             <div class="buttons">
                 <div id="button-a" class="button a">A</div>
             </div>

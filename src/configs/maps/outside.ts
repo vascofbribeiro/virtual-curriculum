@@ -342,7 +342,7 @@ export const outside = {
                             type: 'interactionBox',
                             title: 'Farfetch (Sep 2017 - Present)',
                             textLines:  [
-                                `I am excited to be a part of this team and contribute to the growth and success of Farfetch.`
+                                `I am excited to be a part of this team and contribute to the growth and success of Farfetch.`,
                             ],
                         }
                     ]
@@ -793,10 +793,10 @@ export const outside = {
         [getGridCoord(26,25)]: true
     },
     limits: {
-        xMin: 11 * 16,
-        yMin: 7 * 16,
-        xMax: 42 * 16,
-        yMax: 23 * 16 // don't forget getGridPosition
+        xMin: getGridPosition(11),
+        yMin: getGridPosition(6.5),
+        xMax: getGridPosition(43),
+        yMax: getGridPosition(23)
     },
     actionSpaces: {
         [getGridCoord(50,6)]: [

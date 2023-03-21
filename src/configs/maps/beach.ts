@@ -1,4 +1,3 @@
-import { limitsOffset } from './../../constants/index';
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';

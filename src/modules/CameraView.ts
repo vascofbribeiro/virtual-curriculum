@@ -4,14 +4,16 @@ import { limitsOffset } from '../constants';
 export default class CameraView {
     public gameObject: GameObject;
     public limits?: {
-        xMin: number,
-        yMin: number,
-        xMax: number,
+        xMin: number;
+        xMax: number;
+        yMin: number;
         yMax: number
     };
     public limitsOffset?: {
-        x: number;
-        y: number;
+        xMin: number;
+        yMin: number;
+        xMax: number;
+        yMax: number
     }
     private DEFAULT_SCALE = 352
 
@@ -19,8 +21,10 @@ export default class CameraView {
         this.gameObject = null;
         this.limits = null;
         this.limitsOffset = {
-            x: 0,
-            y: 0
+            xMin: 0,
+            yMin: 0,
+            xMax: 0,
+            yMax: 0,
         }
     }
 
@@ -38,10 +42,10 @@ export default class CameraView {
             this.limits = null;
         } else {
             this.limits = {
-                xMin: limits.xMin + this.limitsOffset.x,
-                yMin: limits.yMin + this.limitsOffset.y,
-                xMax: limits.xMax - this.limitsOffset.x,
-                yMax: limits.yMax - this.limitsOffset.y
+                xMin: limits.xMin + this.limitsOffset.xMin,
+                yMin: limits.yMin + this.limitsOffset.yMin,
+                xMax: limits.xMax - this.limitsOffset.xMax,
+                yMax: limits.yMax - this.limitsOffset.yMax
             }
         }
         console.log('LIMITS', this.limits)
@@ -77,8 +81,10 @@ export default class CameraView {
 
     public setLimitsOffset(width: number) {
         this.limitsOffset = {
-            x: limitsOffset[width].x * 16,
-            y: limitsOffset[width].y * 16
+            xMin: limitsOffset[width].xMin * 16,
+            yMin: limitsOffset[width].yMin * 16,
+            xMax: limitsOffset[width].xMax * 16,
+            yMax: limitsOffset[width].yMax * 16,
         }
     }
 }

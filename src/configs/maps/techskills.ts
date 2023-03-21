@@ -313,12 +313,12 @@ export const techskills = {
             ],
         }),
     },
-    limits: {
-        xMin: 6 * 16,
-        yMin: 4 * 16,
-        xMax: 6 * 16,
-        yMax: 12 * 16 // don't forget getGridPosition
-    },
+    // limits: {
+    //     xMin: 6 * 16,
+    //     yMin: 4 * 16,
+    //     xMax: 6 * 16,
+    //     yMax: 12 * 16 // don't forget getGridPosition
+    // },
     walls: {},
     actionSpaces: {
         [getGridCoord(6,16)]: [

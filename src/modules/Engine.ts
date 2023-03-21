@@ -169,8 +169,8 @@ export default class Engine {
         const gameContainer = document.getElementById('canvas-container');
         console.log(gameContainer.clientWidth, gameContainer.clientHeight);
         const devicePixelRatio = window.devicePixelRatio || 1;
+        const scale = 3;
 
-        const scale = 4;
         const context = this._canvas.getContext('2d');
 
         console.log('devicePixelRatio', devicePixelRatio)
@@ -183,7 +183,7 @@ export default class Engine {
 
         context.imageSmoothingEnabled = false;
 
-        context.scale(scale*devicePixelRatio,scale*devicePixelRatio);
+        context.scale(devicePixelRatio*scale,devicePixelRatio*scale);
 
     
         // this._canvas.style.width = gameContainer.clientWidth + "px";

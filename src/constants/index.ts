@@ -4,9 +4,14 @@ type T = {
 }
 
 export const canvasScale: Record<number, T> = {
+    1056: {
+        x: 12,
+        y: 6
+    },
+
     768: {
-        x: 5.5,
-        y: 9
+        x: 8,
+        y: 16
     },
 
     810: {
@@ -51,6 +56,11 @@ export const canvasScale: Record<number, T> = {
 }
 
 export const limitsOffset: Record<number, T> = {
+    1056: {
+        x: 0,
+        y: 0
+    },
+    
     768: {
         x: -5,
         y: 2.5

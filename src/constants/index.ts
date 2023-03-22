@@ -1,78 +1,51 @@
-type T = {
+type TCoord = {
     x: number;
-    y: number;
+    y: number;  
 }
 
-export const canvasScale: Record<number, T> = {
-    486: {
-        x: 4.5,
-        y: 7
-    },
+type TLimits = {
+    xMin: number;
+    xMax: number;
+    yMin: number;
+    yMax: number;
+}
 
-    324: {
-        x: 4.5,
-        y: 7
-    },
-
-    352: {
-        x: 10.5,
+export const canvasScale: Record<number, TCoord> = {
+    1056: {
+        x: 11,
         y: 6
     },
 
-    288: {
-        x: 8.5,
+    960: {
+        x: 9,
         y: 6
     },
 
-    162: {
-        x: 4.5,
-        y: 7
+    752: {
+        x: 7.5,
+        y: 11
     },
-
-    136: {
-        x: 4,
-        y: 7
-    },
-
-    120: {
-        x: 3.5,
-        y: 8
-    }
 }
 
-export const limitsOffset: Record<number, T> = {
-    486: {
-        x: -6,
-        y: 1.5
+export const limitsOffset: Record<number, TLimits> = {
+    1056: {
+        xMin: 0,
+        yMin: 0,
+        xMax: 0,
+        yMax: 0
     },
     
-    352: {
-        x: 0,
-        y: 0
+    960: {
+        xMin: -2,
+        yMin: 0,
+        xMax: 0,
+        yMax: 0
     },
-
-    324: {
-        x: -6,
-        y: 1.5
+    
+    752: {
+        xMin: -3,
+        yMin: 5,
+        xMax: -3,
+        yMax: 8
     },
-
-    288: {
-        x: -2,
-        y: 0
-    },
-
-    162: {
-        x: -6,
-        y: 1.5
-    },
-
-    136: {
-        x: -4,
-        y: 3
-    },
-
-    120: {
-        x: -4,
-        y: 3
-    }
 }

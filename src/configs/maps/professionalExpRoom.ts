@@ -113,6 +113,12 @@ export const professionalExpRoom = {
             },
         })
     },
+    limits: {
+        xMin: getGridPosition(9),
+        yMin: getGridPosition(5),
+        xMax: getGridPosition(6),
+        yMax: getGridPosition(9) 
+    },
     actionSpaces: {
         // [getGridCoord(8,1)] : [
         //     {

@@ -128,12 +128,6 @@ export const hobbies = {
             ]
         })
     },
-    initialInteractions: [
-        { who: 'miniMe', type: 'walk', direction: 'left' },
-        { type: 'message', text: 'This is the hobbies room!!'},
-        { type: 'message', text: "There's something wrong with light in this room. I remember there was a switch "},
-        { who: 'miniMe', type: 'walk', direction: 'right' },
-    ],
     walls: {},
     actionSpaces: {
         [getGridCoord(10,4)]: [

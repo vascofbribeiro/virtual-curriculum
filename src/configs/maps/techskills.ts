@@ -314,10 +314,10 @@ export const techskills = {
         }),
     },
     limits: {
-        xMin: 6 * 16,
-        yMin: 4 * 16,
-        xMax: 6 * 16,
-        yMax: 12 * 16 // don't forget getGridPosition
+        xMin: getGridPosition(6),
+        yMin: getGridPosition(4),
+        xMax: getGridPosition(6),
+        yMax: getGridPosition(12) 
     },
     walls: {},
     actionSpaces: {

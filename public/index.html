@@ -8,11 +8,11 @@
 
             * {
                 box-sizing: border-box;
+                touch-action: none;
             }
 
             /* Avoid zoom on smartphone button clicks*/
             :root {
-                touch-action: pan-x pan-y;
                 height: 100% 
             }
 
@@ -65,49 +65,49 @@
 
             .game-container {
                 position: relative;
-                top: -50px;
                 width: 120px;
                 height: 200px;
                 outline: 1px solid white;
-                margin: 0 auto;
-                transform: scale(5) translateY(50%)
+                margin: 40px auto;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
             }
             
             @media (min-width: 768px) {
                 .game-container {
-                    width: 162px;
-                    height: 250px;
-                    transform: scale(5) translateY(50%)
+                    width: 752px;
+                    height: 1248px;
                 }
             }
 
             @media (min-width: 992px) {
                 .game-container {
-                    width: 288px;
-                    height: 200px;
-                    transform: scale(3) translateY(50%)
+                    width: 960px;
+                    height: 608px;
                 }
             }
 
             @media (min-width: 1200px) {
                 .game-container {
-                    width: 352px;
-                    height: 200px;
-                    transform: scale(3) translateY(50%)
+                    width: 1056px;
+                    height: 608px;
                 }
             }
 
             .game-container canvas {
                 image-rendering: pixelated;
+                image-rendering: -moz-crisp-edges;    /* Firefox */
+                image-rendering: -webkit-crisp-edges;
             }
 
             .button-audio {
                 position: absolute;
-                top: 2px;
-                right: 2px;
-                width: 16px;
-                height: 16px;
-                font-size: 10px;
+                top: 10px;
+                right: 10px;
+                width: 75px;
+                height: 75px;
+                font-size: 14px;
                 padding: 4px;
                 border-top: 1px solid black;
                 color: #302a4a;
@@ -132,8 +132,8 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                height: 36px;
-                font-size: 9px;
+                height: 80px;
+                font-size: 12px;
                 width:100%;
                 padding: 4px;
                 background: #c3b29d;
@@ -152,7 +152,7 @@
 
             @media (min-width: 992px) {
                 .message {
-                    font-size: 11px;
+                    font-size: 14px;
                 }
             }
 
@@ -166,18 +166,12 @@
 
             .message-p {
                 margin: 0;
-                font-size: 9px;
-            }
-
-            @media (min-width: 992px) {
-                .message-p {
-                    font-size: 10px;
-                }
+                font-size: 20px;
             }
 
             .note {
                 color: darkslategray;
-                font-size: 6px;
+                font-size: 16px;
                 text-align: center;
             }
 
@@ -202,8 +196,7 @@
                 left: 20%;
                 width: 60%;
                 height: 80%;
-                font-size: 9px;
-                padding: 4px;
+                padding: 10px;
                 background: #c3b29d;
                 border: 1px solid rgb(58, 57, 57);
                 color: #302a4a;
@@ -213,8 +206,9 @@
             @media (max-width: 1200px) {
                 .interaction-box {
                     width: 80%;
+                    height: 40%;
+                    top: 30%;
                     left: 10%;
-                    font-size: 11px;
                 }
             }
 
@@ -223,31 +217,24 @@
             }
 
             .interaction-box::-webkit-scrollbar-thumb {
-                background-color: 7d7265;
+                background-color: #7d7265;
             }
 
             .interaction-box-title {
-                font-size: 8px;
+                font-size: 30px;
                 font-weight: bold;
                 margin: 0;
             }
 
-            @media (min-width: 992px) {
-                .interaction-box-title {
-                    font-size: 11px;
-                }
-            }
-
-
             .interaction-box-text {
                 margin: 10px 0 0;
-                font-size: 9px;
+                font-size: 24px;
             }
             
             .button {
                 display: flex;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
                 border: 1px solid black;
                 border-radius: 5px;
                 background-color: white;
@@ -258,53 +245,82 @@
             
             .gamepad {
                 position: absolute;
-                left: 14%; /* Refactor this */
-                bottom: 20px;
+                left: 20%;
+                margin-top: 30px;
                 display: flex;
                 flex-direction: row;
                 justify-self: center;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
             }
 
-            .arrows {
-                display: flex;
-                flex-direction: column;
+            #joystick {
+                width: 300px;
+                height: 300px;
+                background-color: #ccc;
+                border-radius: 50%;
+                position: relative;
+                overflow: hidden;
             }
 
-            .sides {
-                display: flex;
-                flex-direction: row;
+            .arrow {
+                position: absolute;
+                width: 30px;
+                height: 30px;
             }
 
             .up {
-                margin-left: 140px;
-                border-top-left-radius: 30px;
-                border-top-right-radius: 30px;
-            }
-
-            .down {
-                margin-left: 140px;
-                border-bottom-left-radius: 30px;
-                border-bottom-right-radius: 30px;
+                top: 15px;
+                left: 121px;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                border-bottom: 30px solid grey;
             }
 
             .left {
-                margin-right: 120px;
-                border-top-left-radius: 30px;
-                border-bottom-left-radius: 30px;
+                top: 121px;
+                left: 15px;
+                border-top: 30px solid transparent;
+                border-right: 30px solid grey;
+                border-bottom: 30px solid transparent;
+            }
+
+            .down {
+                bottom: 15px;
+                left: 121px;
+                border-top: 30px solid grey;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
             }
 
             .right {
-                border-top-right-radius: 30px;
-                border-bottom-right-radius: 30px;
+                top: 121px;
+                right: 15px;
+                border-top: 30px solid transparent;
+                border-left: 30px solid grey;
+                border-bottom: 30px solid transparent;
+            }
+
+            #inner-circle {
+                position: absolute;
+                width: 150px;
+                height: 150px;
+                background-color: #333;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
 
             .a {
-                margin: 165 0 0 100;
                 background-color: lightblue;
+                margin-top: 60px;
+                margin-left: 100px;
                 border-radius: 50%;
-                font-size: 48px
+                font-size: 60px
             }
-
 
             @media (min-width: 992px)  {
                 .gamepad {
@@ -354,14 +370,14 @@
         </div>
 
         <div class="gamepad">
-            <div class="arrows">
-                <div id="arrow-up" class="button up"></div>
-                <div class="sides">
-                    <div id="arrow-left" class="button left"></div>
-                    <div id="arrow-right" class="button right"></div>
-                </div> 
-                <div id="arrow-down" class="button down"></div>
-            </div>
+            <div id="joystick">
+                <div class="arrow up"></div>
+                <div class="arrow left"></div>
+                <div class="arrow down"></div>
+                <div class="arrow right"></div>
+                <div id="inner-circle"></div>
+              </div>
+              
             <div class="buttons">
                 <div id="button-a" class="button a">A</div>
             </div>
@@ -370,6 +386,7 @@
         <script>
             const audio = new Audio('../sounds/main.mp3');
             function play() {
+                audio.volume = 0.05;
                 audio.loop = true;
                 audio.paused ? audio.play() : audio.pause();
             }

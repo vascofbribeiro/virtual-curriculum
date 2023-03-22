@@ -103,10 +103,10 @@
 
             .button-audio {
                 position: absolute;
-                top: 2px;
-                right: 2px;
-                width: 16px;
-                height: 16px;
+                top: 10px;
+                right: 10px;
+                width: 75px;
+                height: 75px;
                 font-size: 14px;
                 padding: 4px;
                 border-top: 1px solid black;
@@ -255,11 +255,6 @@
                 user-select: none;
             }
 
-            .arrows {
-                display: flex;
-                flex-direction: column;
-            }
-
             #joystick {
                 width: 300px;
                 height: 300px;
@@ -269,7 +264,46 @@
                 overflow: hidden;
             }
 
+            .arrow {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+            }
+
+            .up {
+                top: 15px;
+                left: 121px;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                border-bottom: 30px solid grey;
+            }
+
+            .left {
+                top: 121px;
+                left: 15px;
+                border-top: 30px solid transparent;
+                border-right: 30px solid grey;
+                border-bottom: 30px solid transparent;
+            }
+
+            .down {
+                bottom: 15px;
+                left: 121px;
+                border-top: 30px solid grey;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+            }
+
+            .right {
+                top: 121px;
+                right: 15px;
+                border-top: 30px solid transparent;
+                border-left: 30px solid grey;
+                border-bottom: 30px solid transparent;
+            }
+
             #inner-circle {
+                position: absolute;
                 width: 150px;
                 height: 150px;
                 background-color: #333;
@@ -338,6 +372,10 @@
 
         <div class="gamepad">
             <div id="joystick">
+                <div class="arrow up"></div>
+                <div class="arrow left"></div>
+                <div class="arrow down"></div>
+                <div class="arrow right"></div>
                 <div id="inner-circle"></div>
               </div>
               

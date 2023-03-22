@@ -90,7 +90,7 @@ export default class DirectionInput {
                     x: deltaX >= 0 ? Math.min(deltaX, rect.width/2) : Math.max(deltaX, -rect.width/2),
                     y: deltaY >= 0 ? Math.min(deltaY, rect.height/2) : Math.max(deltaY, -rect.height/2)
                 } 
-                if(Math.abs(directions.x) < rect.width/4 && Math.abs(directions.y) < rect.height/4) {
+                if(Math.abs(directions.x) < rect.width/8 && Math.abs(directions.y) < rect.height/8) {
                     return this._heldDirections.pop();
                 }
                 const orientation = Math.abs(directions.x) > Math.abs(directions.y) ? 'x' : 'y';

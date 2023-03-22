@@ -693,38 +693,6 @@ export const outside = {
                 }
             ],
         }),
-        // padel: new GameObject({
-        //     x: getGridPosition(0),
-        //     y: getGridPosition(3),
-        //     hasShadow: false,
-        //     width: getGridPosition(6),
-        //     height: getGridPosition(8),
-        //     collisionOffset: {
-        //         height: getGridPosition(1),
-        //         width: 0
-        //     },
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/padel.png',
-        //             width: getGridPosition(6),
-        //             height: getGridPosition(10),
-        //         },
-        //     },
-        // }),
-        // balloon: new GameObject({
-        //     x: getGridPosition(39),
-        //     y: getGridPosition(10),
-        //     hasShadow: true,
-        //     width: getGridPosition(3),
-        //     height: getGridPosition(6),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/balloon.png',
-        //             width: getGridPosition(3),
-        //             height: getGridPosition(6),
-        //         },
-        //     },
-        // }),
 
         //TREES
         fountain: new GameObject({
@@ -913,9 +881,9 @@ export const outside = {
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'walk', who: 'miniMe', direction: 'up'},
         {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
-        {type: 'message', text: 'Hello! 👋 Welcome to my CV', showNote: true},
+        {type: 'message', text: 'Hello! 👋 Welcome to my Portfolio', showNote: true},
         {type: 'message', text: `My name is Vasco and I'm a Front-end Developer`},
-        {type: 'message', text: `Feel free to explore the rooms! Use the arrows to walk around and press 'spacebar' or 'A' to interact with objects.`},
+        {type: 'message', text: `Feel free to explore the rooms!`},
     ]
 };
 

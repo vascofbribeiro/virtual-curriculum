@@ -1,5 +1,6 @@
 import GameObject from './GameObject';
 import { limitsOffset } from '../constants';
+import { getGridPosition } from '../utils/grid';
 
 export default class CameraView {
     public gameObject: GameObject;
@@ -41,14 +42,19 @@ export default class CameraView {
         if(!limits) {
             this.limits = null;
         } else {
+            // Prevent camera limits to change map location
+            const xMin = limits.xMin + this.limitsOffset.xMin;
+            const yMin = limits.yMin + this.limitsOffset.yMin;
+            const xMax = limits.xMax - this.limitsOffset.xMax;
+            const yMax = limits.yMax - this.limitsOffset.yMax;
+            
             this.limits = {
-                xMin: limits.xMin + this.limitsOffset.xMin,
-                yMin: limits.yMin + this.limitsOffset.yMin,
-                xMax: limits.xMax - this.limitsOffset.xMax,
-                yMax: limits.yMax - this.limitsOffset.yMax
+                xMin: xMin > xMax ? xMax : xMin,
+                yMin: yMin > yMax ? yMax : yMin,
+                xMax,
+                yMax
             }
         }
-        console.log('LIMITS', this.limits)
     }
 
     public getXView() {
@@ -81,10 +87,10 @@ export default class CameraView {
 
     public setLimitsOffset(width: number) {
         this.limitsOffset = {
-            xMin: limitsOffset[width].xMin * 16,
-            yMin: limitsOffset[width].yMin * 16,
-            xMax: limitsOffset[width].xMax * 16,
-            yMax: limitsOffset[width].yMax * 16,
+            xMin: getGridPosition(limitsOffset[width].xMin),
+            yMin: getGridPosition(limitsOffset[width].yMin),
+            xMax: getGridPosition(limitsOffset[width].xMax),
+            yMax: getGridPosition(limitsOffset[width].yMax),
         }
     }
 }

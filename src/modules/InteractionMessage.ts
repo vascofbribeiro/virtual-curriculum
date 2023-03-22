@@ -21,7 +21,7 @@ export class InteractionMessage {
         this.element.classList.add('message');
         this.element.innerHTML = `
             <p class="message-p"></p>
-            ${this._showNote ? `<p class="note">Press spacebar or A to continue</p>` : ''}
+            ${this._showNote ? `<p class="note">Press '${window.isMobile ? 'A' : 'spacebar'}' to continue</p>` : ''}
             <button class="message-button">X</button>
         `
 

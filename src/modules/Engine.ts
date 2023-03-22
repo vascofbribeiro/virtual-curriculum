@@ -13,6 +13,7 @@ declare global {
             x: number;
             y: number;
         };
+        isMobile: boolean;
     }
 }
 
@@ -185,6 +186,7 @@ export default class Engine {
         context.scale(devicePixelRatio*scale,devicePixelRatio*scale);
 
         window.canvasMultiplier = canvasScale[gameContainer.clientWidth];
+        window.isMobile = gameContainer.clientWidth < 992
         this._cameraView.setLimitsOffset(gameContainer.clientWidth);
         this._activeMap && this._cameraView.setLimits(this._activeMap.limits);
     }

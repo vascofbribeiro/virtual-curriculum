@@ -105,10 +105,10 @@ export const beach = {
         
     },
     limits: {
-        xMin: 11 * 16,
-        yMin: 6 * 16,
-        xMax: 11 * 16,
-        yMax: 8 * 16 // don't forget getGridPosition
+        xMin: getGridPosition(11),
+        yMin: getGridPosition(6),
+        xMax: getGridPosition(11),
+        yMax: getGridPosition(8)
     },
     walls: {
         [getGridCoord(12, 12)]: true,

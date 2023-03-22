@@ -319,9 +319,8 @@
                 margin-top: 60px;
                 margin-left: 100px;
                 border-radius: 50%;
-                font-size: 48px
+                font-size: 60px
             }
-
 
             @media (min-width: 992px)  {
                 .gamepad {
@@ -387,6 +386,7 @@
         <script>
             const audio = new Audio('../sounds/main.mp3');
             function play() {
+                audio.volume = 0.05;
                 audio.loop = true;
                 audio.paused ? audio.play() : audio.pause();
             }

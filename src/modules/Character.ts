@@ -50,7 +50,7 @@ export default class Character extends GameObject {
 
     public update(state: IState) {
         if (this._movingProgressRemaining > 0) {
-            this.updatePosition(state.map);
+            this.updatePosition();
         } else {
             // Only when is ready to walk. Ex: during cutscenes or other things its not possible to move
             if (!state.map.isInteracting && this._isPlayer && state.arrow) {
@@ -110,7 +110,7 @@ export default class Character extends GameObject {
 
     }
 
-    public updatePosition(map: Map) {
+    public updatePosition() {
         // Define walking for character based on direction input
         // Typescript workaround
         const axis = this.directionUpdate[this.direction].axis as 'x' | 'y';

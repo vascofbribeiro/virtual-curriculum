@@ -63,12 +63,9 @@ export default class Door {
         const x = this._gameObject.x + this.offsetX + getGridPosition(window.canvasMultiplier.x) - cameraView.getXView();
         const y = this._gameObject.y + this.offsetY + getGridPosition(window.canvasMultiplier.y) - cameraView.getYView();
 
-        // const [frameX, frameY] = this.frame;
-        // console.log('DRAW DOOR', this._gameObject.x, x);
-        // console.log('DRAW DOOR', this._gameObject.y, y);
         this._isLoaded && ctx.drawImage(
             this._image,
-            this._currentAnimationFrame * this._imageWidth, //left cut //FIX THIS FOR OTHER GAME OBJECTS
+            this._currentAnimationFrame * this._imageWidth, //left cut
             0,  //top cut
             this._imageWidth,
             this._imageHeight,

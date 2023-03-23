@@ -1,7 +1,6 @@
 export default class Canvas {
     private _element: HTMLCanvasElement;
     private _ctx: CanvasRenderingContext2D
-    private _backgroundImage: HTMLImageElement;
 
     constructor(id: string) {
         this._element = document.getElementById(id) as HTMLCanvasElement;

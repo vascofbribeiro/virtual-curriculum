@@ -79,7 +79,6 @@ export default class GameObject {
     }
 
     public mount(map: Map) {
-        // Should object mount ????
         this.isMounted = true;
         map.addSpaceTaken(this.x + this.collisionOffset.width, this.y + this.collisionOffset.height);
 

@@ -16,7 +16,6 @@ export default class CameraView {
         xMax: number;
         yMax: number
     }
-    private DEFAULT_SCALE = 352
 
     constructor() {
         this.gameObject = null;
@@ -64,10 +63,10 @@ export default class CameraView {
         if(this.gameObject.x < this.limits.xMin) {
             return this.limits.xMin;
         }
-        if(this.gameObject.x > this.limits.xMax) {
+        if(this.gameObject.x > this.limits.xMax) {
             return this.limits.xMax;
         }
-        
+
         return this.gameObject.x;
     }
 
@@ -78,7 +77,7 @@ export default class CameraView {
         if(this.gameObject.y < this.limits.yMin) {
             return this.limits.yMin;
         }
-        if(this.gameObject.y > this.limits.yMax) {
+        if(this.gameObject.y > this.limits.yMax) {
             return this.limits.yMax;
         }
         

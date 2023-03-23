@@ -1,5 +1,3 @@
-import { IgnorePlugin } from "webpack";
-
 type TypewriterConfig = {
     element: HTMLElement;
     text: string;

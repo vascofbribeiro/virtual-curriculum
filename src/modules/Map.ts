@@ -27,7 +27,6 @@ export default class Map {
         xMax: number,
         yMax: number
     }
-    private _hasTakenInitialInteractions: boolean;
 
     constructor(config: IMapConfig) {
         this.isImageLoaded = false;
@@ -47,7 +46,6 @@ export default class Map {
         this.spacesTaken = this.getSpacesTaken();
         this.isInteracting = false;
         this.initialInteractions = config.initialInteractions;
-        this._hasTakenInitialInteractions = false;
         this.limits = config.limits;
     }
 

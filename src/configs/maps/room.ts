@@ -1,6 +1,6 @@
 import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
-import { getGridPosition, getGridCoord } from '../../utils/grid';
+import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimation from '../sprites/miniMe';
 
 export const room = {
@@ -128,7 +128,10 @@ export const room = {
             ]
         })
     },
-    walls: {},
+    walls: {
+        [getGridCoord(10,3)]: true,
+        [getGridCoord(11,4)]: true
+    },
     actionSpaces: {
         [getGridCoord(10,4)]: [
             {
@@ -139,3 +142,8 @@ export const room = {
         ]
     },
 };
+
+createLinearWall({coord: 'x', x: 0, y: 5, n: 11, map: room});
+createLinearWall({coord: 'y', x: 0, y: 0, n: 5, map: room});
+createLinearWall({coord: 'x', x: 0, y: 0, n: 11, map: room});
+createLinearWall({coord: 'y', x: 9, y: 0, n: 4, map: room});

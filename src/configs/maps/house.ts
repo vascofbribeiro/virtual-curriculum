@@ -120,16 +120,14 @@ export const house = {
         yMax: getGridPosition(9) 
     },
     actionSpaces: {
-        // [getGridCoord(8,1)] : [
-        //     {
-        //         events: [
-        //             { who: 'npc', type: 'walk', direction: 'up'},
-        //             { who: 'npc', type: 'idle', direction: 'left'},
-        //             { type: 'message', text: 'Dont walk there!!'},
-        //         ]
-        //     }
-        // ],
         [getGridCoord(0,4)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'room'},
+                ]
+            }
+        ],
+        [getGridCoord(0,5)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'room'},
@@ -144,7 +142,9 @@ export const house = {
             }
         ]
     },
-    walls: {},
+    walls: {
+        [getGridCoord(-1,4)]: true
+    },
 };
 
 
@@ -153,7 +153,8 @@ createLinearWall({coord: 'y', x: 0, y: 0, n: 11, map: house});
 createLinearWall({coord: 'x', x: 1, y: 6, n: 3, map: house});
 createLinearWall({coord: 'x', x: 5, y: 8, n: 4, map: house});
 createLinearWall({coord: 'x', x: 10, y: 8, n: 4, map: house});
+createLinearWall({coord: 'y', x: 4, y: 1, n: 3, map: house});
+createLinearWall({coord: 'x', x: 0, y: 3, n: 4, map: house});
 createLinearWall({coord: 'y', x: 4, y: 6, n: 6, map: house});
 createLinearWall({coord: 'y', x: 14, y: 1, n: 11, map: house});
-createLinearWall({coord: 'x', x: 5, y: 12, n: 4, map: house});
-createLinearWall({coord: 'x', x: 10, y: 12, n: 4, map: house});
+createLinearWall({coord: 'x', x: 5, y: 12, n: 10, map: house});

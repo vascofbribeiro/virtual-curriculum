@@ -338,8 +338,20 @@ export const techskills = {
     },
 };
 
-createLinearWall({coord: 'y', x: 0, y: -1, n: 15, map: techskills});
-createLinearWall({coord: 'y', x: 13, y: -1, n: 15, map: techskills});
+createLinearWall({coord: 'y', x: 0, y: -1, n: 17, map: techskills});
+createLinearWall({coord: 'y', x: 13, y: -1, n: 17, map: techskills});
 createLinearWall({coord: 'x', x: 0, y: 16, n: 13, map: techskills});
 createLinearWall({coord: 'x', x: 0, y: 17, n: 13, map: techskills});
 createLinearWall({coord: 'x', x: 0, y: 1, n: 13, map: techskills});
+
+
+createLinearWall({coord: 'x', x: 1, y: 5, n: 5, map: techskills});
+createLinearWall({coord: 'x', x: 8, y: 5, n: 5, map: techskills});
+createLinearWall({coord: 'x', x: 1, y: 7, n: 5, map: techskills});
+createLinearWall({coord: 'x', x: 8, y: 7, n: 5, map: techskills});
+
+createLinearWall({coord: 'x', x: 1, y: 11, n: 5, map: techskills});
+createLinearWall({coord: 'x', x: 8, y: 11, n: 5, map: techskills});
+createLinearWall({coord: 'x', x: 1, y: 13, n: 5, map: techskills});
+createLinearWall({coord: 'x', x: 8, y: 13, n: 5, map: techskills});
+

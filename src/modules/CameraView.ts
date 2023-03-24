@@ -1,5 +1,5 @@
 import GameObject from './GameObject';
-import { limitsOffset } from '../constants';
+import { LIMITS_OFFSET } from '../constants';
 import { getGridPosition } from '../utils/grid';
 
 export default class CameraView {
@@ -10,7 +10,7 @@ export default class CameraView {
         yMin: number;
         yMax: number
     };
-    public limitsOffset?: {
+    public LIMITS_OFFSET?: {
         xMin: number;
         yMin: number;
         xMax: number;
@@ -20,7 +20,7 @@ export default class CameraView {
     constructor() {
         this.gameObject = null;
         this.limits = null;
-        this.limitsOffset = {
+        this.LIMITS_OFFSET = {
             xMin: 0,
             yMin: 0,
             xMax: 0,
@@ -42,10 +42,10 @@ export default class CameraView {
             this.limits = null;
         } else {
             // Prevent camera limits to change map location
-            const xMin = limits.xMin + this.limitsOffset.xMin;
-            const yMin = limits.yMin + this.limitsOffset.yMin;
-            const xMax = limits.xMax - this.limitsOffset.xMax;
-            const yMax = limits.yMax - this.limitsOffset.yMax;
+            const xMin = limits.xMin + this.LIMITS_OFFSET.xMin;
+            const yMin = limits.yMin + this.LIMITS_OFFSET.yMin;
+            const xMax = limits.xMax - this.LIMITS_OFFSET.xMax;
+            const yMax = limits.yMax - this.LIMITS_OFFSET.yMax;
             
             this.limits = {
                 xMin: xMin > xMax ? xMax : xMin,
@@ -85,11 +85,11 @@ export default class CameraView {
     }
 
     public setLimitsOffset(width: number) {
-        this.limitsOffset = {
-            xMin: getGridPosition(limitsOffset[width].xMin),
-            yMin: getGridPosition(limitsOffset[width].yMin),
-            xMax: getGridPosition(limitsOffset[width].xMax),
-            yMax: getGridPosition(limitsOffset[width].yMax),
+        this.LIMITS_OFFSET = {
+            xMin: getGridPosition(LIMITS_OFFSET[width].xMin),
+            yMin: getGridPosition(LIMITS_OFFSET[width].yMin),
+            xMax: getGridPosition(LIMITS_OFFSET[width].xMax),
+            yMax: getGridPosition(LIMITS_OFFSET[width].yMax),
         }
     }
 }

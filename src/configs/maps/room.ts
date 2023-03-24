@@ -3,7 +3,7 @@ import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord } from '../../utils/grid';
 import miniMeAnimation from '../sprites/miniMe';
 
-export const hobbies = {
+export const room = {
     lowerImageSrc: "../images/backgrounds/room.png",
     gameObjects: {
         miniMe: new Character({
@@ -133,7 +133,7 @@ export const hobbies = {
         [getGridCoord(10,4)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'professionalExpRoom'},
+                    { type: 'changeMap', map: 'house'},
                 ]
             }
         ]

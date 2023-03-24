@@ -3,7 +3,7 @@ import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimations from '../sprites/miniMe';
 
-export const professionalExpRoom = {
+export const house = {
     lowerImageSrc: "../images/backgrounds/generic.png",
     upperImageSrc: "../images/backgrounds/generic-upper.png",
     gameObjects: {
@@ -132,7 +132,7 @@ export const professionalExpRoom = {
         [getGridCoord(0,4)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'hobbies'},
+                    { type: 'changeMap', map: 'room'},
                 ]
             }
         ],
@@ -148,12 +148,12 @@ export const professionalExpRoom = {
 };
 
 
-createLinearWall({coord: 'x', x: 0, y: 0, n: 20, map: professionalExpRoom});
-createLinearWall({coord: 'y', x: 0, y: 0, n: 11, map: professionalExpRoom});
-createLinearWall({coord: 'x', x: 1, y: 6, n: 3, map: professionalExpRoom});
-createLinearWall({coord: 'x', x: 5, y: 8, n: 4, map: professionalExpRoom});
-createLinearWall({coord: 'x', x: 10, y: 8, n: 4, map: professionalExpRoom});
-createLinearWall({coord: 'y', x: 4, y: 6, n: 6, map: professionalExpRoom});
-createLinearWall({coord: 'y', x: 14, y: 1, n: 11, map: professionalExpRoom});
-createLinearWall({coord: 'x', x: 5, y: 12, n: 4, map: professionalExpRoom});
-createLinearWall({coord: 'x', x: 10, y: 12, n: 4, map: professionalExpRoom});
+createLinearWall({coord: 'x', x: 0, y: 0, n: 20, map: house});
+createLinearWall({coord: 'y', x: 0, y: 0, n: 11, map: house});
+createLinearWall({coord: 'x', x: 1, y: 6, n: 3, map: house});
+createLinearWall({coord: 'x', x: 5, y: 8, n: 4, map: house});
+createLinearWall({coord: 'x', x: 10, y: 8, n: 4, map: house});
+createLinearWall({coord: 'y', x: 4, y: 6, n: 6, map: house});
+createLinearWall({coord: 'y', x: 14, y: 1, n: 11, map: house});
+createLinearWall({coord: 'x', x: 5, y: 12, n: 4, map: house});
+createLinearWall({coord: 'x', x: 10, y: 12, n: 4, map: house});

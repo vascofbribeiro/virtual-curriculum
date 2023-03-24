@@ -1,39 +1,19 @@
-import { professionalExpRoom } from './maps/professionalExpRoom';
-import { hobbies } from './maps/hobbies';
+import { house } from './maps/house';
+import { room } from './maps/room';
 import { outside } from './maps/outside';
 import { techskills } from './maps/techskills';
 import { basket } from './maps/basket';
 import { beach } from './maps/beach';
-import { bar } from './maps/bar';
+import { softSkills } from './maps/softSkills';
 import { farfetch } from './maps/farfetch';
 
-// var canvas = document.querySelector('#game-canvas');
-// fitToContainer(canvas);
-
-// function fitToContainer(canvas){
-//   // Make it visually fill the positioned parent
-//   canvas.style.width ='100%';
-//   canvas.style.height='100%';
-//   // ...then set the internal size to match
-//   canvas.width  = canvas.offsetWidth;
-//   canvas.height = canvas.offsetHeight;
-// }
-
 export const mapsConfig = {
-    professionalExpRoom,
-    hobbies,
+    house,
+    room,
     outside,
     techskills,
     basket,
     beach,
-    bar,
+    softSkills,
     farfetch
 }
-
-
-//createDoor({x: 10, y: 1, map: mapsConfig.outside, nextMap: 'professionalExpRoom'});
-
-// function createDoor({x, y, map, nextMap}) {
-//     map.doors[`${getGridCoord(x,y)}`] = nextMap
-//     console.log(map.doors);
-// }

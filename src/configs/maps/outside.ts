@@ -485,8 +485,8 @@ export const outside = {
                 }
             ],
         }), 
-        // BAR BUILDING
-        bar: new GameObject({
+        // SOFT SKILLS BUILDING
+        softSkills: new GameObject({
             x: getGridPosition(7),
             y: getGridPosition(0),
             hasShadow: false,
@@ -494,7 +494,7 @@ export const outside = {
             height: getGridPosition(9),
             sprite: {
                 object: {
-                    src: '../images/objects/bar.png',
+                    src: '../images/objects/soft-skills.png',
                     width: 96,
                     height: 160,
                 },
@@ -770,7 +770,7 @@ export const outside = {
         [getGridCoord(50,6)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'professionalExpRoom'},
+                    { type: 'changeMap', map: 'house'},
                 ]
             }
         ],
@@ -805,7 +805,7 @@ export const outside = {
         [getGridCoord(8,8)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'bar'},
+                    { type: 'changeMap', map: 'softSkills'},
                 ]
             }
         ],
@@ -883,7 +883,7 @@ export const outside = {
         {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
         {type: 'message', text: 'Hello! 👋 Welcome to my Portfolio', showNote: true},
         {type: 'message', text: `My name is Vasco and I'm a Front-end Developer`},
-        {type: 'message', text: `Feel free to explore the rooms!`},
+        {type: 'message', text: `Feel free to explore the rooms! Use the ${window.isMobile ? 'joystick': 'arrows'} to walk around and press ${window.isMobile ? 'A': 'spacebar'} to interact with objects`},
     ]
 };
 

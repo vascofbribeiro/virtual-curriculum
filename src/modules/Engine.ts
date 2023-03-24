@@ -2,7 +2,7 @@ import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
-import { canvasScale } from '../constants/';
+import { CANVAS_POSITION, CANVAS_SCALE, MAX_WIDTH_MOBILE } from '../constants/';
 import GameObject from './GameObject';
 import CameraView from './CameraView';
 
@@ -27,6 +27,8 @@ export default class Engine {
 
     constructor(id: string) { 
         if (typeof window) {
+            const gameContainer = document.getElementById('canvas-container');
+            window.isMobile = gameContainer.clientWidth <= MAX_WIDTH_MOBILE;
             window.mapsConfig = mapsConfig;
         }
         this._maps = {};
@@ -38,7 +40,7 @@ export default class Engine {
     }
 
     startGameLoop() {
-        // Define 60 frames per second in order to prevent request animation frame
+        // Define 70 frames per second in order to prevent request animation frame
         // to be called more times on 120Hz displays
 
         const fpsInterval = 1000 / 70;
@@ -167,13 +169,11 @@ export default class Engine {
 
     public resizeCanvas() {
         const gameContainer = document.getElementById('canvas-container');
-        console.log(gameContainer.clientWidth, gameContainer.clientHeight);
         const devicePixelRatio = window.devicePixelRatio || 1;
-        const scale = 3;
+        const scale = CANVAS_SCALE[gameContainer.clientWidth];
 
         const context = this._canvas.getContext('2d');
 
-        console.log('devicePixelRatio', devicePixelRatio)
         this._canvas.width = gameContainer.clientWidth*devicePixelRatio;
         this._canvas.height = gameContainer.clientHeight*devicePixelRatio;
 
@@ -185,8 +185,8 @@ export default class Engine {
 
         context.scale(devicePixelRatio*scale,devicePixelRatio*scale);
 
-        window.canvasMultiplier = canvasScale[gameContainer.clientWidth];
-        window.isMobile = gameContainer.clientWidth < 992
+        window.canvasMultiplier = CANVAS_POSITION[gameContainer.clientWidth];
+        window.isMobile = gameContainer.clientWidth <= MAX_WIDTH_MOBILE;
         this._cameraView.setLimitsOffset(gameContainer.clientWidth);
         this._activeMap && this._cameraView.setLimits(this._activeMap.limits);
     }

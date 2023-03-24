@@ -4,8 +4,8 @@ import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/gri
 import miniMeAnimation from '../sprites/miniMe';
 import statues from '../sprites/statues';
 
-export const bar = {
-    lowerImageSrc: "../images/backgrounds/hobbies.png",
+export const softSkills = {
+    lowerImageSrc: "../images/backgrounds/soft-skills.png",
     gameObjects: {
         miniMe: new Character({
             x: getGridPosition(5),
@@ -99,8 +99,8 @@ export const bar = {
     },
 };
 
-createLinearWall({coord: 'x', x: 0, y: 4, n: 10, map: bar});
-createLinearWall({coord: 'y', x: 0, y: -1, n: 10, map: bar});
-createLinearWall({coord: 'x', x: 0, y: 8, n: 10, map: bar});
-createLinearWall({coord: 'x', x: 0, y: 9, n: 10, map: bar});
-createLinearWall({coord: 'y', x: 10, y: -1, n: 10, map: bar});
+createLinearWall({coord: 'x', x: 0, y: 4, n: 10, map: softSkills});
+createLinearWall({coord: 'y', x: 0, y: -1, n: 10, map: softSkills});
+createLinearWall({coord: 'x', x: 0, y: 8, n: 10, map: softSkills});
+createLinearWall({coord: 'x', x: 0, y: 9, n: 10, map: softSkills});
+createLinearWall({coord: 'y', x: 10, y: -1, n: 10, map: softSkills});

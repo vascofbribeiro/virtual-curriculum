@@ -10,42 +10,46 @@ type TLimits = {
     yMax: number;
 }
 
-export const canvasScale: Record<number, TCoord> = {
+export const CANVAS_SCALE: Record<number, number> = {
+    1056: 3,
+    960: 3,
+    752: 4,
+}
+
+export const CANVAS_POSITION: Record<number, TCoord> = {
     1056: {
         x: 11,
         y: 6
     },
-
     960: {
         x: 9,
         y: 6
     },
-
     752: {
-        x: 7.5,
-        y: 11
+        x: 6,
+        y: 9
     },
 }
 
-export const limitsOffset: Record<number, TLimits> = {
+export const LIMITS_OFFSET: Record<number, TLimits> = {
     1056: {
         xMin: 0,
         yMin: 0,
         xMax: 0,
         yMax: 0
     },
-    
     960: {
         xMin: -2,
         yMin: 0,
         xMax: 0,
         yMax: 0
     },
-    
     752: {
-        xMin: -3,
-        yMin: 5,
-        xMax: -3,
-        yMax: 8
+        xMin: -5,
+        yMin: 3,
+        xMax: -5,
+        yMax: 4
     },
 }
+
+export const MAX_WIDTH_MOBILE = 991;

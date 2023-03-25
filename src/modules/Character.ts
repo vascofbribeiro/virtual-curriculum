@@ -25,7 +25,6 @@ export default class Character extends GameObject {
 
         this._isPlayer = config.isPlayer;
         this._speedMultiplier = config.speedMultiplier ?? 1;
-        console.log(this._speedMultiplier);
         this.isInteracting = true;
         this.isIdle = false;
         this.directionUpdate = {

@@ -81,10 +81,13 @@ export default class DirectionInput {
                 const directions = {
                     x: deltaX >= 0 ? Math.min(deltaX, rect.width/2) : Math.max(deltaX, -rect.width/2),
                     y: deltaY >= 0 ? Math.min(deltaY, rect.height/2) : Math.max(deltaY, -rect.height/2)
-                } 
+                }
+
+                // If distance is not enough dont walk
                 if(Math.abs(directions.x) < rect.width/8 && Math.abs(directions.y) < rect.height/8) {
                     return this._heldDirections.pop();
                 }
+
                 const orientation = Math.abs(directions.x) > Math.abs(directions.y) ? 'x' : 'y';
                 const finalDirection = directions[orientation] > 0 ? 
                     orientation === 'x' ? 'right' : 'down' : 

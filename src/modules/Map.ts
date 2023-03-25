@@ -62,7 +62,6 @@ export default class Map {
         })
         
         this.doors = this.getDoors();
-        console.log('doors', this.doors);
     }
 
     public getInteractionOnSquare(x: number, y: number) {
@@ -140,8 +139,6 @@ export default class Map {
 
             //Open door on the square below
             const yMax = y + object.door.height - 16;
-
-            console.log('OBJECT ID', object);
 
             for(let i = x / 16; i < xMax / 16 ; i++) {
                     doors[getGridCoord(i, yMax/16)] = object.id;

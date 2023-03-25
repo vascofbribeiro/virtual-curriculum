@@ -109,13 +109,11 @@ export default class Engine {
         this._activeMap = this._maps[mapName] || new Map(window.mapsConfig[mapName]);
         this._activeMap.engine = this;
         this._activeMap.mountObjects();
-        console.log(this._activeMap);
        
         const cameraViewObject = 
             Object.values(this._activeMap.gameObjects)
                 .find(gameObject => gameObject.isCameraView)
-            || this._activeMap.gameObjects.miniMe
-        console.log('Camera View', cameraViewObject);
+            || this._activeMap.gameObjects.miniMe;
         
         this.setCameraView(cameraViewObject);
         this._activeMap.startInteraction(this._activeMap.initialInteractions);

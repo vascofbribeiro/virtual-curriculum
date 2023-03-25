@@ -67,7 +67,6 @@ export default class GameObject {
         this.shadowSprite = this._hasShadow && new SpriteCharacter(this, config.sprite.shadow);
 
         this.door = config.door ? new Door(this, config.door) : null;
-        console.log(this.door);
 
         this.direction = "down";
         this.behaviorLoop = config.behaviorLoop || [];

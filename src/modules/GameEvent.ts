@@ -86,6 +86,7 @@ export default class GameEvent {
         this.map.isInteracting = true;
         const message = new InteractionMessage({
             showNote: this.event.showNote,
+            isLink: this.event.isLink,
             text: this.event.text,
             onComplete: () => {
                 this.map.isInteracting = false;

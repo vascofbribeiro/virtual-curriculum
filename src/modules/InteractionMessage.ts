@@ -8,29 +8,33 @@ export class InteractionMessage {
     private interactionListener: InteractionInput;
     private typewriter: Typewriter;
     private _showNote: boolean;
+    private _isLink: boolean;
     
-    constructor({ text, onComplete, showNote }: { text: string | Function, onComplete: Function, showNote: boolean}) {
+    constructor({ text, onComplete, showNote, isLink }: { text: string | Function, onComplete: Function, showNote: boolean, isLink: boolean}) {
         this._text = this._decodeText(text);
         this._onComplete = onComplete;
         this.element = null;
         this._showNote = showNote;
+        this._isLink = isLink
     }
 
     private createElement() {
+        const link = this._isLink ? `<a href="${this._text}" target="_blank">${this._text}</a>` : ''
         this.element = document.createElement('div');
         this.element.classList.add('message');
         this.element.innerHTML = `
-            <p class="message-p"></p>
+            <p class="message-p">${link}</p>
             ${this._showNote ? `<p class="note">Press '${window.isMobile ? 'A' : 'spacebar'}' to continue</p>` : ''}
             <button class="message-button">X</button>
         `
 
         // Typewriter effect
-        this.typewriter = new Typewriter({
-            element: this.element.querySelector('.message-p'),
-            text: this._text,
-
-        });
+        if(!this._isLink) {
+            this.typewriter = new Typewriter({
+                element: this.element.querySelector('.message-p'),
+                text: this._text,
+            });
+        }
 
         this.element.querySelector('.message-button').addEventListener('click', () => {
             this.done();
@@ -48,7 +52,7 @@ export class InteractionMessage {
     }
 
     public done() {
-        if (this.typewriter.isDone) { 
+        if (this._isLink || this.typewriter.isDone) { 
             this.element.remove();
             this.interactionListener.unbind();
             this._onComplete()
@@ -61,6 +65,6 @@ export class InteractionMessage {
         this.createElement()
         container.appendChild(this.element)
 
-        this.typewriter.init()
+        !this._isLink && this.typewriter.init()
     }
 }

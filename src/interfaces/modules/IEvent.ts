@@ -8,6 +8,7 @@ export interface IEvent {
     time?: number;
     text?: string;
     showNote?: boolean;
+    isLink?: boolean;
     map?: string;
     textLines?: Array<string>
     title?: string;

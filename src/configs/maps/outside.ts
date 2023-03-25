@@ -527,11 +527,13 @@ export const outside = {
                     events: [
                         {
                             type: 'message', 
-                            text: `https://github.com/vascofbribeiro`
+                            text: `https://github.com/vascofbribeiro`,
+                            isLink: true
                         },
                         {
                             type: 'message', 
-                            text: `https://www.linkedin.com/in/vascof-ribeiro/`
+                            text: `https://www.linkedin.com/in/vascof-ribeiro/`,
+                            isLink: true
                         }
                     ],
                 }
@@ -571,7 +573,8 @@ export const outside = {
                         },
                         {
                             type: 'message',
-                            text:'More info here: https://medium.com/makeorbreak-io/make-or-break-more-than-a-hackathon-45d43c0042ba'
+                            text:'https://medium.com/makeorbreak-io/make-or-break-more-than-a-hackathon-45d43c0042ba',
+                            isLink: true
                         },
                     ]
                 }

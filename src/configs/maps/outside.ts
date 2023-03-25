@@ -883,7 +883,10 @@ export const outside = {
         {type: 'idle', who: 'miniMe', direction: 'down', time: 200},
         {type: 'message', text: 'Hello! 👋 Welcome to my Portfolio', showNote: true},
         {type: 'message', text: `My name is Vasco and I'm a Front-end Developer`},
-        {type: 'message', text: `Feel free to explore the rooms! Use the ${window.isMobile ? 'joystick': 'arrows'} to walk around and press ${window.isMobile ? 'A': 'spacebar'} to interact with objects`},
+        {type: 'message', text: (isMobile: boolean) => {
+                return `Feel free to explore the rooms! Use the ${isMobile ? 'joystick' : 'arrows'} to walk around and press ${isMobile ? 'A' : 'spacebar'} to interact with objects.`
+            }
+        }
     ]
 };
 

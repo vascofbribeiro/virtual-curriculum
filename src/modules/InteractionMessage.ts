@@ -9,8 +9,8 @@ export class InteractionMessage {
     private typewriter: Typewriter;
     private _showNote: boolean;
     
-    constructor({ text, onComplete, showNote }: { text: string, onComplete: Function, showNote: boolean}) {
-        this._text = text;
+    constructor({ text, onComplete, showNote }: { text: string | Function, onComplete: Function, showNote: boolean}) {
+        this._text = this._decodeText(text);
         this._onComplete = onComplete;
         this.element = null;
         this._showNote = showNote;
@@ -39,6 +39,12 @@ export class InteractionMessage {
         this.interactionListener = new InteractionInput(() => {
             this.done()
         });
+    }
+
+    private _decodeText(text: string | Function): string {
+        if(typeof text === 'string') return text;
+
+        return text(window.isMobile);
     }
 
     public done() {

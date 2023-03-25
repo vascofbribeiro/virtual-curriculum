@@ -50,7 +50,7 @@ export const room = {
                 {
                     events: [{
                         type:'message',
-                        text: 'I like to play the piano for fun. I started to learn 1 year ago',
+                        text: 'I like to play the piano for fun!',
                     }]
                 }
             ],
@@ -96,14 +96,6 @@ export const room = {
                     height: getGridPosition(2),
                 },
             },
-            interactions: [
-                {
-                    events: [{
-                        type:'message',
-                        text: '1st Place in Porto Summer of Code 2017',
-                    }]
-                }
-            ]
         }),
         bed: new GameObject({
             x: getGridPosition(1),
@@ -118,14 +110,6 @@ export const room = {
                     height: getGridPosition(2),
                 },
             },
-            interactions: [
-                {
-                    events: [{
-                        type:'message',
-                        text: '1st Place in Porto Summer of Code 2017',
-                    }]
-                }
-            ]
         })
     },
     walls: {

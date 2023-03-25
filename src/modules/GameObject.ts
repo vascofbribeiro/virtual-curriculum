@@ -24,7 +24,8 @@ export default class GameObject {
     public shadowHeight: number;
     public objectSpriteimageWidth: number;
     public objectSpriteimageHeight: number;
-    public interactions: Array<any>
+    public interactions: Array<any>;
+    public label: string;
     public walkable: boolean;
     public isInteracting: boolean;
     public isMounted: boolean;
@@ -73,6 +74,7 @@ export default class GameObject {
         this.behaviorLoopIndex = 0;
         this.walkable = config.walkable || false;
         this.interactions = config.interactions;
+        this.label = config.label;
         this.isCameraView = config.isCameraView;
         this.hasInteracted = false;
     }

@@ -25,6 +25,7 @@ export interface IGameObjectConfig {
         far?: string;
         nearby?: string;
     }
+    label?: string;
     isHidden?: boolean;
     isCameraView?: boolean;
     speedMultiplier?: number;

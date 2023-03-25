@@ -99,24 +99,19 @@ export default class SpriteCharacter {
 
         // Draw interaction item at the top
         if(this._isLoaded && this._interactionImages) {
-            // if(miniMe.x >= this._gameObject.x && miniMe.x < this._gameObject.x + this._gameObject.objectWidth &&
-            //     miniMe.y <= this._gameObject.y + 80 && miniMe.y > this._gameObject.y /* 5 squares down. Change for a value that makes sense*/) {
-            //         this._interactionImages.show = (this._interactionImages.nearby || this._interactionImages.far || null);
-
-            //         ctx.drawImage(
-            //             this._interactionImages.show,
-            //             0,
-            //             0,
-            //             32,
-            //             32,
-            //             x + (this._gameObject.objectWidth/2) - (this._interactionImages.show.width/2),
-            //             y - 16,
-            //             32,
-            //             32
-            //         );
-            // } else {
                 this._interactionImages.show = this._interactionImages.far || null;
-                
+                ctx.drawImage(
+                    this._interactionImages.show,
+                    0,
+                    0,
+                    32,
+                    32,
+                    x + (this._gameObject.objectWidth/2) - (this._interactionImages.show.width/2),
+                    y - 14  + this._verticalMove,
+                    32,
+                    32
+                );
+
                 !this._gameObject.hasInteracted && ctx.drawImage(
                     this._interactionImages.show,
                     0,
@@ -130,6 +125,14 @@ export default class SpriteCharacter {
                 );
             //}
         }
+
+        if(this._gameObject.label) {
+            ctx.font = "bold 7px Arial";
+            ctx.fillStyle = "rgb(88, 91, 99)";
+            ctx.textAlign = "center";
+            ctx.fillText(this._gameObject.label, x + this._gameObject.objectWidth/2,y - 2);
+        }
+
         this.updateAnimationProgress();
     }
 

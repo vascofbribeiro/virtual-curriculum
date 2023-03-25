@@ -31,27 +31,6 @@ export const techskills = {
                 }
             }
         }),
-        // avatarJs2: new GameObject({
-        //     x: getGridPosition(1),
-        //     y: getGridPosition(11),
-        //     hasShadow: false,
-        //     width: getGridPosition(2),
-        //     height: getGridPosition(4),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/js-object.png',
-        //             width: getGridPosition(2),
-        //             height: getGridPosition(4),
-        //             imageWidth: 32,
-        //             imageHeight: 64
-        //         },
-        //     },
-        //     interactions: [
-        //         {
-        //             events: [{type: 'message', text: 'Javascript'}]
-        //         }
-        //     ]
-        // }),
         avatarJs: new GameObject({
             x: getGridPosition(1),
             y: getGridPosition(12),
@@ -71,7 +50,8 @@ export const techskills = {
                 {
                     events: [{type: 'message', text: 'Javascript'}]
                 }
-            ]
+            ],
+            label: 'Javascript'
         }),
         avatarNode: new GameObject({
             x: getGridPosition(4),
@@ -96,6 +76,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'NodeJS'
         }),
         avatarGit: new GameObject({
             x: getGridPosition(8),
@@ -118,7 +99,8 @@ export const techskills = {
                         {type: 'message', text: `Git - Version Control System`},
                     ]
                 }
-            ]
+            ],
+            label: 'Git'
         }),
         avatarDocker: new GameObject({
             x: getGridPosition(11),
@@ -143,6 +125,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'Docker'
         }),
         avatarReact: new GameObject({
             x: getGridPosition(1),
@@ -167,6 +150,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'React'
         }),
         avatarDevtools: new GameObject({
             x: getGridPosition(4),
@@ -191,6 +175,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'Dev Tools'
         }),
         avatarCss: new GameObject({
             x: getGridPosition(8),
@@ -215,6 +200,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'CSS'
         }),
         avatarTypescript: new GameObject({
             x: getGridPosition(11),
@@ -239,6 +225,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'Typescript'
         }),
         avatarWebpack: new GameObject({
             x: getGridPosition(2),
@@ -263,6 +250,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'Webpack'
         }),
         avatarJest: new GameObject({
             x: getGridPosition(6),
@@ -287,6 +275,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'Jest'
         }),
         avatarPerformance: new GameObject({
             x: getGridPosition(10),
@@ -311,6 +300,7 @@ export const techskills = {
                     ]
                 }
             ],
+            label: 'Performance'
         }),
     },
     limits: {

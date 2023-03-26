@@ -9,7 +9,6 @@ export default class InteractionInput {
 
         this.touchFunction = function() {
             document.getElementById('button-a').style.backgroundColor = 'rgb(125, 174, 191)';
-            console.log('touch start'); 
             callback();
         }
 
@@ -18,7 +17,7 @@ export default class InteractionInput {
         }
 
         document.addEventListener('keypress', this.keyPressFunction);
-        document.getElementById('button-a').addEventListener('touchstart', this.touchFunction)
+        document.getElementById('button-a').addEventListener('touchstart', this.touchFunction,  { passive: false })
         
         document.getElementById('button-a').addEventListener('touchend', this.touchEndFunction)
     }

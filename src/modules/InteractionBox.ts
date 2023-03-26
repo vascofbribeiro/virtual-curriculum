@@ -17,15 +17,12 @@ export class InteractionBox {
     private createElement() {
         this.element = document.createElement('div');
         this.element.classList.add('interaction-box');
-        console.log(this._textLines);
 
         //Use join after map since template literal will use a comma to join the elements
         const textLines = this._textLines.map((textLine) => {
-            console.log(textLine);
             return `<p class="interaction-box-text">${textLine}</p>`
         }).join('');
 
-        console.log(textLines);
         this.element.innerHTML = `
             <p class="interaction-box-title"> ${this._title} </p>
             <div class="interaction-box-container">
@@ -45,7 +42,6 @@ export class InteractionBox {
     }
 
     public done() {
-        console.log('remove');
         this.element.remove();
         this._onComplete()
     }

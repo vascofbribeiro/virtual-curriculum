@@ -1,4 +1,4 @@
-import SpriteCharacter from "./SpriteCharacter";
+import Sprite from "./Sprite";
 import Map from "./Map";
 import { Direction } from "../types/Direction";
 import { IGameObjectConfig } from "../interfaces/configs/IGameObjectConfig";
@@ -9,8 +9,8 @@ import Door from './Door';
 
 export default class GameObject {
     private _hasShadow: boolean;
-    public objectSprite: SpriteCharacter;
-    public shadowSprite: SpriteCharacter;
+    public objectSprite: Sprite;
+    public shadowSprite: Sprite;
     public x: number;
     public y: number;
     public direction: Direction;
@@ -63,9 +63,9 @@ export default class GameObject {
             height: (config.collisionOffset && config.collisionOffset.height) || 0
         }
         this.interactionIcon = config.interactionIcon;
-        this.objectSprite = new SpriteCharacter(this, config.sprite.object);
+        this.objectSprite = new Sprite(this, config.sprite.object);
         this._hasShadow = !!config.sprite.shadow;
-        this.shadowSprite = this._hasShadow && new SpriteCharacter(this, config.sprite.shadow);
+        this.shadowSprite = this._hasShadow && new Sprite(this, config.sprite.shadow);
 
         this.door = config.door ? new Door(this, config.door) : null;
 

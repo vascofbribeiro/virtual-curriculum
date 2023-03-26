@@ -904,3 +904,4 @@ createLinearWall({coord: 'y', x: 0, y: 0, n: 30, map: outside});
 createLinearWall({coord: 'y', x: 53, y: 0, n: 30, map: outside});
 createLinearWall({coord: 'x', x: 0, y: 25, n: 24, map: outside});
 createLinearWall({coord: 'x', x: 26, y: 25, n: 30, map: outside});
+createLinearWall({coord: 'x', x: 27, y: 2, n: 26, map: outside});

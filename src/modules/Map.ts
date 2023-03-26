@@ -155,8 +155,6 @@ export default class Map {
     }
 
     public checkActionForPosition() {
-        console.log('x', this.gameObjects.miniMe.x/16);
-        console.log('y', this.gameObjects.miniMe.y/16);
         if(this.actionSpaces) {
             const match = this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
 
@@ -209,11 +207,8 @@ export default class Map {
     } 
     
     public checkForDoors() {
-        console.log('x', this.gameObjects.miniMe.x/16);
-        console.log('y', this.gameObjects.miniMe.y/16);
         if(this.doors) {
             const match = this.doors[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
-            console.log(`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`, this.doors[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`]);
             if(match) {
                 this.gameObjects[match].door.open();
             } else {

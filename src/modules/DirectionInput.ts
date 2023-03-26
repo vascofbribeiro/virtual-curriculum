@@ -44,10 +44,9 @@ export default class DirectionInput {
             this._isDragging = true;
             detectMoves(e);    
             e.preventDefault();
-        });
+        },  { passive: false });
 
         document.addEventListener('touchend', () => {
-            console.log('touch end');
             this._heldDirections.pop();
             this._isDragging = false;
             const rect = joystick.getBoundingClientRect();

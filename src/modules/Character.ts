@@ -3,7 +3,6 @@ import { ICharacter } from '../interfaces/modules/ICharacter';
 import { IState } from '../interfaces/modules/IState';
 import { emitEvent } from '../utils/events';
 import GameObject from './GameObject';
-import Map from "./Map";
 
 type Direction = {
     axis: string;
@@ -66,6 +65,10 @@ export default class Character extends GameObject {
         this.direction = behavior.direction;
 
         if (behavior.type === 'walk') {
+            emitEvent('CharacterTryWalk', {
+                whoId: this.id
+            });
+
             if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
                 behavior.retry && setTimeout(() => {
                     this.startBehavior(state, behavior);
@@ -73,10 +76,6 @@ export default class Character extends GameObject {
 
                 return;
             }
-
-            // Ready to walk if space is not taken
-
-
             // Move space for walking character
             state.map.moveSpaceTaken(this.x, this.y, this.direction);
             this._movingProgressRemaining = 16;
@@ -111,7 +110,6 @@ export default class Character extends GameObject {
 
     public updatePosition() {
         // Define walking for character based on direction input
-        // Typescript workaround
         const axis = this.directionUpdate[this.direction].axis as 'x' | 'y';
         const change = this.directionUpdate[this.direction].change;
         this[axis] += change;

@@ -185,8 +185,8 @@ export const outside = {
                     src: '../images/objects/college.png',
                     width: getGridPosition(13),
                     height: getGridPosition(13),
-                    imageWidth: getGridPosition(26),
-                    imageHeight: getGridPosition(26)
+                    imageWidth: getGridPosition(13),
+                    imageHeight: getGridPosition(13)
                 },
             },
         }),

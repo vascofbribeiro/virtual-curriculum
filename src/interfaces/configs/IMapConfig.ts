@@ -7,6 +7,7 @@ export interface IMapConfig {
     gameObjects: Record<string, GameObject>;
     actionSpaces?: Record<string, Array<Record<'events', IEvent>>>;
     initialInteractions?: Array<IEvent>;
+    keepInitialInteractions?: boolean;
     walls?: Record<string, boolean>;
     limits?: {
         xMin: number,

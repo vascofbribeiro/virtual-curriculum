@@ -3,8 +3,10 @@
         <title>Retro Portfolio</title>
         <link rel="icon" type="image/x-icon" href="./images/favicon/favicon.ico">
         <meta property="og:title" content="Retro Portfolio" />
-        <meta property="og:image" content="./images/interfaces/metaimage.png" />
-        <meta name="twitter:image" content="./images/interfaces/metaimage.png" />
+        <meta property="og:image" content="https://user-images.githubusercontent.com/36052769/228215254-9183f587-f5a2-4622-bb6c-2c23496ddfa8.png" />
+        <meta property="og:image:secure_url" content="https://user-images.githubusercontent.com/36052769/228215254-9183f587-f5a2-4622-bb6c-2c23496ddfa8.png" /> 
+        <meta name="twitter:image" content="https://user-images.githubusercontent.com/36052769/228215254-9183f587-f5a2-4622-bb6c-2c23496ddfa8.png" />
+        <link rel="preload" as="image" href="../images/interfaces/sound.png" />
 
         <style>
             body {
@@ -116,8 +118,31 @@
                 padding: 4px;
                 border-top: 1px solid black;
                 color: #302a4a;
-                background-image: url('../images/interfaces/sound.png');
+                background-image: url(../images/interfaces/sound-mute.png);
                 background-size: cover;
+            }
+
+            #helper {
+                display: none;
+                position: absolute;
+                opacity: 0.8;
+                left:0;
+                right:0; 
+                margin-left: auto;
+                margin-right: auto;
+                bottom: 30px;
+                align-self: center;
+                text-align: center;
+                width: 280px;
+                height: 30px;
+                padding: 4px;
+                background: #c3b29d;
+                border: 1px solid black;
+                color: #302a4a;
+                font-size: 20px;
+            }
+            #helper-text {
+                margin: 0;
             }
 
             .message {
@@ -370,7 +395,8 @@
                 </div>
             </div>
             <canvas id="game-canvas"></canvas>
-            <button class="button-audio" onclick="play()"></button>
+            <button id="btn-audio" class="button-audio" onclick="play()"></button>
+            <div id="helper"><p id="helper-text"></p></div>
         </div>
 
         <div class="gamepad">
@@ -390,9 +416,13 @@
         <script>
             const audio = new Audio('../sounds/main.mp3');
             function play() {
+                const btnAudio = document.getElementById('btn-audio');;
                 audio.volume = 0.05;
                 audio.loop = true;
+                btnAudio.style.backgroundImage = audio.paused ? 'url(../images/interfaces/sound.png)' :  'url(../images/interfaces/sound-mute.png)' 
                 audio.paused ? audio.play() : audio.pause();
+
+
             }
         </script>
         <meta name="viewport" content="user-scalable=no" />

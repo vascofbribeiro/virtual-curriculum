@@ -96,7 +96,7 @@ export const beach = {
                     events: [
                         {
                             type: 'message',
-                            text: 'I finally found my surfboard! I love to surf with my friends 🏄'
+                            text: 'I finally found my surfboard! I love to surf 🏄'
                         },
                     ]
                 }

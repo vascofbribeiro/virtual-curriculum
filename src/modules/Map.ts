@@ -20,6 +20,7 @@ export default class Map {
     public isInteracting: boolean;
     public actionSpaces: Record<string, any> //Fix types later
     public initialInteractions: Array<IEvent>;
+    public keepInitialInteractions: boolean;
     public isImageLoaded: boolean;
     public limits?: {
         xMin: number,
@@ -46,6 +47,7 @@ export default class Map {
         this.spacesTaken = this.getSpacesTaken();
         this.isInteracting = false;
         this.initialInteractions = config.initialInteractions;
+        this.keepInitialInteractions = config.keepInitialInteractions;
         this.limits = config.limits;
     }
 
@@ -164,6 +166,17 @@ export default class Map {
         }
     }
 
+    public tryInteraction() {
+        const objectToInteract = this.checkForInteraction(); 
+
+        if (objectToInteract) {
+            this.isInteracting = true;
+            this.startInteraction(objectToInteract.interactions[0].events);
+            if(objectToInteract.interactionIcon) objectToInteract.interactionIcon.far = '';
+            this.gameObjects[objectToInteract.id].hasInteracted = true;
+        }
+    }
+
     public checkForInteraction() {
         const miniMe = this.gameObjects.miniMe;
         const nextCoords = nextPosition(miniMe.x, miniMe.y, miniMe.direction);
@@ -180,11 +193,10 @@ export default class Map {
         })
 
         if (match && match.interactions && match.interactions.length) {
-            this.isInteracting = true;
-            this.startInteraction(match.interactions[0].events);
-            if(match.interactionIcon) match.interactionIcon.far = '';
-            this.gameObjects[match.id].hasInteracted = true;
+            return match
         }
+
+        return null;
     }
 
     public async startInteraction(events: Array<IEvent>) {

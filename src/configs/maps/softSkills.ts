@@ -54,9 +54,10 @@ export const softSkills = {
                             title: 'Soft Skills',
                             textLines:  [
                                 `- Creative`,
-                                `- Teamwork`,
                                 `- Problem solver`,
+                                `- Teamwork`,
                                 `- Adaptability`,
+                                `- Curiosity`
                             ],
                         },
                     ]

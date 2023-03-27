@@ -58,4 +58,10 @@ export const basket = {
             }
         ]
     },
+    initialInteractions: [
+        {type: 'walk', who: 'miniMe', direction: 'right'},
+        {type: 'message', text: 'I played basketball for 6 years'},
+        {type: 'walk', who: 'miniMe', direction: 'left'},
+    ],
+    keepInitialInteractions: true
 };

@@ -761,7 +761,9 @@ export const outside = {
         // }),
     },
     walls: {
-        [getGridCoord(26,25)]: true
+        [getGridCoord(26,25)]: true,
+        [getGridCoord(54,17)]: true,
+        [getGridCoord(54,18)]: true
     },
     limits: {
         xMin: getGridPosition(11),

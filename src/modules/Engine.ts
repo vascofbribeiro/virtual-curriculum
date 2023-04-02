@@ -2,7 +2,7 @@ import DirectionInput from './DirectionInput';
 import Map from '../modules/Map';
 import { mapsConfig } from '../configs/maps';
 import InteractionInput from './InteractionInput';
-import { CANVAS_POSITION, CANVAS_SCALE, MAX_WIDTH_MOBILE } from '../constants/';
+import { CANVAS_POSITION, CANVAS_SCALE } from '../constants/';
 import GameObject from './GameObject';
 import CameraView from './CameraView';
 
@@ -31,7 +31,7 @@ export default class Engine {
     constructor(id: string) { 
         if (typeof window) {
             const gameContainer = document.getElementById('canvas-container');
-            window.isMobile = gameContainer.clientWidth <= MAX_WIDTH_MOBILE;
+            window.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
             window.mapsConfig = mapsConfig;
         }
         this._maps = {};
@@ -205,8 +205,7 @@ export default class Engine {
 
         context.scale(devicePixelRatio*scale,devicePixelRatio*scale);
 
-        window.canvasMultiplier = CANVAS_POSITION[this._gameContainer.clientWidth];
-        window.isMobile = this._gameContainer.clientWidth <= MAX_WIDTH_MOBILE;
+        window.canvasMultiplier = CANVAS_POSITION[this._gameContainer.clientWidth] ?? { x: 1, y: 1 };
         
         this._helperText.textContent = `Press ${window.isMobile ? 'A' : 'spacebar'} to interact`;
         this._cameraView.setLimitsOffset(this._gameContainer.clientWidth);

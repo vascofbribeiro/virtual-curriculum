@@ -86,10 +86,10 @@ export default class CameraView {
 
     public setLimitsOffset(width: number) {
         this.LIMITS_OFFSET = {
-            xMin: getGridPosition(LIMITS_OFFSET[width].xMin),
-            yMin: getGridPosition(LIMITS_OFFSET[width].yMin),
-            xMax: getGridPosition(LIMITS_OFFSET[width].xMax),
-            yMax: getGridPosition(LIMITS_OFFSET[width].yMax),
+            xMin: getGridPosition(LIMITS_OFFSET[width]?.xMin),
+            yMin: getGridPosition(LIMITS_OFFSET[width]?.yMin),
+            xMax: getGridPosition(LIMITS_OFFSET[width]?.xMax),
+            yMax: getGridPosition(LIMITS_OFFSET[width]?.yMax),
         }
     }
 }

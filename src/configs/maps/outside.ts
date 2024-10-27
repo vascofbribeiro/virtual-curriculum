@@ -8,12 +8,13 @@ import fountain from '../sprites/fountain';
 import globe from '../sprites/globe';
 import buildingBillboard from '../sprites/buildingBillboard';
 import techskillsBillboard from '../sprites/techskillsBillboard';
+import { addActions } from '../../utils/actions';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(26), //x: getGridPosition(10),
+            x: getGridPosition(41), //x: getGridPosition(10),
             y: getGridPosition(24), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
@@ -39,7 +40,7 @@ export const outside = {
             isHidden: true,
         }),
         car: new Character({
-            x: getGridPosition(10), //x: getGridPosition(10),
+            x: getGridPosition(7), //x: getGridPosition(10),
             y: getGridPosition(24), //y: getGridPosition(10),
             isPlayer: false,
             hasShadow: true,
@@ -55,26 +56,9 @@ export const outside = {
             },
             isCameraView: true,
             speedMultiplier: 2,
-            // behaviorLoop: [
-            //     { type: 'walk', direction: 'right' }
-            // ]
         }),
-        // doorHouse: new GameObject({
-        //     x: getGridPosition(50),
-        //     y: getGridPosition(6),
-        //     hasShadow: false,
-        //     width: getGridPosition(1),
-        //     height: getGridPosition(1),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/doors/door-house.png',
-        //             width: getGridPosition(1),
-        //             height: getGridPosition(2),
-        //         },
-        //     },
-        // }),
         house: new GameObject({
-            x: getGridPosition(48),
+            x: getGridPosition(64),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(4),
@@ -96,35 +80,9 @@ export const outside = {
                 height: getGridPosition(2),
             }
         }),
-        // signEduExp: new GameObject({
-        //     x: getGridPosition(39),
-        //     y: getGridPosition(15),
-        //     hasShadow: false,
-        //     width: getGridPosition(3),
-        //     height: getGridPosition(2),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/sign-outside.png',
-        //             width: getGridPosition(3),
-        //             height: getGridPosition(3),
-        //         },
-        //     },
-        //     interactions: [
-        //         {
-        //             events: [{
-        //                 type: 'message', 
-        //                 text: `Education ←`
-        //             },
-        //             {
-        //                 type: 'message', 
-        //                 text: `Experience ←`
-        //             }]
-        //         }
-        //     ],
-        // }),
-        // Education Building
+        // TECH SKILLS Building
         techSkillsMuseum: new GameObject({
-            x: getGridPosition(28),
+            x: getGridPosition(44),
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(8),
@@ -145,7 +103,7 @@ export const outside = {
             }
         }),
         techskillsBillboard: new GameObject({
-            x: getGridPosition(31),
+            x: getGridPosition(47),
             y: getGridPosition(12.5),
             hasShadow: false,
             width: getGridPosition(5),
@@ -160,7 +118,7 @@ export const outside = {
             },
         }),
         signEduExp: new GameObject({
-            x: getGridPosition(28),
+            x: getGridPosition(44),
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(3),
@@ -175,7 +133,7 @@ export const outside = {
         }),
         // Education Building
         college: new GameObject({
-            x: getGridPosition(27),
+            x: getGridPosition(43),
             y: getGridPosition(-1),
             hasShadow: false,
             width: getGridPosition(12),
@@ -191,7 +149,7 @@ export const outside = {
             },
         }),
         signCollege: new GameObject({
-            x: getGridPosition(29.5),
+            x: getGridPosition(45.5),
             y: getGridPosition(4),
             hasShadow: false,
             width: getGridPosition(1),
@@ -205,7 +163,7 @@ export const outside = {
             },
         }),
         professor: new Character({
-            x: getGridPosition(33),
+            x: getGridPosition(49),
             y: getGridPosition(8),
             isPlayer: false,
             hasShadow: true,
@@ -262,9 +220,89 @@ export const outside = {
             },
         }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
+        arkadiumBillboard: new GameObject({
+            x: getGridPosition(33),
+            y: getGridPosition(17.5),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/arkadium-billboard.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(2),
+                    animations: buildingBillboard
+                },
+            },
+        }),
+        arkadium: new GameObject({
+            x: getGridPosition(33),
+            y: getGridPosition(13),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(6),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/arkadium.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(9),
+                },
+            },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(6.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+                src: '../images/doors/door-building.png',
+            }
+        }),
+        emmaBillboard: new GameObject({
+            x: getGridPosition(25),
+            y: getGridPosition(15.5),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/emma-billboard.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(2),
+                    animations: buildingBillboard
+                },
+            },
+        }),
+        emma: new GameObject({
+            x: getGridPosition(25),
+            y: getGridPosition(11),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(8),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/emma.png',
+                    width: 96,
+                    height: 176
+                },
+            },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(8.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+                src: '../images/doors/door-building.png',
+            }
+        }),
         farfetchBillboard: new GameObject({
             x: getGridPosition(17),
-            y: getGridPosition(13.5),
+            y: getGridPosition(15.5),
             hasShadow: false,
             width: getGridPosition(6),
             height: getGridPosition(1),
@@ -351,7 +389,7 @@ export const outside = {
         }),
         dotlogicBillboard: new GameObject({
             x: getGridPosition(9),
-            y: getGridPosition(14.5),
+            y: getGridPosition(16.5),
             hasShadow: false,
             width: getGridPosition(6),
             height: getGridPosition(1),
@@ -366,10 +404,10 @@ export const outside = {
         }),
         dotlogic: new GameObject({
             x: getGridPosition(9),
-            y: getGridPosition(12),
+            y: getGridPosition(14),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(6),
+            height: getGridPosition(4),
             collisionOffset: {
                 width: 0,
                 height: getGridPosition(1),
@@ -383,7 +421,7 @@ export const outside = {
             },
             door: {
                 offsetX: getGridPosition(2),
-                offsetY: getGridPosition(6.5),
+                offsetY: getGridPosition(4.5),
                 src: '../images/doors/door-building.png',
                 width: getGridPosition(2),
                 height: getGridPosition(2),
@@ -431,10 +469,10 @@ export const outside = {
         }), 
         blip: new GameObject({
             x: getGridPosition(1),
-            y: getGridPosition(11),
+            y: getGridPosition(9),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(8),
+            height: getGridPosition(10),
             collisionOffset: {
                 width: 0,
                 height: getGridPosition(1),
@@ -442,13 +480,13 @@ export const outside = {
             sprite: {
                 object: {
                     src: '../images/objects/blip2.png',
-                    width: 96,
-                    height: 176,
+                    width: getGridPosition(6),
+                    height: getGridPosition(13),
                 },
             },
             door: {
                 offsetX: getGridPosition(2),
-                offsetY: getGridPosition(8.5),
+                offsetY: getGridPosition(10.5),
                 src: '../images/doors/door-building.png',
                 width: getGridPosition(2),
                 height: getGridPosition(2),
@@ -487,7 +525,7 @@ export const outside = {
         }), 
         // SOFT SKILLS BUILDING
         softSkills: new GameObject({
-            x: getGridPosition(7),
+            x: getGridPosition(23),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(6),
@@ -509,7 +547,7 @@ export const outside = {
         }),
         // SOCIAL BILLBOARDS
         socialBillboard: new GameObject({
-            x: getGridPosition(16),
+            x: getGridPosition(32),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
@@ -540,7 +578,7 @@ export const outside = {
             ],
         }),
         awardsBillboard: new GameObject({
-            x: getGridPosition(40),
+            x: getGridPosition(56),
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(5),
@@ -581,7 +619,7 @@ export const outside = {
             ],
         }),
         signAndroid: new GameObject({
-            x: getGridPosition(47),
+            x: getGridPosition(63),
             y: getGridPosition(15),
             hasShadow: false,
             width: getGridPosition(1),
@@ -612,7 +650,7 @@ export const outside = {
             ],
         }),
         campervan: new GameObject({
-            x: getGridPosition(42),
+            x: getGridPosition(58),
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(6),
@@ -640,7 +678,7 @@ export const outside = {
             ],
         }),
         thinkGlobe: new GameObject({
-            x: getGridPosition(45),
+            x: getGridPosition(61),
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(1),
@@ -655,7 +693,7 @@ export const outside = {
             }
         }),
         volunteer: new GameObject({
-            x: getGridPosition(41),
+            x: getGridPosition(57),
             y: getGridPosition(4),
             hasShadow: false,
             width: getGridPosition(4),
@@ -699,7 +737,7 @@ export const outside = {
 
         //TREES
         fountain: new GameObject({
-            x: getGridPosition(35),
+            x: getGridPosition(51),
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(2),
@@ -714,7 +752,7 @@ export const outside = {
             },
         }),
         tree1: new GameObject({
-            x: getGridPosition(32),
+            x: getGridPosition(48),
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(2),
@@ -728,7 +766,7 @@ export const outside = {
             },
         }),
         tree2: new GameObject({
-            x: getGridPosition(38),
+            x: getGridPosition(54),
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(2),
@@ -761,60 +799,60 @@ export const outside = {
         // }),
     },
     walls: {
-        [getGridCoord(26,25)]: true,
-        [getGridCoord(54,17)]: true,
-        [getGridCoord(54,18)]: true
+        // [getGridCoord(42,25)]: true,
+        // [getGridCoord(70,17)]: true,
+        // [getGridCoord(70,18)]: true
     },
     limits: {
         xMin: getGridPosition(11),
         yMin: getGridPosition(6.5),
-        xMax: getGridPosition(43),
-        yMax: getGridPosition(23)
+        xMax: getGridPosition(59),
+        yMax: getGridPosition(20)
     },
     actionSpaces: {
-        [getGridCoord(50,6)]: [
+        [getGridCoord(66,6)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'house'},
                 ]
             }
         ],
-        [getGridCoord(53,17)]: [
+        [getGridCoord(69,17)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
                 ]
             }
         ],
-        [getGridCoord(53,18)]: [
+        [getGridCoord(69,18)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
                 ]
             }
         ],
-        [getGridCoord(25,-1)]: [
+        [getGridCoord(41,-1)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'beach'},
                 ]
             }
         ],
-        [getGridCoord(26,-1)]: [
+        [getGridCoord(42,-1)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'beach'},
                 ]
             }
         ],
-        [getGridCoord(8,8)]: [
+        [getGridCoord(24,8)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'softSkills'},
                 ]
             }
         ],
-        [getGridCoord(12,18)]: [
+        [getGridCoord(28,18)]: [
             {
                 events: [
                     {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
@@ -822,23 +860,7 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(11,18)]: [
-            {
-                events: [
-                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
-                    {type: 'walk', who: 'miniMe', direction: 'down' },
-                ]
-            }
-        ],
-        [getGridCoord(3,19)]: [
-            {
-                events: [
-                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
-                    {type: 'walk', who: 'miniMe', direction: 'down' },
-                ]
-            }
-        ],
-        [getGridCoord(4,19)]: [
+        [getGridCoord(27,18)]: [
             {
                 events: [
                     {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
@@ -849,18 +871,34 @@ export const outside = {
         [getGridCoord(19,19)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'farfetch'},
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
                 ]
             }
         ],
         [getGridCoord(20,19)]: [
             {
                 events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(35,19)]: [
+            {
+                events: [
                     { type: 'changeMap', map: 'farfetch'},
                 ]
             }
         ],
-        [getGridCoord(29,16)]: [
+        [getGridCoord(36,19)]: [
+            {
+                events: [
+                    { type: 'changeMap', map: 'farfetch'},
+                ]
+            }
+        ],
+        [getGridCoord(45,16)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'techskills'},
@@ -869,14 +907,7 @@ export const outside = {
         ],
     },
     initialInteractions: [
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
+        ...addActions({type: 'walk', who: 'car', direction: 'right'}, 17),
         {type: 'idle', who: 'car', direction: 'down', time: 200},
         {type: 'changeCameraView', who: 'miniMe'},
         {type: 'show', who: 'miniMe', direction: 'down' },
@@ -896,14 +927,15 @@ export const outside = {
 };
 
 
-createLinearWall({coord: 'x', x: 0, y: 3, n:25, map: outside});
-createLinearWall({coord: 'x', x: 27, y: 3, n: 19, map: outside});
-createLinearWall({coord: 'y', x: 46, y: 3, n: 6, map: outside});
-createLinearWall({coord: 'y', x: 24, y: -1, n: 4, map: outside});
-createLinearWall({coord: 'x', x: 46, y: 8, n: 3, map: outside});
-createLinearWall({coord: 'x', x: 51, y: 8, n: 3, map: outside});
-createLinearWall({coord: 'y', x: 0, y: 0, n: 30, map: outside});
-createLinearWall({coord: 'y', x: 53, y: 0, n: 30, map: outside});
-createLinearWall({coord: 'x', x: 0, y: 25, n: 24, map: outside});
-createLinearWall({coord: 'x', x: 26, y: 25, n: 30, map: outside});
-createLinearWall({coord: 'x', x: 27, y: 2, n: 26, map: outside});
+// createLinearWall({coord: 'x', x: 0, y: 3, n: 41, map: outside});
+// createLinearWall({coord: 'x', x: 27, y: 3, n: 19, map: outside});
+// createLinearWall({coord: 'y', x: 62, y: 3, n: 6, map: outside});
+// createLinearWall({coord: 'y', x: 24, y: -1, n: 4, map: outside});
+// createLinearWall({coord: 'x', x: 46, y: 8, n: 3, map: outside});
+// createLinearWall({coord: 'x', x: 51, y: 8, n: 3, map: outside});
+// createLinearWall({coord: 'y', x: 0, y: 0, n: 30, map: outside});
+// createLinearWall({coord: 'y', x: 69, y: 0, n: 30, map: outside});
+// createLinearWall({coord: 'x', x: 0, y: 25, n: 24, map: outside});
+// createLinearWall({coord: 'x', x: 26, y: 25, n: 30, map: outside});
+// createLinearWall({coord: 'x', x: 27, y: 2, n: 26, map: outside});
+

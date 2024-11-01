@@ -36,6 +36,7 @@ export default class GameObject {
     public isIdle: boolean;
     public interactionBox: any;
     public interactionNumber: number;
+    public type: string;
     public interactionIcon?: {
         far?: string;
         nearby?: string;
@@ -77,6 +78,7 @@ export default class GameObject {
         this.interactions = config.interactions;
         this.interactionNumber = 0;
         this.label = config.label;
+        this.type = config.type;
         this.isCameraView = config.isCameraView;
         this.hasInteracted = false;
     }

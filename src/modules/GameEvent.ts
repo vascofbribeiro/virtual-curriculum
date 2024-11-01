@@ -44,8 +44,21 @@ export default class GameEvent {
                 map: this.map
             }, 
             {
-                type: 'beer',
-                who: who.direction
+                type: 'beer'
+            }
+        )
+    }
+
+    
+    private sober(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.isInteracting = true;
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'sober'
             }
         )
     }
@@ -96,6 +109,28 @@ export default class GameEvent {
         document.addEventListener('CharacterShowCompleted', completeHandler);
     }
 
+    private hide(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'hide',
+                direction: this.event.direction,
+            }
+        )
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                document.removeEventListener('CharacterHideCompleted', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterHideCompleted', completeHandler);
+    }
+
     private message(resolve: Function) {
         //ADD logic so npc faces character
         this.map.isInteracting = true;
@@ -133,7 +168,7 @@ export default class GameEvent {
             const message = new InteractionMessage({
                 showNote: true,
                 isLink: false,
-                text: `You can't go anywhere like this`,
+                text: `You can't go anywhere like this. Try to take a rest first`,
                 onComplete: () => {
                     this.map.isInteracting = false;
                     resolve();

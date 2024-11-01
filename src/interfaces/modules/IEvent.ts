@@ -1,7 +1,7 @@
 import { Direction } from "../../types/Direction";
 
 export interface IEvent {
-    type: "walk" | "idle" | "message" | "changeMap" | "interactionBox" | "show" | "changeCameraView" | "beer";
+    type: "walk" | "idle" | "message" | "changeMap" | "interactionBox" | "show" | "hide" | "changeCameraView" | "beer" | "sober";
     who?: string;
     direction?: Direction;
     retry?: boolean;

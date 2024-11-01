@@ -112,6 +112,32 @@ export default class Character extends GameObject {
             this.updateSprite();
         }
 
+        if (behavior.type === 'hide') {
+            this.isHidden = true;
+            setTimeout(() => {
+                emitEvent('CharacterHideCompleted', {
+                    whoId: this.id,
+                });
+            }, 0)
+
+            state.map.removeSpaceTaken(this.x, this.y);
+
+            this.updateSprite();
+        }
+
+        if(behavior.type === 'sober') {
+            if(this.isDrunk) {
+                emitEvent('CharacterSober', {
+                    whoId: this.id,
+                });
+                this.isDrunk = false;
+                this.objectSprite.animations = miniMe;
+                this.numberOfBeers = 0;
+            }
+            
+            this.updateSprite();
+        }
+
         if (behavior.type === 'beer') {
             this.numberOfBeers++;
             if(this.numberOfBeers === 4 && !this.isDrunk) {
@@ -121,18 +147,6 @@ export default class Character extends GameObject {
 
                 this.isDrunk = true;
                 this.objectSprite.animations = miniMeDrunk;
-
-                setTimeout(() => {
-                    emitEvent('CharacterSober', {
-                        whoId: this.id,
-                    });
-                    this.isDrunk = false;
-                    this.objectSprite.animations = miniMe;
-                    this.isIdle = true;
-                    emitEvent('CharacterIdle', {
-                        whoId: this.id
-                    })
-                }, 20000)
                 this.numberOfBeers = 0;
             }
             

@@ -29,5 +29,6 @@ export interface IGameObjectConfig {
     isHidden?: boolean;
     isCameraView?: boolean;
     speedMultiplier?: number;
+    type?: string;
     actions?: Array<Record<string, Array<IEvent>>>
 }

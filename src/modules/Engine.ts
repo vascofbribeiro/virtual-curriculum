@@ -5,6 +5,7 @@ import InteractionInput from './InteractionInput';
 import { CANVAS_POSITION, CANVAS_SCALE, MAX_WIDTH_MOBILE } from '../constants/';
 import GameObject from './GameObject';
 import CameraView from './CameraView';
+import { SceneTransition } from './SceneTransition';
 
 declare global {
     interface Window {
@@ -126,7 +127,7 @@ export default class Engine {
         });
 
         document.addEventListener('CharacterDrunk', () => {
-            this._activeMap.startInteraction([{type: 'message', text: `But something feels... off. The arrows seem a bit mixed up now.`}])
+            this._activeMap.startInteraction([{type: 'message', text: `But something feels... off. It seems like you need a rest`}])
             this._directionInput.keyMap = {
                 "ArrowUp": "left",
                 "ArrowDown": "up",
@@ -143,6 +144,10 @@ export default class Engine {
                 "ArrowLeft": "left",
                 "ArrowRight": "right"
             }
+            const sceneTransition = new SceneTransition();
+            sceneTransition.init(document.querySelector('.game-container'), () => {
+                sceneTransition.rest();
+            }); 
         });
     }
 

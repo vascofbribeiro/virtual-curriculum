@@ -10,6 +10,7 @@ import buildingBillboard from '../sprites/buildingBillboard';
 import techskillsBillboard from '../sprites/techskillsBillboard';
 import { addActions } from '../../utils/actions';
 import * as interactions from '../interactions/index'; 
+import bugAnimations from '../sprites/bug';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -57,6 +58,23 @@ export const outside = {
             },
             isCameraView: true,
             speedMultiplier: 2,
+        }),
+        bug: new Character({
+            x: getGridPosition(55), //x: getGridPosition(10),
+            y: getGridPosition(20), //y: getGridPosition(10),
+            isPlayer: false,
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/bug.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(1),
+                    animations: bugAnimations
+                },
+            },
+            isHidden: true,
         }),
         house: new GameObject({
             x: getGridPosition(64),
@@ -847,8 +865,8 @@ export const outside = {
 
         //TREES
         fountain: new GameObject({
-            x: getGridPosition(49),
-            y: getGridPosition(20),
+            x: getGridPosition(50),
+            y: getGridPosition(20.5),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -861,9 +879,58 @@ export const outside = {
                 },
             },
         }),
-        beer: new GameObject({
-            x: getGridPosition(52),
+        bench: new GameObject({
+            x: getGridPosition(50),
             y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(2),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/bench-down.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(2),
+                },
+            },
+            type: 'bench',
+            interactions: interactions.bench
+        }),
+        benchLeft: new GameObject({
+            x: getGridPosition(53),
+            y: getGridPosition(20),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/bench-left.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(3),
+                },
+            },
+            type: 'bench',
+            interactions: interactions.bench
+        }),
+        benchRight: new GameObject({
+            x: getGridPosition(48),
+            y: getGridPosition(20),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/bench-right.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(3),
+                },
+            },
+            type: 'bench',
+            interactions: interactions.bench
+        }),
+
+        beer: new GameObject({
+            x: getGridPosition(67),
+            y: getGridPosition(14),
             hasShadow: false,
             width: getGridPosition(3),
             height: getGridPosition(2),
@@ -893,24 +960,6 @@ export const outside = {
                 height: getGridPosition(1)
             }
         }),
-        
-        //OTHERS
-        // padel: new GameObject({
-        //     x: getGridPosition(30),
-        //     y: getGridPosition(5),
-        //     hasShadow: false,
-        //     width: getGridPosition(8),
-        //     height: getGridPosition(4),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/padel.png',
-        //             width: getGridPosition(8),
-        //             height: getGridPosition(4),
-        //             imageWidth: getGridPosition(8),
-        //             imageHeight: getGridPosition(4)
-        //         },
-        //     },
-        // }),
     },
     walls: {
         // [getGridCoord(42,25)]: true,
@@ -930,6 +979,25 @@ export const outside = {
         [getGridCoord(11,7)]: interactions.pizza,
         // Interactions for iceCream
         [getGridCoord(3,7)]: interactions.iceCream,
+        [getGridCoord(55,20)]: [
+            {
+                shouldRepeat: false,
+                events: [
+                    {type: 'message', text: `A wild bug appeared!!`},
+                    {type: 'show', who: 'bug', direction: 'down' },
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'hide', who: 'bug' },
+                    {type: 'message', text: `It works on my machine!`},
+                ]
+            }
+        ],
         [getGridCoord(66,6)]: [
             {
                 events: [

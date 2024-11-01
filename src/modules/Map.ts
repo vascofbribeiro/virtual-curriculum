@@ -162,15 +162,22 @@ export default class Map {
             const match = this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
 
             if(!this.isInteracting && match) {
-                this.startInteraction(match[ Math.floor(Math.random() * match.length)].events);
+                const randomInteractionIndex = Math.floor(Math.random() * match.length);
+                this.startInteraction(match[randomInteractionIndex].events);
+                
+                // If shouldn't repeat, remove event from actionSpace
+                if(!match[randomInteractionIndex].shouldRepeat){
+                    this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`][randomInteractionIndex].events = [];
+                } 
             }
         }
     }
 
     public tryInteraction() {
         const objectToInteract = this.checkForInteraction(); 
+        const isBench = objectToInteract.type === "bench";
 
-        if (objectToInteract && !(this.gameObjects.miniMe as Character).isDrunk) {
+        if ((objectToInteract && (!(this.gameObjects.miniMe as Character).isDrunk) || isBench)) {
             this.isInteracting = true;
             const interactionNumber = this.gameObjects[objectToInteract.id].interactionNumber;
             this.startInteraction(objectToInteract.interactions[interactionNumber].events);

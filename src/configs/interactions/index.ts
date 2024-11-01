@@ -206,3 +206,18 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
         ],
     }
 ]
+
+export const bench: Record<"events", IEvent[]>[] = [
+    {
+        events: [
+            {
+                type: 'message',
+                text: `A small bench to take a rest`
+            },
+            {
+                type: 'sober',
+                who: 'miniMe'
+            },
+        ],
+    },
+]

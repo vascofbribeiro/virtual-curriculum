@@ -166,7 +166,7 @@ export default class Map {
                 this.startInteraction(match[randomInteractionIndex].events);
                 
                 // If shouldn't repeat, remove event from actionSpace
-                if(!match[randomInteractionIndex].shouldRepeat){
+                if(match[randomInteractionIndex].triggerOnce){
                     this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`][randomInteractionIndex].events = [];
                 } 
             }

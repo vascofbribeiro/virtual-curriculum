@@ -981,7 +981,7 @@ export const outside = {
         [getGridCoord(3,7)]: interactions.iceCream,
         [getGridCoord(55,20)]: [
             {
-                shouldRepeat: false,
+                triggerOnce: true,
                 events: [
                     {type: 'message', text: `A wild bug appeared!!`},
                     {type: 'show', who: 'bug', direction: 'down' },

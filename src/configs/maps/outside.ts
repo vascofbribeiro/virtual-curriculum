@@ -9,6 +9,7 @@ import globe from '../sprites/globe';
 import buildingBillboard from '../sprites/buildingBillboard';
 import techskillsBillboard from '../sprites/techskillsBillboard';
 import { addActions } from '../../utils/actions';
+import * as interactions from '../interactions/index'; 
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
@@ -252,13 +253,38 @@ export const outside = {
                     height: getGridPosition(9),
                 },
             },
-            door: {
-                offsetX: getGridPosition(2),
-                offsetY: getGridPosition(6.5),
-                width: getGridPosition(2),
-                height: getGridPosition(2),
-                src: '../images/doors/door-building.png',
-            }
+        }),
+        arkadiumInfo: new GameObject({
+            x: getGridPosition(39),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/information.png',
+                    width: 16,
+                    height: 32,
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
+                        {
+                            type: 'interactionBox',
+                            title: 'Arkadium (Dec 2024 - Present)',
+                            textLines: [
+                                `Arkadium specializes in developing premium online games for a broad audience, focusing on user-friendly, accessible games that emphasize quality and enjoyment.`,
+                                `I joined Arkadium as a Senior Full Stack Developer to help create engaging browser-based game arenas, leveraging Next.js, React, and Node.js to build interactive, high-performance gaming experiences.`
+                            ],
+                        },
+                    ]
+                }
+            ],
         }),
         emmaBillboard: new GameObject({
             x: getGridPosition(25),
@@ -299,6 +325,52 @@ export const outside = {
                 height: getGridPosition(2),
                 src: '../images/doors/door-building.png',
             }
+        }),
+        emmaInfo: new GameObject({
+            x: getGridPosition(31),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/information.png',
+                    width: 16,
+                    height: 32,
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'interactionBox',
+                            title: 'Emma (Jul 2023 - Dec 2024)',
+                            textLines: [
+                                `Emma is a leading company in mattress and sleep market, dedicated to optimizing sleep quality through innovative, science-backed products. `,
+                                `Focused on expanding global market reach while maintaining premium quality and optimizing the online shopping experience through robust, engaging web platforms.`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Emma (Jul 2023 - Dec 2024)',
+                            textLines: [
+                                `At Emma, I helped streamlining the Static Site Generation process, reducing generation time through optimized scripting and cache strategies.`,
+                                `I worked closely with designers and product managers to develop and refine UI components that bring direct value to Emma’s website, ensuring a user-centric experience.`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Emma (Jul 2023 - Dec 2024)',
+                            textLines: [
+                                `I collaborated with backend teams to migrate a key service and update its data model for delivery tracking, improving the site's functionality and data accuracy.`,
+                            ],
+                        },
+                    ]
+                }
+            ],
         }),
         farfetchBillboard: new GameObject({
             x: getGridPosition(17),
@@ -359,28 +431,20 @@ export const outside = {
             interactions: [
                 {
                     events: [
-                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch (Sep 2017 - Present)',
+                            title: 'Farfetch (Sep 2017 - Jun 2023)',
                             textLines: [
-                                `I have been working as a Front-End Developer for Farfetch since 2017. My daily routine involves using Javascript/Typescript, NodeJS, React and Docker to develop and maintain the website. `,
-                                `In 2020, I moved to a more technical team where we focus on improving the development experience for other front-end contributors to farfetch.com.`
+                                `Farfetch operates as a global luxury fashion platform that connects customers with high-end brands and boutiques through an advanced e-commerce site and marketplace.`,
+                                `The company’s strategy revolves around offering a seamless, high-quality digital shopping experience with a strong focus on personalization and cutting-edge technology to meet the demands of luxury consumers.`
                             ],
                         },
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch (Sep 2017 - Present)',
+                            title: 'Farfetch (Sep 2017 - Jun 2023)',
                             textLines:  [
-                                `In addition to this, I also contribute to the Front-End architecture of Farfetch.`,
-                                `This has allowed me to expand my technical skills and have a greater impact on the overall development process at the company. I take pride in being able to play a part in shaping the direction of our codebase.`
-                            ],
-                        },
-                        {
-                            type: 'interactionBox',
-                            title: 'Farfetch (Sep 2017 - Present)',
-                            textLines:  [
-                                `I am excited to be a part of this team and contribute to the growth and success of Farfetch.`,
+                                `As a Front-End Engineer at Farfetch, I maintained core TypeScript and JavaScript tools, managed containerized deployments, and implemented testing mechanisms to ensure smooth site functionality.`,
+                                `Partnering with designers and product owners, I also helped create and optimize high-traffic React components, maintaining performance and stability.`
                             ],
                         }
                     ]
@@ -522,10 +586,56 @@ export const outside = {
                     ]
                 }
             ],
-        }), 
+        }),
+        coffeeShop: new GameObject({
+            x: getGridPosition(19),
+            y: getGridPosition(1),
+            hasShadow: false,
+            width: getGridPosition(5),
+            height: getGridPosition(8),
+            sprite: {
+                object: {
+                    src: '../images/objects/coffee.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(9),
+                },
+            },
+        }),
+        iceCreamShop: new GameObject({
+            x: getGridPosition(1),
+            y: getGridPosition(3),
+            hasShadow: false,
+            width: getGridPosition(7),
+            height: getGridPosition(3),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/ice-cream.png',
+                    width: getGridPosition(7),
+                    height: getGridPosition(5),
+                },
+            },
+        }),
+        pizzaShop: new GameObject({
+            x: getGridPosition(10),
+            y: getGridPosition(2),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(5),
+            sprite: {
+                object: {
+                    src: '../images/objects/pizza.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(6),
+                },
+            },
+        }),
         // SOFT SKILLS BUILDING
         softSkills: new GameObject({
-            x: getGridPosition(23),
+            x: getGridPosition(27),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(6),
@@ -547,7 +657,7 @@ export const outside = {
         }),
         // SOCIAL BILLBOARDS
         socialBillboard: new GameObject({
-            x: getGridPosition(32),
+            x: getGridPosition(35),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
@@ -737,7 +847,7 @@ export const outside = {
 
         //TREES
         fountain: new GameObject({
-            x: getGridPosition(51),
+            x: getGridPosition(49),
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(2),
@@ -751,33 +861,37 @@ export const outside = {
                 },
             },
         }),
-        tree1: new GameObject({
-            x: getGridPosition(48),
-            y: getGridPosition(20),
+        beer: new GameObject({
+            x: getGridPosition(52),
+            y: getGridPosition(19),
             hasShadow: false,
-            width: getGridPosition(2),
+            width: getGridPosition(3),
             height: getGridPosition(2),
             sprite: {
                 object: {
-                    src: '../images/objects/tree.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(3),
+                    src: '../images/objects/beer.png',
+                    width: getGridPosition(3),
+                    height: getGridPosition(4),
                 },
             },
-        }),
-        tree2: new GameObject({
-            x: getGridPosition(54),
-            y: getGridPosition(20),
-            hasShadow: false,
-            width: getGridPosition(2),
-            height: getGridPosition(2),
-            sprite: {
-                object: {
-                    src: '../images/objects/tree.png',
-                    width: getGridPosition(2),
-                    height: getGridPosition(3),
-                },
-            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'message',
+                            text:  `You grab a cold beer and take a refreshing sip!`,
+                        },
+                        {
+                            type: 'beer',
+                            who: 'miniMe'
+                        },
+                    ],
+                }
+            ],
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1)
+            }
         }),
         
         //OTHERS
@@ -810,6 +924,12 @@ export const outside = {
         yMax: getGridPosition(20)
     },
     actionSpaces: {
+        // Interactions for coffe
+        [getGridCoord(21,9)]: interactions.coffee,
+        // Interactions for pizza
+        [getGridCoord(11,7)]: interactions.pizza,
+        // Interactions for iceCream
+        [getGridCoord(3,7)]: interactions.iceCream,
         [getGridCoord(66,6)]: [
             {
                 events: [
@@ -845,7 +965,7 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(24,8)]: [
+        [getGridCoord(28,8)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'softSkills'},

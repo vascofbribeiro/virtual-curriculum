@@ -3,6 +3,8 @@ import { ICharacter } from '../interfaces/modules/ICharacter';
 import { IState } from '../interfaces/modules/IState';
 import { emitEvent } from '../utils/events';
 import GameObject from './GameObject';
+import miniMeDrunk from '../configs/sprites/miniMeDrunk';
+import miniMe from '../configs/sprites/miniMe';
 
 type Direction = {
     axis: string;
@@ -15,6 +17,8 @@ export default class Character extends GameObject {
     private _speedMultiplier: number;
     public isInteracting: boolean;
     public isIdle: boolean;
+    public numberOfBeers: number;
+    public isDrunk: boolean;
 
     private directionUpdate: Record<string, Direction>;
 
@@ -26,6 +30,8 @@ export default class Character extends GameObject {
         this._speedMultiplier = config.speedMultiplier ?? 1;
         this.isInteracting = true;
         this.isIdle = false;
+        this.numberOfBeers = 0;
+        this.isDrunk = false;
         this.directionUpdate = {
             up: {
                 axis: "y",
@@ -62,7 +68,7 @@ export default class Character extends GameObject {
     }
 
     public startBehavior(state: IState, behavior: IEvent) {
-        this.direction = behavior.direction;
+        this.direction = behavior.direction || this.direction;
 
         if (behavior.type === 'walk') {
             emitEvent('CharacterTryWalk', {
@@ -103,6 +109,33 @@ export default class Character extends GameObject {
                 });
             }, 100)
 
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'beer') {
+            this.numberOfBeers++;
+            if(this.numberOfBeers === 4 && !this.isDrunk) {
+                emitEvent('CharacterDrunk', {
+                    whoId: this.id
+                });
+
+                this.isDrunk = true;
+                this.objectSprite.animations = miniMeDrunk;
+
+                setTimeout(() => {
+                    emitEvent('CharacterSober', {
+                        whoId: this.id,
+                    });
+                    this.isDrunk = false;
+                    this.objectSprite.animations = miniMe;
+                    this.isIdle = true;
+                    emitEvent('CharacterIdle', {
+                        whoId: this.id
+                    })
+                }, 20000)
+                this.numberOfBeers = 0;
+            }
+            
             this.updateSprite();
         }
 

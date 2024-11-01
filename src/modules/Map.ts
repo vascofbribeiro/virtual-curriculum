@@ -7,13 +7,14 @@ import { IEvent } from "../interfaces/modules/IEvent";
 import GameEvent from "./GameEvent";
 import { IMapConfig } from "../interfaces/configs/IMapConfig";
 import CameraView from "./CameraView";
+import Character from "./Character";
 
 export default class Map {
     private _lowerImage: HTMLImageElement;
     private _upperImage: HTMLImageElement | null;
     private _walls: Record<string, boolean>
     public engine: Engine;
-    public gameObjects: Record<string, GameObject>;
+    public gameObjects: Record<string, GameObject | Character>;
     public interactablePlaces: Record<string, any>;
     public spacesTaken: Record<string, any>;
     public doors: Record<string, any>;
@@ -161,7 +162,7 @@ export default class Map {
             const match = this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
 
             if(!this.isInteracting && match) {
-                this.startInteraction(match[0].events);
+                this.startInteraction(match[ Math.floor(Math.random() * match.length)].events);
             }
         }
     }
@@ -169,11 +170,14 @@ export default class Map {
     public tryInteraction() {
         const objectToInteract = this.checkForInteraction(); 
 
-        if (objectToInteract) {
+        if (objectToInteract && !(this.gameObjects.miniMe as Character).isDrunk) {
             this.isInteracting = true;
-            this.startInteraction(objectToInteract.interactions[0].events);
+            const interactionNumber = this.gameObjects[objectToInteract.id].interactionNumber;
+            this.startInteraction(objectToInteract.interactions[interactionNumber].events);
             if(objectToInteract.interactionIcon) objectToInteract.interactionIcon.far = '';
             this.gameObjects[objectToInteract.id].hasInteracted = true;
+            const nextInteractionNumber = interactionNumber + 1 >= this.gameObjects[objectToInteract.id].interactions.length ? 0 : interactionNumber + 1;
+            this.gameObjects[objectToInteract.id].interactionNumber = nextInteractionNumber;
         }
     }
 

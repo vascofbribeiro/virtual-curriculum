@@ -2,7 +2,7 @@ import { Direction } from '../types/Direction';
 
 export default class DirectionInput {
     private _heldDirections: Array<Direction>
-    private _keyMap: Record<string, Direction>
+    public keyMap: Record<string, Direction>
     private _isDragging: boolean
     public shouldStartInteraction: boolean;
 
@@ -10,7 +10,7 @@ export default class DirectionInput {
         this._isDragging = false;
         this._heldDirections = [];
 
-        this._keyMap = {
+        this.keyMap = {
             "ArrowUp": "up",
             "ArrowDown": "down",
             "ArrowLeft": "left",
@@ -27,14 +27,14 @@ export default class DirectionInput {
         const innerCircle = document.getElementById('inner-circle');
 
         document.addEventListener('keydown', (event) => {
-            const direction = this._keyMap[event.key] as Direction
+            const direction = this.keyMap[event.key] as Direction
             if(direction && this._heldDirections.indexOf(direction) === -1) {
                 this._heldDirections.unshift(direction);
             }
         });
 
         document.addEventListener('keyup', (event) => {
-            const direction = this._keyMap[event.key] as Direction
+            const direction = this.keyMap[event.key] as Direction
             const index = this._heldDirections.indexOf(direction);
             index > -1 && this._heldDirections.splice(index, 1);
         });

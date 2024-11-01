@@ -124,6 +124,26 @@ export default class Engine {
                 this._hideHelper();
             }
         });
+
+        document.addEventListener('CharacterDrunk', () => {
+            this._activeMap.startInteraction([{type: 'message', text: `But something feels... off. The arrows seem a bit mixed up now.`}])
+            this._directionInput.keyMap = {
+                "ArrowUp": "left",
+                "ArrowDown": "up",
+                "ArrowLeft": "right",
+                "ArrowRight": "down"
+            }
+        });
+
+        document.addEventListener('CharacterSober', () => {
+            this._activeMap.startInteraction([{type: 'message', text: `You take a deep breath, and the world finally stops spinning – back to normal!`}])
+            this._directionInput.keyMap = {
+                "ArrowUp": "up",
+                "ArrowDown": "down",
+                "ArrowLeft": "left",
+                "ArrowRight": "right"
+            }
+        });
     }
 
     public startMap(mapName: string) {

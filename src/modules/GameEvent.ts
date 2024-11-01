@@ -3,6 +3,7 @@ import { InteractionMessage } from "./InteractionMessage";
 import { InteractionBox } from "./InteractionBox";
 import Map from "./Map";
 import { SceneTransition } from "./SceneTransition";
+import Character from "./Character";
 
 export default class GameEvent {
     private map: Map;
@@ -35,6 +36,20 @@ export default class GameEvent {
 
         document.addEventListener('CharacterIdleComplete', completeHandler);
     }
+
+    private beer(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'beer',
+                who: who.direction
+            }
+        )
+    }
+
 
     private walk(resolve: Function) {
         const who = this.map.gameObjects[this.event.who];
@@ -112,13 +127,30 @@ export default class GameEvent {
     }
 
     private changeMap(resolve: Function) {
-        const sceneTransition = new SceneTransition();
-        sceneTransition.init(document.querySelector('.game-container'), () => {
-            this.map.engine.startMap(this.event.map)
-            resolve();
+        const miniMe = this.map.gameObjects['miniMe'];
+        if((miniMe as Character).isDrunk) {
+            this.map.isInteracting = true;
+            const message = new InteractionMessage({
+                showNote: true,
+                isLink: false,
+                text: `You can't go anywhere like this`,
+                onComplete: () => {
+                    this.map.isInteracting = false;
+                    resolve();
+                }
+            })
+            
+            message.init(document.querySelector('.game-container'))
+    
+        } else {
+            const sceneTransition = new SceneTransition();
+            sceneTransition.init(document.querySelector('.game-container'), () => {
+                this.map.engine.startMap(this.event.map)
+                resolve();
 
-            sceneTransition.fadeOut();
-        }); 
+                sceneTransition.fadeOut();
+            }); 
+        }
     }
 
     private changeCameraView(resolve: Function) {

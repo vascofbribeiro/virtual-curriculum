@@ -12,7 +12,7 @@ import Character from "./Character";
 export default class Map {
     private _lowerImage: HTMLImageElement;
     private _upperImage: HTMLImageElement | null;
-    private _walls: Record<string, boolean>
+    public walls: Record<string, boolean>
     public engine: Engine;
     public gameObjects: Record<string, GameObject | Character>;
     public interactablePlaces: Record<string, any>;
@@ -41,7 +41,7 @@ export default class Map {
             const imageLoadedEvent = new CustomEvent('mapImageLoaded');
             document.dispatchEvent(imageLoadedEvent)
         }
-        this._walls = config.walls;
+        this.walls = config.walls;
         this.gameObjects = config.gameObjects;
         this.engine = null;
         this.actionSpaces = config.actionSpaces;
@@ -109,7 +109,7 @@ export default class Map {
 
         return { 
             ...spacesTaken,
-            ...this._walls
+            ...this.walls
         };
     }
 
@@ -124,6 +124,11 @@ export default class Map {
     public moveSpaceTaken(wasX: number, wasY: number, direction: Direction) {
         this.removeSpaceTaken(wasX, wasY);
         const {x, y} = nextPosition(wasX, wasY, direction);
+        
+        if(window.location.search.includes('debug')) {
+            console.log(x/16, y/16)
+        }
+        
         this.addSpaceTaken(x,y);
     }
 

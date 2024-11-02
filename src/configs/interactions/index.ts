@@ -14,7 +14,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Remember to take regular breaks! A fresh perspective can be the best debugging tool.`,
+                text: `Seller: Remember to take regular breaks! A fresh perspective can be the best debugging tool.`,
             },
         ],
     },
@@ -23,8 +23,11 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Stuck on a bug? Get a coffee and try a 'rubber duck debugging' session.
+                text: `Seller: Stuck on a bug? Get a coffee and try a 'rubber duck debugging' session.
                     Explaining the problem out loud, even to an imaginary listener, often helps you spot mistakes.`,
+            },{
+                type: 'message', 
+                text: `Explaining the problem out loud, even to an imaginary listener, often helps you spot mistakes.`,
             },
         ],
     },
@@ -33,7 +36,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Spill-proof Your Code! Expect the unexpected! Always handle errors gracefully to avoid user frustration`,
+                text: `Seller: Spill-proof your code! Always handle errors gracefully to avoid user frustration`,
             },
         ],
     },
@@ -42,7 +45,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Repetitive tasks are like filling your cup every five minutes—automate them to save time!`,
+                text: `Seller: Repetitive tasks are like filling your cup every five minutes—automate them to save time!`,
             },
         ],
     },
@@ -51,7 +54,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Strong Brew, Small Cup. Write short, modular functions that do one thing well—this keeps your code easy to test and reuse.`,
+                text: `Seller: Strong brew in small cup. Write short, modular functions that do one thing well—this keeps your code easy to test and reuse.`,
             },
         ],
     },
@@ -60,7 +63,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Sip Before You Serve! Test small components independently before integrating them into the larger codebase.`,
+                text: `Seller: Sip before you serve! Test small components independently before integrating them into the larger codebase.`,
             },
         ],
     },
@@ -69,7 +72,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Use your energy (and your computer’s) wisely—optimize code to avoid unnecessary loops or complex calculations.`,
+                text: `Seller: Use your energy (and your computer’s) wisely—optimize code to avoid unnecessary loops or complex calculations.`,
             },
         ],
     },
@@ -78,7 +81,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Keep learning! Just like coffee, development trends and best practices are always evolving.`,
+                text: `Seller: Keep learning! Just like coffee, development trends and best practices are always evolving.`,
             },
         ],
     }
@@ -90,7 +93,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Cut your code in slices! Break down large functions into smaller ones! It’s easier to test, debug, and understand your code.`,
+                text: `Seller: Cut your code in slices! Break down large functions into smaller ones! It’s easier to test, debug, and understand your code.`,
             },
         ],
     },
@@ -99,7 +102,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Keep your code like a well-made pizza—balanced and easy to digest.`,
+                text: `Seller: Keep your code like a well-made pizza—balanced and easy to digest.`,
             },
         ],
     },
@@ -108,7 +111,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Lightweight code loads faster and is easier to maintain, just like a thin-crust pizza is easy to handle!`,
+                text: `Seller: Lightweight code loads faster and is easier to maintain, just like a thin-crust pizza is easy to handle!`,
             },
         ],
     },
@@ -117,7 +120,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Share the Pie: Document for Teamwork`,
+                text: `Seller: Share the pizza! Document for Teamwork`,
             },
         ],
     },
@@ -126,7 +129,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Choose the Right Ingredients. Select tools and libraries that are lightweight and fit your project’s needs.`,
+                text: `Seller: Choose the right ingredients. Select tools and libraries that are lightweight and fit your project’s needs.`,
             },
         ],
     },
@@ -135,7 +138,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Deliver with Precision. Code reviews help catch mistakes, improve quality, and deliver better results`,
+                text: `Seller: Deliver with precision. Code reviews help catch mistakes, improve quality, and deliver better results`,
             },
         ],
     }
@@ -147,7 +150,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Stay Fresh with Refactoring. Refactor regularly to keep your codebase efficient and readable.`,
+                text: `Seller: Stay fresh with refactoring. Refactor regularly to keep your codebase efficient and readable.`,
             },
         ],
     },
@@ -156,7 +159,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Caching is like freezing your code's responses—serve data faster by storing frequent responses locally or in a cache`,
+                text: `Seller: Caching is like freezing your code's responses—serve data faster by storing frequent responses locally or in a cache`,
             },
         ],
     },
@@ -165,7 +168,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Prevent ‘code brain freeze’ by limiting redundant or nested loops`,
+                text: `Seller: Prevent ‘code brain freeze’ by limiting redundant or nested loops`,
             },
         ],
     },
@@ -174,7 +177,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Mix Up Flavors: Use Web Workers!`,
+                text: `Seller: Mix up flavors - Use Web Workers!`,
             },
         ],
     },
@@ -183,7 +186,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Scoop It Right: Reduce Payloads!`,
+                text: `Seller: Scoop it right - Reduce Payloads!`,
             },
         ],
     },
@@ -192,7 +195,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Less Sugar, More Speed! Limit large libraries or heavy plugins`,
+                text: `Seller: Less sugar, more Speed! Limit large libraries or heavy plugins`,
             },
         ],
     },
@@ -201,7 +204,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Cool Components with Lazy Loading`,
+                text: `Seller: Cool components with lazy loading`,
             },
         ],
     }

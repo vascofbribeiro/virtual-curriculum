@@ -6,6 +6,7 @@ import { CANVAS_POSITION, CANVAS_SCALE, MAX_WIDTH_MOBILE } from '../constants/';
 import GameObject from './GameObject';
 import CameraView from './CameraView';
 import { SceneTransition } from './SceneTransition';
+import Canvas from './Canvas';
 
 declare global {
     interface Window {
@@ -44,6 +45,14 @@ export default class Engine {
         this.resizeCanvas();
         addEventListener('resize', () => this.resizeCanvas());
         this._ctx = this._canvas.getContext("2d");
+
+        if(window.location.search.includes('debug')) {
+            this._canvas.addEventListener('mousedown', function(e) {
+                const xPos = Math.floor(e.clientX/16);
+                const yPos = Math.floor(e.clientY/16);
+                console.log(`x: ${xPos} y: ${yPos}`);
+            })
+        }
     }
 
     startGameLoop() {
@@ -86,6 +95,11 @@ export default class Engine {
                     //Create upper image for the maps
                     this._activeMap.drawUpperImage(this._ctx, this._cameraView);
 
+                    if(window.location.search.includes('debug')) {
+                        this.drawWallsDebug();
+                        this.drawActionSpacesDebug();
+                    }
+
                 }
             }
 
@@ -95,6 +109,26 @@ export default class Engine {
         }
         
         step();
+    }
+
+    private drawWallsDebug() {
+        Object.keys(this._activeMap.walls).forEach(wallKey => {
+            const [x,y] = wallKey.split(',');
+            this._ctx.fillStyle = "red";
+            this._ctx.globalAlpha = 0.4;
+            this._ctx.fillRect(parseInt(x), parseInt(y), 16, 16);
+            this._ctx.globalAlpha = 1;
+        })
+    }
+
+    private drawActionSpacesDebug() {
+        Object.keys(this._activeMap.actionSpaces).forEach(wallKey => {
+            const [x,y] = wallKey.split(',');
+            this._ctx.fillStyle = "green";
+            this._ctx.globalAlpha = 0.4;
+            this._ctx.fillRect(parseInt(x), parseInt(y), 16, 16);
+            this._ctx.globalAlpha = 1;
+        })
     }
 
     public bindAction() {
@@ -215,7 +249,7 @@ export default class Engine {
 
     public resizeCanvas() {
         const devicePixelRatio = window.devicePixelRatio || 1;
-        const scale = CANVAS_SCALE[this._gameContainer.clientWidth];
+        const scale = window.location.search.includes('debug') ? 0.9 :  CANVAS_SCALE[this._gameContainer.clientWidth] ;
 
         const context = this._canvas.getContext('2d');
 

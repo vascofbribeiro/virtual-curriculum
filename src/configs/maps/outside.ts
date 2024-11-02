@@ -991,10 +991,8 @@ export const outside = {
                     {type: 'walk', who: 'bug', direction: 'up'},
                     {type: 'walk', who: 'bug', direction: 'up'},
                     {type: 'walk', who: 'bug', direction: 'up'},
-                    {type: 'walk', who: 'bug', direction: 'up'},
-                    {type: 'walk', who: 'bug', direction: 'up'},
                     {type: 'hide', who: 'bug' },
-                    {type: 'message', text: `It works on my machine!`},
+                    {type: 'message', text: `That's one less for the QA Team!`},
                 ]
             }
         ],
@@ -1019,14 +1017,14 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(41,-1)]: [
+        [getGridCoord(41,0)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'beach'},
                 ]
             }
         ],
-        [getGridCoord(42,-1)]: [
+        [getGridCoord(42,0)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'beach'},
@@ -1040,7 +1038,7 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(28,18)]: [
+        [getGridCoord(28,19)]: [
             {
                 events: [
                     {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
@@ -1048,7 +1046,7 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(27,18)]: [
+        [getGridCoord(27,19)]: [
             {
                 events: [
                     {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
@@ -1072,20 +1070,52 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(35,19)]: [
+        [getGridCoord(12,18)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'farfetch'},
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
                 ]
             }
         ],
-        [getGridCoord(36,19)]: [
+        [getGridCoord(11,18)]: [
             {
                 events: [
-                    { type: 'changeMap', map: 'farfetch'},
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
                 ]
             }
         ],
+        [getGridCoord(3,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(4,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        // [getGridCoord(35,19)]: [
+        //     {
+        //         events: [
+        //             { type: 'changeMap', map: 'farfetch'},
+        //         ]
+        //     }
+        // ],
+        // [getGridCoord(36,19)]: [
+        //     {
+        //         events: [
+        //             { type: 'changeMap', map: 'farfetch'},
+        //         ]
+        //     }
+        // ],
         [getGridCoord(45,16)]: [
             {
                 events: [
@@ -1114,16 +1144,14 @@ export const outside = {
     ]
 };
 
-
-// createLinearWall({coord: 'x', x: 0, y: 3, n: 41, map: outside});
-// createLinearWall({coord: 'x', x: 27, y: 3, n: 19, map: outside});
-// createLinearWall({coord: 'y', x: 62, y: 3, n: 6, map: outside});
-// createLinearWall({coord: 'y', x: 24, y: -1, n: 4, map: outside});
-// createLinearWall({coord: 'x', x: 46, y: 8, n: 3, map: outside});
-// createLinearWall({coord: 'x', x: 51, y: 8, n: 3, map: outside});
-// createLinearWall({coord: 'y', x: 0, y: 0, n: 30, map: outside});
-// createLinearWall({coord: 'y', x: 69, y: 0, n: 30, map: outside});
-// createLinearWall({coord: 'x', x: 0, y: 25, n: 24, map: outside});
-// createLinearWall({coord: 'x', x: 26, y: 25, n: 30, map: outside});
-// createLinearWall({coord: 'x', x: 27, y: 2, n: 26, map: outside});
+createLinearWall({coord: 'x', x: 0, y: 3, n: 41, map: outside});
+createLinearWall({coord: 'x', x: 43, y: 3, n: 30, map: outside});
+createLinearWall({coord: 'y', x: 62, y: 3, n: 6, map: outside});
+createLinearWall({coord: 'y', x: 40, y: -1, n: 4, map: outside});
+createLinearWall({coord: 'x', x: 62, y: 8, n: 3, map: outside});
+createLinearWall({coord: 'x', x: 67, y: 8, n: 3, map: outside});
+createLinearWall({coord: 'y', x: 0, y: 0, n: 28, map: outside});
+createLinearWall({coord: 'y', x: 69, y: 0, n: 28, map: outside});
+createLinearWall({coord: 'x', x: 0, y: 25, n: 70, map: outside});
+createLinearWall({coord: 'x', x: 40, y: 0, n: 4, map: outside});
 

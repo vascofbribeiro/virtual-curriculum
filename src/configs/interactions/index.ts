@@ -120,7 +120,7 @@ export const pizza:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Seller: Share the pizza! Document for Teamwork`,
+                text: `Seller: Share the pizza! Document for teamwork`,
             },
         ],
     },
@@ -177,7 +177,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Seller: Mix up flavors - Use Web Workers!`,
+                text: `Seller: Mix up flavors - Use web workers!`,
             },
         ],
     },
@@ -186,7 +186,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Seller: Scoop it right - Reduce Payloads!`,
+                text: `Seller: Scoop it right - Reduce payloads!`,
             },
         ],
     },
@@ -195,7 +195,7 @@ export const iceCream:  Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Seller: Less sugar, more Speed! Limit large libraries or heavy plugins`,
+                text: `Seller: Less sugar, more speed! Limit large libraries or heavy plugins`,
             },
         ],
     },

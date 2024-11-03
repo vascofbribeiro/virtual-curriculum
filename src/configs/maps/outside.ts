@@ -946,7 +946,7 @@ export const outside = {
                     events: [
                         {
                             type: 'message',
-                            text:  `You grab a cold beer and take a refreshing sip!`,
+                            text: `You grab a cold beer and take a refreshing sip!  Just remember... too many might make the path a bit wobbly`,
                         },
                         {
                             type: 'beer',
@@ -1153,5 +1153,6 @@ createLinearWall({coord: 'x', x: 67, y: 8, n: 3, map: outside});
 createLinearWall({coord: 'y', x: 0, y: 0, n: 28, map: outside});
 createLinearWall({coord: 'y', x: 69, y: 0, n: 28, map: outside});
 createLinearWall({coord: 'x', x: 0, y: 25, n: 70, map: outside});
-createLinearWall({coord: 'x', x: 40, y: 0, n: 4, map: outside});
+createLinearWall({coord: 'x', x: 40, y: -1, n: 4, map: outside});
+createLinearWall({coord: 'y', x: 70, y: 17, n: 2, map: outside});
 

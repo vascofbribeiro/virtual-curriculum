@@ -180,7 +180,7 @@ export default class Map {
 
     public tryInteraction() {
         const objectToInteract = this.checkForInteraction(); 
-        const isBench = objectToInteract.type === "bench";
+        const isBench = objectToInteract?.type === "bench";
 
         if ((objectToInteract && (!(this.gameObjects.miniMe as Character).isDrunk) || isBench)) {
             this.isInteracting = true;
@@ -190,6 +190,10 @@ export default class Map {
             this.gameObjects[objectToInteract.id].hasInteracted = true;
             const nextInteractionNumber = interactionNumber + 1 >= this.gameObjects[objectToInteract.id].interactions.length ? 0 : interactionNumber + 1;
             this.gameObjects[objectToInteract.id].interactionNumber = nextInteractionNumber;
+        }
+
+        if(objectToInteract && (this.gameObjects.miniMe as Character).isDrunk) {
+            this.startInteraction([{type: "message", text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed sem facilisis, eleifend massa non, molestie enim.'}]);
         }
     }
 

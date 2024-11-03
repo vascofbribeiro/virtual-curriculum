@@ -171,16 +171,19 @@ export default class Engine {
         });
 
         document.addEventListener('CharacterSober', () => {
-            this._activeMap.startInteraction([{type: 'message', text: `You take a deep breath, and the world finally stops spinning – back to normal!`}])
+            this._activeMap.startInteraction([{type: 'message', text: `You take a short rest, and the world finally stops spinning – back to normal!`}])
             this._directionInput.keyMap = {
                 "ArrowUp": "up",
                 "ArrowDown": "down",
                 "ArrowLeft": "left",
                 "ArrowRight": "right"
             }
+            
             const sceneTransition = new SceneTransition();
+            this._activeMap.isInteracting = true;
             sceneTransition.init(document.querySelector('.game-container'), () => {
                 sceneTransition.rest();
+                this._activeMap.isInteracting = true;
             }); 
         });
     }

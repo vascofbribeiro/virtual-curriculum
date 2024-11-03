@@ -140,7 +140,7 @@ export default class Character extends GameObject {
 
         if (behavior.type === 'beer') {
             this.numberOfBeers++;
-            if(this.numberOfBeers === 4 && !this.isDrunk) {
+            if(this.numberOfBeers === 3 && !this.isDrunk) {
                 emitEvent('CharacterDrunk', {
                     whoId: this.id
                 });

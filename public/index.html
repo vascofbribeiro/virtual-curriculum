@@ -441,15 +441,57 @@
         
         <script>
             const audio = new Audio('../sounds/main.mp3');
+            const audioSet = new Audio();
+            const notificationSound = new Audio('../sounds/interaction.mp3');
+            notificationSound.volume = 0.2;
+            let isMuted = true;
             function play() {
-                const btnAudio = document.getElementById('btn-audio');;
-                audio.volume = 0.05;
+                const btnAudio = document.getElementById('btn-audio');
+                btnAudio.blur();
+                audio.volume = 0.4;
                 audio.loop = true;
                 btnAudio.style.backgroundImage = audio.paused ? 'url(../images/interfaces/sound.png)' :  'url(../images/interfaces/sound-mute.png)' 
-                audio.paused ? audio.play() : audio.pause();
-
-
+                isMuted ? audio.play() : audio.pause();
+                isMuted = !isMuted;
             }
+
+            document.addEventListener('CharacterDrunk', () => {
+                audio.src = '../sounds/drunk.mp3';
+                audio.currentTime = 0;
+                !isMuted && audio.play();
+            });
+
+            document.addEventListener('CharacterSober', () => {
+                audio.src = '../sounds/main.mp3';
+                audio.currentTime = 0;
+                !isMuted && audio.play();
+            });
+
+            document.addEventListener('Interaction', () => {
+                !isMuted && notificationSound.play();
+            });
+
+            document.addEventListener('ChangeMap', (event)  => {
+                const previousSrc = audio.src;
+                switch(event.detail.map) {
+                    case 'beach': 
+                        audioSet.src = '../sounds/beach.mp3';
+                        break;
+                    default:
+                        audioSet.src = '../sounds/main.mp3';
+                }
+
+                // Don't restart song if it's the same
+                if(previousSrc !== audioSet.src) {
+                    audio.src = audioSet.src;
+                    audio.currentTime = 0;
+                    if(!isMuted) {
+                        audio.play();
+                    }
+                }
+                
+                
+            });
         </script>
         <meta name="viewport" content="user-scalable=no" />
     </body>

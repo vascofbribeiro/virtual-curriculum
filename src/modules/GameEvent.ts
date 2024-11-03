@@ -4,6 +4,7 @@ import { InteractionBox } from "./InteractionBox";
 import Map from "./Map";
 import { SceneTransition } from "./SceneTransition";
 import Character from "./Character";
+import { emitEvent } from "../utils/events";
 
 export default class GameEvent {
     private map: Map;
@@ -52,7 +53,6 @@ export default class GameEvent {
     
     private sober(resolve: Function) {
         const who = this.map.gameObjects[this.event.who];
-        who.isInteracting = true;
         who.startBehavior(
             {
                 map: this.map
@@ -144,6 +144,10 @@ export default class GameEvent {
             }
         })
 
+        emitEvent('Interaction', {
+            whoId: 'miniMe'
+        });
+
         message.init(document.querySelector('.game-container'))
     }
 
@@ -157,6 +161,10 @@ export default class GameEvent {
                 resolve();
             }
         })
+
+        emitEvent('Interaction', {
+            whoId: 'miniMe'
+        });
 
         message.init(document.querySelector('.game-container'))
     }
@@ -182,6 +190,10 @@ export default class GameEvent {
             sceneTransition.init(document.querySelector('.game-container'), () => {
                 this.map.engine.startMap(this.event.map)
                 resolve();
+                
+                emitEvent('ChangeMap', {
+                    map: this.event.map
+                })
 
                 sceneTransition.fadeOut();
             }); 

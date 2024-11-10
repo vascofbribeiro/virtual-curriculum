@@ -73,7 +73,8 @@ export default class GameEvent {
             {
                 type: 'walk',
                 direction: this.event.direction,
-                retry: true
+                retry: true,
+                ignoreWall: this.event.ignoreWall
             }
         )
 
@@ -198,6 +199,52 @@ export default class GameEvent {
                 sceneTransition.fadeOut();
             }); 
         }
+    }
+
+    private surf(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'surf',
+            }
+        );
+
+        this.map.isInteracting = true;
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                this.map.isInteracting = false;
+                document.removeEventListener('CharacterSurfCompleted', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterSurfCompleted', completeHandler);
+    }
+
+    private changeSprite(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            },
+            {
+                type: 'changeSprite',
+                spriteObj: this.event.spriteObj
+            }
+        );
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                document.removeEventListener('CharacterSpriteChanged', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterSpriteChanged', completeHandler);
     }
 
     private changeCameraView(resolve: Function) {

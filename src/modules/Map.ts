@@ -121,8 +121,9 @@ export default class Map {
         delete this.spacesTaken[`${x},${y}`];
     }
 
-    public moveSpaceTaken(wasX: number, wasY: number, direction: Direction) {
-        this.removeSpaceTaken(wasX, wasY);
+    public moveSpaceTaken(wasX: number, wasY: number, direction: Direction, ignoreWall?: boolean) {
+        // If it is wall the space shouldn't be removed in the map
+        !ignoreWall && this.removeSpaceTaken(wasX, wasY);
         const {x, y} = nextPosition(wasX, wasY, direction);
         
         if(window.location.search.includes('debug')) {
@@ -212,7 +213,7 @@ export default class Map {
             return isInteractable;
         })
 
-        if (match && match.interactions && match.interactions.length) {
+        if (match && match.interactions && match.interactions.length && !match.isHidden) {
             return match
         }
 

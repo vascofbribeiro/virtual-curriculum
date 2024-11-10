@@ -73,6 +73,9 @@
             }
 
             .game-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 position: relative;
                 width: 120px;
                 height: 200px;
@@ -410,10 +413,75 @@
                 to { opacity: 0 }
             }
 
+            .credits-container {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                max-width: 600px;
+                height: 100%;
+                overflow: hidden;
+                position: absolute;
+            }
+
+            .credits-content {
+                position: absolute;
+                top: 100%;
+                animation: scrollUp 60s linear infinite;
+            }
+
+            @keyframes scrollUp {
+                from { top: 100%; }
+                to { top: -100%; }
+            }
+
+            .credits-content h2, .credits-content p {
+                text-align: center;
+                margin-bottom: 1em;
+                text-shadow: 1px 1px 2px #000;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                color: #FFD700;
+                text-shadow: 1px 1px 2px #000;
+            }
+
+            .credit-item {
+                font-size: 1.1rem;
+                color: #ddd;
+            }
+
         </style>
     </head>
     <body>
         <div class="game-container" id="canvas-container">
+            <div class="credits-container">
+                <div class="credits-content">
+                    <h2 class="section-title">Portfolio Game by</h2>
+                    <p class="credit-item">Vasco Ribeiro</p>
+                
+                    <h2 class="section-title">Game Design & Development</h2>
+                    <p class="credit-item">Built with passion for code, creativity, and pixel art!</p>
+                    <p class="credit-item">https://github.com/vascofbribeiro/virtual-curriculum</p>
+                
+                    <h2 class="section-title">Pixel Art & Assets</h2>
+                    <p class="credit-item">Modern Interiors RPG Tileset - Limezu</p>
+                    <p class="credit-item">Modern Exteriors RPG Tileset - Limezu</p>
+                    <p class="credit-item">Limezu: <a>https://limezu.itch.io/</a></p>
+                    
+
+                    <h2 class="section-title">Sound Effects & Music</h2>
+                    <p class="credit-item">Background Sounds: Generated with Suno</p>
+                  
+                    <h2 class="section-title">Special Thanks</h2>
+                    <p class="credit-item">To My Past Experiences & Projects: Inspiring each pixel!</p>
+                    <p class="credit-item">Friends & Family: For endless support and playtesting!</p>
+                
+                    <h2 class="section-title">Thank You for Playing!</h2>
+                    <p class="credit-item">Explore, discover, and enjoy the journey through my tech adventures!</p>
+                </div>
+            </div>
             <div id="loading" class="loading-container">
                 LOADING<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
                 <div class="loading-bar">
@@ -423,6 +491,7 @@
             <canvas id="game-canvas"></canvas>
             <button id="btn-audio" class="button-audio" onclick="play()"></button>
             <div id="helper"><p id="helper-text"></p></div>
+            
         </div>
 
         <div class="gamepad">
@@ -491,7 +560,7 @@
                 }
                 
                 
-            });
+        });
         </script>
         <meta name="viewport" content="user-scalable=no" />
     </body>

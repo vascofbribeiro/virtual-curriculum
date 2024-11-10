@@ -75,7 +75,7 @@ export default class Character extends GameObject {
                 whoId: this.id
             });
 
-            if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+            if (!behavior.ignoreWall && state.map.isSpaceTaken(this.x, this.y, this.direction)) {
                 behavior.retry && setTimeout(() => {
                     this.startBehavior(state, behavior);
                 }, 100);
@@ -83,7 +83,7 @@ export default class Character extends GameObject {
                 return;
             }
             // Move space for walking character
-            state.map.moveSpaceTaken(this.x, this.y, this.direction);
+            state.map.moveSpaceTaken(this.x, this.y, this.direction, behavior.ignoreWall);
             this._movingProgressRemaining = 16;
 
             this.updateSprite();
@@ -150,6 +150,35 @@ export default class Character extends GameObject {
                 this.numberOfBeers = 0;
             }
             
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'surf') {
+            const credits = document.querySelectorAll<HTMLElement>('.credits-container')[0];
+            credits.style.display = 'flex';
+            this.isHidden = true;
+
+            setTimeout(() => {
+                credits.style.display = 'none';
+                this.isHidden = false;
+                emitEvent('CharacterSurfCompleted', {
+                    whoId: this.id
+                });
+            }, 60000);
+
+            
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'changeSprite') {
+            this.objectSprite.animations = behavior.spriteObj;
+            
+            setTimeout(() => {
+                emitEvent('CharacterSpriteChanged', {
+                    whoId: this.id,
+                });
+            }, 0)
+
             this.updateSprite();
         }
 

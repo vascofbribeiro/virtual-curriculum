@@ -23,8 +23,7 @@ export const coffee: Record<"events", IEvent[]>[] = [
             {type: 'idle', who: 'miniMe', direction: 'up' },
             {
                 type: 'message', 
-                text: `Seller: Stuck on a bug? Get a coffee and try a 'rubber duck debugging' session.
-                    Explaining the problem out loud, even to an imaginary listener, often helps you spot mistakes.`,
+                text: `Seller: Stuck on a bug? Get a coffee and try a 'rubber duck debugging' session`,
             },{
                 type: 'message', 
                 text: `Explaining the problem out loud, even to an imaginary listener, often helps you spot mistakes.`,

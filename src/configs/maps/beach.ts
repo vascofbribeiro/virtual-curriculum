@@ -149,31 +149,6 @@ export const beach = {
                 ]
             }
         ],
-        // [getGridCoord(13,6)]: [
-        //     {
-        //         triggerOnce: true,
-        //         events: [
-        //             { type: 'message', text: 'Use Surf?'},
-        //             {type: 'changeSprite', who: 'miniMe', spriteObj: miniMeSurfAnimation},
-        //             {type: 'walk', who: 'miniMe', direction: 'up', ignoreWall: true},
-        //             {type: 'walk', who: 'miniMe', direction: 'up'},
-        //             {type: 'walk', who: 'miniMe', direction: 'up'},
-        //             {type: 'walk', who: 'miniMe', direction: 'up'},
-        //             {type: 'walk', who: 'miniMe', direction: 'up'},
-        //             {type: 'walk', who: 'miniMe', direction: 'up'},
-        //             {type: 'surf', who: 'miniMe'},
-        //             {type: 'walk', who: 'miniMe', direction: 'down'},
-        //             {type: 'walk', who: 'miniMe', direction: 'down'},
-        //             {type: 'walk', who: 'miniMe', direction: 'down'},
-        //             {type: 'walk', who: 'miniMe', direction: 'down'},
-        //             {type: 'walk', who: 'miniMe', direction: 'down'},
-        //             {type: 'walk', who: 'miniMe', direction: 'down', ignoreWall: true},
-        //             {type: 'changeSprite', who: 'miniMe', spriteObj: miniMeAnimation},
-        //             { type: 'message', text: `You’ve returned to shore. Hope you enjoyed the ride!`},
-                    
-        //         ]
-        //     }
-        // ]
     },
 };
 

@@ -3,6 +3,8 @@ import { ICharacter } from '../interfaces/modules/ICharacter';
 import { IState } from '../interfaces/modules/IState';
 import { emitEvent } from '../utils/events';
 import GameObject from './GameObject';
+import miniMeDrunk from '../configs/sprites/miniMeDrunk';
+import miniMe from '../configs/sprites/miniMe';
 
 type Direction = {
     axis: string;
@@ -15,6 +17,8 @@ export default class Character extends GameObject {
     private _speedMultiplier: number;
     public isInteracting: boolean;
     public isIdle: boolean;
+    public numberOfBeers: number;
+    public isDrunk: boolean;
 
     private directionUpdate: Record<string, Direction>;
 
@@ -26,6 +30,8 @@ export default class Character extends GameObject {
         this._speedMultiplier = config.speedMultiplier ?? 1;
         this.isInteracting = true;
         this.isIdle = false;
+        this.numberOfBeers = 0;
+        this.isDrunk = false;
         this.directionUpdate = {
             up: {
                 axis: "y",
@@ -62,14 +68,14 @@ export default class Character extends GameObject {
     }
 
     public startBehavior(state: IState, behavior: IEvent) {
-        this.direction = behavior.direction;
+        this.direction = behavior.direction || this.direction;
 
         if (behavior.type === 'walk') {
             emitEvent('CharacterTryWalk', {
                 whoId: this.id
             });
 
-            if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+            if (!behavior.ignoreWall && state.map.isSpaceTaken(this.x, this.y, this.direction)) {
                 behavior.retry && setTimeout(() => {
                     this.startBehavior(state, behavior);
                 }, 100);
@@ -77,7 +83,7 @@ export default class Character extends GameObject {
                 return;
             }
             // Move space for walking character
-            state.map.moveSpaceTaken(this.x, this.y, this.direction);
+            state.map.moveSpaceTaken(this.x, this.y, this.direction, behavior.ignoreWall);
             this._movingProgressRemaining = 16;
 
             this.updateSprite();
@@ -102,6 +108,76 @@ export default class Character extends GameObject {
                     whoId: this.id,
                 });
             }, 100)
+
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'hide') {
+            this.isHidden = true;
+            setTimeout(() => {
+                emitEvent('CharacterHideCompleted', {
+                    whoId: this.id,
+                });
+            }, 0)
+
+            state.map.removeSpaceTaken(this.x, this.y);
+
+            this.updateSprite();
+        }
+
+        if(behavior.type === 'sober') {
+            if(this.isDrunk) {
+                emitEvent('CharacterSober', {
+                    whoId: this.id,
+                });
+                this.isDrunk = false;
+                this.objectSprite.animations = miniMe;
+                this.numberOfBeers = 0;
+            }
+            
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'beer') {
+            this.numberOfBeers++;
+            if(this.numberOfBeers === 3 && !this.isDrunk) {
+                emitEvent('CharacterDrunk', {
+                    whoId: this.id
+                });
+
+                this.isDrunk = true;
+                this.objectSprite.animations = miniMeDrunk;
+                this.numberOfBeers = 0;
+            }
+            
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'surf') {
+            const credits = document.querySelectorAll<HTMLElement>('.credits-container')[0];
+            credits.style.display = 'flex';
+            this.isHidden = true;
+
+            setTimeout(() => {
+                credits.style.display = 'none';
+                this.isHidden = false;
+                emitEvent('CharacterSurfCompleted', {
+                    whoId: this.id
+                });
+            }, 30000);
+
+            
+            this.updateSprite();
+        }
+
+        if (behavior.type === 'changeSprite') {
+            this.objectSprite.animations = behavior.spriteObj;
+            
+            setTimeout(() => {
+                emitEvent('CharacterSpriteChanged', {
+                    whoId: this.id,
+                });
+            }, 0)
 
             this.updateSprite();
         }

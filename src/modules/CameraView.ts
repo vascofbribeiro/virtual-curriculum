@@ -57,6 +57,9 @@ export default class CameraView {
     }
 
     public getXView() {
+        if(window.location.search.includes('debug')) {
+            return 176;
+        }
         if(!this.limits) {
             return this.gameObject.x;
         }
@@ -71,6 +74,9 @@ export default class CameraView {
     }
 
     public getYView() {
+        if(window.location.search.includes('debug')) {
+            return 112  ;
+        }
         if(!this.limits) {
             return this.gameObject.y;
         }

@@ -1,5 +1,6 @@
 interface IDetail {
-    whoId: string;
+    whoId?: string;
+    map?: string;
 }
 
 export const emitEvent = (name: string, detail: IDetail) => {

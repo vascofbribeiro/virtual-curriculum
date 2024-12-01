@@ -5,7 +5,7 @@ import defaultAnimations from '../configs/sprites/defaults';
 import CameraView from './CameraView';
 
 export default class Sprite {
-    private _animations: {
+    public animations: {
         [key: string]: Array<Array<number>> 
     };
     private _currentAnimation: string;
@@ -43,7 +43,7 @@ export default class Sprite {
         this._height = config.height;
         this._imageWidth = config.imageWidth || config.width;
         this._imageHeight = config.imageHeight || config.height;
-        this._animations = config.animations || defaultAnimations;
+        this.animations = config.animations || defaultAnimations;
 
         this._framesToChange = 8;
         this._verticalMove = 0;
@@ -54,7 +54,7 @@ export default class Sprite {
     }
 
     get frame() {
-        return this._animations[this._currentAnimation][this._currentAnimationFrame]
+        return this.animations[this._currentAnimation][this._currentAnimationFrame]
     }
 
     updateAnimationProgress() {
@@ -66,7 +66,7 @@ export default class Sprite {
             this._framesToChangeProgress = this._framesToChange;
             this._verticalMove = this._verticalMove === 5 ? 0 : this._verticalMove+1;
 
-            this._currentAnimationFrame = this._animations[this._currentAnimation][this._currentAnimationFrame] ? this._currentAnimationFrame : 0;
+            this._currentAnimationFrame = this.animations[this._currentAnimation][this._currentAnimationFrame] ? this._currentAnimationFrame : 0;
         }
     }
 

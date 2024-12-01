@@ -8,12 +8,15 @@ import fountain from '../sprites/fountain';
 import globe from '../sprites/globe';
 import buildingBillboard from '../sprites/buildingBillboard';
 import techskillsBillboard from '../sprites/techskillsBillboard';
+import { addActions } from '../../utils/actions';
+import * as interactions from '../interactions/index'; 
+import bugAnimations from '../sprites/bug';
 
 export const outside = {
     lowerImageSrc: "../images/backgrounds/exterior.png",
     gameObjects: {
         miniMe: new Character({
-            x: getGridPosition(26), //x: getGridPosition(10),
+            x: getGridPosition(41), //x: getGridPosition(10),
             y: getGridPosition(24), //y: getGridPosition(10),
             isPlayer: true,
             hasShadow: true,
@@ -39,7 +42,7 @@ export const outside = {
             isHidden: true,
         }),
         car: new Character({
-            x: getGridPosition(10), //x: getGridPosition(10),
+            x: getGridPosition(7), //x: getGridPosition(10),
             y: getGridPosition(24), //y: getGridPosition(10),
             isPlayer: false,
             hasShadow: true,
@@ -55,26 +58,26 @@ export const outside = {
             },
             isCameraView: true,
             speedMultiplier: 2,
-            // behaviorLoop: [
-            //     { type: 'walk', direction: 'right' }
-            // ]
         }),
-        // doorHouse: new GameObject({
-        //     x: getGridPosition(50),
-        //     y: getGridPosition(6),
-        //     hasShadow: false,
-        //     width: getGridPosition(1),
-        //     height: getGridPosition(1),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/doors/door-house.png',
-        //             width: getGridPosition(1),
-        //             height: getGridPosition(2),
-        //         },
-        //     },
-        // }),
+        bug: new Character({
+            x: getGridPosition(55), //x: getGridPosition(10),
+            y: getGridPosition(20), //y: getGridPosition(10),
+            isPlayer: false,
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/bug.png',
+                    width: getGridPosition(1),
+                    height: getGridPosition(1),
+                    animations: bugAnimations
+                },
+            },
+            isHidden: true,
+        }),
         house: new GameObject({
-            x: getGridPosition(48),
+            x: getGridPosition(64),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(4),
@@ -96,35 +99,9 @@ export const outside = {
                 height: getGridPosition(2),
             }
         }),
-        // signEduExp: new GameObject({
-        //     x: getGridPosition(39),
-        //     y: getGridPosition(15),
-        //     hasShadow: false,
-        //     width: getGridPosition(3),
-        //     height: getGridPosition(2),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/sign-outside.png',
-        //             width: getGridPosition(3),
-        //             height: getGridPosition(3),
-        //         },
-        //     },
-        //     interactions: [
-        //         {
-        //             events: [{
-        //                 type: 'message', 
-        //                 text: `Education ←`
-        //             },
-        //             {
-        //                 type: 'message', 
-        //                 text: `Experience ←`
-        //             }]
-        //         }
-        //     ],
-        // }),
-        // Education Building
+        // TECH SKILLS Building
         techSkillsMuseum: new GameObject({
-            x: getGridPosition(28),
+            x: getGridPosition(44),
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(8),
@@ -145,7 +122,7 @@ export const outside = {
             }
         }),
         techskillsBillboard: new GameObject({
-            x: getGridPosition(31),
+            x: getGridPosition(47),
             y: getGridPosition(12.5),
             hasShadow: false,
             width: getGridPosition(5),
@@ -160,7 +137,7 @@ export const outside = {
             },
         }),
         signEduExp: new GameObject({
-            x: getGridPosition(28),
+            x: getGridPosition(44),
             y: getGridPosition(20),
             hasShadow: false,
             width: getGridPosition(3),
@@ -175,7 +152,7 @@ export const outside = {
         }),
         // Education Building
         college: new GameObject({
-            x: getGridPosition(27),
+            x: getGridPosition(43),
             y: getGridPosition(-1),
             hasShadow: false,
             width: getGridPosition(12),
@@ -191,7 +168,7 @@ export const outside = {
             },
         }),
         signCollege: new GameObject({
-            x: getGridPosition(29.5),
+            x: getGridPosition(45.5),
             y: getGridPosition(4),
             hasShadow: false,
             width: getGridPosition(1),
@@ -205,7 +182,7 @@ export const outside = {
             },
         }),
         professor: new Character({
-            x: getGridPosition(33),
+            x: getGridPosition(49),
             y: getGridPosition(8),
             isPlayer: false,
             hasShadow: true,
@@ -262,9 +239,160 @@ export const outside = {
             },
         }),
         //PROFESSIONAL EXPERIENCE BUILDINGS
+        arkadiumBillboard: new GameObject({
+            x: getGridPosition(33),
+            y: getGridPosition(17.5),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/arkadium-billboard.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(2),
+                    animations: buildingBillboard
+                },
+            },
+        }),
+        arkadium: new GameObject({
+            x: getGridPosition(33),
+            y: getGridPosition(13),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(6),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/arkadium.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(9),
+                },
+            },
+        }),
+        arkadiumInfo: new GameObject({
+            x: getGridPosition(39),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/information.png',
+                    width: 16,
+                    height: 32,
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
+                        {
+                            type: 'interactionBox',
+                            title: 'Arkadium (Dec 2024 - Present)',
+                            textLines: [
+                                `Arkadium specializes in developing premium online games for a broad audience, focusing on user-friendly, accessible games that emphasize quality and enjoyment.`,
+                                `I joined Arkadium as a Senior Full Stack Developer to help create engaging browser-based game arenas, to build interactive, high-performance gaming experiences.`
+                            ],
+                        },
+                    ]
+                }
+            ],
+        }),
+        emmaBillboard: new GameObject({
+            x: getGridPosition(25),
+            y: getGridPosition(15.5),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/emma-billboard.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(2),
+                    animations: buildingBillboard
+                },
+            },
+        }),
+        emma: new GameObject({
+            x: getGridPosition(25),
+            y: getGridPosition(11),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(8),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/emma.png',
+                    width: 96,
+                    height: 176
+                },
+            },
+            door: {
+                offsetX: getGridPosition(2),
+                offsetY: getGridPosition(8.5),
+                width: getGridPosition(2),
+                height: getGridPosition(2),
+                src: '../images/doors/door-building.png',
+            }
+        }),
+        emmaInfo: new GameObject({
+            x: getGridPosition(31),
+            y: getGridPosition(19),
+            hasShadow: false,
+            width: getGridPosition(1),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/information.png',
+                    width: 16,
+                    height: 32,
+                },
+            },
+            interactionIcon: {
+                far:  '../images/objects/interaction.png',
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'interactionBox',
+                            title: 'Emma (Jul 2023 - Dec 2024)',
+                            textLines: [
+                                `Emma is a leading company in mattress and sleep market, dedicated to optimizing sleep quality through innovative, science-backed products. `,
+                                `Focused on expanding global market reach while maintaining premium quality and optimizing the online shopping experience through robust, engaging web platforms.`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Emma (Jul 2023 - Dec 2024)',
+                            textLines: [
+                                `At Emma, I helped streamlining the rendering process, reducing generation time through optimized scripting and cache strategies.`,
+                                `I worked closely with designers and product managers to develop and refine UI components that bring direct value to Emma’s website, ensuring a user-centric experience.`
+                            ],
+                        },
+                        {
+                            type: 'interactionBox',
+                            title: 'Emma (Jul 2023 - Dec 2024)',
+                            textLines: [
+                                `I also collaborated with backend teams to migrate a key service for delivery tracking, improving the site's functionality and data accuracy.`,
+                            ],
+                        },
+                    ]
+                }
+            ],
+        }),
         farfetchBillboard: new GameObject({
             x: getGridPosition(17),
-            y: getGridPosition(13.5),
+            y: getGridPosition(15.5),
             hasShadow: false,
             width: getGridPosition(6),
             height: getGridPosition(1),
@@ -321,28 +449,20 @@ export const outside = {
             interactions: [
                 {
                     events: [
-                        // {type: 'message', text: `I'm currently working at Farfetch since 2017. My job here is to create tools and features to maximize website performance and to help developers experience`}
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch (Sep 2017 - Present)',
+                            title: 'Farfetch (Sep 2017 - Jun 2023)',
                             textLines: [
-                                `I have been working as a Front-End Developer for Farfetch since 2017. My daily routine involves using Javascript/Typescript, NodeJS, React and Docker to develop and maintain the website. `,
-                                `In 2020, I moved to a more technical team where we focus on improving the development experience for other front-end contributors to farfetch.com.`
+                                `Farfetch operates as a global luxury fashion platform that connects customers with high-end brands and boutiques through an advanced e-commerce site and marketplace.`,
+                                `The company’s strategy revolves around offering a seamless, high-quality digital shopping experience with a strong focus on personalization and cutting-edge technology to meet the demands of luxury consumers.`
                             ],
                         },
                         {
                             type: 'interactionBox',
-                            title: 'Farfetch (Sep 2017 - Present)',
+                            title: 'Farfetch (Sep 2017 - Jun 2023)',
                             textLines:  [
-                                `In addition to this, I also contribute to the Front-End architecture of Farfetch.`,
-                                `This has allowed me to expand my technical skills and have a greater impact on the overall development process at the company. I take pride in being able to play a part in shaping the direction of our codebase.`
-                            ],
-                        },
-                        {
-                            type: 'interactionBox',
-                            title: 'Farfetch (Sep 2017 - Present)',
-                            textLines:  [
-                                `I am excited to be a part of this team and contribute to the growth and success of Farfetch.`,
+                                `As a Front-End Engineer at Farfetch, I maintained core TypeScript and JavaScript tools, managed containerized deployments, and implemented testing mechanisms to ensure smooth site functionality.`,
+                                `Partnering with designers and product owners, I also helped create and optimize high-traffic React components, maintaining performance and stability.`
                             ],
                         }
                     ]
@@ -351,7 +471,7 @@ export const outside = {
         }),
         dotlogicBillboard: new GameObject({
             x: getGridPosition(9),
-            y: getGridPosition(14.5),
+            y: getGridPosition(16.5),
             hasShadow: false,
             width: getGridPosition(6),
             height: getGridPosition(1),
@@ -366,10 +486,10 @@ export const outside = {
         }),
         dotlogic: new GameObject({
             x: getGridPosition(9),
-            y: getGridPosition(12),
+            y: getGridPosition(14),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(6),
+            height: getGridPosition(4),
             collisionOffset: {
                 width: 0,
                 height: getGridPosition(1),
@@ -383,7 +503,7 @@ export const outside = {
             },
             door: {
                 offsetX: getGridPosition(2),
-                offsetY: getGridPosition(6.5),
+                offsetY: getGridPosition(4.5),
                 src: '../images/doors/door-building.png',
                 width: getGridPosition(2),
                 height: getGridPosition(2),
@@ -431,10 +551,10 @@ export const outside = {
         }), 
         blip: new GameObject({
             x: getGridPosition(1),
-            y: getGridPosition(11),
+            y: getGridPosition(9),
             hasShadow: false,
             width: getGridPosition(6),
-            height: getGridPosition(8),
+            height: getGridPosition(10),
             collisionOffset: {
                 width: 0,
                 height: getGridPosition(1),
@@ -442,13 +562,13 @@ export const outside = {
             sprite: {
                 object: {
                     src: '../images/objects/blip2.png',
-                    width: 96,
-                    height: 176,
+                    width: getGridPosition(6),
+                    height: getGridPosition(13),
                 },
             },
             door: {
                 offsetX: getGridPosition(2),
-                offsetY: getGridPosition(8.5),
+                offsetY: getGridPosition(10.5),
                 src: '../images/doors/door-building.png',
                 width: getGridPosition(2),
                 height: getGridPosition(2),
@@ -484,10 +604,56 @@ export const outside = {
                     ]
                 }
             ],
-        }), 
+        }),
+        coffeeShop: new GameObject({
+            x: getGridPosition(19),
+            y: getGridPosition(1),
+            hasShadow: false,
+            width: getGridPosition(5),
+            height: getGridPosition(8),
+            sprite: {
+                object: {
+                    src: '../images/objects/coffee.png',
+                    width: getGridPosition(5),
+                    height: getGridPosition(9),
+                },
+            },
+        }),
+        iceCreamShop: new GameObject({
+            x: getGridPosition(1),
+            y: getGridPosition(3),
+            hasShadow: false,
+            width: getGridPosition(7),
+            height: getGridPosition(3),
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1),
+            },
+            sprite: {
+                object: {
+                    src: '../images/objects/ice-cream.png',
+                    width: getGridPosition(7),
+                    height: getGridPosition(5),
+                },
+            },
+        }),
+        pizzaShop: new GameObject({
+            x: getGridPosition(10),
+            y: getGridPosition(2),
+            hasShadow: false,
+            width: getGridPosition(6),
+            height: getGridPosition(5),
+            sprite: {
+                object: {
+                    src: '../images/objects/pizza.png',
+                    width: getGridPosition(6),
+                    height: getGridPosition(6),
+                },
+            },
+        }),
         // SOFT SKILLS BUILDING
         softSkills: new GameObject({
-            x: getGridPosition(7),
+            x: getGridPosition(27),
             y: getGridPosition(0),
             hasShadow: false,
             width: getGridPosition(6),
@@ -509,7 +675,7 @@ export const outside = {
         }),
         // SOCIAL BILLBOARDS
         socialBillboard: new GameObject({
-            x: getGridPosition(16),
+            x: getGridPosition(35),
             y: getGridPosition(3),
             hasShadow: false,
             width: getGridPosition(5),
@@ -540,7 +706,7 @@ export const outside = {
             ],
         }),
         awardsBillboard: new GameObject({
-            x: getGridPosition(40),
+            x: getGridPosition(56),
             y: getGridPosition(12),
             hasShadow: false,
             width: getGridPosition(5),
@@ -581,7 +747,7 @@ export const outside = {
             ],
         }),
         signAndroid: new GameObject({
-            x: getGridPosition(47),
+            x: getGridPosition(63),
             y: getGridPosition(15),
             hasShadow: false,
             width: getGridPosition(1),
@@ -612,7 +778,7 @@ export const outside = {
             ],
         }),
         campervan: new GameObject({
-            x: getGridPosition(42),
+            x: getGridPosition(58),
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(6),
@@ -640,7 +806,7 @@ export const outside = {
             ],
         }),
         thinkGlobe: new GameObject({
-            x: getGridPosition(45),
+            x: getGridPosition(61),
             y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(1),
@@ -655,7 +821,7 @@ export const outside = {
             }
         }),
         volunteer: new GameObject({
-            x: getGridPosition(41),
+            x: getGridPosition(57),
             y: getGridPosition(4),
             hasShadow: false,
             width: getGridPosition(4),
@@ -699,8 +865,8 @@ export const outside = {
 
         //TREES
         fountain: new GameObject({
-            x: getGridPosition(35),
-            y: getGridPosition(20),
+            x: getGridPosition(50),
+            y: getGridPosition(20.5),
             hasShadow: false,
             width: getGridPosition(2),
             height: getGridPosition(2),
@@ -713,104 +879,194 @@ export const outside = {
                 },
             },
         }),
-        tree1: new GameObject({
-            x: getGridPosition(32),
-            y: getGridPosition(20),
+        bench: new GameObject({
+            x: getGridPosition(50),
+            y: getGridPosition(19),
             hasShadow: false,
             width: getGridPosition(2),
+            height: getGridPosition(1),
+            sprite: {
+                object: {
+                    src: '../images/objects/bench-down.png',
+                    width: getGridPosition(2),
+                    height: getGridPosition(2),
+                },
+            },
+            type: 'bench',
+            interactions: interactions.bench
+        }),
+        benchLeft: new GameObject({
+            x: getGridPosition(53),
+            y: getGridPosition(20),
+            hasShadow: false,
+            width: getGridPosition(1),
             height: getGridPosition(2),
             sprite: {
                 object: {
-                    src: '../images/objects/tree.png',
-                    width: getGridPosition(2),
+                    src: '../images/objects/bench-left.png',
+                    width: getGridPosition(1),
                     height: getGridPosition(3),
                 },
             },
+            type: 'bench',
+            interactions: interactions.bench
         }),
-        tree2: new GameObject({
-            x: getGridPosition(38),
+        benchRight: new GameObject({
+            x: getGridPosition(48),
             y: getGridPosition(20),
             hasShadow: false,
-            width: getGridPosition(2),
+            width: getGridPosition(1),
             height: getGridPosition(2),
             sprite: {
                 object: {
-                    src: '../images/objects/tree.png',
-                    width: getGridPosition(2),
+                    src: '../images/objects/bench-right.png',
+                    width: getGridPosition(1),
                     height: getGridPosition(3),
                 },
             },
+            type: 'bench',
+            interactions: interactions.bench
         }),
-        
-        //OTHERS
-        // padel: new GameObject({
-        //     x: getGridPosition(30),
-        //     y: getGridPosition(5),
-        //     hasShadow: false,
-        //     width: getGridPosition(8),
-        //     height: getGridPosition(4),
-        //     sprite: {
-        //         object: {
-        //             src: '../images/objects/padel.png',
-        //             width: getGridPosition(8),
-        //             height: getGridPosition(4),
-        //             imageWidth: getGridPosition(8),
-        //             imageHeight: getGridPosition(4)
-        //         },
-        //     },
-        // }),
+
+        beer: new GameObject({
+            x: getGridPosition(67),
+            y: getGridPosition(14),
+            hasShadow: false,
+            width: getGridPosition(3),
+            height: getGridPosition(2),
+            sprite: {
+                object: {
+                    src: '../images/objects/beer.png',
+                    width: getGridPosition(3),
+                    height: getGridPosition(4),
+                },
+            },
+            interactions: [
+                {
+                    events: [
+                        {
+                            type: 'message',
+                            text: `You grab a cold beer and take a refreshing sip!`,
+                        },
+                        {
+                            type: 'beer',
+                            who: 'miniMe'
+                        },
+                    ],
+                }
+            ],
+            collisionOffset: {
+                width: 0,
+                height: getGridPosition(1)
+            }
+        }),
     },
     walls: {
-        [getGridCoord(26,25)]: true,
-        [getGridCoord(54,17)]: true,
-        [getGridCoord(54,18)]: true
+        // [getGridCoord(42,25)]: true,
+        // [getGridCoord(70,17)]: true,
+        // [getGridCoord(70,18)]: true
     },
     limits: {
         xMin: getGridPosition(11),
         yMin: getGridPosition(6.5),
-        xMax: getGridPosition(43),
-        yMax: getGridPosition(23)
+        xMax: getGridPosition(59),
+        yMax: getGridPosition(20)
     },
     actionSpaces: {
-        [getGridCoord(50,6)]: [
+        // Interactions for coffe
+        [getGridCoord(21,9)]: interactions.coffee,
+        // Interactions for pizza
+        [getGridCoord(11,7)]: interactions.pizza,
+        // Interactions for iceCream
+        [getGridCoord(3,7)]: interactions.iceCream,
+        [getGridCoord(55,20)]: [
+            {
+                triggerOnce: true,
+                events: [
+                    {type: 'message', text: `A wild bug appeared!!`},
+                    {type: 'show', who: 'bug', direction: 'down' },
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'walk', who: 'bug', direction: 'up'},
+                    {type: 'hide', who: 'bug' },
+                    {type: 'message', text: `That's one less for the QA Team!`},
+                ]
+            }
+        ],
+        [getGridCoord(66,6)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'house'},
                 ]
             }
         ],
-        [getGridCoord(53,17)]: [
+        [getGridCoord(69,17)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
                 ]
             }
         ],
-        [getGridCoord(53,18)]: [
+        [getGridCoord(69,18)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'basket'},
                 ]
             }
         ],
-        [getGridCoord(25,-1)]: [
+        [getGridCoord(41,0)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'beach'},
                 ]
             }
         ],
-        [getGridCoord(26,-1)]: [
+        [getGridCoord(42,0)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'beach'},
                 ]
             }
         ],
-        [getGridCoord(8,8)]: [
+        [getGridCoord(28,8)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'softSkills'},
+                ]
+            }
+        ],
+        [getGridCoord(28,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(27,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(19,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
+                ]
+            }
+        ],
+        [getGridCoord(20,19)]: [
+            {
+                events: [
+                    {type: 'message', text: `I'm not allowed to enter the building since I don't work here anymore`},
+                    {type: 'walk', who: 'miniMe', direction: 'down' },
                 ]
             }
         ],
@@ -846,21 +1102,21 @@ export const outside = {
                 ]
             }
         ],
-        [getGridCoord(19,19)]: [
-            {
-                events: [
-                    { type: 'changeMap', map: 'farfetch'},
-                ]
-            }
-        ],
-        [getGridCoord(20,19)]: [
-            {
-                events: [
-                    { type: 'changeMap', map: 'farfetch'},
-                ]
-            }
-        ],
-        [getGridCoord(29,16)]: [
+        // [getGridCoord(35,19)]: [
+        //     {
+        //         events: [
+        //             { type: 'changeMap', map: 'farfetch'},
+        //         ]
+        //     }
+        // ],
+        // [getGridCoord(36,19)]: [
+        //     {
+        //         events: [
+        //             { type: 'changeMap', map: 'farfetch'},
+        //         ]
+        //     }
+        // ],
+        [getGridCoord(45,16)]: [
             {
                 events: [
                     { type: 'changeMap', map: 'techskills'},
@@ -869,14 +1125,7 @@ export const outside = {
         ],
     },
     initialInteractions: [
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
-        {type: 'walk', who: 'car', direction: 'right'},
+        ...addActions({type: 'walk', who: 'car', direction: 'right'}, 17),
         {type: 'idle', who: 'car', direction: 'down', time: 200},
         {type: 'changeCameraView', who: 'miniMe'},
         {type: 'show', who: 'miniMe', direction: 'down' },
@@ -895,15 +1144,15 @@ export const outside = {
     ]
 };
 
+createLinearWall({coord: 'x', x: 0, y: 3, n: 41, map: outside});
+createLinearWall({coord: 'x', x: 43, y: 3, n: 30, map: outside});
+createLinearWall({coord: 'y', x: 62, y: 3, n: 6, map: outside});
+createLinearWall({coord: 'y', x: 40, y: -1, n: 4, map: outside});
+createLinearWall({coord: 'x', x: 62, y: 8, n: 3, map: outside});
+createLinearWall({coord: 'x', x: 67, y: 8, n: 3, map: outside});
+createLinearWall({coord: 'y', x: 0, y: 0, n: 28, map: outside});
+createLinearWall({coord: 'y', x: 69, y: 0, n: 28, map: outside});
+createLinearWall({coord: 'x', x: 0, y: 25, n: 70, map: outside});
+createLinearWall({coord: 'x', x: 40, y: -1, n: 4, map: outside});
+createLinearWall({coord: 'y', x: 70, y: 17, n: 2, map: outside});
 
-createLinearWall({coord: 'x', x: 0, y: 3, n:25, map: outside});
-createLinearWall({coord: 'x', x: 27, y: 3, n: 19, map: outside});
-createLinearWall({coord: 'y', x: 46, y: 3, n: 6, map: outside});
-createLinearWall({coord: 'y', x: 24, y: -1, n: 4, map: outside});
-createLinearWall({coord: 'x', x: 46, y: 8, n: 3, map: outside});
-createLinearWall({coord: 'x', x: 51, y: 8, n: 3, map: outside});
-createLinearWall({coord: 'y', x: 0, y: 0, n: 30, map: outside});
-createLinearWall({coord: 'y', x: 53, y: 0, n: 30, map: outside});
-createLinearWall({coord: 'x', x: 0, y: 25, n: 24, map: outside});
-createLinearWall({coord: 'x', x: 26, y: 25, n: 30, map: outside});
-createLinearWall({coord: 'x', x: 27, y: 2, n: 26, map: outside});

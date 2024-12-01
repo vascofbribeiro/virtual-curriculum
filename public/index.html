@@ -52,15 +52,17 @@
             .loading-bar {
                 width:100%;
                 height: 20px;
-                background-color: lightgray;
-                border-radius: 5px;
+                background-color: #333;
+                border: 4px solid #8b5a2b;
+                border-radius: 2px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
             }
 
             .progress {
                 height: 100%;
-                background-color: #c3b29d;
                 width: 0%;
-                border-radius: 5px;
+                background-color: #f3e5ab;
+                box-shadow: inset 0px 0px 4px #8b5a2b;
             }
 
             body {
@@ -71,6 +73,9 @@
             }
 
             .game-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 position: relative;
                 width: 120px;
                 height: 200px;
@@ -98,7 +103,7 @@
             @media (min-width: 1200px) {
                 .game-container {
                     width: 1056px;
-                    height: 608px;
+                    height: 638px;
                 }
             }
 
@@ -112,12 +117,14 @@
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                width: 75px;
-                height: 75px;
-                font-size: 14px;
+                border: 4px solid #8b5a2b;
+                width: 60px;
+                height: 60px;
+                border-radius: 5px;
                 padding: 4px;
-                border-top: 1px solid black;
-                color: #302a4a;
+                cursor: pointer;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+                color: #f3e5ab;
                 background-image: url(../images/interfaces/sound-mute.png);
                 background-size: cover;
             }
@@ -125,7 +132,7 @@
             #helper {
                 display: none;
                 position: absolute;
-                opacity: 0.8;
+                opacity: 0.85;
                 left:0;
                 right:0; 
                 margin-left: auto;
@@ -136,10 +143,11 @@
                 width: 280px;
                 height: 30px;
                 padding: 4px;
-                background: #c3b29d;
-                border: 1px solid black;
+                background-color: #f3e5ab;
+                border: 3px solid #8b5a2b;
+                border-radius: 15px;
+                font-family: 'Press Start 2P', sans-serif;
                 color: #302a4a;
-                font-size: 20px;
             }
             #helper-text {
                 margin: 0;
@@ -152,11 +160,15 @@
                 bottom: 0;
                 height: 140px;
                 width:100%;
-                padding: 4px;
-                background: #c3b29d;
-                border-top: 1px solid black;
-                color: #302a4a;
+                padding: 8px;
+                background-color: #f3e5ab;
+                border: 3px solid #8b5a2b;
+                border-radius: 15px;
+                font-family: 'Press Start 2P', sans-serif;
+                color: #4d3b2e;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
                 overflow-y: scroll;
+                line-height: 1.4;
             }
 
             @media (min-width: 992px) {
@@ -225,10 +237,23 @@
                 width: 60%;
                 height: 60%;
                 padding: 20px;
-                background: #c3b29d;
-                border: 1px solid rgb(58, 57, 57);
-                color: #302a4a;
+                margin: 20px auto;
+                background-color: #f3e5ab;
+                border: 3px solid #8b5a2b;
+                border-radius: 15px;
+                font-family: 'Press Start 2P', sans-serif;
+                color: #4d3b2e;
+                text-align: center;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
                 overflow-y: scroll;
+                line-height: 1.4;
+            }
+
+            .interaction-box-note {
+                position: absolute;
+                bottom: 0;
+                font-size: 12px;
+                align-self: center;
             }
 
             @media (max-width: 992px) {
@@ -249,14 +274,14 @@
             }
 
             .interaction-box-title {
-                font-size: 30px;
+                font-size: 24px;
                 font-weight: bold;
                 margin: 0;
             }
 
             .interaction-box-text {
                 margin: 20px 0 0;
-                font-size: 24px;
+                font-size: 20px;
                 text-align: justify;
             }
 
@@ -373,6 +398,10 @@
                 animation: scene-transition-fade-out  0.2s forwards;
             }
 
+            .scene-transition.rest.fade-out {
+                animation: scene-transition-fade-out  2s forwards;
+            }
+
             @keyframes scene-transition-fade-in {
                 from { opacity: 0 }
                 to { opacity: 1 }
@@ -384,10 +413,75 @@
                 to { opacity: 0 }
             }
 
+            .credits-container {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                max-width: 600px;
+                height: 100%;
+                overflow: hidden;
+                position: absolute;
+            }
+
+            .credits-content {
+                position: absolute;
+                top: 100%;
+                animation: scrollUp 30s linear infinite;
+            }
+
+            @keyframes scrollUp {
+                from { top: 100%; }
+                to { top: -100%; }
+            }
+
+            .credits-content h2, .credits-content p {
+                text-align: center;
+                margin-bottom: 1em;
+                text-shadow: 1px 1px 2px #000;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                color: #FFD700;
+                text-shadow: 1px 1px 2px #000;
+            }
+
+            .credit-item {
+                font-size: 1.1rem;
+                color: #ddd;
+            }
+
         </style>
     </head>
     <body>
         <div class="game-container" id="canvas-container">
+            <div class="credits-container">
+                <div class="credits-content">
+                    <h2 class="section-title">Portfolio Game by</h2>
+                    <p class="credit-item">Vasco Ribeiro</p>
+                
+                    <h2 class="section-title">Game Design & Development</h2>
+                    <p class="credit-item">Built with passion for code, creativity, and pixel art!</p>
+                    <p class="credit-item">https://github.com/vascofbribeiro/virtual-curriculum</p>
+                
+                    <h2 class="section-title">Pixel Art & Assets</h2>
+                    <p class="credit-item">Modern Interiors RPG Tileset - Limezu</p>
+                    <p class="credit-item">Modern Exteriors RPG Tileset - Limezu</p>
+                    <p class="credit-item">Limezu: <a>https://limezu.itch.io/</a></p>
+                    
+
+                    <h2 class="section-title">Sound Effects & Music</h2>
+                    <p class="credit-item">Background Sounds: Generated with Suno</p>
+                  
+                    <h2 class="section-title">Special Thanks</h2>
+                    <p class="credit-item">To My Past Experiences & Projects: Inspiring each pixel!</p>
+                    <p class="credit-item">Friends & Family: For endless support and playtesting!</p>
+                
+                    <h2 class="section-title">Thank You for Playing!</h2>
+                    <p class="credit-item">Explore, discover, and enjoy the journey through my tech adventures!</p>
+                </div>
+            </div>
             <div id="loading" class="loading-container">
                 LOADING<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
                 <div class="loading-bar">
@@ -397,6 +491,7 @@
             <canvas id="game-canvas"></canvas>
             <button id="btn-audio" class="button-audio" onclick="play()"></button>
             <div id="helper"><p id="helper-text"></p></div>
+            
         </div>
 
         <div class="gamepad">
@@ -415,15 +510,57 @@
         
         <script>
             const audio = new Audio('../sounds/main.mp3');
+            const audioSet = new Audio();
+            const notificationSound = new Audio('../sounds/interaction.mp3');
+            notificationSound.volume = 0.2;
+            let isMuted = true;
             function play() {
-                const btnAudio = document.getElementById('btn-audio');;
-                audio.volume = 0.05;
+                const btnAudio = document.getElementById('btn-audio');
+                btnAudio.blur();
+                audio.volume = 0.4;
                 audio.loop = true;
                 btnAudio.style.backgroundImage = audio.paused ? 'url(../images/interfaces/sound.png)' :  'url(../images/interfaces/sound-mute.png)' 
-                audio.paused ? audio.play() : audio.pause();
-
-
+                isMuted ? audio.play() : audio.pause();
+                isMuted = !isMuted;
             }
+
+            document.addEventListener('CharacterDrunk', () => {
+                audio.src = '../sounds/drunk.mp3';
+                audio.currentTime = 0;
+                !isMuted && audio.play();
+            });
+
+            document.addEventListener('CharacterSober', () => {
+                audio.src = '../sounds/main.mp3';
+                audio.currentTime = 0;
+                !isMuted && audio.play();
+            });
+
+            document.addEventListener('Interaction', () => {
+                !isMuted && notificationSound.play();
+            });
+
+            document.addEventListener('ChangeMap', (event)  => {
+                const previousSrc = audio.src;
+                switch(event.detail.map) {
+                    case 'beach': 
+                        audioSet.src = '../sounds/beach.mp3';
+                        break;
+                    default:
+                        audioSet.src = '../sounds/main.mp3';
+                }
+
+                // Don't restart song if it's the same
+                if(previousSrc !== audioSet.src) {
+                    audio.src = audioSet.src;
+                    audio.currentTime = 0;
+                    if(!isMuted) {
+                        audio.play();
+                    }
+                }
+                
+                
+        });
         </script>
         <meta name="viewport" content="user-scalable=no" />
     </body>

@@ -1,5 +1,8 @@
 import { Direction } from "../types/Direction";
 
+const OFFSET_X = 16;
+const OFFSET_Y = 0;
+
 export const getGridPosition = (n: number): number => {
     return n * 16;
 }
@@ -7,6 +10,11 @@ export const getGridPosition = (n: number): number => {
 export const getGridCoord = (x: number, y: number): string => {
     return `${x*16},${y*16}`
 }
+
+export const getGridPositionWithOffsetX = (n: number): number => {
+    return n * 16 + OFFSET_X * 16;
+}
+
 
 export const getPointsFromCoord = (coord: string) => {
     const x = coord.split(',')[0];

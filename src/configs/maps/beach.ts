@@ -2,6 +2,8 @@ import Character from '../../modules/Character';
 import GameObject from '../../modules/GameObject';
 import { getGridPosition, getGridCoord, createLinearWall } from '../../utils/grid';
 import miniMeAnimation from '../sprites/miniMe';
+import miniMeSurfAnimation from '../sprites/miniMeSurf';
+import surfboardAnimation from '../sprites/surfboard';
 import boatAnimation from '../sprites/boat';
 
 export const beach = {
@@ -76,16 +78,18 @@ export const beach = {
                 },
             }
         }),
-        surfboard: new GameObject({
-            x: getGridPosition(16),
-            y: getGridPosition(8),
+        surfboard: new Character({
+            x: getGridPosition(13),
+            y: getGridPosition(5),
+            isPlayer: false,
             width: getGridPosition(1),
             height: getGridPosition(1),
             sprite: {
                 object: {
                     src: '../images/objects/surfboard.png',
                     width: getGridPosition(1),
-                    height: getGridPosition(2)
+                    height: getGridPosition(2),
+                    animations: surfboardAnimation,
                 },
             },
             interactionIcon: {
@@ -98,11 +102,31 @@ export const beach = {
                             type: 'message',
                             text: 'I finally found my surfboard! I love to surf 🏄'
                         },
+                        {
+                            type: 'hide',
+                            who: 'surfboard'
+                        },
+                        {type: 'changeSprite', who: 'miniMe', spriteObj: miniMeSurfAnimation},
+                        {type: 'walk', who: 'miniMe', direction: 'up', ignoreWall: true},
+                        {type: 'walk', who: 'miniMe', direction: 'up'},
+                        {type: 'walk', who: 'miniMe', direction: 'up'},
+                        {type: 'walk', who: 'miniMe', direction: 'up'},
+                        {type: 'walk', who: 'miniMe', direction: 'up'},
+                        {type: 'walk', who: 'miniMe', direction: 'up'},
+                        {type: 'surf', who: 'miniMe'},
+                        {type: 'walk', who: 'miniMe', direction: 'down'},
+                        {type: 'walk', who: 'miniMe', direction: 'down'},
+                        {type: 'walk', who: 'miniMe', direction: 'down'},
+                        {type: 'walk', who: 'miniMe', direction: 'down'},
+                        {type: 'walk', who: 'miniMe', direction: 'down'},
+                        {type: 'walk', who: 'miniMe', direction: 'down', ignoreWall: true},
+                        {type: 'changeSprite', who: 'miniMe', spriteObj: miniMeAnimation},
+                        { type: 'message', text: `You’ve returned to shore. Hope you enjoyed the ride!`},
+
                     ]
                 }
             ],
-        })
-        
+        }),
     },
     limits: {
         xMin: getGridPosition(11),
@@ -112,6 +136,7 @@ export const beach = {
     },
     walls: {
         [getGridCoord(12, 12)]: true,
+        [getGridCoord(13, 5)]: true,
         [getGridCoord(14, 12)]: true,
         [getGridCoord(12, 13)]: true,
         [getGridCoord(14, 13)]: true
@@ -123,7 +148,7 @@ export const beach = {
                     { type: 'changeMap', map: 'outside'},
                 ]
             }
-        ]
+        ],
     },
 };
 

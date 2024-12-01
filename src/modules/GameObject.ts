@@ -35,6 +35,8 @@ export default class GameObject {
     public behaviorLoopIndex: number;
     public isIdle: boolean;
     public interactionBox: any;
+    public interactionNumber: number;
+    public type: string;
     public interactionIcon?: {
         far?: string;
         nearby?: string;
@@ -74,7 +76,9 @@ export default class GameObject {
         this.behaviorLoopIndex = 0;
         this.walkable = config.walkable || false;
         this.interactions = config.interactions;
+        this.interactionNumber = 0;
         this.label = config.label;
+        this.type = config.type;
         this.isCameraView = config.isCameraView;
         this.hasInteracted = false;
     }

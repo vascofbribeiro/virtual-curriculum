@@ -18,6 +18,15 @@ export class SceneTransition {
         }, { once: true })
     }
 
+    public rest() {
+        this.element.classList.add('fade-out')
+        this.element.classList.add('rest')
+
+        this.element.addEventListener('animationend', () => {
+            this.element.remove();
+        }, { once: true })
+    }
+
     public init(container: HTMLElement, callback: Function) {
         this.createElement();
         container.appendChild(this.element);

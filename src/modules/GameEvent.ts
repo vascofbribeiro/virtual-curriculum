@@ -3,6 +3,8 @@ import { InteractionMessage } from "./InteractionMessage";
 import { InteractionBox } from "./InteractionBox";
 import Map from "./Map";
 import { SceneTransition } from "./SceneTransition";
+import Character from "./Character";
+import { emitEvent } from "../utils/events";
 
 export default class GameEvent {
     private map: Map;
@@ -36,6 +38,32 @@ export default class GameEvent {
         document.addEventListener('CharacterIdleComplete', completeHandler);
     }
 
+    private beer(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'beer'
+            }
+        )
+    }
+
+    
+    private sober(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'sober'
+            }
+        )
+    }
+
+
     private walk(resolve: Function) {
         const who = this.map.gameObjects[this.event.who];
         who.startBehavior(
@@ -45,7 +73,8 @@ export default class GameEvent {
             {
                 type: 'walk',
                 direction: this.event.direction,
-                retry: true
+                retry: true,
+                ignoreWall: this.event.ignoreWall
             }
         )
 
@@ -81,6 +110,28 @@ export default class GameEvent {
         document.addEventListener('CharacterShowCompleted', completeHandler);
     }
 
+    private hide(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'hide',
+                direction: this.event.direction,
+            }
+        )
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                document.removeEventListener('CharacterHideCompleted', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterHideCompleted', completeHandler);
+    }
+
     private message(resolve: Function) {
         //ADD logic so npc faces character
         this.map.isInteracting = true;
@@ -93,6 +144,10 @@ export default class GameEvent {
                 resolve();
             }
         })
+
+        emitEvent('Interaction', {
+            whoId: 'miniMe'
+        });
 
         message.init(document.querySelector('.game-container'))
     }
@@ -108,17 +163,88 @@ export default class GameEvent {
             }
         })
 
+        emitEvent('Interaction', {
+            whoId: 'miniMe'
+        });
+
         message.init(document.querySelector('.game-container'))
     }
 
     private changeMap(resolve: Function) {
-        const sceneTransition = new SceneTransition();
-        sceneTransition.init(document.querySelector('.game-container'), () => {
-            this.map.engine.startMap(this.event.map)
-            resolve();
+        const miniMe = this.map.gameObjects['miniMe'];
+        if((miniMe as Character).isDrunk) {
+            this.map.isInteracting = true;
+            const message = new InteractionMessage({
+                showNote: true,
+                isLink: false,
+                text: `You can't go anywhere like this. Try to find a bench to take a rest first`,
+                onComplete: () => {
+                    this.map.isInteracting = false;
+                    resolve();
+                }
+            })
+            
+            message.init(document.querySelector('.game-container'))
+    
+        } else {
+            const sceneTransition = new SceneTransition();
+            sceneTransition.init(document.querySelector('.game-container'), () => {
+                this.map.engine.startMap(this.event.map)
+                resolve();
+                
+                emitEvent('ChangeMap', {
+                    map: this.event.map
+                })
 
-            sceneTransition.fadeOut();
-        }); 
+                sceneTransition.fadeOut();
+            }); 
+        }
+    }
+
+    private surf(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            }, 
+            {
+                type: 'surf',
+            }
+        );
+
+        this.map.isInteracting = true;
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                this.map.isInteracting = false;
+                document.removeEventListener('CharacterSurfCompleted', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterSurfCompleted', completeHandler);
+    }
+
+    private changeSprite(resolve: Function) {
+        const who = this.map.gameObjects[this.event.who];
+        who.startBehavior(
+            {
+                map: this.map
+            },
+            {
+                type: 'changeSprite',
+                spriteObj: this.event.spriteObj
+            }
+        );
+
+        const completeHandler = (event: CustomEvent) => {
+            if(event.detail.whoId === this.event.who) {
+                document.removeEventListener('CharacterSpriteChanged', completeHandler);
+                resolve();
+            }
+        }
+
+        document.addEventListener('CharacterSpriteChanged', completeHandler);
     }
 
     private changeCameraView(resolve: Function) {

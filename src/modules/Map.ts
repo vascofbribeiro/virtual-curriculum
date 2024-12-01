@@ -7,13 +7,14 @@ import { IEvent } from "../interfaces/modules/IEvent";
 import GameEvent from "./GameEvent";
 import { IMapConfig } from "../interfaces/configs/IMapConfig";
 import CameraView from "./CameraView";
+import Character from "./Character";
 
 export default class Map {
     private _lowerImage: HTMLImageElement;
     private _upperImage: HTMLImageElement | null;
-    private _walls: Record<string, boolean>
+    public walls: Record<string, boolean>
     public engine: Engine;
-    public gameObjects: Record<string, GameObject>;
+    public gameObjects: Record<string, GameObject | Character>;
     public interactablePlaces: Record<string, any>;
     public spacesTaken: Record<string, any>;
     public doors: Record<string, any>;
@@ -40,7 +41,7 @@ export default class Map {
             const imageLoadedEvent = new CustomEvent('mapImageLoaded');
             document.dispatchEvent(imageLoadedEvent)
         }
-        this._walls = config.walls;
+        this.walls = config.walls;
         this.gameObjects = config.gameObjects;
         this.engine = null;
         this.actionSpaces = config.actionSpaces;
@@ -108,7 +109,7 @@ export default class Map {
 
         return { 
             ...spacesTaken,
-            ...this._walls
+            ...this.walls
         };
     }
 
@@ -120,9 +121,15 @@ export default class Map {
         delete this.spacesTaken[`${x},${y}`];
     }
 
-    public moveSpaceTaken(wasX: number, wasY: number, direction: Direction) {
-        this.removeSpaceTaken(wasX, wasY);
+    public moveSpaceTaken(wasX: number, wasY: number, direction: Direction, ignoreWall?: boolean) {
+        // If it is wall the space shouldn't be removed in the map
+        !ignoreWall && this.removeSpaceTaken(wasX, wasY);
         const {x, y} = nextPosition(wasX, wasY, direction);
+        
+        if(window.location.search.includes('debug')) {
+            console.log(x/16, y/16)
+        }
+        
         this.addSpaceTaken(x,y);
     }
 
@@ -161,19 +168,33 @@ export default class Map {
             const match = this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`];
 
             if(!this.isInteracting && match) {
-                this.startInteraction(match[0].events);
+                const randomInteractionIndex = Math.floor(Math.random() * match.length);
+                this.startInteraction(match[randomInteractionIndex].events);
+                
+                // If shouldn't repeat, remove event from actionSpace
+                if(match[randomInteractionIndex].triggerOnce){
+                    this.actionSpaces[`${this.gameObjects.miniMe.x},${this.gameObjects.miniMe.y}`][randomInteractionIndex].events = [];
+                } 
             }
         }
     }
 
     public tryInteraction() {
         const objectToInteract = this.checkForInteraction(); 
+        const isBench = objectToInteract?.type === "bench";
 
-        if (objectToInteract) {
+        if ((objectToInteract && (!(this.gameObjects.miniMe as Character).isDrunk) || isBench)) {
             this.isInteracting = true;
-            this.startInteraction(objectToInteract.interactions[0].events);
+            const interactionNumber = this.gameObjects[objectToInteract.id].interactionNumber;
+            this.startInteraction(objectToInteract.interactions[interactionNumber].events);
             if(objectToInteract.interactionIcon) objectToInteract.interactionIcon.far = '';
             this.gameObjects[objectToInteract.id].hasInteracted = true;
+            const nextInteractionNumber = interactionNumber + 1 >= this.gameObjects[objectToInteract.id].interactions.length ? 0 : interactionNumber + 1;
+            this.gameObjects[objectToInteract.id].interactionNumber = nextInteractionNumber;
+        }
+
+        if(objectToInteract && (this.gameObjects.miniMe as Character).isDrunk) {
+            this.startInteraction([{type: "message", text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed sem facilisis, eleifend massa non, molestie enim.'}]);
         }
     }
 
@@ -192,7 +213,7 @@ export default class Map {
             return isInteractable;
         })
 
-        if (match && match.interactions && match.interactions.length) {
+        if (match && match.interactions && match.interactions.length && !match.isHidden) {
             return match
         }
 

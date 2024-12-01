@@ -297,7 +297,7 @@ export const outside = {
                             title: 'Arkadium (Dec 2024 - Present)',
                             textLines: [
                                 `Arkadium specializes in developing premium online games for a broad audience, focusing on user-friendly, accessible games that emphasize quality and enjoyment.`,
-                                `I joined Arkadium as a Senior Full Stack Developer to help create engaging browser-based game arenas, leveraging Next.js, React, and Node.js to build interactive, high-performance gaming experiences.`
+                                `I joined Arkadium as a Senior Full Stack Developer to help create engaging browser-based game arenas, to build interactive, high-performance gaming experiences.`
                             ],
                         },
                     ]
@@ -375,7 +375,7 @@ export const outside = {
                             type: 'interactionBox',
                             title: 'Emma (Jul 2023 - Dec 2024)',
                             textLines: [
-                                `At Emma, I helped streamlining the Static Site Generation process, reducing generation time through optimized scripting and cache strategies.`,
+                                `At Emma, I helped streamlining the rendering process, reducing generation time through optimized scripting and cache strategies.`,
                                 `I worked closely with designers and product managers to develop and refine UI components that bring direct value to Emma’s website, ensuring a user-centric experience.`
                             ],
                         },
@@ -383,7 +383,7 @@ export const outside = {
                             type: 'interactionBox',
                             title: 'Emma (Jul 2023 - Dec 2024)',
                             textLines: [
-                                `I collaborated with backend teams to migrate a key service and update its data model for delivery tracking, improving the site's functionality and data accuracy.`,
+                                `I also collaborated with backend teams to migrate a key service for delivery tracking, improving the site's functionality and data accuracy.`,
                             ],
                         },
                     ]
@@ -946,7 +946,7 @@ export const outside = {
                     events: [
                         {
                             type: 'message',
-                            text: `You grab a cold beer and take a refreshing sip!  Just remember... too many might make the path a bit wobbly`,
+                            text: `You grab a cold beer and take a refreshing sip!`,
                         },
                         {
                             type: 'beer',

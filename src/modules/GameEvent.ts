@@ -177,7 +177,7 @@ export default class GameEvent {
             const message = new InteractionMessage({
                 showNote: true,
                 isLink: false,
-                text: `You can't go anywhere like this. Try to take a rest first`,
+                text: `You can't go anywhere like this. Try to find a bench to take a rest first`,
                 onComplete: () => {
                     this.map.isInteracting = false;
                     resolve();

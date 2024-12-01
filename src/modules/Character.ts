@@ -164,7 +164,7 @@ export default class Character extends GameObject {
                 emitEvent('CharacterSurfCompleted', {
                     whoId: this.id
                 });
-            }, 60000);
+            }, 30000);
 
             
             this.updateSprite();
